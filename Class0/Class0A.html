@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 0A</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 0A Yahoo Finance</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#frequency">Frequency</li>
+        <li><a href="#random">Random Generation</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="introduction">
+    <div class="summary">
+    <h1>Introduction<Title></Title></h1>
+    <p><small>
+One of the most popular sources of free financial data is <strong> Yahoo Finance</strong>. 
+It contains not only historical and current stock prices in different frequencies (daily,weekly, and monthly), 
+but also calculated metrics, such as the beta (a measure of the volatility of an individual asset in comparison to the volatility of the entire market), 
+fundamentals, earnings information/calendars, and many more.
+</small></p>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Library<Title></Title></h1>
+    <pre><code class="python">
+# pip install yfinance
+# Import the libraries:
+
+import pandas as pd 
+import yfinance as yf
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1><strong>yf.download</strong><Title></Title></h1>
+    <p> Two Approaches <strong> yf.download</strong> and <strong>yf.history</strong></p>
+    <pre><code class="python">
+# Download the data:
+df = yf.download("AAPL", start="2020-01-01", end="2030-12-31")
+df2 = yf.download("2303.tw", # ^TWII
+                 start="2020-01-01",
+                 end="2030-12-31",
+                 progress=False)
+df2.tail(20)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1><strong>yf.history</strong><Title></Title></h1>    
+    <pre><code class="python">
+df = yf.Ticker('AAPL').history(start='2020-01-01', 
+                               end='2030-12-31', interval='1d')
+
+# [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 4h, 1d, 5d, 1wk, 1mo, 3mo]
+# US stock the interval can be the 1m but Taiwan is 1d.
+df2.tail(20)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1><strong>yf.history</strong><Title></Title></h1>
+    <p>tz_localize(None) </p>
+    <pre><code class="python">
+data = yf.Ticker("GC=F")
+df = data.history(start="2023-01-01",end="2030-12-31").tz_localize(None) # importance
+df = df.drop(['Dividends', 'Stock Splits'], axis=1)
+df2.tail(20)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Multi Stocks<Title></Title></h1>
+    <pre><code class="python">
+stocks = ['AMZN','GOOG','WMT','TSLA','META']
+df2 = yf.download(stocks, 
+          start="2022-01-01",
+          end="2030-12-31",
+          progress=False)
+df2['Close']
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Multi Stocks II<Title></Title></h1>
+    <pre><code class="python">
+stocks = ['AMZN','GOOG','WMT','TSLA','META']
+tickers = yf.Tickers(stocks)
+# [1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 4h, 1d, 5d, 1wk, 1mo, 3mo]
+df = tickers.history(start='2022-01-01',
+                     end="2030-12-31", interval='1d',).tz_localize(None)
+df = df.loc[:, ["Close"]] # only close price
+df.tail(20)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Tawan' s Stock<Title></Title></h1>
+    <pre><code class="python">
+import matplotlib.pyplot as plt
+import mplfinance as mpf
+
+# Taiwan 2330 TSMC
+taiwan_2330 = yf.Ticker("2330.TW")
+df = taiwan_2330.history(period="1mo") # one month
+
+df[["Close"]].plot(subplots=True,  sharex=True, title="2303 in 2023")
+mpf.plot(df, type='candle', style='charles', 
+         title='台灣 2330 股票 K 線圖', volume=True)
+    </code></pre>
+</div>
+</section>
+
+<section id="frequency">
+<div class="summary">
+    <h1>Adjust the frequency<Title></Title></h1>
+    <p>Yearly, Monthly, Bimonthly, Weekly</p>
+    <pre><code class="python">
+import matplotlib.pyplot as plt
+import mplfinance as mpf
+
+# 2330 TSMC
+taiwan_2330 = yf.Ticker("2330.TW")
+df = taiwan_2330.history(period="1mo") 
+
+df_Y=df.resample('YE').last()
+df_Y.head()
+
+df_M=df.resample('ME').last()
+df_M.head()
+
+df_m=df.resample('BME').last()
+df_m.head()
+
+df_W=df.resample('W').last()
+df_W.head()
+    </code></pre>
+</div>
+</section>
+
+<section id="random">
+<div class="discussion">
+    <h1>Random Generation<Title></Title></h1>
+    <pre><code class="python">
+import pandas as pd
+import numpy as np
+
+# Generate random time-series data
+np.random.seed(1234)
+dates = pd.date_range(start='2024-01-01', periods=200, freq='D')
+Close = np.random.randn(200).cumsum()
+
+# Create a DataFrame from the generated data
+df2 = pd.DataFrame({'date': dates, 'Adj Close': Close})
+
+# Set the 'date' column as the index
+df2.set_index('date', inplace=True)
+df2.head()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>What's the adj Close<Title></Title></h1>
+    <p><small>Adj Close (Adjusted Close)是經過調整的收盤價，是遇到股票分割或發放股利時的調整值，可將除權後的數值進行計算，還原其值。</small></p>
+    <pre><code class="python">
+# Adjust all columns using close/adj.close ratio
+ratio = df["Close"] / df["Adj Close"]
+
+df["close"]  = df["Adj Close"]
+df["open"]   = df["Open"] / ratio
+df["high"]   = df["High"] / ratio
+df["low"]    = df["Low"] / ratio
+df["volume"] = df["Volume"]
+
+df = df[['open','high','low','close','volume']]
+df.head()
+
+# data obtain and checking
+df = df.rename(columns={"date": "Date"}) # index name
+df.set_index("Date" , inplace=True)
+df = df.rename(columns={"open": "Open", "max": "High",
+                        "min": "Low", "close": "Close",
+                        "Trading_Volume": "Volume"})
+    </code></pre>
+</div>
+</section>
+
+</body>
+</html>
