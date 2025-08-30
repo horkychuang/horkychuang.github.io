@@ -2,7 +2,7 @@
 
 This repository contains files organized in a nested directory structure. Each file is contained within its own subdirectory under the main A and B directories.
 
-- [a0](./Class0/Class0.html)
+- [a0](./Class0/Class0_slide.html)
 - [a1](./Class1/Class1_slide.html)
 - [a1A](./Class1/Class11_slide.html)
 - 
