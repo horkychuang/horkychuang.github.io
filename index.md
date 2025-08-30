@@ -2,7 +2,7 @@
 
 This repository contains files organized in a nested directory structure. Each file is contained within its own subdirectory under the main A and B directories.
 
-- [a1](./class0/class0.html)
+- [a1](./Class0/Class0.html)
 
 ## 📁 Directory A
 
