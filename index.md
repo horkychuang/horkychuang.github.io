@@ -11,18 +11,18 @@ This repository contains files organized in a nested directory structure. Each f
 
 Individual file directories in A:
 
-- [a0](./114fin/Class0/Class0_slide.html) - File a1 in directory A/a1
-- [a1](./114fin/Class1/Class1_slide.html) - File a1 in directory A/a1
-- [a1A](./114fin/Class1/Class11_slide.html) - File a1 in directory A/a1
-- [a2](./114fin/Class2/Class2_slide.html) - File a2 in directory A/a2
-- [a3](./114fin/Class3/Class3_slide.html) - File a3 in directory A/a3
-- [a4](./114fin/Class4/Class4_slide.html) - File a4 in directory A/a4
-- [a5](./114fin/Class5/Class5_slide.html) - File a5 in directory A/a5
-- [a6](./114fin/Class6/Class6_slide.html) - File a6 in directory A/a6
-- [a7](./114fin/Class7/Class7_slide.html) - File a7 in directory A/a7
-- [a8](./114fin/Class8/Class8_slide.html) - File a8 in directory A/a8
-- [a9](./114fin/Class9/Class9_slide.html) - File a9 in directory A/a9
-- [a10](./114fin/Class10/Class10_slide.html) - File a10 in directory A/a10
+- [a0](./114fin/Class0/Class0_slide.html) - File Class0_slide in directory A/a1
+- [a1](./114fin/Class1/Class1_slide.html) - File Class0_slide in directory A/a1
+- [a1A](./114fin/Class1/Class11_slide.html) - File Class0_slide in directory A/a1
+- [a2](./114fin/Class2/Class2_slide.html) - File Class0_slide in directory A/a2
+- [a3](./114fin/Class3/Class3_slide.html) - File Class0_slide in directory A/a3
+- [a4](./114fin/Class4/Class4_slide.html) - File Class0_slide in directory A/a4
+- [a5](./114fin/Class5/Class5_slide.html) - File Class0_slide in directory A/a5
+- [a6](./114fin/Class6/Class6_slide.html) - File Class0_slide in directory A/a6
+- [a7](./114fin/Class7/Class7_slide.html) - File Class0_slide in directory A/a7
+- [a8](./114fin/Class8/Class8_slide.html) - File Class0_slide in directory A/a8
+- [a9](./114fin/Class9/Class9_slide.html) - File Class0_slide in directory A/a9
+- [a10](./114fin/Class10/Class10_slide.html) - File Class0_slide in directory A/a10
 
 ## 📁 Directory B
 
