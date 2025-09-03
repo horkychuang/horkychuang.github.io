@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 4</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 4 Supervised Learning II</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">Logistic Regression</a></li>
+        <li><a href="#topic2">Decision Tree Algorithm</a></li>
+        <li><a href="#topic3">Support Vector Machine Algorithm</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+ <section id="Introduction">
+    <div class="discussion">
+    <h1>Today's Topic</h1>
+    <ol>
+        <li>Logistic Regression</li>
+        <li>Decision Tree Algorithm</li>
+        <li>Support Vector Machine Algorithm</li>
+    </ol> 
+</div>
+</section>
+
+<section id="topic1">
+    <div class="summary">
+    <h1>Logistic Regression</h1>
+    <p><small>
+        The `logistic function` is also called the `sigmoid function`. 
+        It was developed by statisticians to describe properties of population growth in ecology, rising quickly and maxing out at the carrying capacity of the environment.  
+        It’s an S-shaped curve that can take any real-valued number and map it into a value between 0 and 1, but never exactly at those limits.<br>
+        Consider we have to make a decision whether a credit card transaction is fraudulent or not. 
+        The response is binary (Yes or No); if the transaction seems promising it will be accepted, otherwise not. 
+        For such a problem, logistic regression models the probability of fraud.
+    </small></p>
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Probability}(\text{fraud}= \text{Yes}|\text{Amount})
+            $$
+    </div>
+    <p><small>
+       Hence, logistic regression is used to tackle this problem. 
+       Logistic regression uses the sigmoid function, which takes input as any real value and gives an output between 0 and 1. 
+       <div style="text-align: center; margin: 20px 0;">
+            $$
+            P(x)=\frac{e^t}{(e^t+1)}, \text{where}\quad t=\beta_0+\beta_1 x
+            $$
+        </div>
+    </small></p>    
+    <p><small>
+    Logistic regression predicts the output of a <mark>categorical dependent variable</mark>. 
+    Therefore the outcome must be a categorical or discrete value. It can be either Yes or No, 0 or 1, true or False, etc. 
+    </small></p>
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <h2>Python Example</h2>
+    <pre><code>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import (
+    confusion_matrix,
+    roc_curve,
+    auc,
+    accuracy_score,
+    classification_report
+)
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Generate a dataset: 3400 samples, 10 features, 1 target
+X, y = make_classification(
+    n_samples=3400,
+    n_features=10,
+    n_informative=8,
+    n_redundant=2,
+    n_classes=2,
+    random_state=42
+)
+
+# Convert to DataFrame (optional, for better visualization)
+feature_names = [f'Feature_{i+1}' for i in range(10)]
+df = pd.DataFrame(X, columns=feature_names)
+df['Target'] = y
+
+# Display first few rows
+print("Dataset Head:")
+print(df.head())
+
+# Check shape
+print(f"\nDataset Shape: {df.shape}")
+
+# Split into train and test sets (70% train, 30% test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Initialize and train Logistic Regression model
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+
+# Predictions
+y_pred = model.predict(X_test)
+y_pred_proba = model.predict_proba(X_test)[:, 1]  # Probability of class 1
+
+# Calculate Accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"\nAccuracy: {accuracy:.4f}")
+
+# Confusion Matrix
+cm = confusion_matrix(y_test, y_pred)
+print("\nConfusion Matrix:")
+print(cm)
+
+# Classification Report (Precision, Recall, F1-Score)
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# ROC Curve and AUC
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+roc_auc = auc(fpr, tpr)
+
+# Plotting
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# Confusion Matrix Heatmap
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=axes[0])
+axes[0].set_title('Confusion Matrix')
+axes[0].set_xlabel('Predicted')
+axes[0].set_ylabel('Actual')
+
+# ROC Curve
+axes[1].plot(fpr, tpr, color='blue', lw=2, label=f'ROC Curve (AUC = {roc_auc:.4f})')
+axes[1].plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--', label='Random Classifier')
+axes[1].set_xlim([0.0, 1.0])
+axes[1].set_ylim([0.0, 1.05])
+axes[1].set_xlabel('False Positive Rate')
+axes[1].set_ylabel('True Positive Rate')
+axes[1].set_title('ROC Curve')
+axes[1].legend(loc="lower right")
+
+plt.tight_layout()
+plt.show()
+
+# Print AUC
+print(f"AUC Score: {roc_auc:.4f}")
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="discussion">
+    <h1>Decision Tree Algorithm</h1>
+    <p><small>
+       The <mark>Decision Tree</mark> is a popular `supervised machine learning algorithm` used for both `classification and regression` task. 
+       It works by recursively splitting the data into subsets based on the value of input features, creating a tree-like structure of decisions.<br>
+       Decision trees are built using a heuristic called **recursive partitioning.** This approach is also commonly known as `divide and conquer` 
+       because it splits the data into **subsets**, which are then split repeatedly into even smaller subsets, and so on.
+    </small></p>
+    <p><small>
+       There are three primary ways to measure the impurity: entropy, Gini index, and classification error.
+       <ul>
+        <li>Entropy: Entropy and information gain walk hand-in-hand. A pure node will require less information to describe itself while an impure node will require more information. 
+            It can be understood in the form of entropy too. (Information gain = 1 – Entropy.)</li>
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Entropy of the system} = -p*\text{log}_2 p-q*\text{log}_2 q
+            $$
+            </div>
+        <li>Gini coefficient: Gini index can also be used to measure the impurity</li>
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Gini Index}=1-\sum p^2_j
+            $$
+            </div>
+        <li>Classification Error:  It is given by the formula</li> 
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Classification Error Index}=1-\text{max}(p_i)
+            $$
+            </div>    
+       </ul>
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <p><small>
+    A decision tree involves partitioning the data into subsets that contain instances with <mark>similar values (homogenous)</mark>. 
+    The algorithm uses entropy (熵) to calculate the homogeneity of a sample.
+    </small></p>
+    <img src="images\churn_02.png" alt="churn_02" width="400">
+    <p><small>
+       How decision tree work?
+       <ul>
+         <li>Starts at the `root node` (the entire dataset)</li>
+         <li>Splits the data using **feature tests** (e.g., "Feature_3 > 5.2") that best separate the classes</li>
+         <li>Each internal node represents a decision based on a feature</li>
+         <li>Each leaf node represents a class label (in classification) or a predicted value (in regression)</li>
+         <li>The goal is to `maximize information gain` or `minimize impurity` (using metrics like **Gini Index** or **Entropy**).</li>
+       </ul>  
+    </small></p>  
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>Python Example</h2>
+    <pre><code>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import (
+    confusion_matrix,
+    roc_curve,
+    auc,
+    accuracy_score,
+    classification_report
+)
+from sklearn.inspection import permutation_importance
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# =============================
+# 1. Generate Dataset (34000 data, 10 features)
+# =============================
+X, y = make_classification(
+    n_samples=34000,
+    n_features=10,
+    n_informative=8,
+    n_redundant=2,
+    n_classes=2,
+    random_state=42
+)
+
+# Feature names
+feature_names = [f'Feature_{i+1}' for i in range(10)]
+df = pd.DataFrame(X, columns=feature_names)
+df['Target'] = y
+
+print("Dataset Head:")
+print(df.head())
+print(f"\nDataset Shape: {df.shape}")
+
+# =============================
+# 2. Train-Test Split
+# =============================
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# =============================
+# 3. Train Decision Tree Model
+# =============================
+model = DecisionTreeClassifier(
+    max_depth=8,       # pre-pruning Max depth of tree (e.g., 3–6 levels)
+    min_samples_split=10, # Minimum samples required to split
+    min_samples_leaf=5,   # # Minimum samples in leaf node
+    random_state=42,
+    criterion='gini'
+)
+model.fit(X_train, y_train)
+
+# Predictions
+y_pred = model.predict(X_test)
+y_pred_proba = model.predict_proba(X_test)[:, 1]  # Probability of positive class
+
+# =============================
+# 4. Model Evaluation
+# =============================
+accuracy = accuracy_score(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+roc_auc = auc(fpr, tpr)
+
+print(f"\nAccuracy: {accuracy:.4f}")
+print(f"AUC Score: {roc_auc:.4f}")
+
+print("\nConfusion Matrix:")
+print(cm)
+
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# =============================
+# 5. Plot: Confusion Matrix & ROC Curve
+# =============================
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# Confusion Matrix Heatmap
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=axes[0])
+axes[0].set_title('Confusion Matrix')
+axes[0].set_xlabel('Predicted')
+axes[0].set_ylabel('Actual')
+
+# ROC Curve
+axes[1].plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC Curve (AUC = {roc_auc:.4f})')
+axes[1].plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--', label='Random Classifier')
+axes[1].set_xlim([0.0, 1.0])
+axes[1].set_ylim([0.0, 1.05])
+axes[1].set_xlabel('False Positive Rate')
+axes[1].set_ylabel('True Positive Rate')
+axes[1].set_title('ROC Curve')
+axes[1].legend(loc="lower right")
+
+plt.tight_layout()
+plt.show()
+
+# =============================
+# 6. Feature Importance (Built-in)
+# =============================
+importances = model.feature_importances_
+feature_importance_df = pd.DataFrame({
+    'Feature': feature_names,
+    'Importance': importances
+}).sort_values(by='Importance', ascending=False)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(data=feature_importance_df, x='Importance', y='Feature', palette='viridis')
+plt.title('Feature Importance (Built-in) - Decision Tree')
+plt.xlabel('Importance Score')
+plt.ylabel('Features')
+plt.tight_layout()
+plt.show()
+
+print("\nFeature Importance (Built-in):")
+print(feature_importance_df)
+
+# =============================
+# 7. Permutation Importance (More Robust)
+# =============================
+perm_importance = permutation_importance(
+    model, X_test, y_test, n_repeats=10, random_state=42, scoring='accuracy'
+)
+
+perm_df = pd.DataFrame({
+    'Feature': feature_names,
+    'Importance': perm_importance.importances_mean
+}).sort_values(by='Importance', ascending=False)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(data=perm_df, x='Importance', y='Feature', palette='coolwarm')
+plt.title('Permutation Feature Importance')
+plt.xlabel('Drop in Accuracy (when feature is shuffled)')
+plt.ylabel('Features')
+plt.tight_layout()
+plt.show()
+
+print("\nPermutation Feature Importance:")
+print(perm_df)
+
+# =============================
+# 8. Optional: Tree Visualization (Small depth for clarity)
+# =============================
+plt.figure(figsize=(15, 8))
+from sklearn.tree import plot_tree
+plot_tree(model, feature_names=feature_names, class_names=['Class 0', 'Class 1'],
+          filled=True, rounded=True, fontsize=8)
+plt.title("Decision Tree Structure (Limited Depth)")
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Pruning the Decision Tree</h2>
+    <p><small>
+       One of the simplest and most effective ways to "prune" a tree in scikit-learn is by <mark>limiting its depth or growth during training</mark> — this is called **pre-pruning**. 
+       we can also use <mark>post-pruning</mark>, which grows the full tree first and then trims it back. 
+    </small></p>
+    <h2>Post-Pruning (Cost Complexity Pruning)</h2>
+    <p><small>
+       This method grows a `large tree first`, then prunes branches using Minimal Cost-Complexity Pruning. 
+    </small></p>
+    <pre><code>
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import tree
+
+# Step 1: Grow a large tree
+dt_full = DecisionTreeClassifier(random_state=42, criterion='gini')
+dt_full.fit(X_train, y_train)
+
+# Step 2: Get optimal alpha values for pruning
+path = dt_full.cost_complexity_pruning_path(X_train, y_train)
+ccp_alphas = path.ccp_alphas  # Sorted in increasing order
+
+# Step 3: Train trees for each alpha and pick best
+from sklearn.metrics import accuracy_score
+
+pruned_models = []
+train_scores = []
+val_scores = []
+
+for alpha in ccp_alphas:
+    clf = DecisionTreeClassifier(ccp_alpha=alpha, random_state=42)
+    clf.fit(X_train, y_train)
+    train_scores.append(clf.score(X_train, y_train))
+    val_scores.append(clf.score(X_test, y_test))
+    pruned_models.append(clf)
+
+# Find best alpha (max validation accuracy)
+best_idx = np.argmax(val_scores)
+best_alpha = ccp_alphas[best_idx]
+pruned_tree = pruned_models[best_idx]
+
+print(f"Best CCP Alpha: {best_alpha:.6f}")
+print(f"Best Validation Accuracy: {val_scores[best_idx]:.4f}")
+print(f"Tree Depth: {pruned_tree.get_depth()}")
+print(f"Number of Leaves: {pruned_tree.get_n_leaves()}")
+
+plt.figure(figsize=(14, 8))
+tree.plot_tree(pruned_tree,
+               feature_names=feature_names,
+               class_names=['Class 0', 'Class 1'],
+               filled=True,
+               rounded=True,
+               fontsize=10)
+plt.title(f"Pruned Decision Tree (Depth = {pruned_tree.get_depth()}, CCP α = {best_alpha:.5f})")
+plt.show()
+
+# Full tree
+full_tree = DecisionTreeClassifier(random_state=42).fit(X_train, y_train)
+print("Full Tree Depth:", full_tree.get_depth())
+print("Full Tree Leaves:", full_tree.get_n_leaves())
+
+# Pruned tree
+print("Pruned Tree Depth:", pruned_tree.get_depth())
+print("Pruned Tree Leaves:", pruned_tree.get_n_leaves())
+    </code></pre>
+</div>
+</section>
+
+<section id="topic3">
+<div class="summary">
+    <h1>Support Vector Machine (SVM)</h1>
+    <p><samll>
+    Imagine we have a dataset with “n” attributes. These n features can hence be represented in an n-dimensional space, 
+    where values of each attribute refer to the coordinates. 
+    SVMs work on these representations or support vectors and model a supervised learning algorithm.<br>
+    Support Vector Machines try to find a decision boundary that maximizes the margin between the two classes called a maximum marginal hyperplane.
+    </samll></p>
+    <img src="images\2025062501.jpg" alt="2025062501" width="400">
+</div>
+</section>
+
+<section>
+<div class="discussion">
+   <h2>How SVM Works?</h2>
+   <p><small>
+      The hyperplane that divides the data points has equal margin on the two sides parallel to the hyperplane. The hyperplane can be written as
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            WX+b=0
+            $$
+        </div>
+      Here, W is the weight vector, and b is the bias (scaler). 
+      In two dimensions, A point $(x_1, x_2)$ can be considered to be on the hyperplane. We can instead write this as
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            w_1x_1+w_2x_2+b=0
+            $$
+        </div>  
+   </small></p>
+   <img src="images\2025062502.jpg" alt="2025062502" width="400">
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <p><small>
+        For any point above the separating hyperplane, 
+        belonging to the positive class y = +1, And for any point below the separating hyperplane, belonging to the negative class y = -1.
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            \begin{align*}
+w_1x_1 + w_2x_2 + b &\geq 0, \quad \text{if } y = +1 \\
+w_1x_1 + w_2x_2 + b &\leq 0, \quad \text{if } y = -1 \\
+y_i(w_1x_{i1} + w_2x_{i2} + b) &\geq 0 \quad \text{for all } i
+\end{align*}
+            $$
+        </div>
+    </small></p>
+    <p><small>
+        As W is the weight vector comprising {w1, w2}, 
+        we can write the distance of the margin from the decision boundary as $\frac{1}{||W||}$, 
+        where ||W|| is the Euclidean norm of W. The distance from other margin will also be the same. 
+        Thus, the distance between the two margins is $\frac{2}{||W||}$. 
+        The aim of the learning algorithm is to find the support vectors and the maximum margin hyperplane, 
+        that is, the decision boundary that maximizes this distance. 
+        This resolves to a constrained quadratic optimization problem, which is solved using a Lagrangian formulation.
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Key Concepts</h2>
+    <p><small>
+        <ul>
+            <li><mark>Hyperplane</mark>: A line (in 2D), plane (in 3D), or higher-dimensional surface that separates classes</li>
+            <li><mark>Support Vectors</mark>: Critical data points that lie on the margin boundaries</li>
+            <li><mark>Margin</mark>: The distance between the hyperplane and the nearest points from each class</li>
+            <li><mark>Kernel Trick</mark>: Allows SVM to handle <mark>non-linearly separable data</mark> by transforming data into higher dimensions (e.g., using RBF, polynomial kernels)</li>
+        </ul> 
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>Python Example</h2>
+    <pre><code>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.metrics import (
+    confusion_matrix,
+    roc_curve,
+    auc,
+    accuracy_score,
+    classification_report,
+)
+
+# Set random seed
+np.random.seed(42)
+
+# =============================
+# 1. Generate Dataset (3400 rows, 10 features)
+# =============================
+X, y = make_classification(
+    n_samples=3400,
+    n_features=10,
+    n_informative=8,
+    n_redundant=2,
+    n_classes=2,
+    random_state=42
+)
+
+feature_names = [f'Feature_{i+1}' for i in range(10)]
+df = pd.DataFrame(X, columns=feature_names)
+df['Target'] = y
+
+print("Dataset Head:")
+print(df.head())
+print(f"\nDataset Shape: {df.shape}")
+
+# =============================
+# 2. Train-Test Split
+# =============================
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# =============================
+# 3. Feature Scaling (Required for SVM)
+# =============================
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# =============================
+# 4. Train SVM Model
+# =============================
+# Use RBF kernel for non-linear separation
+model = SVC(
+    kernel='rbf',           # Can also try 'linear', 'poly'
+    C=1.0,                  # Regularization parameter
+    gamma='scale',          # Kernel coefficient
+    probability=True,       # Needed for predict_proba and ROC
+    random_state=42
+)
+model.fit(X_train_scaled, y_train)
+
+# =============================
+# 5. Predictions
+# =============================
+y_pred = model.predict(X_test_scaled)
+y_pred_proba = model.predict_proba(X_test_scaled)[:, 1]  # Probabilities for ROC
+
+# =============================
+# 6. Model Evaluation
+# =============================
+accuracy = accuracy_score(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_proba)
+roc_auc = auc(fpr, tpr)
+
+print(f"\nAccuracy: {accuracy:.4f}")
+print(f"AUC Score: {roc_auc:.4f}")
+
+print("\nConfusion Matrix:")
+print(cm)
+
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# =============================
+# 7. Plot: Confusion Matrix & ROC Curve
+# =============================
+fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+
+# Confusion Matrix
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=axes[0])
+axes[0].set_title('Confusion Matrix')
+axes[0].set_xlabel('Predicted')
+axes[0].set_ylabel('Actual')
+
+# ROC Curve
+axes[1].plot(fpr, tpr, color='darkgreen', lw=2, label=f'ROC Curve (AUC = {roc_auc:.4f})')
+axes[1].plot([0, 1], [0, 1], color='gray', lw=1, linestyle='--', label='Random Classifier')
+axes[1].set_xlim([0.0, 1.0])
+axes[1].set_ylim([0.0, 1.05])
+axes[1].set_xlabel('False Positive Rate')
+axes[1].set_ylabel('True Positive Rate')
+axes[1].set_title('ROC Curve')
+axes[1].legend(loc="lower right")
+
+plt.tight_layout()
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <h2>Nonlinearly separating hyperplane</h2>
+    <p><small>
+        Here’s an intuition of utilizing nonlinearly separable data belonging to the two classes in only one dimension for simplicity. 
+        The separating hyperplane here would be a point.
+    </small></p>
+    <img src="images\2025062503.jpg" alt="2025062503" width="400">
+    <p><small>
+       we can `add one more dimension` to the data, it is possible to find a hyperplane (now, a line) that can easily separate the two classes. 
+       So the idea is first transform the data to a higher dimension using a nonlinear transformation. 
+       Then we can find a hyperplane in the new dimensions that can easily separate the two classes.
+    </small></p>
+</div>
+</section>
+
+<section id="topic2">
+<div class="discussion">
+    <p><small>
+       The figure is such a special case. In the case shown, it is not possible to have a linear hyperplane, 
+       and in such a case we will have a nonlinear hyperplane to make the classifications for us, which is possible using kernel SVM (KSVM) 
+    </small></p>
+    <img src="images\2025070910.jpg" alt="2025070910" width="400">
+    <p><small>
+       If we transform 2-dimensional space into high-dimensional space, the solution becomes more robust and the respective probability to separate the data points increases. 
+       KSVM has created a nonlinear classifier to perform the classification between the two classes. 
+    </small></p>
+    <img src="images\2025070911.jpg" alt="2025070911" width="400">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>(Advanced) Hyperparameter for kernel trick</h2>
+    <p><small>
+       <ul>
+        <li>Kernel: Kernel is used when we have the data which can become separable if expressed in higher dimensions. 
+            The various kernels available in sklearn are rbf, poly, sigmoid, linear, precomputed, and so on.</li>
+        <li>C is used to represent the misclassification error or the cost parameter. 
+            If the value of C is low, the penalty of misclassification observations is low and hence the accuracy will be high.</li>
+        <li>Gamma is used to define the radius of influence of the observations in a classification. 
+            It is primarily used for nonlinear hyperplanes</li>    
+       </ul>
+       A Kernel is a mathematical function that finds the dot product in the transformed space. Thus, we can write
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            K(X_i, X_j)=\varphi(X_i) \cdot \varphi(Xj)
+            $$
+        </div>
+        This is known as Kernel Trick. The most commonly used Kernels are given here
+    </small></p>
+    <img src="images\2025062504.jpg" alt="2025062504" width="400">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>Python Example</h2>
+    <pre><code>
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import make_circles
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, roc_auc_score, confusion_matrix
+
+# Suppress warnings
+import warnings
+warnings.filterwarnings("ignore")
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# ===================================================
+# 1. Generate Non-Linearly Separable Dataset (3400 rows, 2 features)
+# ===================================================
+X, y = make_circles(n_samples=3400, noise=0.15, factor=0.3, random_state=42)
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Feature scaling (required for SVM)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# ===================================================
+# 2. Plot Original Data
+# ===================================================
+plt.figure(figsize=(6, 6))
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap='RdYlBu', edgecolors='k', s=30)
+plt.title("Non-Linearly Separable Data (Concentric Circles)")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.axis('equal')
+plt.tight_layout()
+plt.show()
+
+# ===================================================
+# 3. Train SVM Models: Linear + Kernels
+# ===================================================
+# Linear SVM
+svm_linear = SVC(kernel='linear', random_state=42)
+svm_linear.fit(X_train_scaled, y_train)
+y_pred_linear = svm_linear.predict(X_test_scaled)
+acc_linear = accuracy_score(y_test, y_pred_linear)
+auc_linear = roc_auc_score(y_test, svm_linear.decision_function(X_test_scaled))
+cm_linear = confusion_matrix(y_test, y_pred_linear)
+
+# Kernel SVMs
+kernels = {
+    'rbf': SVC(kernel='rbf', gamma='scale', C=1.0, probability=True, random_state=42),
+    'poly': SVC(kernel='poly', degree=3, C=1.0, probability=True, random_state=42),
+    'sigmoid': SVC(kernel='sigmoid', coef0=2, C=1.0, probability=True, random_state=42)
+}
+
+results = {
+    'Linear': {
+        'model': svm_linear,
+        'acc': acc_linear,
+        'auc': auc_linear,
+        'cm': cm_linear,
+        'y_pred': y_pred_linear
+    }
+}
+
+for name, model in kernels.items():
+    model.fit(X_train_scaled, y_train)
+    y_pred = model.predict(X_test_scaled)
+    acc = accuracy_score(y_test, y_pred)
+    auc_score = roc_auc_score(y_test, model.predict_proba(X_test_scaled)[:, 1])
+    cm = confusion_matrix(y_test, y_pred)
+    
+    results[name.title()] = {
+        'model': model,
+        'acc': acc,
+        'auc': auc_score,
+        'cm': cm,
+        'y_pred': y_pred
+    }
+
+# ===================================================
+# 4. Plot Confusion Matrices
+# ===================================================
+fig_cm, axes = plt.subplots(2, 2, figsize=(12, 10))
+
+for ax, (name, res) in zip(axes.flat, results.items()):
+    sns.heatmap(res['cm'], annot=True, fmt='d', cmap='Blues', ax=ax)
+    ax.set_title(f"{name} SVM\nAccuracy: {res['acc']:.4f}, AUC: {res['auc']:.4f}")
+    ax.set_ylabel('True Label')
+    ax.set_xlabel('Predicted Label')
+
+plt.tight_layout()
+plt.show()
+
+# ===================================================
+# 5. Plot Decision Boundaries
+# ===================================================
+def plot_decision_boundary(ax, model, X, y, title):
+    h = 0.02
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                         np.arange(y_min, y_max, h))
+    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    ax.contourf(xx, yy, Z, alpha=0.4, cmap='RdYlBu')
+    scatter = ax.scatter(X[:, 0], X[:, 1], c=y, cmap='RdYlBu', edgecolors='k', s=20)
+    ax.set_title(title)
+    ax.set_xlabel("Feature 1")
+    ax.set_ylabel("Feature 2")
+
+fig_db, axes_db = plt.subplots(2, 2, figsize=(12, 10))
+axes_db = axes_db.flatten()
+
+for idx, (name, res) in enumerate(results.items()):
+    plot_decision_boundary(axes_db[idx], res['model'], X_test_scaled, y_test, f"{name} SVM")
+
+plt.tight_layout()
+plt.show()
+
+# ===================================================
+# 6. Final Performance Summary Table
+# ===================================================
+print("\\n" + "="*70)
+print(" SVM PERFORMANCE SUMMARY (KERNEL COMPARISON)")
+print("="*70)
+print(f"{'Model':<12} {'Accuracy':<10} {'AUC':<10} {'TN FP':<12} {'FN TP'}")
+print("-"*70)
+
+for name, res in results.items():
+    tn, fp, fn, tp = res['cm'].ravel()
+    print(f"{name:<12} {res['acc']:<10.4f} {res['auc']:<10.4f} {tn} {fp:<3} {fn} {tp}")
+
+print("="*70)
+
+   </code></pre>
+</div>
+</section>
+
+
+
+
+
+
+</body>
+</html>

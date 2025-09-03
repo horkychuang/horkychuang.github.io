@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 4 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 4 Supervised Learning II
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Logistic Regression</h1>
+    <p><small>
+        The `logistic function` is also called the `sigmoid function`. 
+        It was developed by statisticians to describe properties of population growth in ecology, rising quickly and maxing out at the carrying capacity of the environment.  
+        It’s an S-shaped curve that can take any real-valued number and map it into a value between 0 and 1, but never exactly at those limits.<br>
+        Consider we have to make a decision whether a credit card transaction is fraudulent or not. 
+        The response is binary (Yes or No); if the transaction seems promising it will be accepted, otherwise not. 
+        For such a problem, logistic regression models the probability of fraud.
+    </small></p>
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Probability}(\text{fraud}= \text{Yes}|\text{Amount})
+            $$
+    </div>
+    <p><small>
+       Hence, logistic regression is used to tackle this problem. 
+       Logistic regression uses the sigmoid function, which takes input as any real value and gives an output between 0 and 1. 
+       <div style="text-align: center; margin: 20px 0;">
+            $$
+            P(x)=\frac{e^t}{(e^t+1)}, \text{where}\quad t=\beta_0+\beta_1 x
+            $$
+        </div>
+    </small></p>    
+    <p><small>
+    Logistic regression predicts the output of a <mark>categorical dependent variable</mark>. 
+    Therefore the outcome must be a categorical or discrete value. It can be either Yes or No, 0 or 1, true or False, etc. 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Decision Tree Algorithm</h1>
+    <p><small>
+       The <mark>Decision Tree</mark> is a popular `supervised machine learning algorithm` used for both `classification and regression` task. 
+       It works by recursively splitting the data into subsets based on the value of input features, creating a tree-like structure of decisions.<br>
+       Decision trees are built using a heuristic called **recursive partitioning.** This approach is also commonly known as `divide and conquer` 
+       because it splits the data into **subsets**, which are then split repeatedly into even smaller subsets, and so on.
+    </small></p>
+    <p><small>
+       There are three primary ways to measure the impurity: entropy, Gini index, and classification error.
+       <ul>
+        <li>Entropy: Entropy and information gain walk hand-in-hand. A pure node will require less information to describe itself while an impure node will require more information. 
+            It can be understood in the form of entropy too. (Information gain = 1 – Entropy.)</li>
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Entropy of the system} = -p*\text{log}_2 p-q*\text{log}_2 q
+            $$
+            </div>
+        <li>Gini coefficient: Gini index can also be used to measure the impurity</li>
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Gini Index}=1-\sum p^2_j
+            $$
+            </div>
+        <li>Classification Error:  It is given by the formula</li> 
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Classification Error Index}=1-\text{max}(p_i)
+            $$
+            </div>    
+       </ul>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>
+    A decision tree involves partitioning the data into subsets that contain instances with <mark>similar values (homogenous)</mark>. 
+    The algorithm uses entropy (熵) to calculate the homogeneity of a sample.
+    </small></p>
+    <img src="images\churn_02.png" alt="churn_02" width="400">
+    <p><small>
+       How decision tree work?
+       <ul>
+         <li>Starts at the `root node` (the entire dataset)</li>
+         <li>Splits the data using **feature tests** (e.g., "Feature_3 > 5.2") that best separate the classes</li>
+         <li>Each internal node represents a decision based on a feature</li>
+         <li>Each leaf node represents a class label (in classification) or a predicted value (in regression)</li>
+         <li>The goal is to `maximize information gain` or `minimize impurity` (using metrics like **Gini Index** or **Entropy**).</li>
+       </ul>  
+    </small></p>  
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Pruning the Decision Tree</h2>
+    <p><small>
+       One of the simplest and most effective ways to "prune" a tree in scikit-learn is by <mark>limiting its depth or growth during training</mark> — this is called **pre-pruning**. 
+       we can also use <mark>post-pruning</mark>, which grows the full tree first and then trims it back. 
+    </small></p>
+    <h2>Post-Pruning (Cost Complexity Pruning)</h2>
+    <p><small>
+       This method grows a `large tree first`, then prunes branches using Minimal Cost-Complexity Pruning. 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Support Vector Machine (SVM)</h1>
+    <p><samll>
+    Imagine we have a dataset with “n” attributes. These n features can hence be represented in an n-dimensional space, 
+    where values of each attribute refer to the coordinates. 
+    SVMs work on these representations or support vectors and model a supervised learning algorithm.<br>
+    Support Vector Machines try to find a decision boundary that maximizes the margin between the two classes called a maximum marginal hyperplane.
+    </samll></p>
+    <img src="images\2025062501.jpg" alt="2025062501" width="600">
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>How SVM Works?</h2>
+   <p><small>
+      The hyperplane that divides the data points has equal margin on the two sides parallel to the hyperplane. The hyperplane can be written as
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            WX+b=0
+            $$
+        </div>
+      Here, W is the weight vector, and b is the bias (scaler). 
+      In two dimensions, A point $(x_1, x_2)$ can be considered to be on the hyperplane. We can instead write this as
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            w_1x_1+w_2x_2+b=0
+            $$
+        </div>  
+   </small></p>
+   <img src="images\2025062502.jpg" alt="2025062502" width="400">
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>
+        For any point above the separating hyperplane, 
+        belonging to the positive class y = +1, And for any point below the separating hyperplane, belonging to the negative class y = -1.
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            \begin{align*}
+w_1x_1 + w_2x_2 + b &\geq 0, \quad \text{if } y = +1 \\
+w_1x_1 + w_2x_2 + b &\leq 0, \quad \text{if } y = -1 \\
+y_i(w_1x_{i1} + w_2x_{i2} + b) &\geq 0 \quad \text{for all } i
+\end{align*}
+            $$
+        </div>
+    </small></p>
+    <p><small>
+        As W is the weight vector comprising {w1, w2}, 
+        we can write the distance of the margin from the decision boundary as $\frac{1}{||W||}$, 
+        where ||W|| is the Euclidean norm of W. The distance from other margin will also be the same. 
+        Thus, the distance between the two margins is $\frac{2}{||W||}$. 
+        The aim of the learning algorithm is to find the support vectors and the maximum margin hyperplane, 
+        that is, the decision boundary that maximizes this distance. 
+        This resolves to a constrained quadratic optimization problem, which is solved using a Lagrangian formulation.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Key Concepts</h2>
+    <p><small>
+        <ul>
+            <li><mark>Hyperplane</mark>: A line (in 2D), plane (in 3D), or higher-dimensional surface that separates classes</li>
+            <li><mark>Support Vectors</mark>: Critical data points that lie on the margin boundaries</li>
+            <li><mark>Margin</mark>: The distance between the hyperplane and the nearest points from each class</li>
+            <li><mark>Kernel Trick</mark>: Allows SVM to handle <mark>non-linearly separable data</mark> by transforming data into higher dimensions (e.g., using RBF, polynomial kernels)</li>
+        </ul> 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Nonlinearly separating hyperplane</h2>
+    <p><small>
+        Here’s an intuition of utilizing nonlinearly separable data belonging to the two classes in only one dimension for simplicity. 
+        The separating hyperplane here would be a point.
+    </small></p>
+    <img src="images\2025062503.jpg" alt="2025062503" width="400">
+    <p><small>
+       we can `add one more dimension` to the data, it is possible to find a hyperplane (now, a line) that can easily separate the two classes. 
+       So the idea is first transform the data to a higher dimension using a nonlinear transformation. 
+       Then we can find a hyperplane in the new dimensions that can easily separate the two classes.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <p><small>
+       The figure is such a special case. In the case shown, it is not possible to have a linear hyperplane, 
+       and in such a case we will have a nonlinear hyperplane to make the classifications for us, which is possible using kernel SVM (KSVM) 
+    </small></p>
+    <img src="images\2025070910.jpg" alt="2025070910" width="400">
+    <p><small>
+       If we transform 2-dimensional space into high-dimensional space, the solution becomes more robust and the respective probability to separate the data points increases. 
+       KSVM has created a nonlinear classifier to perform the classification between the two classes. 
+    </small></p>
+    <img src="images\2025070911.jpg" alt="2025070911" width="400">
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>(Advanced) Hyperparameter for kernel trick</h2>
+    <p><small>
+       <ul>
+        <li>Kernel: Kernel is used when we have the data which can become separable if expressed in higher dimensions. 
+            The various kernels available in sklearn are rbf, poly, sigmoid, linear, precomputed, and so on.</li>
+        <li>C is used to represent the misclassification error or the cost parameter. 
+            If the value of C is low, the penalty of misclassification observations is low and hence the accuracy will be high.</li>
+        <li>Gamma is used to define the radius of influence of the observations in a classification. 
+            It is primarily used for nonlinear hyperplanes</li>    
+       </ul>
+       A Kernel is a mathematical function that finds the dot product in the transformed space. Thus, we can write
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            K(X_i, X_j)=\varphi(X_i) \cdot \varphi(Xj)
+            $$
+        </div>
+        This is known as Kernel Trick. The most commonly used Kernels are given here
+    </small></p>
+    <img src="images\2025062504.jpg" alt="2025062504" width="500">
+        </div>
+    </div>
+
+    
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

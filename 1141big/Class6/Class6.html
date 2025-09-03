@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 6</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 6 Regression Model</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">Simple Regression</a></li>
+        <li><a href="#topic2">Tree-Based Methods</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+ <section id="Introduction">
+    <div class="discussion">
+    <h1>Today's Topic</h1>
+    <ol>
+        <li>Simple and Multiple Regression</li>
+        <li>Tree-Based Methods</li>
+    </ol> 
+</div>
+</section>
+
+<section id="introduction">
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>
+        Regression is a a supervised learning technique that models the size and the strength of numeric relationships. 
+        Regression is concerned with specifying the relationship between a single numeric dependent variable (the value to be predicted) and one or more numeric independent variables (the predictors).
+    </small></p>
+    <img src="images\ch7-1.png" alt="ch7-1" width="300">
+    <p><small>
+       The basic linear regression models
+       <ul>
+        <li>Simple linear regression:  only a single independent variable</li>
+        <li>Multiple linear regression: two or more independent variables</li>
+       </ul> 
+    </small></p>
+</div>
+</section>
+
+
+<section id="topic1">
+<div class="summary">
+    <h2>What Is Linear Regression?</h2>
+    <p><small>
+       The objective of the linear regression analysis is to measure this relationship and arrive at a mathematical equation 
+       for the relationship. The relationship can be used to predict the values for unseen data points. 
+       For example, in the case of the house price problem, predicting the price of a house will be the objective of the analysis. 
+    </small></p>
+    <img src="images\2025070901.jpg" alt="2025070901" width="300">
+    <p><small>
+       Let us say we have a set of observations of x and Y where x is the independent variable and Y is the dependent variable
+       <div style="text-align: center; margin: 20px 0;">
+            $$
+            Y_i=\beta_0+\beta_1 x_1+\varepsilon_i
+            $$
+        </div>
+      , where $\beta_i$ coefficient. 
+      It represents the expected change in the value of Y by a unit change in xi. $\varepsilon$ random error term in the model.   
+    </small></p>
+    <img src="images\2025070902.jpg" alt="2025070902" width="300">
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <p><small>
+       After we have made the estimates, we would like to know how we have done, 
+       that is, how far the predicted value is from the actual value. 
+       It is represented by random error, which is the difference 
+       between the predicted and actual value of Y and is given by $\varepsilon=(\hat{Y}_i -Y_i)$. 
+       It is important to note that the smaller the value of this error, the better is the prediction. 
+       There can be multiple lines which can be said to represent the relationship. 
+    </small></p>
+    <img src="images\2025070903.jpg" alt="2025070903" width="300">
+    <p><small>
+       Hence, it turns out that we have to find out the best mathematical equation which can minimize the random error 
+       and hence can be used for making the predictions 
+    </small></p>    
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Ordinary Least Squares (OLS) Estimation</h2>
+    <img src="images\ch7-2.png" alt="ch7-2" width="400">
+    <p><small>
+       The Ordinary least-squares (OLS) method is one of the most used 
+       and quoted ones which minimize the sum of the squared distance between $Y$ and $\hat{Y}$.<br>
+       Suppose we know that the estimated regression parameters in the equation for the data are: a = 3.70 and b = -0.048.
+       These errors are known as residuals, and are illustrated for several points in the following diagram 
+    </small></p>
+    <img src="images\ch7-3.png" alt="ch7-3" width="400">
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            b=\frac{\sum\left(x_{i}-\bar{x}\right)\left(y_{i}-\bar{y}\right)}{\sum\left(x_{i}-\bar{x}\right)^{2}}
+            $$
+        </div>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Performance for Regression Model</h2>
+    <p><small>
+       The various measures and parameters to check the accuracy of a regression model
+       <ul>
+        <li><mark>Mean absolute error (MAE)</mark>: It is the average of the absolute difference between the actual and predicted values of a target variable. 
+            The greater the value of MAE, the greater the error in our model</li>
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{MAE}=\frac{\sum(|\hat{Y}_i-Y_i|)}{n}
+            $$
+            </div>
+        <li><mark>Mean squared error (MSE)</mark>: MSE is the average of the square of the error, 
+            that is, the difference between the actual and predicted values</li>
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{MSE}=\frac{\sum(|\hat{Y}_i-Y_i|)^2}{n}
+            $$
+            </div>
+        <li><mark>Root MSE</mark>: Root MSE is the square root of the average squared error and is represented</li>
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Root MSE}=\sqrt{\frac{\sum(|\hat{Y}_i-Y_i|)^2}{n}}
+            $$
+            </div>
+        <li><mark>R square ($R^2$)</mark>: It represents how much randomness in the data is being explained by our model.  
+            $R^2$  will always be between 0 and 1 or 0% and 100%. The higher the value of R2, the better it is.</li>           
+       </ul>
+    </small></p>
+    <img src="images/2025070813.jpg" alt="2025070813" width="400">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>Python Example</h2>
+    <pre><code>
+# Simple regression
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn.linear_model import LinearRegression
+from sklearn.datasets import make_regression
+
+# create a sample dataset 
+X,Y = make_regression(n_features=1, noise=5, n_samples=5000)
+
+plt.xlabel('Feature - X')
+plt.ylabel('Target - Y')
+plt.scatter(X,Y,s=5)
+
+# Build the model
+linear_model = LinearRegression()
+linear_model.fit(X,Y)
+
+linear_model.coef_
+linear_model.intercept_
+
+# prediction
+pred = linear_model.predict(X)
+plt.scatter(X,Y,s=25, label='training')
+plt.scatter(X,pred,s=25, label='prediction')
+plt.xlabel('Feature - X')
+plt.ylabel('Target - Y')
+plt.legend()
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <pre><code>
+import pandas as pd
+import numpy as np
+import random
+from datetime import datetime
+
+# Set seed for reproducibility
+np.random.seed(42)
+random.seed(42)
+
+# Number of rows
+n = 21613
+
+# Define possible values for categorical features
+roof_types = ['Shingle', 'Tile', 'Metal', 'Flat']
+heating_types = ['ForcedAir', 'HeatPump', 'Radiant', 'Baseboard']
+neighborhoods = ['Urban', 'Suburban', 'Rural']
+conditions = ['Poor', 'Fair', 'Good', 'Very Good', 'Excellent']
+
+# Start generating data
+data = {
+    'HouseID': range(1, n+1),
+    'SquareFeet': np.random.randint(800, 5000, size=n),
+    'Bedrooms': np.random.randint(1, 7, size=n),
+    'Bathrooms': np.round(np.random.uniform(1, 4, size=n), 1),
+    'GarageSize': np.random.randint(0, 4, size=n),
+    'YearBuilt': np.random.randint(1950, 2023, size=n),
+    'LotSize': np.random.randint(2000, 20000, size=n),
+    'Stories': np.random.choice([1, 2, 3], size=n, p=[0.5, 0.4, 0.1]),
+    'Fireplaces': np.random.randint(0, 3, size=n),
+    'Pool': np.random.choice([0, 1], size=n, p=[0.85, 0.15]),
+    'Basement': np.random.choice([0, 1], size=n, p=[0.3, 0.7]),
+    'RoofType': np.random.choice(roof_types, size=n),
+    'HeatingType': np.random.choice(heating_types, size=n),
+    'Cooling': np.random.choice([0, 1], size=n, p=[0.2, 0.8]),
+    'Neighborhood': np.random.choice(neighborhoods, size=n, p=[0.4, 0.4, 0.2]),
+    'Condition': np.random.choice(conditions, size=n, p=[0.1, 0.2, 0.4, 0.2, 0.1]),
+    'Renovated': np.random.choice([0, 1], size=n, p=[0.7, 0.3]),
+    'DistanceToCityCenter': np.round(np.random.uniform(1, 30, size=n), 1),
+    'SchoolRating': np.random.randint(1, 11, size=n),
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Derive Age from YearBuilt
+current_year = datetime.now().year
+df['Age'] = current_year - df['YearBuilt']
+
+# Generate Price based on features
+# You can tweak the coefficients to adjust influence
+price_base = 100000
+df['Price'] = price_base + \
+    df['SquareFeet'] * 150 + \
+    df['Bedrooms'] * 10000 + \
+    df['Bathrooms'] * 8000 + \
+    df['GarageSize'] * 5000 + \
+    df['LotSize'] * 0.5 + \
+    df['Fireplaces'] * 3000 + \
+    df['Pool'] * 15000 + \
+    df['Basement'] * 10000 + \
+    df['Cooling'] * 7000 + \
+    df['Renovated'] * 20000 + \
+    df['SchoolRating'] * 5000 + \
+    (df['Condition'].map({
+        'Poor': -20000,
+        'Fair': -10000,
+        'Good': 0,
+        'Very Good': 10000,
+        'Excellent': 20000
+    })) - \
+    df['Age'] * 1000 + \
+    np.random.normal(0, 20000, size=n)  # Add noise
+
+# Round Price to nearest hundred
+df['Price'] = np.round(df['Price'], -2)
+
+# Reorder columns to put Price at front
+cols = ['HouseID', 'Price'] + [col for col in df.columns if col not in ['HouseID', 'Price']]
+df = df[cols]
+
+# Show first few rows
+print(df.head())
+
+# Save to CSV
+df.to_csv('house_prices.csv', index=False)
+    </code></pre>
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <pre><code>
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# --- Load the data ---
+df = pd.read_csv('house_prices.csv')
+
+# --- Feature Engineering: One-hot encode categorical variables ---
+categorical_cols = ['RoofType', 'HeatingType', 'Neighborhood', 'Condition']
+df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
+
+# --- Define features (X) and target (y) ---
+X = df_encoded.drop(columns=['HouseID', 'Price', 'YearBuilt'])  # Drop ID, target, and YearBuilt (we have Age)
+y = df_encoded['Price']
+
+# --- Train-test split (80% train, 20% test) ---
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# --- Fit the multiple regression model ---
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# --- Predict on test set ---
+y_pred = model.predict(X_test)
+
+# --- Evaluate the model ---
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+# --- Output results ---
+print("\nMultiple Regression Model Performance:")
+print(f"Mean Squared Error (MSE): {mse:,.2f}")
+print(f"R-squared (R²): {r2:.4f}")
+
+# Optional: Show feature importance (coefficients)
+coef_df = pd.DataFrame({
+    'Feature': X.columns,
+    'Coefficient': model.coef_
+}).sort_values(by='Coefficient', key=abs, ascending=False)
+
+print("\nTop 10 Features by Absolute Coefficient:")
+print(coef_df.head(10))
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="discussion">
+    <h1>Tree-Based Methods for Regression</h1>
+    <p><small>
+        The entire population is continuously split into groups and subgroups based on a criterion. 
+        We start with the entire population at the beginning of the tree and subsequently the population is divided into smaller subsets; 
+        at the same time, an associated decision tree is incrementally developed.
+    </small></p>
+    <img src="images/2025070904.jpg" alt="2025070904" width="400">
+    <p><small>
+       A decision tree utilizes a top-down greedy approach. 
+       A decision tree starts with the entire population and then recursively splits the data; 
+       hence it is called top-down. It is called a greedy approach, as the algorithm at the time of decision of split takes the decision 
+       for the current split only based on the best available criteria, 
+       that is, variable and not based on the future splits, which may result in a better model  
+    </small></p>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <P><small>
+       <ul>
+        <li>In the case of a classification tree, there are three methods of splitting: Gini index, entropy loss, and classification error</li>
+        <li>For a regression tree, variance reduction is the criteria for splitting. 
+            Variance at each node is calculated using the following formula</li>
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Variance}=\frac{\sum(x-\bar{x})^2}{n}
+            $$
+        </div>
+        We calculate variance for each split as the weighted average of variance for each node. 
+        In the case of a regression tree, the value achieved by the terminal node is the mean of the values falling in that region. 
+        While in the case of classification trees, it is the mode of the observations
+    </ul>
+    </small></p>
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <h2>Python Example</h2>
+    <pre><code>
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeRegressor, plot_tree
+from sklearn.metrics import mean_squared_error, r2_score
+import matplotlib.pyplot as plt
+
+# --- Load the data ---
+df = pd.read_csv('house_prices.csv')
+
+# --- Feature Engineering: One-hot encode categorical variables ---
+categorical_cols = ['RoofType', 'HeatingType', 'Neighborhood', 'Condition']
+df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
+
+# --- Define features (X) and target (y) ---
+X = df_encoded.drop(columns=['HouseID', 'Price', 'YearBuilt'])  # Drop ID, target, and redundant YearBuilt
+y = df_encoded['Price']
+
+# --- Train-test split (80% train, 20% test) ---
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# --- Fit the Decision Tree Regressor ---
+tree_model = DecisionTreeRegressor(
+    random_state=42,
+    max_depth=10,           # Prevent overfitting
+    min_samples_split=10,   # Minimum samples to split
+    min_samples_leaf=5      # Minimum samples in leaf
+)
+
+tree_model.fit(X_train, y_train)
+
+# --- Predict on test set ---
+y_pred_tree = tree_model.predict(X_test)
+
+# --- Evaluate the model ---
+mse_tree = mean_squared_error(y_test, y_pred_tree)
+r2_tree = r2_score(y_test, y_pred_tree)
+
+# --- Output results ---
+print("\nDecision Tree Regressor Performance:")
+print(f"Mean Squared Error (MSE): {mse_tree:,.2f}")
+print(f"R-squared (R²): {r2_tree:.4f}")
+
+# --- Optional: Feature importance ---
+importance_df = pd.DataFrame({
+    'Feature': X.columns,
+    'Importance': tree_model.feature_importances_
+}).sort_values(by='Importance', ascending=False)
+
+print("\nTop 10 Important Features:")
+print(importance_df.head(10))
+
+# --- Plot the tree ---
+plt.figure(figsize=(20, 12))
+plot_tree(
+    tree_model,
+    feature_names=X.columns,
+    filled=True,           # Color nodes by target value
+    rounded=True,          # Rounded boxes
+    fontsize=10,
+    max_depth= 3         # Only show up to max_depth
+)
+plt.title("Decision Tree Visualization (max_depth=4) - House Price Prediction", fontsize=16)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="discussion">
+    <pre><code>
+import pandas as pd
+import numpy as np
+import random
+
+# Set seed for reproducibility
+np.random.seed(42)
+random.seed(42)
+
+# Number of rows
+n = 12000
+
+# Define possible values for categorical features
+fuel_types = ['Petrol', 'Diesel', 'Hybrid']
+drive_types = ['Front-wheel Drive', 'Rear-wheel Drive', 'All-wheel Drive']
+
+# Start generating data (without lambda in dict)
+data = {
+    'VehicleID': range(1, n+1),
+    'EngineSize': np.round(np.random.uniform(1.0, 5.0, size=n), 1),
+    'Cylinders': np.random.choice([3, 4, 5, 6, 8], size=n, p=[0.1, 0.5, 0.1, 0.2, 0.1]),
+    'FuelType': np.random.choice(fuel_types, size=n, p=[0.6, 0.3, 0.1]),
+    'CityMPG': np.random.randint(10, 35, size=n),
+    'HighwayMPG': np.random.randint(20, 50, size=n),
+    'Weight': np.random.randint(2000, 6000, size=n),
+    'DriveType': np.random.choice(drive_types, size=n, p=[0.4, 0.3, 0.3]),
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+
+# Now calculate CombinedMPG after creating the DataFrame
+df['CombinedMPG'] = (df['CityMPG'] * 0.55 + df['HighwayMPG'] * 0.45).astype(int)
+
+# Convert MPG to Liters per 100 km: L/100km = 235.214583 / MPG
+df['PetrolConsumptionL_100km'] = 235.214583 / df['CombinedMPG']
+df['PetrolConsumptionL_100km'] = np.round(df['PetrolConsumptionL_100km'], 2)
+
+# Add some noise to make it more realistic
+df['PetrolConsumptionL_100km'] += np.random.normal(0, 0.5, size=n)
+df['PetrolConsumptionL_100km'] = np.clip(df['PetrolConsumptionL_100km'], 4.0, 25.0)
+df['PetrolConsumptionL_100km'] = np.round(df['PetrolConsumptionL_100km'], 2)
+
+# Reorder columns
+cols = ['VehicleID', 'EngineSize', 'Cylinders', 'FuelType', 'Weight',
+        'DriveType', 'CityMPG', 'HighwayMPG', 'CombinedMPG',
+        'PetrolConsumptionL_100km']
+df = df[cols]
+
+# Show first few rows
+print("First few rows:")
+print(df.head())
+
+# Descriptive statistics
+print("\nDescriptive Statistics:")
+print(df.describe(include='all'))
+# Save to CSV
+df.to_csv('petrol_consumption.csv', index=False)
+
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset
+df = pd.read_csv('petrol_consumption.csv')
+
+# Display first few rows
+print("First few rows:")
+print(df.head())
+
+# Separate features and target
+X = df.drop(columns=['VehicleID', 'PetrolConsumptionL_100km'])
+y = df['PetrolConsumptionL_100km']
+
+# Identify categorical columns
+categorical_cols = X.select_dtypes(include=['object']).columns.tolist()
+numerical_cols = X.select_dtypes(include=['int64', 'float64']).columns.tolist()
+
+print(f"\nCategorical Columns: {categorical_cols}")
+print(f"Numerical Columns: {numerical_cols}")
+
+# Preprocessor with One-Hot Encoding
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', 'passthrough', numerical_cols),
+        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_cols)
+    ])
+
+# Create pipeline
+model = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('regressor', DecisionTreeRegressor(random_state=42))
+])
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Fit model
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+# Evaluate model
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+r2 = r2_score(y_test, y_pred)
+
+print("\nModel Evaluation Metrics:")
+print(f"Mean Absolute Error (MAE): {mae:.2f} L/100km")
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.2f} L/100km")
+print(f"R² Score: {r2:.4f}")
+
+# Visualization: Actual vs Predicted
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x=y_test, y=y_pred, alpha=0.6)
+plt.plot([y.min(), y.max()], [y.min(), y.max()], color='red', linestyle='--')
+plt.xlabel('Actual Petrol Consumption (L/100km)')
+plt.ylabel('Predicted Petrol Consumption (L/100km)')
+plt.title('Actual vs Predicted Petrol Consumption')
+plt.grid(True)
+plt.show()
+
+# Optional: Feature Importances
+# Get feature names after one-hot encoding
+ohe = model.named_steps['preprocessor'].named_transformers_['cat']
+feature_names = numerical_cols + list(ohe.get_feature_names_out(categorical_cols))
+
+importances = model.named_steps['regressor'].feature_importances_
+
+# Create DataFrame for visualization
+feature_importance_df = pd.DataFrame({
+    'Feature': feature_names,
+    'Importance': importances
+}).sort_values(by='Importance', ascending=False).head(10)
+
+# Plot feature importances
+plt.figure(figsize=(10, 6))
+sns.barplot(data=feature_importance_df, x='Importance', y='Feature', palette='viridis')
+plt.title('Top 10 Feature Importances from Decision Tree')
+plt.tight_layout()
+plt.show()
+
+# === VISUALIZE THE TREE ===
+from sklearn.tree import plot_tree
+plt.figure(figsize=(20, 10))
+# Get feature names after encoding
+ohe = model.named_steps['preprocessor'].named_transformers_['cat']
+feature_names = numerical_cols + list(ohe.get_feature_names_out(categorical_cols))
+
+# Plot the tree
+plot_tree(model.named_steps['regressor'],
+          feature_names=feature_names,
+          filled=True,
+          rounded=True,
+          fontsize=10,
+          max_depth=2,
+          precision=2)
+plt.title("Visualized Decision Tree (Depth=2)")
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+
+
+
+
+
+</body>
+</html>

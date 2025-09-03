@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 7 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 7 Unsupervised Learning: Clustering Algorithms
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+    <p><small>
+        Clustering is used to group objects with similar attributes in the same segments, and the objects with different attributes in different segments. The resultant clusters share similarities within themselves while they are more heterogeneous between each other. 
+        We are going to study basic clustering algorithms which are K-means clustering, hierarchical clustering, and DBSCAN clustering.
+    </small></p>
+    <img src="images\2025072312.jpg" alt="2025072312" width="600">
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <p><small>
+       Clustering can be achieved using a variety of algorithms. 
+       These algorithms use different methodologies to define similarity between objects. 
+       At a high level we can identify two broad clustering methods: hard clustering and soft clustering . 
+       When the decision is quite clear that an object belongs to a certain class or cluster it is referred as Hard clustering. 
+       In hard clustering an algorithm is quite sure of an object’s class. 
+    </small></p>
+    <img src="images\2025072313.jpg" alt="2025072313" width="800">
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Centroid based clustering- K-means Algorithm</h2>
+    <p><small>
+       Centroid 质心 based algorithms measure similarity of the objects based on their distance to the centroid of the clusters. 
+       The distance is measured between a specific data point to the centroid for the cluster. 
+       The smaller the distance is, higher is the similarity. 
+    </small></p>
+    <img src="images\2025072314.jpg" alt="2025072314" width="800">
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <p><small>
+        In K-mean clustering, As with k-means treats feature values as coordinates in a multidimensional feature space. 
+        The k-means algorithm begins by <mark>choosing k points</mark> in the feature space to serve as the cluster centers.<br>
+        The objective of k-means clustering is to ensure that the within-cluster variation is as small as possible 
+        while the difference between clusters is as big as possible. 
+        In other words, the members of the same cluster are most similar to each other while members in different clusters are dissimilar.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>optimum value of “k”</h2>
+    <p><small>
+       Without any prior knowledge, one `rule of thumb` suggests setting $k$ equal to `the square root of (n / 2)`, 
+       where n is the number of examples in the dataset.<br>
+       A technique known as the <mark>elbow method</mark> calculate within the cluster sum of squares for different values of “k”. 
+       Wherever we observe a kink or elbow.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Connectivity based clustering for Hierarchical clustering</h1>
+    <p><small>
+    “Birds of the same feather flock together” is the principle followed in connectivity-based clusters. 
+    The core concept is - objects which are connected with each other are similar to each other. 
+    Hence, based on the connectivity between these objects they are clubbed into clusters.
+    </small></p>
+    <img src="images\2025072315.jpg" alt="2025072315" width="700"> 
+    <p><small>
+       Unlike k-means clustering, in hierarchical clustering, we do not have to input the number of final clusters 
+       but the method does require a termination condition i.e. when the clustering should stop. 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Types of hierarchical clustering</h2> 
+    <p><small>
+       Based on the strategy to group, hierarchical clustering can be subdivided into two types: agglomerative clustering and divisive clustering
+       <ul>
+         <li><mark>Agglomerative clustering</mark> is the most commonly used type of hierarchical clustering. 
+            It follows a <mark>bottom-up</mark> strategy, starting with each data point 
+            as its own individual cluster and progressively merging the closest pairs of clusters until all data points belong to a single cluster.</li>
+         <li><mark>Divisive clustering</mark> uses a <mark>top-down</mark> strategy. 
+            It starts with all data points in a single cluster and recursively splits the cluster into smaller clusters until each data point is in its own cluster.</li>
+        </ul>
+        In practice, `agglomerative clustering` is preferred in most real-world scenarios due to its simplicity and effectiveness. 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Density based clustering - DBSCAN Clustering</h1>
+    <p><samll>
+    In the density-based method, the clusters are identified as the areas which have a higher density as compared to the rest of the dataset. In other words, given a vector-space diagram where the data points are represented – a cluster is defined by adjacent regions or neighboring regions of high-density points. This cluster will be separated from other clusters by regions of low-density points. 
+    The observations in the sparse areas or separating regions are considered as noise or outliers in the dataset.
+    </samll></p>
+    <h2>Two key concept: Neighborhood and density</h2>
+    <p><small>
+       Unlike centroid-based (e.g., K-Means) or hierarchical methods, 
+       `density-based clustering` identifies clusters as dense regions of data points, separated by sparse or low-density regions.
+       <ul>
+         <li>The <mark>neighborhood</mark> of a point is the set of all data points that lie within a certain radius `ε (epsilon)` around it.</li>
+         <li><mark>Density</mark> refers to `how many points exist in a point’s neighborhood</li>
+         <ul>
+            <li><mark>Core Point</mark>: A point is a core point 
+                if its ε-neighborhood contains <mark>at least `minPts` points</mark> (including itself). `high-density region`</li>
+            <li><mark>Border Point (or Non-Core Point)</mark>: A point whose neighborhood has `fewer than `minPts` points`, 
+                but it is in the neighborhood of a core point</li>
+            <li>**Noise Point (or Outlier)**: A point that is neither a core nor a border point</li>
+         </ul>
+       </ul>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>DBSCAN Clustering</h2>
+    <p><small>
+       Density-Based Spatial Clustering of Applications with Noise or DBSCAN clustering is a one of the highly recommended density-based algorithms. It clusters the data observations which are closely packed in a densely populated area but not considering the outliers in low-density regions 
+    </small></p>
+    <h2>Parameters</h2>
+    <p><small>
+       <ul>
+         <li>`eps` (ε): The radius of neighborhood around a point</li>
+         <li>`minPts`: Minimum number of points required to form a dense region</li>
+         <ul>
+            <li>`minPts` (Minimum Points) controls the minimum density required to form a cluster. Set `minPts = 2 * number_of_features`</li>
+         </ul>
+       </ul> 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Application: RFM Analysis</h1>
+    <P><small>
+       Firms collect consumers' data and run them through data analytics tools to predict what the buyers need, 
+       why, where, and how.  For example, Data-driven analysis is used by many brands to better <mark>segment</mark> their audiences. 
+       When brands have the right data, they can identify which consumers participate in their  efforts, identify the best channels and narrow down the times of the day customers are most receptive.<br>
+       
+       RFM Analysis is a customer segmentation method based on
+       <ul>
+         <li><mark>Recency</mark>: How recently did the customer purchase?</li>
+         <li><mark>Frequency</mark>: How often do they purchase?</li>
+         <li><mark>Monetary</mark>:  How much do they spend in the specific period?</li>
+       </ul>
+    </small></p>
+        </div>
+    </div>
+
+    
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

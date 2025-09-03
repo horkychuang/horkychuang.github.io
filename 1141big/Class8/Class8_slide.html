@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 8 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 8 Unsupervised Learning II
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+    <p><small>
+        Sometimes, there can be more than 100 variables or dimensions in the data. But not all of them are important; 
+        not all of them are significant. Having a lot dimensions in the dataset is referred to as the “Curse of Dimensionality”. 
+        To perform any further analysis we choose a few from the list of all of the dimensions or variables.
+    </small></p>
+    <h2>Manual feature selection</h2>
+    <p><small>
+       <mark>Correlation-based</mark> methods are sometimes called filter methods. Using correlation coefficients, 
+       we can filter and choose the variables which are most significant.
+       Correlation between two variables simply means that have a mutual relationship with each other. 
+       The change in the value of one variable will impact the value of another, 
+       which means that data points with similar values in one variable have similar values for the other variable.
+       The variables which are highly correlated with each other are supplying similar information and hence one of them can be dropped.
+    </small></p>
+    <p><small>
+    <mark>Algorithm-based methods</mark><br>
+    We are going to discuss Principal Component Analysis (PCA) and Singular Value Decomposition (SVD). 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Principal Component Analysis</h2>
+    <p><small>
+       Developed by Karl Pearson in 1901 and later formalized by Harold Hotelling, 
+       PCA transforms a set of possibly correlated variables into a new set of uncorrelated variables called <mark>principal components (PCs)</mark>. 
+       The main idea of PCA is to project high-dimensional data onto a lower-dimensional subspace 
+       while preserving as much of the data's `variance` (i.e., information) 
+       as possible by using the covariance matrix, eigenvectors and eigenvalues.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>
+       <ul>
+        <li>t identifies the directions (called <mark>principal components</mark>) 
+            along which the data varies the most from the Eigenvectors and Eigenvalues of Covariance Matrix</li>
+        <li>The first principal component captures the direction of maximum variance</li>
+        <li>The second principal component captures the next highest variance, under the constraint that it is <mark>orthogonal</mark> (uncorrelated) to the first</li>
+        <li>This continues for subsequent components</li>
+        </ul>
+        The new variables thus created are called Principal Components. The principal components are a linear combination of the raw variables. 
+        Orthogonality allows us to maintain that there is no correlation between subsequent principal components    
+    </small></p>
+<img src="images\2025072316.jpg" alt="2025072316" width="700">
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Singular Value Decomposition (SVD)</h1>
+    <p><small>
+    The process followed of PCA and eigenvalue decomposition can only be applied to `square matrices`. 
+    Whereas SVD can be implemented to any $m \times  n $ matrix. 
+    <mark>Singular Value Decomposition (SVD)</mark> is a fundamental matrix factorization technique 
+    that decomposes any matrix into three simpler matrices: <mark>Rotation/Reflection</mark> in the input space, 
+    <mark>Scaling</mark> along orthogonal axes, <mark>Rotation/Reflection</mark> in the output space.
+    </small></p> 
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Association rules</h1>
+    <p><small>
+       Market Basket Analysis is basically a data mining technique to discover purchase pattern. 
+       You would find shelves with items like milk, eggs, bread, sugar, washing powder, soaps, fruits, vegetables, cookies and various other items neatly stacked. Have you ever wondered what is the logic of this arrangement 
+       and how these items are laid out? Why certain products are kept near each other while others are quite far from each other? <br>
+       Association rules can be used to find compelling relationships between the variables which are present in the data sets. 
+       We can use association rules for measuring the correlations and co-occurrences between the variables in a dataset.<br>
+       Assume that X = {milk, bananas, eggs, cheese, apples, bread, salt, sugar, cookies, butter, cold drinks, water}. 
+       These are the total items available in the retail shop. Y = {1001, 1002, 1003, 1004, 1005}. 
+       These are the five invoices generated in that retail store.
+    </small></p>
+    <img src="images/2025072501.jpg" alt="2025072501" width="800">
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <p><small>
+       Using this dataset, let’s assume we create two rules that {milk, bananas} -> {eggs} and {milk, bananas} -> {bread}. 
+       First rule means that whenever milk and bananas are bought together, eggs are also purchased in the same transaction. 
+       And second rule means that whenever milk and bananas are bought together, bread is also bought in the same transaction. 
+       By analyzing the dataset above, we can clearly see that rule 1 is always true whereas rule 2 is not. 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Key Concept</h2>
+    <p><samll>
+    <mark>Suport</mark> measures the frequency percentage of the items in the datasets. 
+    In other words, it measures the percentage of transactions in which the items are occurring in the data set.
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Support}=\frac{\text{total amount of transaction of rule}}{\text{total amount of transaction in data base}}
+            $$
+    </div>
+    if we are interested in the rule {milk, eggs} -> {bread}. 
+    In such a scenario, there are `two` transactions in which all three items (milk, eggs, and bread) are present. 
+    The total number of transactions is `five`. 
+    So, it means that the support for the rule is 2 / 5 which is 0.4 or 40%.
+    Higher the support for a rule, better it is. Generally, we put a minimum threshold to get support.
+    </samll></p>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <p><samll>
+    <mark>Confidence </mark> measures how often the rule is true. 
+    It measures the percentage of transactions which if contain antecedents also contain consequents. 
+    It is also referred to as the conditional probability of A on B. 
+    It can be understood as the probability of B occurring provided A has already occurred.
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Confidence}=\frac{\text{support}(A\cup B)}{\text{support}(A)}, A \rightarrow B
+            $$
+    </div>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <p>
+        If we are interested in the rule {milk, eggs} -> {bread}. 
+    In such a scenario, there are two transactions in which both milk and eggs are present. 
+    Hence, the support is 2/5 = 0.4. It is the denominator. 
+    There are two transactions in which all three (milk, eggs, bread) are present. 
+    Hence, support is 2/5 = 0.4, which is the numerator. 
+    Putting in the equation above, the confidence for the rule {milk, eggs} -> {bread} is 0.4/0.4 = 1.  
+    The higher the confidence in the rule, the better it is.  Like support, we put a minimum threshold on confidence.
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <p><samll>
+    <mark>Lift and Conviction: </mark> Lift is a very important measurement criteria for a rule.
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Confidence}=\frac{\text{support}(A\cup B)}{\text{support}(A)\text{support}(B)}
+            $$
+    </div>
+    If we are interested in the rule {milk, eggs} -> {bread}. In such a scenario, 
+    there are two transactions in which all three (milk, eggs, bread) are present. 
+    Hence, support is again 2/5 = 0.4, which is the numerator. 
+    There are two transactions in which only (milk, eggs) are present, 
+    so the support is 2/5 = 0.4. There are four transactions in which bread is present, 
+    hence the support is 4/5 = 0.8. 
+    Putting in the equation above, the lift for the rule {milk, eggs} -> {bread} is 0.4/(0.4x0.8) = 1.25.<br>
+    <ul>
+        <li>lift is equal to 1: it means that the antecedent and precedent are independent of each other</li>
+        <li>lift is greater than one: it means that the antecedent and precedent are dependent on each other</li>
+        <li>lift is lesser than one: it means that the antecedent and precedent are substitutes of each other</li>
+    </ul>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <mark>Conviction</mark> is an important parameter which is given by the formula below.
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Conviction}=\frac{1-\text{support}(B)}{1-\text{confidence}(A \rightarrow B)}
+            $$
+    </div>
+    <p><small>
+    if we are interested in the rule {eggs, bread} -> {cheese}. 
+    In such a scenario, there is only one transaction in which (cheese) is present. 
+    The total number of transactions are five. 
+    So, it means that the support is 1 /5 which is 0.2 and will be used in the numerator. 
+    We have already calculated the confidence as 0.625. Putting back in the formula, 
+    we can calculate conviction as (1-0.2)/(1-0.625) = 2.13
+
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Apriori algorithm</h2>
+    <p><small>
+        The Apriori algorithm is one of the most popular algorithms used for association rules. 
+        It was proposed by Agrawal and Shrikant in 1994. 
+        Apriori is used to understand and analyze the frequent items in a transactional database. 
+        It utilizes a “bottom-up” approach where first candidates are generated based of the frequency of the subsets.
+    </small></p>
+    <img src="images/2025072502.jpg" alt="2025072502" width="800">
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide">
+        <div class="bb">
+            <P><small>
+        The process used in Apriori algorithm it will look like the process
+    </small></P>
+    <img src="images\2025072503.jpg" alt="2025072503" width="600">
+    <p><small>
+      In this case, level 1 is Bread and we find its frequency of occurrence. Then we move to the next layer which is Layer 2. 
+      Now we find the relationship of Bread with each of the other items – Milk, Eggs and Cheese which are at Layer 2.  
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide">
+        <div class="aa">
+            <P><small>
+       As a result of this process, we can calculate the support for all the possible combinations. 
+       For example, we would know the support for <br>
+{Bread} -> {Milk},<br>
+{Bread} -> {Eggs} and <br>
+{Bread} -> {Cheese}. <br>
+For the next level, we would also get the support for <br>
+{Bread, Milk} -> {Eggs}, <br>
+{Bread, Eggs} -> {Milk}, <br>
+{Bread, Milk} -> {Cheese},<br>
+{Bread, Cheese} -> {Milk}, <br>
+{Bread, Cheese} -> {Eggs} and <br>
+{Bread, Eggs} -> {Cheese}. <br>
+Now, using the same process, all the possible combinations for the next level are calculated. 
+For example, {Bread, Eggs, Milk} -> {Cheese}, {Bread, Eggs, Cheese} -> {Milk} and so on. 
+When all the item sets have been exhausted, the process will stop.
+    </small></P>
+        </div>
+    </div>
+
+    <!-- Slide 15 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>mlxtend library</h2>
+    <p><small>
+       The <mark>mlxtend</mark> library is a Python library for machine learning extensions, 
+       offering tools for tasks like association rule mining, frequent pattern mining, and more. 
+       Its association rule module is particularly useful for discovering relationships between items in transactional datasets, 
+       commonly used in market basket analysis.  
+    </small></p>
+        </div>
+    </div>
+
+    
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

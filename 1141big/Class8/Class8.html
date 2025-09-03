@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 8</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 8 Unsupervised Learning II</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">PCA</a></li>
+        <li><a href="#topic2">SVD</a></li>
+        <li><a href="#topic3">Market basket Analysis</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+ <section id="Introduction">
+    <div class="discussion">
+    <h1>Today's Topic</h1>
+    <ol>
+        <li>Principal Component Analysis (PCA)</li>
+        <li>Singular Value Decomposition (SVD)</li>
+        <li>Market basket Analysis</li>
+    </ol> 
+</div>
+</section>
+
+<section id="introduction">
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>
+        Sometimes, there can be more than 100 variables or dimensions in the data. But not all of them are important; 
+        not all of them are significant. Having a lot dimensions in the dataset is referred to as the “Curse of Dimensionality”. 
+        To perform any further analysis we choose a few from the list of all of the dimensions or variables.
+    </small></p>
+    <h2>Manual feature selection</h2>
+    <p><small>
+       <mark>Correlation-based</mark> methods are sometimes called filter methods. Using correlation coefficients, 
+       we can filter and choose the variables which are most significant.
+       Correlation between two variables simply means that have a mutual relationship with each other. 
+       The change in the value of one variable will impact the value of another, 
+       which means that data points with similar values in one variable have similar values for the other variable.
+       The variables which are highly correlated with each other are supplying similar information and hence one of them can be dropped.
+    </small></p>
+    <p><small>
+    <mark>Algorithm-based methods</mark><br>
+    We are going to discuss Principal Component Analysis (PCA) and Singular Value Decomposition (SVD). 
+    </small></p>
+</div>
+</section>
+
+
+<section id="topic1">
+<div class="summary">
+    <h2>Principal Component Analysis</h2>
+    <p><small>
+       Developed by Karl Pearson in 1901 and later formalized by Harold Hotelling, 
+       PCA transforms a set of possibly correlated variables into a new set of uncorrelated variables called <mark>principal components (PCs)</mark>. 
+       The main idea of PCA is to project high-dimensional data onto a lower-dimensional subspace 
+       while preserving as much of the data's `variance` (i.e., information) 
+       as possible by using the covariance matrix, eigenvectors and eigenvalues.
+    </small></p>
+    <p><small>
+       <ul>
+        <li>t identifies the directions (called <mark>principal components</mark>) 
+            along which the data varies the most from the Eigenvectors and Eigenvalues of Covariance Matrix</li>
+        <li>The first principal component captures the direction of maximum variance</li>
+        <li>The second principal component captures the next highest variance, under the constraint that it is <mark>orthogonal</mark> (uncorrelated) to the first</li>
+        <li>This continues for subsequent components</li>
+        </ul>
+        The new variables thus created are called Principal Components. The principal components are a linear combination of the raw variables. 
+        Orthogonality allows us to maintain that there is no correlation between subsequent principal components    
+    </small></p>
+<img src="images\2025072316.jpg" alt="2025072316" width="300">
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Python Example</h2>
+    <pre><code>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+# Set style and seed
+plt.style.use('default')
+sns.set_palette("Set2")
+np.random.seed(42)
+
+# --------------------------------------------------
+# Step 1: Generate Dataset (2300 rows, 15 columns)
+# --------------------------------------------------
+n_samples = 2300
+n_features = 15
+
+# Create correlated features using multivariate normal
+mean = np.random.uniform(-3, 3, n_features)
+cov = np.random.randn(n_features, n_features)
+cov = np.dot(cov, cov.T)  # Make positive semi-definite
+
+data = np.random.multivariate_normal(mean, cov, size=n_samples)
+df = pd.DataFrame(data, columns=[f'Feature_{i+1:02d}' for i in range(n_features)])
+
+print(" Dataset Generated")
+print(f"Shape: {df.shape}")
+print("\nFirst 5 rows:")
+print(df.head())
+
+# --------------------------------------------------
+# Step 2: Standardize the Data
+# --------------------------------------------------
+scaler = StandardScaler()
+data_scaled = scaler.fit_transform(df)
+print(f"\n Data standardized (mean=0, std=1)")
+
+# --------------------------------------------------
+# Step 3: Apply PCA (Reduce to 2D)
+# --------------------------------------------------
+pca = PCA(n_components=2)
+principal_components = pca.fit_transform(data_scaled)
+
+# Create a DataFrame for easy plotting
+pc_df = pd.DataFrame(principal_components, columns=['PC1', 'PC2'])
+
+# Optional: Add a grouping variable (e.g., based on PC1 quantiles)
+pc_df['Group'] = pd.qcut(pc_df['PC1'], q=5, labels=['Very Low', 'Low', 'Medium', 'High', 'Very High'])
+
+print(f"\n PCA completed. Transformed to 2D: {pc_df.shape}")
+
+# --------------------------------------------------
+# Step 4: Explained Variance
+# --------------------------------------------------
+explained_variance = pca.explained_variance_ratio_
+total_variance = sum(explained_variance)
+
+print(f"\n Variance Explained by Principal Components:")
+print(f"PC1: {explained_variance[0]:.3f} ({explained_variance[0]*100:.1f}%)")
+print(f"PC2: {explained_variance[1]:.3f} ({explained_variance[1]*100:.1f}%)")
+print(f"Total (PC1 + PC2): {total_variance:.3f} ({total_variance*100:.1f}%)")
+
+# --------------------------------------------------
+# Step 5: Scatter Plot of First Two PCs
+# --------------------------------------------------
+plt.figure(figsize=(10, 8))
+scatter = sns.scatterplot(
+    data=pc_df, x='PC1', y='PC2',
+    hue='Group', palette='viridis', alpha=0.7, s=60, edgecolor=None
+)
+plt.title(f'PCA: First Two Principal Components\n'
+          f'Total Variance Explained: {total_variance*100:.1f}%', fontsize=14, pad=20)
+plt.xlabel(f'PC1 ({explained_variance[0]*100:.1f}% of variance)', fontsize=12)
+plt.ylabel(f'PC2 ({explained_variance[1]*100:.1f}% of variance)', fontsize=12)
+plt.grid(True, alpha=0.3)
+plt.legend(title='PC1 Group', loc='best')
+plt.tight_layout()
+plt.show()
+
+# --------------------------------------------------
+# Step 6: Feature Loadings (Interpretation of PCs)
+# --------------------------------------------------
+loadings = pca.components_.T  # Shape: (15 features, 2 PCs)
+loading_df = pd.DataFrame(
+    loadings,
+    columns=['PC1_Loading', 'PC2_Loading'],
+    index=df.columns
+)
+
+print(f"\n Loadings (Feature Contributions to PCs):")
+print(loading_df.round(3))
+
+# Top contributors to each PC
+top_pc1 = loading_df['PC1_Loading'].abs().nlargest(3).index
+top_pc2 = loading_df['PC2_Loading'].abs().nlargest(3).index
+
+print(f"\n Interpretation:")
+print(f"PC1 is primarily influenced by: {list(top_pc1)}")
+print(f"PC2 is primarily influenced by: {list(top_pc2)}")
+
+# --------------------------------------------------
+# Step 7: Biplot (Scores + Loading Vectors)
+# --------------------------------------------------
+def biplot(pca, pc_df, loading_df, scale_factor=2.0, figsize=(12, 10)):
+    """
+    Biplot: Shows data points (scores) and feature vectors (loadings).
+    """
+    fig, ax = plt.subplots(figsize=figsize)
+
+    # Plot data points
+    ax.scatter(
+        pc_df['PC1'], pc_df['PC2'],
+        color='blue', alpha=0.4, s=40, label='Samples'
+    )
+
+    # Plot loading vectors and feature names
+    for feature in loading_df.index:
+        x = loading_df.loc[feature, 'PC1_Loading'] * scale_factor
+        y = loading_df.loc[feature, 'PC2_Loading'] * scale_factor
+        # Arrow
+        ax.arrow(0, 0, x, y, head_width=0.02, head_length=0.02,
+                 fc='red', ec='red', linewidth=1.8)
+        # Label
+        ax.text(x * 1.15, y * 1.15, feature, color='darkred',
+                fontsize=9, ha='center', va='center')
+
+    # Formatting
+    ax.set_xlabel(f'PC1 ({explained_variance[0]*100:.1f}% Variance)')
+    ax.set_ylabel(f'PC2 ({explained_variance[1]*100:.1f}% Variance)')
+    ax.set_title('PCA Biplot: Data Points and Feature Loadings', fontsize=14, pad=20)
+    ax.axhline(0, color='black', linestyle='--', linewidth=0.8)
+    ax.axvline(0, color='black', linestyle='--', linewidth=0.8)
+
+    # Equal scaling
+    max_range = np.abs(loadings).max() * scale_factor * 1.3
+    ax.set_xlim(-max_range, max_range)
+    ax.set_ylim(-max_range, max_range)
+    ax.grid(True, alpha=0.3)
+
+    plt.tight_layout()
+    plt.show()
+
+# Draw the biplot
+biplot(pca, pc_df, loading_df, scale_factor=2.0)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h1>Singular Value Decomposition (SVD)</h1>
+    <p><small>
+    The process followed of PCA and eigenvalue decomposition can only be applied to `square matrices`. 
+    Whereas SVD can be implemented to any $m \times  n $ matrix. 
+    <mark>Singular Value Decomposition (SVD)</mark> is a fundamental matrix factorization technique 
+    that decomposes any matrix into three simpler matrices: <mark>Rotation/Reflection</mark> in the input space, 
+    <mark>Scaling</mark> along orthogonal axes, <mark>Rotation/Reflection</mark> in the output space.
+    </small></p>  
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>Python Example</h2>
+    <pre><code>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+# Set style and seed
+plt.style.use('default')
+sns.set_palette("Set2")
+np.random.seed(42)
+
+# --------------------------------------------------
+# 1. Generate Dataset (2300 × 15)
+# --------------------------------------------------
+n_samples = 2300
+n_features = 15
+
+# Create correlated features using multivariate normal
+mean = np.random.uniform(-3, 3, n_features)
+cov = np.random.randn(n_features, n_features)
+cov = np.dot(cov, cov.T)  # Make positive semi-definite
+
+data = np.random.multivariate_normal(mean, cov, size=n_samples)
+df = pd.DataFrame(data, columns=[f'Feature_{i+1:02d}' for i in range(n_features)])
+
+print(" Dataset Generated")
+print(f"Shape: {df.shape}")
+print("\nFirst 5 rows:")
+print(df.head())
+
+# --------------------------------------------------
+# 2. Standardize the Data (Zero Mean, Unit Variance)
+# --------------------------------------------------
+scaler = StandardScaler()
+data_scaled = scaler.fit_transform(df)  # Shape: (2300, 15)
+print(f"\n Data standardized (mean=0, std=1)")
+
+# --------------------------------------------------
+# 3. Apply PCA (via scikit-learn)
+# --------------------------------------------------
+pca = PCA(n_components=2)
+pc_pca = pca.fit_transform(data_scaled)
+
+# PCA explained variance
+explained_ratio_pca = pca.explained_variance_ratio_
+total_var_pca = explained_ratio_pca.sum()
+
+print(f"\n PCA Results:")
+print(f"PC1 Explained Variance: {explained_ratio_pca[0]:.4f} ({explained_ratio_pca[0]*100:.1f}%)")
+print(f"PC2 Explained Variance: {explained_ratio_pca[1]:.4f} ({explained_ratio_pca[1]*100:.1f}%)")
+print(f"Total (PC1 + PC2): {total_var_pca:.4f} ({total_var_pca*100:.1f}%)")
+
+# --------------------------------------------------
+# 4. Apply SVD Manually
+# A = U @ Σ @ Vt
+# --------------------------------------------------
+U, singular_values, Vt = np.linalg.svd(data_scaled, full_matrices=False)
+
+# Reconstruct Σ as diagonal matrix
+Sigma = np.diag(singular_values)
+
+# Compute SVD-based principal component scores: Scores = U @ Σ
+pc_svd = U[:, :2] @ Sigma[:2, :2]  # First 2 components
+
+# Explained variance from SVD
+variance_svd = (singular_values ** 2) / (n_samples - 1)  # Eigenvalues of covariance matrix
+explained_ratio_svd = variance_svd / variance_svd.sum()
+total_var_svd = explained_ratio_svd[:2].sum()
+
+print(f"\n SVD Results:")
+print(f"PC1 Explained Variance: {explained_ratio_svd[0]:.4f} ({explained_ratio_svd[0]*100:.1f}%)")
+print(f"PC2 Explained Variance: {explained_ratio_svd[1]:.4f} ({explained_ratio_svd[1]*100:.1f}%)")
+print(f"Total (PC1 + PC2): {total_var_svd:.4f} ({total_var_svd*100:.1f}%)")
+
+# --------------------------------------------------
+# 5. Compare PCA and SVD Results
+# --------------------------------------------------
+# Check if scores are the same (allowing for sign flip)
+is_pc1_close = np.allclose(pc_pca[:, 0], pc_svd[:, 0], atol=1e-10)
+is_pc2_close = np.allclose(np.abs(pc_pca[:, 1]), np.abs(pc_svd[:, 1]), atol=1e-10)  # Sign may flip
+
+print(f"\n PCA vs SVD Comparison:")
+print(f"PC1 scores match? {is_pc1_close}")
+print(f"PC2 scores (absolute) match? {is_pc2_close}")
+
+# Loadings (Principal Component Directions)
+loadings_pca = pca.components_  # Shape: (2, 15)
+loadings_svd = Vt[:2, :]       # First 2 rows of Vt
+
+print(f"Loadings match? {np.allclose(loadings_pca, loadings_svd, atol=1e-10, equal_nan=True)}")
+
+# --------------------------------------------------
+# 6. Create DataFrame for Plotting
+# --------------------------------------------------
+pc_df = pd.DataFrame({
+    'PC1': pc_svd[:, 0],
+    'PC2': pc_svd[:, 1],
+    'Group': pd.qcut(pc_svd[:, 0], q=5, labels=['Very Low', 'Low', 'Medium', 'High', 'Very High'])
+})
+
+print(f"\n Final 2D DataFrame shape: {pc_df.shape}")
+
+# --------------------------------------------------
+# 7. Scatter Plot (SVD/PCA Results)
+# --------------------------------------------------
+plt.figure(figsize=(10, 8))
+sns.scatterplot(
+    data=pc_df, x='PC1', y='PC2',
+    hue='Group', palette='viridis', alpha=0.7, s=60, edgecolor=None
+)
+plt.title(f'PCA/SVD: First Two Components\n'
+          f'Total Variance Explained: {total_var_svd*100:.1f}%',
+          fontsize=14)
+plt.xlabel(f'PC1 ({explained_ratio_svd[0]*100:.1f}% Variance)')
+plt.ylabel(f'PC2 ({explained_ratio_svd[1]*100:.1f}% Variance)')
+plt.grid(True, alpha=0.3)
+plt.legend(title='PC1 Level')
+plt.tight_layout()
+plt.show()
+
+# --------------------------------------------------
+# 8. Feature Loadings (Interpretation)
+# --------------------------------------------------
+loading_df = pd.DataFrame(
+    Vt[:2, :].T,  # Transpose to have features as rows, PCs as columns
+    columns=['PC1_Loading', 'PC2_Loading'],
+    index=df.columns
+)
+
+print(f"\n Feature Loadings (from SVD Vt or PCA components):")
+print(loading_df.round(3))
+
+# Top contributors
+top_pc1 = loading_df['PC1_Loading'].abs().nlargest(3).index
+top_pc2 = loading_df['PC2_Loading'].abs().nlargest(3).index
+
+print(f"\n Interpretation:")
+print(f"PC1 is driven by: {list(top_pc1)}")
+print(f"PC2 is driven by: {list(top_pc2)}")
+
+# --------------------------------------------------
+# 9. Biplot: Samples + Feature Vectors
+# --------------------------------------------------
+def biplot(U, Sigma, Vt, feature_names, scale_factor=2.0, figsize=(12, 10)):
+    scores = U[:, :2] @ Sigma[:2, :2]  # PC1, PC2 scores
+    loadings = Vt[:2, :]               # PC loadings
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    # Plot samples
+    ax.scatter(scores[:, 0], scores[:, 1], c='blue', alpha=0.4, s=40, label='Samples')
+
+    # Plot loading vectors
+    for i, feature in enumerate(feature_names):
+        x = loadings[0, i] * scale_factor
+        y = loadings[1, i] * scale_factor
+        ax.arrow(0, 0, x, y, head_width=0.02, head_length=0.02, fc='red', ec='red', linewidth=1.8)
+        ax.text(x * 1.15, y * 1.15, feature, color='darkred', fontsize=9, ha='center', va='center')
+
+    ax.set_xlabel(f'PC1 ({explained_ratio_svd[0]*100:.1f}% Variance)')
+    ax.set_ylabel(f'PC2 ({explained_ratio_svd[1]*100:.1f}% Variance)')
+    ax.set_title('Biplot: SVD/PCA Results (Samples + Feature Loadings)', fontsize=14)
+    ax.axhline(0, color='black', linestyle='--', linewidth=0.8)
+    ax.axvline(0, color='black', linestyle='--', linewidth=0.8)
+
+    max_range = np.abs(loadings).max() * scale_factor * 1.3
+    ax.set_xlim(-max_range, max_range)
+    ax.set_ylim(-max_range, max_range)
+    ax.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.show()
+
+# Draw biplot
+biplot(U, Sigma, Vt, df.columns, scale_factor=2.0)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic3">
+<div class="discussion">
+    <h1>Association rules</h1>
+    <p><small>
+       Market Basket Analysis is basically a data mining technique to discover purchase pattern. 
+       You would find shelves with items like milk, eggs, bread, sugar, washing powder, soaps, fruits, vegetables, cookies and various other items neatly stacked. Have you ever wondered what is the logic of this arrangement 
+       and how these items are laid out? Why certain products are kept near each other while others are quite far from each other? <br>
+       Association rules can be used to find compelling relationships between the variables which are present in the data sets. 
+       We can use association rules for measuring the correlations and co-occurrences between the variables in a dataset.<br>
+       Assume that X = {milk, bananas, eggs, cheese, apples, bread, salt, sugar, cookies, butter, cold drinks, water}. 
+       These are the total items available in the retail shop. Y = {1001, 1002, 1003, 1004, 1005}. 
+       These are the five invoices generated in that retail store.
+    </small></p>
+    <img src="images/2025072501.jpg" alt="2025072501" width="400">
+    <p><small>
+       Using this dataset, let’s assume we create two rules that {milk, bananas} -> {eggs} and {milk, bananas} -> {bread}. 
+       First rule means that whenever milk and bananas are bought together, eggs are also purchased in the same transaction. 
+       And second rule means that whenever milk and bananas are bought together, bread is also bought in the same transaction. 
+       By analyzing the dataset above, we can clearly see that rule 1 is always true whereas rule 2 is not. 
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>Key Concept</h2>
+    <p><samll>
+    <mark>Suport</mark> measures the frequency percentage of the items in the datasets. 
+    In other words, it measures the percentage of transactions in which the items are occurring in the data set.
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Support}=\frac{\text{total amount of transaction of rule}}{\text{total amount of transaction in data base}}
+            $$
+    </div>
+    if we are interested in the rule {milk, eggs} -> {bread}. 
+    In such a scenario, there are `two` transactions in which all three items (milk, eggs, and bread) are present. 
+    The total number of transactions is `five`. 
+    So, it means that the support for the rule is 2 / 5 which is 0.4 or 40%.
+    Higher the support for a rule, better it is. Generally, we put a minimum threshold to get support.
+    </samll></p>
+    <p><samll>
+    <mark>Confidence </mark> measures how often the rule is true. 
+    It measures the percentage of transactions which if contain antecedents also contain consequents. 
+    It is also referred to as the conditional probability of A on B. 
+    It can be understood as the probability of B occurring provided A has already occurred.
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Confidence}=\frac{\text{support}(A\cup B)}{\text{support}(A)}, A \rightarrow B
+            $$
+    </div>
+    <p>
+        If we are interested in the rule {milk, eggs} -> {bread}. 
+    In such a scenario, there are two transactions in which both milk and eggs are present. 
+    Hence, the support is 2/5 = 0.4. It is the denominator. 
+    There are two transactions in which all three (milk, eggs, bread) are present. 
+    Hence, support is 2/5 = 0.4, which is the numerator. 
+    Putting in the equation above, the confidence for the rule {milk, eggs} -> {bread} is 0.4/0.4 = 1.  
+    The higher the confidence in the rule, the better it is.  Like support, we put a minimum threshold on confidence.
+    </p>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <p><samll>
+    <mark>Lift and Conviction: </mark> Lift is a very important measurement criteria for a rule.
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Confidence}=\frac{\text{support}(A\cup B)}{\text{support}(A)\text{support}(B)}
+            $$
+    </div>
+    If we are interested in the rule {milk, eggs} -> {bread}. In such a scenario, 
+    there are two transactions in which all three (milk, eggs, bread) are present. 
+    Hence, support is again 2/5 = 0.4, which is the numerator. 
+    There are two transactions in which only (milk, eggs) are present, 
+    so the support is 2/5 = 0.4. There are four transactions in which bread is present, 
+    hence the support is 4/5 = 0.8. 
+    Putting in the equation above, the lift for the rule {milk, eggs} -> {bread} is 0.4/(0.4x0.8) = 1.25.<br>
+    <ul>
+        <li>lift is equal to 1: it means that the antecedent and precedent are independent of each other</li>
+        <li>lift is greater than one: it means that the antecedent and precedent are dependent on each other</li>
+        <li>lift is lesser than one: it means that the antecedent and precedent are substitutes of each other</li>
+    </ul>
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <mark>Conviction</mark> is an important parameter which is given by the formula below.
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            \text{Conviction}=\frac{1-\text{support}(B)}{1-\text{confidence}(A \rightarrow B)}
+            $$
+    </div>
+    <p><small>
+    if we are interested in the rule {eggs, bread} -> {cheese}. 
+    In such a scenario, there is only one transaction in which (cheese) is present. 
+    The total number of transactions are five. 
+    So, it means that the support is 1 /5 which is 0.2 and will be used in the numerator. 
+    We have already calculated the confidence as 0.625. Putting back in the formula, 
+    we can calculate conviction as (1-0.2)/(1-0.625) = 2.13
+
+    </small></p>
+    
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Apriori algorithm</h2>
+    <p><small>
+        The Apriori algorithm is one of the most popular algorithms used for association rules. 
+        It was proposed by Agrawal and Shrikant in 1994. 
+        Apriori is used to understand and analyze the frequent items in a transactional database. 
+        It utilizes a “bottom-up” approach where first candidates are generated based of the frequency of the subsets.
+    </small></p>
+    <img src="images/2025072502.jpg" alt="2025072502" width="400">
+    <P><small>
+        The process used in Apriori algorithm it will look like the process
+    </small></P>
+    <img src="images\2025072503.jpg" alt="2025072503" width="400">
+    <p><small>
+      In this case, level 1 is Bread and we find its frequency of occurrence. Then we move to the next layer which is Layer 2. 
+      Now we find the relationship of Bread with each of the other items – Milk, Eggs and Cheese which are at Layer 2.  
+    </small></p>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <P><small>
+       As a result of this process, we can calculate the support for all the possible combinations. 
+       For example, we would know the support for <br>
+{Bread} -> {Milk},<br>
+{Bread} -> {Eggs} and <br>
+{Bread} -> {Cheese}. <br>
+For the next level, we would also get the support for <br>
+{Bread, Milk} -> {Eggs}, <br>
+{Bread, Eggs} -> {Milk}, <br>
+{Bread, Milk} -> {Cheese},<br>
+{Bread, Cheese} -> {Milk}, <br>
+{Bread, Cheese} -> {Eggs} and <br>
+{Bread, Eggs} -> {Cheese}. <br>
+Now, using the same process, all the possible combinations for the next level are calculated. 
+For example, {Bread, Eggs, Milk} -> {Cheese}, {Bread, Eggs, Cheese} -> {Milk} and so on. 
+When all the item sets have been exhausted, the process will stop.
+    </small></P>
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <h2>Python example</h2>
+    <pre><code>
+import numpy as np
+import pandas as pd
+from itertools import combinations
+from collections import defaultdict, Counter
+import time
+
+class Apriori:
+    def __init__(self, min_support=0.01, min_confidence=0.5):
+        self.min_support = min_support
+        self.min_confidence = min_confidence
+        self.frequent_itemsets = {}
+        self.association_rules = []
+    
+    def _get_support(self, itemset, transactions):
+        """Calculate support for an itemset"""
+        count = 0
+        for transaction in transactions:
+            if set(itemset).issubset(set(transaction)):
+                count += 1
+        return count / len(transactions)
+    
+    def _has_infrequent_subset(self, candidate, frequent_itemsets_k_minus_1):
+        """Check if any subset of candidate is infrequent"""
+        for subset in combinations(candidate, len(candidate) - 1):
+            if frozenset(subset) not in frequent_itemsets_k_minus_1:
+                return True
+        return False
+    
+    def _generate_candidates(self, frequent_itemsets_k_minus_1, k):
+        """Generate candidate itemsets of size k"""
+        candidates = set()
+        frequent_list = list(frequent_itemsets_k_minus_1)
+        
+        for i in range(len(frequent_list)):
+            for j in range(i + 1, len(frequent_list)):
+                itemset1 = list(frequent_list[i])
+                itemset2 = list(frequent_list[j])
+                itemset1.sort()
+                itemset2.sort()
+                
+                # Join step: if first k-2 elements are same
+                if itemset1[:k-2] == itemset2[:k-2]:
+                    candidate = frozenset(itemset1) | frozenset(itemset2)
+                    if len(candidate) == k:
+                        # Prune step: check if all subsets are frequent
+                        if not self._has_infrequent_subset(candidate,
+                                                           frequent_itemsets_k_minus_1):
+                            candidates.add(candidate)
+        
+        return candidates
+    
+    def fit(self, transactions):
+        """Find frequent itemsets using Apriori algorithm"""
+        print(f"Starting Apriori with {len(transactions)} transactions")
+        print(f"Minimum support: {self.min_support}")
+        
+        # Convert transactions to list of sets for faster lookup
+        transaction_sets = [set(transaction) for transaction in transactions]
+        
+        # Get all unique items
+        all_items = set()
+        for transaction in transactions:
+            all_items.update(transaction)
+        
+        print(f"Total unique items: {len(all_items)}")
+        
+        # Generate frequent 1-itemsets
+        item_counts = Counter()
+        for transaction in transactions:
+            item_counts.update(transaction)
+        
+        total_transactions = len(transactions)
+        frequent_1_itemsets = {}
+        
+        for item, count in item_counts.items():
+            support = count / total_transactions
+            if support >= self.min_support:
+                frequent_1_itemsets[frozenset([item])] = support
+        
+        print(f"Frequent 1-itemsets: {len(frequent_1_itemsets)}")
+        self.frequent_itemsets[1] = frequent_1_itemsets
+        
+        # Generate frequent k-itemsets (k >= 2)
+        k = 2
+        current_frequent_itemsets = frequent_1_itemsets
+        
+        while current_frequent_itemsets:
+            print(f"Generating candidates for k={k}...")
+            
+            # Generate candidates
+            candidates = self._generate_candidates(current_frequent_itemsets.keys(), k)
+            print(f"Candidates generated: {len(candidates)}")
+            
+            if not candidates:
+                break
+            
+            # Count support for candidates
+            candidate_counts = defaultdict(int)
+            for transaction in transaction_sets:
+                for candidate in candidates:
+                    if candidate.issubset(transaction):
+                        candidate_counts[candidate] += 1
+            
+            # Filter by minimum support
+            frequent_itemsets_k = {}
+            for candidate, count in candidate_counts.items():
+                support = count / total_transactions
+                if support >= self.min_support:
+                    frequent_itemsets_k[candidate] = support
+            
+            print(f"Frequent {k}-itemsets: {len(frequent_itemsets_k)}")
+            
+            if frequent_itemsets_k:
+                self.frequent_itemsets[k] = frequent_itemsets_k
+                current_frequent_itemsets = frequent_itemsets_k
+                k += 1
+            else:
+                break
+        
+        print("Apriori completed!")
+        return self
+    
+    def generate_rules(self):
+        """Generate association rules from frequent itemsets"""
+        self.association_rules = []
+        
+        # Generate rules from frequent itemsets of size >= 2
+        for k in range(2, max(self.frequent_itemsets.keys()) + 1):
+            for itemset, itemset_support in self.frequent_itemsets[k].items():
+                # Generate all possible antecedent-consequent pairs
+                for i in range(1, len(itemset)):
+                    for antecedent in combinations(itemset, i):
+                        antecedent = frozenset(antecedent)
+                        consequent = frozenset(itemset - antecedent)
+                        
+                        # Calculate confidence
+                        antecedent_support = self.frequent_itemsets[len(antecedent)][antecedent]
+                        confidence = itemset_support / antecedent_support
+                        
+                        if confidence >= self.min_confidence:
+                            rule = {
+                                'antecedent': antecedent,
+                                'consequent': consequent,
+                                'support': itemset_support,
+                                'confidence': confidence,
+                                'lift': confidence / self.frequent_itemsets[len(consequent)][consequent]
+                            }
+                            self.association_rules.append(rule)
+        
+        return self.association_rules
+    
+    def get_frequent_itemsets(self):
+        """Return all frequent itemsets"""
+        return self.frequent_itemsets
+    
+    def get_rules(self):
+        """Return association rules"""
+        return self.association_rules
+
+# Example usage with data
+def create_sample_data(n_transactions=7499, n_entities=7508, avg_items_per_transaction=10):
+    """Create sample transaction data"""
+    print("Creating sample dataset...")
+    transactions = []
+    
+    # Create a list of entity names
+    entities = [f"item_{i}" for i in range(n_entities)]
+    
+    # Generate transactions
+    np.random.seed(42)  # For reproducibility
+    
+    for _ in range(n_transactions):
+        # Random number of items per transaction (1 to avg_items_per_transaction*2)
+        n_items = np.random.randint(1, min(avg_items_per_transaction * 3, n_entities))
+        
+        # Randomly select items
+        selected_items = np.random.choice(entities, size=n_items, replace=False)
+        transactions.append(list(selected_items))
+    
+    return transactions
+
+# Main execution
+if __name__ == "__main__":
+    # Create sample data (you would load your actual data here)
+    print("=== Apriori Algorithm Example ===")
+    transactions = create_sample_data(7499, 7508, 15)
+    
+    # Initialize and run Apriori
+    start_time = time.time()
+    
+    apriori = Apriori(min_support=0.005, min_confidence=0.1)  
+    # Lower support for large dataset
+    apriori.fit(transactions)
+    
+    end_time = time.time()
+    print(f"\nExecution time: {end_time - start_time:.2f} seconds")
+    
+    # Display results
+    print("\n=== FREQUENT ITEMSETS ===")
+    total_frequent = 0
+    for k, itemsets in apriori.get_frequent_itemsets().items():
+        print(f"{k}-itemsets: {len(itemsets)}")
+        total_frequent += len(itemsets)
+        
+        # Show top 5 itemsets for each size
+        if k <= 3:  # Only show for small itemsets for readability
+            print("  Examples:")
+            sorted_itemsets = sorted(itemsets.items(), key=lambda x: x[1], reverse=True)
+            for itemset, support in sorted_itemsets[:5]:
+                print(f"    {set(itemset)} (support: {support:.4f})")
+        print()
+    
+    print(f"Total frequent itemsets: {total_frequent}")
+    
+    # Generate and display association rules
+    print("=== ASSOCIATION RULES ===")
+    rules = apriori.generate_rules()
+    print(f"Total association rules: {len(rules)}")
+    
+    # Show top 10 rules by confidence
+    sorted_rules = sorted(rules, key=lambda x: x['confidence'], reverse=True)
+    print("\nTop 10 rules by confidence:")
+    for i, rule in enumerate(sorted_rules[:10]):
+        antecedent = ', '.join(sorted(list(rule['antecedent'])))
+        consequent = ', '.join(sorted(list(rule['consequent'])))
+        print(f"{i+1}. {antecedent} => {consequent}")
+        print(f"   Support: {rule['support']:.4f}, Confidence: {rule['confidence']:.4f}, Lift: {rule['lift']:.4f}")
+        print()
+
+# Alternative implementation using mlxtend (more efficient for large datasets)
+def apriori_with_mlxtend():
+    """Alternative implementation using mlxtend library"""
+    try:
+        from mlxtend.frequent_patterns import apriori, association_rules
+        from mlxtend.preprocessing import TransactionEncoder
+        import pandas as pd
+        
+        print("\n=== Using mlxtend library ===")
+        
+        # Create sample data
+        transactions = create_sample_data(1000, 100, 8)  # Smaller sample for demonstration
+        
+        # Transform data
+        te = TransactionEncoder()
+        te_ary = te.fit(transactions).transform(transactions)
+        df = pd.DataFrame(te_ary, columns=te.columns_)
+        
+        # Run Apriori
+        frequent_itemsets = apriori(df, min_support=0.05, use_colnames=True)
+        print("Frequent itemsets (top 10):")
+        print(frequent_itemsets.head(10))
+        
+        # Generate rules
+        if len(frequent_itemsets) > 1:
+            rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.1)
+            print("\nAssociation rules (top 5):")
+            print(rules[['antecedents', 'consequents', 'support', 'confidence', 'lift']].head())
+        
+    except ImportError:
+        print("mlxtend not installed. Install with: pip install mlxtend")
+
+# Uncomment to use mlxtend implementation
+# apriori_with_mlxtend()
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="discussion">
+    <h2>mlxtend library</h2>
+    <p><small>
+       The <mark>mlxtend</mark> library is a Python library for machine learning extensions, 
+       offering tools for tasks like association rule mining, frequent pattern mining, and more. 
+       Its association rule module is particularly useful for discovering relationships between items in transactional datasets, 
+       commonly used in market basket analysis.  
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>Python Example</h2>
+    <pre><code>
+# Import necessary libraries
+from mlxtend.frequent_patterns import apriori, association_rules
+import pandas as pd
+import numpy as np
+import random
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Define a set of grocery items
+items = [
+    'Milk', 'Bread', 'Butter', 'Eggs', 'Cheese', 'Yogurt', 'Cereal', 'Pasta',
+    'Rice', 'Apples', 'Bananas', 'Oranges', 'Chicken', 'Beef', 'Fish', 'Tomatoes',
+    'Potatoes', 'Onions', 'Carrots', 'Lettuce'
+]
+
+# Generate a synthetic dataset with 1,000 transactions
+num_transactions = 1000
+dataset = []
+for _ in range(num_transactions):
+    # Randomly select 2 to 8 items per transaction
+    num_items = random.randint(2, 8)
+    transaction = random.sample(items, num_items)
+    dataset.append(transaction)
+
+# Convert the dataset into a one-hot encoded DataFrame
+encoded_vals = []
+for transaction in dataset:
+    labels = {item: 0 for item in items}
+    for item in transaction:
+        labels[item] = 1
+    encoded_vals.append(labels)
+
+# Create a DataFrame
+encoded_df = pd.DataFrame(encoded_vals)
+
+# Apply the Apriori algorithm with a lower min_support
+min_support = 0.05  # Lowered to capture more itemsets
+frequent_itemsets = apriori(encoded_df, min_support=min_support, use_colnames=True)
+
+# Check if frequent itemsets were found
+if frequent_itemsets.empty:
+    print("No frequent itemsets found. Try lowering the min_support threshold.")
+else:
+    print("Frequent Itemsets (support >= 0.05):")
+    print(frequent_itemsets.sort_values(by='support', ascending=False).head(10))
+
+    # Generate association rules with a lower min_confidence
+    min_confidence = 0.3  # Lowered to generate more rules
+    rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=min_confidence)
+
+    # Check if rules were generated
+    if rules.empty:
+        print("No association rules found. Try lowering the min_confidence threshold or min_support.")
+    else:
+        print("\nAssociation Rules (confidence >= 0.3):")
+        print(rules[['antecedents', 'consequents', 'support', 
+                     'confidence', 'lift']].head(10))
+
+        # Filter rules involving Milk
+        milk_antecedent = rules[rules['antecedents'].apply(lambda x: 'Milk' in x)]
+        milk_consequent = rules[rules['consequents'].apply(lambda x: 'Milk' in x)]
+
+        # Display Milk-related rules
+        print("\nRules where Milk is an antecedent:")
+        if milk_antecedent.empty:
+            print("No rules found where Milk is an antecedent.")
+        else:
+            print(milk_antecedent[['antecedents', 'consequents', 'support', 
+                                   'confidence', 'lift']])
+
+        print("\nRules where Milk is a consequent:")
+        if milk_consequent.empty:
+            print("No rules found where Milk is a consequent.")
+        else:
+            print(milk_consequent[['antecedents', 'consequents', 'support', 
+                                   'confidence', 'lift']])
+
+        # Summarize antecedents and consequents of Milk
+        antecedents_of_milk = milk_consequent['antecedents'].apply(lambda x: list(x)).tolist()
+        consequents_of_milk = milk_antecedent['consequents'].apply(lambda x: list(x)).tolist()
+
+        print("\nSummary:")
+        print("Antecedents of Milk (items predicting Milk):", 
+              [item for sublist in antecedents_of_milk for item in sublist] or "None")
+        print("Consequents of Milk (items predicted by Milk):", 
+              [item for sublist in consequents_of_milk for item in sublist] or "None")
+    </code></pre>
+</div>
+</section>
+
+
+
+
+
+
+</body>
+</html>
