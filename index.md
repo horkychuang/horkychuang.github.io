@@ -11,16 +11,17 @@ This repository contains files organized in a nested directory structure. Each f
 
 Individual file directories in A:
 
-- [a1](./A/a1/a1) - File a1 in directory A/a1
-- [a2](./A/a2/a2) - File a2 in directory A/a2
-- [a3](./A/a3/a3) - File a3 in directory A/a3
-- [a4](./A/a4/a4) - File a4 in directory A/a4
-- [a5](./A/a5/a5) - File a5 in directory A/a5
-- [a6](./A/a6/a6) - File a6 in directory A/a6
-- [a7](./A/a7/a7) - File a7 in directory A/a7
-- [a8](./A/a8/a8) - File a8 in directory A/a8
-- [a9](./A/a9/a9) - File a9 in directory A/a9
-- [a10](./A/a10/a10) - File a10 in directory A/a10
+- [a0](./114fin/Class1/Class0_slide.html) - File a1 in directory A/a1
+- [a1](./114fin/Class1/Class1_slide.html) - File a1 in directory A/a1
+- [a2](./114fin/Class1/Class11_slide.html) - File a2 in directory A/a2
+- [a3](./114fin/Class1/Class11_slide.html) - File a3 in directory A/a3
+- [a4](./114fin/Class1/Class11_slide.html) - File a4 in directory A/a4
+- [a5](./114fin/Class1/Class11_slide.html) - File a5 in directory A/a5
+- [a6](./114fin/Class1/Class11_slide.html) - File a6 in directory A/a6
+- [a7](./114fin/Class1/Class11_slide.html) - File a7 in directory A/a7
+- [a8](./114fin/Class1/Class11_slide.html) - File a8 in directory A/a8
+- [a9](./114fin/Class1/Class11_slide.html) - File a9 in directory A/a9
+- [a10](./114fin/Class1/Class11_slide.html) - File a10 in directory A/a10
 
 ## 📁 Directory B
 
