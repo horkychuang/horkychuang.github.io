@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 0</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 0 Introduction</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#Getting Started">Getting Started</a></li>
+        <li><a href="#local computer">Local Computer</a></li>
+        <li><a href="#implementation">Implementation</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="Getting Started">
+    <div class="summary">
+    <h1>Getting Started with COLAB</h1>
+    <p><small>
+Google Colaboratory, or <strong>Colab</strong> for short,is a free Jupyter notebook environment provided by Google where you can use free GPUs and TPUs which can solve all these issues. It contains almost all the modules you need for data science analysis. 
+
+These tools include but are not limited to Numpy, Scipy, Pandas, etc. Even deep learning frameworks, such as Tensorflow, Keras and Pytorch are also included.
+</small></p>
+</div>
+</section>
+
+<section>
+    <div class="discussion">
+    <p><small>
+To start working with Colab we first need to log in to your Google account, then go to this link <a href="https://colab.research.google.com">https://colab.research.google.com</a>
+. 
+
+Since Colab implicitly uses Google Drive for storing your notebooks, ensure that you are logged in to your Google Drive account before proceeding further.
+</small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Jupyter Notebook</h1>
+    <p><small>The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+
+On creating a new notebook, it will create a Jupyter notebook with <strong>Untitled0.ipynb</strong> and save it to your Google drive in a folder named 'Colab Notebooks'. Then, you can click in the file name and change it </small></p>
+<img src="images\051607.jpg" alt="051607">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Executing Code</h1>
+    <p> <small> To execute the code, click on the arrow on the left side of the code window.</small>
+    </p>
+<img src="images\051608.jpg" alt="051608">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Clearing Output</h1>
+    <p><small>We can clear the output anytime by clicking the icon on the left side of the output display.</small></p>
+<img src="images\051609.jpg" alt="051609">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Adding New Cells</h1>
+    <p> <small> To add more code to your notebook, select the following menu options.</small></p>
+<img src="images\051610.jpg" alt="051610">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Changing Runtime Environment</h1>
+    <p><small>Click the **Runtime** dropdown menu. Select <strong>Change runtime type</strong>. 
+        Select python2 or 3 from <strong>Runtime type</strong> dropdown menu.</small></p>
+<img src="images\051611.jpg" alt="051611">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>What is GPU?</h1>
+    <p> <small> Graphics processing unit, a specialized processor originally designed to accelerate graphics rendering. 
+        GPUs can process many pieces of data simultaneously, making them useful for machine learning, video editing, and gaming applications. 
+        Select 'Change runtime type'. Colab provides the Tesla K80 GPU.</small>
+    </p>
+<img src="images\051612.jpg" alt="051612">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Verifying GPU</h1>
+    <h3>Enter the following code in the cell and execute.</h3>
+    <pre><code class="python">
+    import tensorflow as tf
+    tf.test.gpu_device_name()
+    </code></pre>
+</div>
+</section>
+
+<!-- Python on local computer -->
+<section id="local computer">
+    <div class="discussion">
+    <h1>Installing Python</h1>
+    <p><small>
+Head over to the [official Python website]<a href="https://www.python.org/downloads">https://www.python.org/downloads</a> and download the latest version.
+
+</small></p>
+<img src="images\080705.png" alt="0080705"  width="600">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <p><small>Run the installer and follow the on-screen instructions. It's crucial to check the <strong>Add Python to PATH</strong> box during installation. 
+        This allows you to use Python from your terminal or command prompt easily.</small></p>
+<img src="images\080706.png" alt="080706" width="600">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Visual Studio</h1>
+    <ol>
+        <li>Visit the [official VS Code website]<a href="https://code.visualstudio.com/Download">https://code.visualstudio.com/Download</a> and download the installer for your operating system.</li>
+        <li>Run the installer and follow the setup wizard to install VS</li>
+    </ol>
+<img src="images\080701.png" alt="080701" width="600">
+<img src="images\080702.png" alt="080702" width="600">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Python Extension</h1>
+    <ol>
+        <li>Click on the Extensions icon in the Activity Bar on the left (it looks like four squares) or press `Ctrl+Shift+X` (or `CMD+Shift+X` on macOS)..</li>
+        <li>Search for “Python” in the marketplace and install the official Microsoft Python extension</li>
+        <li>If prompted, restart VS Code to make sure the extension is loaded and ready to use</li>
+    </ol>
+<img src="images\080703.png" alt="080703" width="600">
+<img src="images\080708.png" alt="080708" width="600">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Jupyter Notebook extension</h1>
+    <p><small>Go to the Extensions panel in VS Code and search for <strong>Jupyter</strong>>.</small></p>
+<img src="images\080712.png" alt="080712" width="600">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Reopen you compute</h1>
+    
+<img src="images\080707.png" alt="080707" width="600">
+</div>
+</section>
+
+<section id="implementation">
+<div class="summary">
+    <h1>Open a Jupyter Notebook</h1>
+    <p><small>Go to the Command Palette in VS Code (press Ctrl + Shift + P or Cmd + Shift + P on a Mac) and search for <strong>Jupyter</strong>. 
+
+Choose the <strong>Jupyter Notebook: Create New Blank Notebook</strong> This option creates a new Notebook.</small></p>
+<img src="images\080713.png" alt="080713" width="600">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <p><small>Select a kernel by clicking the top-right corner button of your window. </small></p>
+    
+<img src="images\080714.png" alt="080714" width="600">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <p>Let's programming as google colab.</p>
+</div>
+</section>
+
+
+</body>
+</html>

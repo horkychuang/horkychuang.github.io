@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 3 Slides</title>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 3 Functions and Packages
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+            <p>
+                Functions are fundamental building blocks of reusable code. 
+                They allow us to encapsulate a task or a set of instructions into a self-contained block, 
+                which can be executed whenever needed.
+            </p>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>A Chunk of Code</h2>
+            <pre><code class="python">
+vowels = set('aeiou')
+word = input("Provide a word: ")
+found = vowels.intersection(set(word))
+for vowel in found:
+    print(vowel)
+
+# Into function
+def search4vowels():
+    vowels = set('aeiou')
+    word = input("Provide a word: ")
+    found = vowels.intersection(set(word))
+    for vowel in found:
+        print(vowel)
+
+search4vowels()
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Functions</h1>
+            <p>Functions are named blocks of code designed to do one specific job. 
+                When we want to perform a particular task that you've defined in a function, you call the function responsible for it.</p>
+            <h2>1. Defining a Function and Call</h2>
+            <p>A function is defined using the <code>def</code> keyword, followed by a function name, parentheses, and a colon. 
+                The indented block of code following the colon is the body of the function.</p>
+            <pre><code class="python">
+def greet_user():
+    print("Hello!")
+
+# Calling a Function
+greet_user()
+            </code></pre>
+            <h2>2. Function with Arguments: Passing Information to a Function</h2>
+            <pre><code class="python">
+def greet_user(username):
+    print(f"Hello, {username.title()}!")
+
+greet_user('Alice')
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Arguments and Parameters</h1>
+            <p>We defined <code>greet_user()</code> to require a value for the variable <code>username</code>. 
+                Once we called the function and gave it the information (a person's name), it printed the right greeting.</p>
+            <ol>
+                <li>An <code>argument</code> is a piece of information that's passed from a function call to a function.</li>
+                <li>The value was assigned to the <code>parameter</code> <code>username</code>.</li>
+            </ol>
+            <pre><code class="python">
+def search4vowels(word):
+    vowels = set('aeiou')
+    found = vowels.intersection(set(word))
+    for vowel in found:
+        print(vowel)
+
+search4vowels('hitch-hiker')
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Multiple Parameters</h1>
+            <p>A function definition can have multiple parameters, and a function call may need multiple arguments. 
+                You can use positional arguments, which need to be in the same order as the parameters were written. 
+                The number of arguments in the call must match exactly with the function definition.</p>
+            <pre><code class="python">
+def describe_pet(animal_type, pet_name):
+    print(f"\nI have a {animal_type}.")
+    print(f"My {animal_type}'s name is {pet_name.title()}.")
+
+describe_pet('hamster', 'harry')
+
+def multiply(a, b):
+    return a * b
+
+result = multiply(5, 4) # Positional arguments
+print(result) # Outputs: 20
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Keyword Arguments</h1>
+            <p>A keyword argument is a name-value pair that we pass to a function. 
+                We directly associate the name and the value within the argument, 
+                so when you pass the argument to the function, you explicitly specify the name of the parameter.</p>
+            <pre><code class="python">
+def describe_pet(animal_type, pet_name):
+    print(f"\nI have a {animal_type}.")
+    print(f"My {animal_type}'s name is {pet_name.title()}.")
+
+describe_pet(animal_type='hamster', pet_name='harry')
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Default Values</h1>
+            <p>We can define a default value for each parameter. 
+                If an argument for a parameter is provided in the function call, Python uses the argument value. 
+                If not, it uses the parameter's default value.</p>
+            <pre><code class="python">
+def describe_pet(pet_name, animal_type='dog'):
+    print(f"\nI have a {animal_type}.")
+    print(f"My {animal_type}'s name is {pet_name.title()}.")
+
+describe_pet(pet_name='willie')
+
+def add_numbers(num1=5, num2=10):
+    return num1 + num2
+
+result = add_numbers(num2=10)
+print(result) # Outputs: 15
+            </code></pre>
+            <h2>Passing a List</h2>
+            <pre><code class="python">
+def greet(names):
+    for name in names:
+        msg = f"Hello, {name.title()}!"
+        print(msg)
+
+usernames = ['hannah', 'ty', 'margot']
+greet(usernames)
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Return Values</h1>
+            <p>A function doesn't always have to display its output directly. 
+                Instead, it can process some data and then return a value or set of values. 
+                The value the function returns is called a return value.</p>
+            <pre><code class="python">
+def search4vowels(word):
+    vowels = set('aeiou')
+    found = vowels.intersection(set(word))
+    return bool(found)
+
+print(search4vowels('hitch-hiker')) # Outputs: True
+print(search4vowels('sky')) # Outputs: False
+            </code></pre>
+            <h2>Returning Multiple Values</h2>
+            <pre><code class="python">
+def operations(a, b):
+    return a + b, a - b
+
+sum_result, difference = operations(10, 5)
+print(sum_result, difference) # Outputs: 15 5
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Returning a Dictionary</h1>
+            <p>A function can return any kind of value you need it to, 
+                including more complicated data structures like lists and dictionaries.</p>
+            <pre><code class="python">
+def build_person(first_name, last_name):
+    person = {'first': first_name, 'last': last_name}
+    return person
+
+musician = build_person('jimi', 'hendrix')
+print(musician) # Outputs: {'first': 'jimi', 'last': 'hendrix'}
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Passing an Arbitrary Number of Arguments</h1>
+            <h2>Asterisk</h2>
+            <p>Sometimes we won't know ahead of time how many arguments a function needs to accept. 
+                The asterisk in the parameter name <code>*toppings</code> tells Python to make a tuple called <code>toppings</code>, 
+                containing all the values this function receives.</p>
+            <pre><code class="python">
+def make_pizza(*toppings):
+    print(toppings)
+
+make_pizza('pepperoni')
+make_pizza('mushrooms', 'green peppers', 'extra cheese')
+
+def make_color(*fa):
+    print(fa)
+
+make_color('red')
+make_color('red', 'green', 'blue')
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Using Arbitrary Keyword Arguments</h1>
+            <p>The double asterisks before the parameter tell Python to create a dictionary called <code>kwargs</code> containing all the extra name-value pairs the function receives.</p>
+            <pre><code class="python">
+def build_profile(first, last, **user_info):
+    user_info['first_name'] = first
+    user_info['last_name'] = last
+    return user_info
+
+user_profile = build_profile('albert', 'einstein', location='princeton', field='physics')
+print(user_profile) # Outputs: {'location': 'princeton', 'field': 'physics', 'first_name': 'albert', 'last_name': 'einstein'}
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Lambda/Anonymous Functions</h1>
+            <p>A lambda function in Python is a small, anonymous function defined using the <code>lambda</code> keyword. 
+                Unlike regular functions defined with <code>def</code>, lambda functions are typically used for short, simple operations and can be written in a single line.</p>
+            <pre><code class="python">
+# Lambda Syntax
+lambda arguments: expression
+            </code></pre>
+            <ol>
+                <li><code>lambda</code>: Keyword to define the anonymous function.</li>
+                <li><code>arguments</code>: Input parameters.</li>
+                <li><code>expression</code>: A single expression that is evaluated and returned.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide">
+        <div class="bb">
+            <pre><code class="python">
+# Lambda function without parameters
+f = lambda: "Hello, Puli!"
+print(f())  # Output: Hello, Puli!
+
+# Lambda with one parameter
+x = lambda a: a + 100
+print(x(5))  # Output: 105
+
+# Lambda with multiple parameters
+x = lambda a, b: a * b
+print(x(20, 6))  # Output: 120
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Combine with map(), filter(), and reduce()</h1>
+            <p>A lambda function and a list are passed to the <code>map()</code> function. 
+                The function is executed for all elements within the list.</p>
+            <pre><code class="python">
+# Using lambda with map()
+numbers = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, numbers))
+print(squared)  # Output: [1, 4, 9, 16, 25]
+            </code></pre>
+            <p>The <code>filter()</code> method accepts two arguments: a function from lambda and a list. 
+                The result shows those elements that return <code>True</code> when supplied to the function.</p>
+            <pre><code class="python">
+# Using lambda with filter()
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
+print(even_numbers)  # Output: [2, 4, 6, 8]
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 15 -->
+    <div class="slide">
+        <div class="bb">
+            <p>The <code>reduce()</code> function is useful for performing some computation on a list and, unlike <code>map()</code> and <code>filter()</code>, returns a single value as a result. To use <code>reduce()</code>, you must import it from the <code>functools</code> module. 
+                Useful for cumulative operations like sum, product, or custom aggregations.</p>
+            <pre><code class="python">
+from functools import reduce
+
+numbers = [1, 2, 3, 4, 5]
+total = reduce(lambda x, y: x + y, numbers)
+print(total)  # Output: 15
+# Step 1: 1 + 2 = 3
+# Step 2: 3 + 3 = 6
+# Step 3: 6 + 4 = 10
+# Step 4: 10 + 5 = 15
+
+words = ['Hello', 'World', 'Python']
+sentence = reduce(lambda x, y: x + ' ' + y, words)
+print(sentence)  # Output: Hello World Python
+# Step 1: Hello + World
+# Step 2: Hello World + Python
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 16 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Modules and Packages</h1>
+            <p>Modules and packages are key concepts that facilitate code reuse and organization. 
+                A module is a file containing our definitions and statements, and a package is a way of organizing related modules into a directory hierarchy.
+                One advantage of functions is the way they separate blocks of code from your main program.  
+                We can go a step further by storing functions in a separate file called a module and then importing that module into your main program.</p>
+        </div>
+    </div>
+
+    <!-- Slide 17 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Importing an Entire Module</h1>
+            <p>A module is a file ending in <code>.py</code> that contains the code you want to import into your program.</p>
+            <pre><code class="python">
+import math
+print(math.sqrt(16)) # Outputs: 4.0
+            </code></pre>
+            <p>To make this module, we’ll create a file <code>pizza.py</code> with the function <code>make_pizza()</code>:</p>
+            <pre><code class="python">
+# pizza.py
+def make_pizza(size, *toppings):
+    print(f"\nMaking a {size}-inch pizza with the following toppings:")
+    for topping in toppings:
+        print(f"- {topping}")
+            </code></pre>
+            <pre><code class="python">
+# main.py
+import pizza
+
+pizza.make_pizza(16, 'pepperoni')
+pizza.make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+            </code></pre>
+            <p>When Python reads this file, the line <code>import pizza</code> tells Python to open the file <code>pizza.py</code> 
+                and copy all the functions from it into this program.</p>
+        </div>
+    </div>
+
+    <!-- Slide 18 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Importing Specific Functions</h1>
+            <p>Certain objects of a module are needed.</p>
+            <pre><code class="python">
+from pizza import make_pizza
+
+make_pizza(16, 'pepperoni')
+make_pizza(12, 'mushrooms', 'green peppers', 'extra cheese')
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 19 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Packages</h1>
+            <p>A package is a hierarchical file directory structure that defines a single Python application environment consisting of modules and subpackages.
+                <strong>Basic Package Structure:</strong> A package is typically a directory with Python files 
+                and a file named <code>__init__.py</code>. The <code>__init__.py</code> file can be empty but is required to treat the directory as a Python package.</p>
+            <pre><code class="python">
+mypackage/
+├── __init__.py
+├── submodule1.py
+└── submodule2.py
+            </code></pre>
+            <pre><code class="python">
+# Using Packages
+from mypackage import submodule1
+submodule1.my_function()
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 20 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Python's Standard Library</h1>
+            <p>Python's standard library is a vast collection of modules that provide a wide range of functionalities, 
+                from mathematical operations to handling internet protocols.</p>
+            <pre><code class="python">
+# Modules math
+import math
+print(math.factorial(5)) # Outputs: 120
+print(math.pow(2, 3)) # Outputs: 8.0
+
+# Datetime
+from datetime import datetime
+now = datetime.now()
+print(now.strftime("%Y-%m-%d %H:%M:%S")) # Outputs formatted current time
+
+# Os: Operating System Interface
+import os
+print(os.getcwd()) # Outputs current working directory
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 21 -->
+    <div class="slide">
+        <div class="bb">
+            <pre><code class="python">
+# sys: System-Specific Parameters and Functions
+import sys
+print(sys.path) # Outputs the list of search paths for modules
+
+# json: JSON Encoder and Decoder
+import json
+json_data = '{"name": "Alice", "age": 30}'
+python_obj = json.loads(json_data)
+print(python_obj) # Outputs: {'name': 'Alice', 'age': 30}
+
+# random
+import random
+print(random.randint(1, 10)) # Outputs a random integer between 1 and 10
+
+# requests: HTTP requests
+import requests
+response = requests.get('https://api.github.com')
+print(response.status_code) # Outputs the status code of the response
+            </code></pre>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

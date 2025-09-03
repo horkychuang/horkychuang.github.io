@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 8</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 8 Statsmodels Librray</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">Decompose Time Series</a></li>
+        <li><a href="#topic2">Forecast</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="Introduction">
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>Time-series data is a sequence of data points indexed in time order. 
+        It's integral to many fields, from finance and economics to IoT and product development. 
+        Time series data provides a historical perspective, helping developers understand trends, patterns, and anomalies over time.
+
+This type of data can be anything that changes over time, such as user activity logs, system metrics, 
+or even the changing stock prices on a market. It's a powerful tool for tracking changes, predicting future trends, or diagnosing issues.
+
+Time-series analysis focuses on examining historical data to uncover patterns, trends, and other valuable insights. 
+It is a crucial step in understanding the behavior of time-dependent data, 
+identifying data trends and patterns and making predictions for the future.</small></p>
+</div>
+</section>
+
+<section id="topic1">
+    <div class="discussion">
+    <h1>Decompose the Time Series Data</h1>
+    <p><small>A useful Python function called seasonal_decompose within the 'statsmodels' package 
+        can help us to decompose the data into four different components: 
+    </small></p>
+    <ol>
+        <li>Observed. </li>
+        <li>Trended</li>
+        <li>Seasonal</li>
+        <li>Residual</li>
+    </ol> 
+    <pre><code class="python">
+import statsmodels.api as sm
+# graphs to show seasonal_decompose
+def seasonal_decompose (y):
+    decomposition = sm.tsa.seasonal_decompose(y,
+                                              model='additive', 
+                                              extrapolate_trend='freq')
+    fig = decomposition.plot()
+    fig.set_size_inches(14,7)
+    plt.show()
+
+seasonal_decompose(data)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>1. Stationarity</h1>
+    <p><small>Stationarity refers to a key concept in time-series analysis where the statistical properties of a dataset, such as mean and variance, remain constant over time. In Python, 
+        testing for stationarity involves methods like the Augmented Dickey-Fuller (ADF) test, Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test.
+    
+    Let's explore the significance of stationarity in time-series analysis:
+    <ol>
+        <li><strong>Time-series data spans time:</strong> Time-series data is inherently temporal, capturing observations over a sequence of time intervals. 
+            For meaningful analysis, the statistical properties of the data must remain consistent over time. Such consistency 
+            allows analysts to draw reliable conclusions about the underlying processes driving the data and make informed decisions based on these insights.</li>
+        <li><strong>Simplicity in statistical analysis:</strong> When the statistical properties of a time series vary with time, statistical analysis becomes challenging and complex. Inconsistencies in properties such as mean, variance, and autocorrelation can complicate modeling efforts and hinder interpretation. 
+            Stationarity simplifies the analysis by providing a stable framework where these properties remain constant over time.</li>
+        <li><strong>Essential for projections and models:</strong> Assuming some level of stationarity is crucial, particularly for projections and modeling purposes. 
+            By assuming stationarity, we can handle the noise in the data more effectively, leading to more reliable forecasts and model outcomes.</li>
+    </ol> 
+    </small></p>
+</div>
+</section>
+
+<section>
+    <div class="discussion">
+    <h1>1.1 Background</h1>
+    <p><small>A unit root in a time series refers to a characteristic of a stochastic process where the process has a root on the unit circle in the autoregressive polynomial. 
+        This implies that the time series is non-stationary, meaning its statistical properties such as mean and variance change over time.
+
+In simpler terms, if a time series has a unit root, 
+it suggests that shocks or changes to the series will have a permanent effect that the time series does not revert to a long-term mean and instead follows a trend.
+</small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>1.1.1 Autoregressive Polynomial</h1>
+    <p><small>
+      For an autoregressive (AR) process, 
+      the relationship between current and past values of the time series can be described by an autoregressive polynomial. 
+      <div style="text-align: center; margin: 20px 0;">
+            $$
+           \phi(B)y_t = \epsilon_t
+            $$
+      </div>
+      $\epsilon$ is the white noise error term and
+       <div style="text-align: center; margin: 20px 0;">
+            $$
+           \phi\left(B\right)=1-\phi_{1}B-\phi_{2}B^{2}-...-\phi_{p}B^{p}
+            $$
+      </div>
+      , Here, B is the backshift operator such that $ By_{t}=y_{t-1},B^{2}y_{t}=y_{t-2}$ and so on.
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>1.1.2 Roots of the Polynomial</h2>    
+    <p><small>
+        The roots of the autoregressive polynomial $\phi\left(B\right)$ are `the values of $B$` that satisfy $\phi\left(B\right)=0$. 
+        When a root of the autoregressive polynomial (B) lies on the `unit circle (i.e., has an absolute value of 1)`, it means that the series does not have a tendency to revert to a long-term mean. 
+        In other words, The process is non-stationary can exhibit persistent trends or random walks.
+    </small></p>
+    <p><small>Here's a step-by-step guide on how to use the ADF test and interpret its results.
+        Understanging the ADF Test
+     <ol>
+        <li><strong>Null Hypothesis (H0):</strong> The null hypothesis of the ADF test is that the time series has a unit root, meaning it is non-stationary</li>
+        <li><strong>Alternative Hypothesis (H1):</strong> The alternative hypothesis is that the time series is stationary</li> 
+        <stong>p-value:</stong> If the p-value is less than the significance level (e.g., 0.05), you reject the null hypothesis and conclude that the time series is stationary.  
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <pre><code class="python">
+### plot for Rolling Statistic for testing Stationarity
+def test_stationarity(timeseries):
+    #Determing rolling statistics
+    rolmean = timeseries.rolling(window=12).mean() 
+    rolstd = timeseries.rolling(window=12).std()
+    
+    fig, ax = plt.subplots(figsize=(16, 4))
+    ax.plot(timeseries)
+    ax.plot(rolmean, label='rolling mean');
+    ax.plot(rolstd, label='rolling std (x10)');
+    ax.legend()
+
+pd.options.display.float_format = '{:.8f}'.format
+test_stationarity(data)
+    </code></pre>
+    <pre><code class="python">
+from statsmodels.tsa.stattools import adfuller
+
+# Assuming 'data' is the time series data
+result = adfuller(data)
+print('ADF Statistic:', result[0])
+print('p-value:', result[1])
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>1.2 Make Data Stationary</h1>
+    <p><small>Many approaches to get stationarize data, but we'll use de-trending, differencing, and then a combination of the two</small></p>
+    <h2>1.2.1 Detrending</h2>
+    <pre><code class="python">
+# Detrending
+detrend =  ((data - data.rolling(window=12).mean())/data.rolling(window=12).std()).dropna()
+
+test_stationarity(detrend)
+
+result1 = adfuller(detrend)
+print('ADF Statistic:', result1[0])
+print('p-value:', result1[1]) 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>1.2.2 Differencing</h2>
+    <p><small>This method removes the underlying seasonal or cyclical patterns in the time series. 
+        Since the sample dataset has a 12-month seasonality, I used a 12-lag difference:</small></p>
+    <pre><code class="python">
+# Differencing
+y_12lag = (data - data.shift(12)).dropna()
+
+test_stationarity(y_12lag)
+
+result2 = adfuller(y_12lag)
+print('ADF Statistic:', result2[0])
+print('p-value:', result2[1])
+    </code></pre>
+    <h2>1.2.3 Combining Detrending and Differencing</h2>
+    <pre><code class="python">
+# Detrending + Differencing
+y_12lag_detrend =  (detrend - detrend.shift(12)).dropna()
+
+test_stationarity(y_12lag_detrend)
+
+result3 = adfuller(y_12lag_detrend)
+print('ADF Statistic:', result3[0])
+print('p-value:', result3[1])
+    </code></pre>
+    <pre><code class="python">
+from statsmodels.graphics.tsaplots import plot_acf 
+fig, (ax1, ax2, ax3, ax4) = plt.subplots(4) 
+plot_acf(data, ax=ax1) 
+plot_acf(detrend, ax=ax2) 
+plot_acf(y_12lag, ax=ax3)
+plot_acf(y_12lag_detrend, ax=ax4) 
+plt.show()
+
+from statsmodels.graphics.tsaplots import plot_pacf 
+fig, (ax1, ax2, ax3, ax4) = plt.subplots(4) 
+plot_pacf(data, ax=ax1) 
+plot_pacf(detrend, ax=ax2) 
+plot_pacf(y_12lag, ax=ax3)
+plot_pacf(y_12lag_detrend, ax=ax4) 
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>1.3 Autocorrelation and partial autocorrelation</h1>
+    <p><small>When working with time series data, it is often useful to analyze the autocorrelation of the data to understand the patterns and dependencies between time steps. 
+        Two common tools for this analysis are the Autocorrelation Function (ACF) and the Partial Autocorrelation Function (PACF).<br>
+
+  The ACF plot shows the correlation of a time series with itself at different lags, 
+  while the PACF plot shows the correlation of a time series with itself at different lags, after removing the effects of the previous lags.<br>
+
+  ACF measures the relationship between a variable's current and past values at different time lags. 
+  On the other hand, PACF quantifies the direct relationship between a variable's current value and its past values, excluding the influence of intermediate-lagged variables.</small></p>
+    <pre><code class="python">
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+
+# Assuming 'data' is the time series data
+plot_acf(data)
+plot_pacf(data)
+plt.show()
+    </code></pre>    
+</div>
+</section>
+
+
+<section>
+    <div class="discussion">
+    <p><small> Visualizing the ACF and PACF plots 
+        can give us the insights into the stationarity and the order of autoregressive (AR) and moving average (MA) components of a time series model.   
+    <ol>
+        <li>For a stationary series, the ACF should decay quickly, typically to zero. 
+            If the ACF tails off slowly or shows a strong pattern, it suggests that the time series might be non-stationary.</li>
+        <li>For a stationary time series, the PACF plot should cut off after a few lags. 
+            If the PACF plot shows a significant number of lags with high values, it suggests the presence of non-stationarity..</li>
+    </ol> 
+    If the ACF plot shows a <strong>rapid decline</strong> towards zero and the PACF plot cuts off quickly, 
+    the series is likely stationary. Actually, ACF slow decay can indicate a trend and repeating spikes suggest seasonal effects. 
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <img src="images\082105.jpg" alt="082105" width="600">
+    <p><small>
+    <ol>
+        <li>Series (b) and (g) as the only stationary series.</li>
+        <li>Prominent seasonality can be observed in series (d), (h) and (i)</li>
+        <li>Noticeable trends and changing levels can be seen in series (a), (c), (e), (f) and (i)</li>
+        <li>Series (i) shows increasing variance</li>
+    </ol> 
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <img src="images\082106.jpg" alt="082106" width="500">
+    <p><small>The values tend to degrade to zero quickly for stationary time series (see figure, right), 
+        while for non-stationary data the degradation will happen more slowly (see figure, left).
+    </small></p>    
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>ADF Test</h1>
+    <pre><code class="python">
+from statsmodels.tsa.stattools import adfuller 
+result = adfuller(data) 
+print('ADF Statistic: %f' % result[0]) 
+print('p-value: %f' % result[1]) 
+
+print('Critical Values:' ) 
+for key, value in result[4].items(): 
+    print('\t%s: %.3f' % (key, value))
+
+adfuller(data.diff().dropna())
+    </code></pre>
+    <p><small>How can we determine whether the sequence is stationary? <br>
+1. Compare the statistical values that reject the null hypothesis at different levels (1%, 5%, and 10%) with the ADF test result. 
+If the ADF test result is less than 1%, 5%, and 10% at the same time, it indicates that the null hypothesis is well rejected.<br>
+
+2. If the p-value is very close to 0, the sequence is stationary; otherwise, it is non-stationary.
+   </small></p>
+</div>
+</section>
+
+<section  id="topic2">
+<div class="summary">
+    <h1>2. Forecast</h1>
+    <h2>2.1 Predicting future values based on historical data</h2>
+    <p><small>
+    <ol>
+        <li><strong>Classical models</strong>, such as ARIMA, SARIMA, Moving Averages, Exponential Smoothing, or Vector Autoregression.</li>
+        <li><strong>Machine Learning models</strong>, such as Linear Regression, Random Forest, 
+            and Gradient Boosting algorithms, like XGBoost and LightGBM, or any other regression algorithm</li>
+        <li><strong>Deep Learning models</strong>, such as RNN, LSTM, or Transformers-based models</li>
+    </ol>     
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>2.2 Basic Time Series</h2>
+    <p><small> In time-series analysis, various forecasting models are available to predict future values based on historical data. 
+        Each model has its own strengths, limitations, and suitability for different types of time-series data.
+
+One popular method is the autoregressive integrated moving average (ARIMA) model. 
+ARIMA is a powerful and widely used approach that combines the three following components to capture the patterns and trends in time-series data:.
+    </small> </p>
+    <ol>
+        <li>Autoregression (AR).</li>
+        <li>Differencing (I)</li>
+        <li>Moving Average (MA)</li>
+    </ol> 
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h1>2.3 Moving Average (MA)</h1>
+    <p><small>
+        The moving average model calculates the average of past observations to forecast future values. 
+        It helps eliminate short-term fluctuations and identify underlying trends in the data.
+
+We can implement the moving average model using the `rolling` function in pandas, 
+which calculates the mean over a specified window of past observations. 
+    </small></p>
+    <pre><code class="python">
+import pandas as pd
+
+# Assuming 'data' is the time series data
+window_size = 3
+moving_avg = data.rolling(window=window_size).mean()
+
+from statsmodels.tsa.arima.model import ARIMA
+# fit model
+model = ARIMA(data, order=(0, 0, 1))
+ma_model = model.fit()
+# make prediction
+predictions = ma_model.predict(len(data), len(data)+10)
+print(predictions)
+
+ma_model.summary()
+ma_model.plot_diagnostics()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>2.4 Autoregressive (AR)</h1>
+    <p><small>
+        The autoregressive model predicts future values using past observations and a linear regression equation. 
+        It assumes that the future values depend on the previous values with a lag.
+
+We can implement the autoregressive model using the `AR` class from the statsmodels library, 
+which enables the fitting of an autoregressive model to the time-series data..
+    </small></p>
+    <pre><code class="python">
+from statsmodels.tsa.ar_model import AutoReg
+
+# Assuming 'data' is the time series data
+model = AutoReg(data, lags=1)
+ar_model = model.fit()
+predictions = ar_model.predict(start=len(data), end=len(data)+10) # n=10
+print(predictions)
+
+ar_model.summary()
+ar_model.plot_diagnostics()
+    </code></pre>    
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>2.5 Autoregressive Moving Average (ARMA)</h1>
+    <p><small>
+The ARMA model combines the autoregressive and moving average models, 
+making predictions based on past observations and the average of past errors.
+
+You can implement the autoregressive moving average model using the `ARMA` class from the `statsmodels` library, 
+which allows fitting an ARMA model to the time series data.
+    </small></p>
+    <pre><code class="python">
+from statsmodels.tsa.arima.model import ARIMA
+
+# Assuming 'data' is the time series data
+model = ARIMA(data, order=(2, 0, 1))  
+# Replace p, d, and q with appropriate values
+
+arma_model = model.fit()
+predictions = arma_model.predict(start=len(data), 
+                                 end=len(data)+10, typ='levels')  
+# Replace n with the number of future values to predict
+print(predictions)
+
+arma_model.summary()
+arma_model.plot_diagnostics()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>2.6 Autoregressive Integrated Moving Average (ARIMA)</h1>
+    <p><small>
+The ARIMA model extends the ARMA model by incorporating differencing to make the time series stationary. 
+It is suitable for non-stationary data with trends and seasonality.
+
+The autoregressive integrated moving average model can also be implemented using the `ARIMA` class from the `statsmodels` library.
+    </small></p>
+    <pre><code class="python">
+from statsmodels.tsa.arima.model import ARIMA
+
+# Assuming 'data' is the time series data
+model = ARIMA(data, order=(1, 1, 1))  # # (p,d,q)
+
+# Replace p, d, and q with appropriate values
+arima_model = model.fit()
+predictions = arima_model.predict(start=len(data), 
+                                  end=len(data)+10, typ='levels')  # n=10
+# Replace n with the number of future values to predict
+print(predictions)
+
+arima_model.plot_diagnostics()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>2.7 Other Model</h1>
+    <p><small>
+    <ol>
+        <li>Seasonal ARIMA (SARIMA)</li>
+        <li>Exponential Smoothing: Simple Exponential Smoothing (SES), Holt's Linear Exponential Smoothing, and Holt-Winters Exponential Smoothing</li>
+        <li>...</li>
+    </ol> 
+    </small></p>
+    <h2>Multiple parallel time series, e.g. multivariate time serie</h2>
+    <ol>
+        <li>Vector Autoregression (VAR)</li>
+        <li>Vector Autoregression Moving-Average (VARMA)</li>
+        <li>Vector Autoregression Moving-Average with Exogenous Regressors (VARMAX)</li>
+        <li>....</li>
+    </ol>
+</div>
+</section>
+
+
+
+
+
+
+</body>
+</html>

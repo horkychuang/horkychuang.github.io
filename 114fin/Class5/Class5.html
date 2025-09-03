@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 5</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 5 Numpy Library</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Today's Topics</a></li>
+        <li><a href="#topic1">numpy 1</a></li>
+        <li><a href="#topic2">numpy 2</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="Introduction">
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>NumPy is a module for Python. The name is an acronym for "Numeric Python" or "Numerical Python". 
+        NumPy enriches the programming language Python with powerful data structures, 
+        implementing multi-dimensional `arrays` and `matrices`. Array is a collection of "items" of the same type. 
+        The item of array can be accessed using index. Every item of array takes up the same size block of memory.</small></p>
+        <img src="images\060206.png" alt="060206" width="300"> 
+</div>
+</section>
+
+<section>
+    <div class="discussion">
+    <h1>1. Installing  and Import NumPy</h1>
+    <pre><code class="python">
+# python -m pip install--user numpy # via `the command line (cmd) `
+pip install numpy
+import numpy
+import numpy as np
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>2. Creating Numpy Arrays</h1>
+    <p><small>There are methods provided by Numpy to create arrays with evenly spaced values within a given interval. 
+        One `arange` uses a given distance and the other one `linspace` needs the number of elements and creates the distance automatically.</strong></small></p>
+    <h2>2.1 np.arange([start,] stop[, step], [, dtype=None])</h2>
+    <pre><code class="python">
+import numpy as np
+
+a = np.arange(1, 10) # start from 0
+print(a)
+
+x = range(1, 10)
+print(x)    # x is an iterator
+print(list(x))
+
+# further arange examples:
+x = np.arange(10.4)
+print(x)
+x = np.arange(0.5, 10.4, 0.8)
+print(x)
+
+np.arange(17.04, 17.84, 0.08)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>2.2 np.linspace(start, stop, num=50, endpoint=True, retstep=False)</h2>
+    <pre><code class="python">
+import numpy as np
+
+# 50 values between 1 and 10:
+print(np.linspace(1, 10, num=50))
+# 7 values between 1 and 10:
+print(np.linspace(1, 10, 7))
+# excluding the endpoint:
+print(np.linspace(1, 10, 7, endpoint=False))
+    </code></pre>
+    <h2>2.3 np.linspace(start, stop, num=50, endpoint=True, retstep=False)</h2>
+    <pre><code class="python">
+import numpy as np
+x = np.array(42)
+print("x: ", x)
+print("The type of x: ", type(x))
+print("The dimension of x:", np.ndim(x))
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.4 One-dimensional Arrays- np.array</h2>
+    <pre><code class="python">
+import numpy as np
+F = np.array([1, 1, 2, 3, 5, 8, 13, 21])
+V = np.array([3.4, 6.9, 99.8, 12.8])
+
+print("F: ", F)
+print("V: ", V)
+print("Type of F: ", F.dtype)
+print("Type of V: ", V.dtype)
+print("Dimension of F: ", np.ndim(F))
+print("Dimension of V: ", np.ndim(V))
+    </code></pre>
+    <h2>2.5 Two- and Multidimensional Arrays_np.array</h2>
+    <pre><code class="python">
+import numpy as np
+A = np.array([ [3.4, 8.7, 9.9], 
+               [1.1, -7.8, -0.7],
+               [4.1, 12.3, 4.8]])
+print(A)
+print(A.ndim) # number of dimension
+
+B = np.array([ [[111, 112], [121, 122]],
+               [[211, 212], [221, 222]],
+               [[311, 312], [321, 322]] ])
+print(B)
+print(B.ndim) # number of dimension
+    </code></pre>
+    <h2>2.6 Zeros Method, Ones Method, and Eyes Method</h2>
+    <p><samll>In linear algebra, the identity matrix, or unit matrix, 
+        of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere</samll></p>
+    <pre><code class="python">
+import numpy as np
+# ones() method
+ones_array = np.ones(6)
+print(ones_array)
+
+ones_array = np.ones((6,4))
+print(ones_array)
+
+# zeros() method
+zeros_array = np.zeros(6)
+print(zeros_array)
+
+zeros_array = np.zeros((6,4))
+print(zeros_array)
+
+# Eyes Method
+eyes_array = np.eye(5)
+print(eyes_array)
+
+# empty
+np.empty((2, 4))
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>2.7 Specifying your data type</h2>
+    <p><small>While the default data type is floating point (np.float64), 
+        we can explicitly specify which data type you want using the `dtype keyword`.</small></p>
+    <pre><code class="python">
+a = np.ones(2, dtype = np.int64)
+print(a)
+# [1 1]
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.8 Shape and Size of an array</h2>
+    <p><small>The shape of the array is a tuple of integers giving the size of the array along each dimension. For example, the shape of a 2-dimensional array of size 2 x 3 is (2,3). 
+        The size of an array is the total number of elements of the array. This is equal to the product of the elements of shape</small></p>
+    <img src="images\numpy01.jpg" alt="numpy01" width="300">
+    <p><small>The function "shape" returns the shape of an array. 
+        The shape is a tuple of integers. These numbers denote the lengths of the corresponding array dimension.</small></p>
+    <pre><code class="python">
+x = np.array([ [67, 63, 87],
+               [77, 69, 59],
+               [85, 87, 99],
+               [79, 72, 71],
+               [63, 89, 93],
+               [68, 92, 78]])
+
+print(np.shape(x))
+
+x = np.array(11)
+print(np.shape(x))
+
+B = np.array([ [[111, 112, 113], [121, 122, 123]],
+               [[211, 212, 213], [221, 222, 223]],
+               [[311, 312, 313], [321, 322, 323]],
+               [[411, 412, 413], [421, 422, 423]] ])
+
+print(B.shape)
+# size
+print(B.size)
+    </code></pre>    
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>3. Array Indexing</h1>
+    <p><small>We can access the element of array using index.</small></p>
+    <img src="images\060208.png" alt="060208" width="300">
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>3.1 Indexing and Slicing</h1>
+    <pre><code class="python">
+F = np.array([1, 1, 2, 3, 5, 8, 13, 21])
+# print the first element of F
+print(F[0])
+# print the last element of F
+print(F[-1])
+
+# Indexing multidimensional arrays:
+A = np.array([ [3.4, 8.7, 9.9], 
+               [1.1, -7.8, -0.7],
+               [4.1, 12.3, 4.8]])
+print(A[1][0])
+print(A[1, 0])
+    </code></pre> 
+  </div>    
+</section>
+
+
+<section>
+    <div class="discussion">
+    <p><small>Start is the index of the first element in the slice, and end is the index marking the end <strong>(but not including)</strong> of the slice</small></p>   
+    <pre><code class="python">
+# A[start:stop:step]
+S = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+print(S[2:5])
+print(S[:4]) # slice starts at the beginning
+print(S[6:]) # the slice goes to the end
+print(S[:])
+
+A = np.array([
+[11, 12, 13, 14, 15],
+[21, 22, 23, 24, 25],
+[31, 32, 33, 34, 35],
+[41, 42, 43, 44, 45],
+[51, 52, 53, 54, 55]])
+
+print(A[:3, 2:])
+print(A[3:, :])
+print(A[:, 4:]) 
+
+# The third parameter "step"
+X = np.arange(28).reshape(4, 7) # cearte the reshape
+print(X)
+print(X[::2, ::3])
+print(X[::, ::3])
+
+A = np.array(
+    [ [ [45, 12, 4], [45, 13, 5], [46, 12, 6] ], 
+      [ [46, 14, 4], [45, 14, 5], [46, 11, 5] ], 
+      [ [47, 13, 2], [48, 15, 5], [52, 15, 1] ] ])
+A[1:3, 0:2]  # equivalent to A[1:3, 0:2, :]
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>4. Boolean Indexing</h1>
+    <pre><code class="python">
+import numpy as np
+
+A = np.array([4, 7, 3, 4, 2, 8])
+print(A == 4)
+print(A < 5)
+
+B = np.array([[42,56,89,65],
+              [99,88,42,12],
+              [55,42,17,18]])
+print(B>=42)
+
+C = np.array([123,188,190,99,77,88,100])
+D = np.array([4,7,2,8,6,9,5])
+
+R = C[D<=5]
+print(R)
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>4.1 nonzero and where</h2>
+    <pre><code class="python">
+import numpy as np
+
+a = np.array([[0, 2, 3, 0, 1],
+              [1, 0, 0, 7, 0],
+              [5, 0, 0, 1, 0]])
+print(a.nonzero())
+np.transpose(a.nonzero()) 
+    </code></pre>
+    <h2>4.2 using the `&` and `| `operators</h2>
+    <pre><code class="python">
+x = (a > 20) & (a < 110)
+b = a[x]
+print(b)
+# [ 30  40  50  60  70  80  90 100]
+    </code></pre>
+    <h2>4.3 Copying Arrays</h2>
+    <pre><code class="python">
+x = np.array([[42,22,12],[44,53,66]], order='F')
+y = x.copy()
+
+x[0,0] = 1001
+print(x)
+
+print(y)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h1>5. Numerical Operations</h1>
+    <h2>5.1 Using Scalars     </h2>
+    <pre><code class="python">
+import numpy as np
+lst = [2,3, 7.9, 3.3, 6.9, 0.11, 10.3, 12.9]
+v = np.array(lst)
+v = v + 2
+
+print(v)
+print(v * 2.2) # Scalar Product
+print(v - 1.38)
+
+lst = [2,3, 7.9, 3.3, 6.9, 0.11, 10.3, 12.9]
+res = []
+for val in lst:
+    res.append(val + 2)
+
+print(res)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>5.2 Arithmetic Operations with two Arrays</h2>
+    <pre><code class="python">
+import numpy as np
+
+A = np.array([ [11, 12, 13], [21, 22, 23], [31, 32, 33] ])
+B = np.ones((3,3))
+
+print("Adding to arrays: ")
+print(A + B)
+
+print("Subtract to arrays: ")
+print(A - B)
+
+print("\nMultiplying two arrays: ")
+print(A * (B + 1))
+
+# Matrix Multiplication
+np.dot(A, B)
+
+print(np.dot(3, 4))
+x = np.array([3])
+y = np.array([4])
+print(x.ndim)    # np.dim --> dimension
+print(np.dot(x, y))
+
+x = np.array([3, -2])
+y = np.array([-4, 1])
+print(np.dot(x, y))
+
+A = np.array([ [1, 2, 3], 
+               [3, 2, 1] ])
+B = np.array([ [2, 3, 4, -2], 
+               [1, -1, 2, 3],
+               [1, 2, 3, 0] ])
+print(np.dot(A, B))
+    </code></pre>   
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>5.3 the 3-dimensional Case</h2>
+    <pre><code class="python">
+import numpy as np
+X = np.array( [[[3, 1, 2],
+                [4, 2, 2],
+                [2, 4, 1]],
+
+               [[3, 2, 2],
+                [4, 4, 3],
+                [4, 1, 1]],
+
+               [[2, 2, 1],
+                [3, 1, 3],
+                [3, 2, 3]]])
+
+Y = np.array( [[[2, 3, 1],
+                [2, 2, 4],
+                [3, 4, 4]],
+            
+               [[1, 4, 1],
+                [4, 1, 2],
+                [4, 1, 2]],
+            
+               [[1, 2, 3],
+                [4, 1, 1],
+                [3, 1, 4]]])
+
+R = np.dot(X, Y)
+print("The shapes:")
+print(X.shape)
+print(Y.shape)
+print(R.shape)
+
+print("\nThe Result R:")
+print(R)
+    </code></pre>
+    <pre><code class="python">
+nums = [10,20,30,40,50]
+np_sqr = np.sqrt(nums)
+print(np_sqr)
+
+np_log = np.log(nums)
+print(np_log)
+
+np_exp = np.exp(nums)
+print(np_exp)
+
+np_sine = np.sin(nums)
+print(np_sine)
+
+np_cos = np.cos(nums)
+print(np_cos)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>5.4 More Array Operations</h2>
+    <pre><code class="python">
+# max()
+a = np.array([10, 20, 30, 40])
+b = a.max()
+print(b) # 40
+
+a = np.array([[0, 1, 6], [2, 4, 1]])
+b = np.max(a)
+print(b) # 6
+
+b = np.max(a, axis=0)   # max of each column
+print(b) # [2 4 6]
+
+b = np.max(a, axis=1)   # max of each row
+print(b) # [6 4]
+
+# min(), sum(), prod(), mean(), median(), std(), var()
+    </code></pre>
+</div>
+</section>
+
+
+<section >
+<div class="discussion">
+    <h1>6. Matrices vs. Two-Dimensional Arrays</h1>
+    <pre><code class="python">
+A = np.array([ [1, 2, 3], [2, 2, 2], [3, 3, 3] ])
+B = np.array([ [3, 2, 1], [1, 2, 3], [-1, -2, -3] ])
+R = A * B
+print(R)
+
+## mat = matrix
+MA = np.mat(A)
+MB = np.mat(B)
+R = MA * MB
+print(R)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>6.1 Logical Operators</h2>
+    <pre><code class="python">
+a = np.array([ [True, True], [False, False]])
+b = np.array([ [True, False], [True, False]])
+
+print(np.logical_or(a, b))
+print(np.logical_and(a, b))
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>6.2 Broadcasting</h2>
+    <p><small>
+       Broadcasting, which allows to perform arithmetic operations on arrays of `different shapes`. 
+       We can  transform or apply the `smaller` array multiple times to perform some operation on the `larger` array. 
+       In other words: Under certain conditions, 
+       the smaller array is "broadcasted" in a way that it has the same shape as the larger array. 
+       
+    <img src="images\numpy02.png" alt="numpy02" width="300">
+    </small></p>
+    <pre><code class="python">
+import numpy as np
+
+A = np.array([ [11, 12, 13], [21, 22, 23], [31, 32, 33] ])
+B = np.array([1, 2, 3])
+
+print("Multiplication with broadcasting: ")
+print(A * B)
+print("... and now addition with broadcasting: ")
+print(A + B)    
+    </code></pre>
+    <p><small>B is treated as if it were construed like this:</small></p>
+    <pre><code class="python">
+B = np.array([[1, 2, 3],] * 3)
+print(B)
+[[1 2 3]
+ [1 2 3]
+ [1 2 3]]   
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>7. Concatenating, Reshape Arrays and Adding Dimensions</h1>
+    <h2>7.1 Reshape</h2>
+    <p><small>`reshape()` gives a new shape without changing its data, i.e. it returns a new array with a new shape</small></p>
+    <pre><code class="python">
+X = np.array(range(12))
+print(X) #[ 0  1  2  3  4  5  6  7  8  9 10 11]
+Y = X.reshape(3,4)
+print(Y) 
+
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2> 7.2 Concatenate</h2>
+    <P><small>`np.concatenate()` method can join a sequence of arrays along an existing axis</small></P>
+    <pre><code class="python">
+# The elements of the second array are appended to the first array
+x = np.array([11,22])
+y = np.array([18,7,6])
+z = np.array([1,3,5])
+c = np.concatenate((x,y,z))
+print(c)
+
+# concatenate the arrays according to axis and arrays must have the same shape
+x = np.array(range(24))
+x = x.reshape((3,4,2))
+
+y = np.array(range(100,124))
+y = y.reshape((3,4,2))
+
+z = np.concatenate((x,y))
+print(z)
+
+# the same concatenation now with axis=1
+z = np.concatenate((x,y),axis = 1)
+print(z)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>7.3 split</h2>
+    <p><small>`np.split()` method can split an array into multiple sub-arrays</small></p>
+    <pre><code class="python">
+arr = np.arange(9)
+a,b,c = np.split(arr,3)
+print(a) # [0 1 2]
+print(b) # [3 4 5]
+print(c) # [6 7 8]
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>7.4 Sort</h2>
+    <p><small>The `np.sort() method` returns a sorted copy of an array</small></p>
+    <pre><code class="python">
+a = np.array([2, 1, 5, 3, 7, 4, 6, 8])
+b = np.sort(a)
+print(b) # [1 2 3 4 5 6 7 8]
+
+x = np.array([[10,4],[3,1]])
+y = np.sort(x)                # sort along the last axis
+print(y)
+```
+[[ 4 10]
+ [ 1  3]]
+```
+y = np.sort(x, axis=None)     # sort the flattened array
+print(y)
+# [ 1  3  4 10]
+
+y = np.sort(x, axis=0)        # sort along the first axis
+print(y)
+[[ 3  1]
+ [10  4]]
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>7.5 Newaxis</h2>
+    <p><small>New dimensions can be added to an array by using slicing and `np.newaxis`</small></p>
+    <pre><code class="python">
+x = np.array([2,5,18,14,4])
+y = x[:, np.newaxis]
+print(y)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>8. Flatten Arrays</h1>
+    <p><small>flatten is a ndarry method with an optional keyword parameter "order". order can have the values "C", "F" and "A". 
+        The default of order is "C". "C" means to flatten C style in row-major ordering. 
+        "F" stands for Fortran column-major ordering. "A" means preserve the the C/Fortran ordering.</small></p>
+    <pre><code class="python">
+import numpy as np
+
+A = np.array([[[ 0,  1],
+               [ 2,  3],
+               [ 4,  5],
+               [ 6,  7]],
+              [[ 8,  9],
+               [10, 11],
+               [12, 13],
+               [14, 15]],
+              [[16, 17],
+               [18, 19],
+               [20, 21],
+               [22, 23]]])
+
+Flattened_X = A.flatten()
+print(Flattened_X)
+
+print(A.flatten(order="C"))
+print(A.flatten(order="F"))
+print(A.flatten(order="A"))
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>9. Repeating and Vector Stacking</h1>
+    <h2> 9.1 Vector Stacking</h2>
+    <pre><code class="python">
+A = np.array([3, 4, 5])
+B = np.array([1,9,0])
+
+print(np.row_stack((A, B)))
+
+print(np.column_stack((A, B)))
+np.shape(A)
+
+A = np.array([[3, 4, 5],
+              [1, 9, 0],
+              [4, 6, 8]])
+np.column_stack((A, A, A))
+np.column_stack((A[0], A[0], A[0]))
+    </code></pre>
+</div>
+</section>
+
+<section>
+    <div class="summary">
+        <h2>9.2 Repeating</h2>
+        <p><small>We want to or have to create a new matrix by repeating an existing matrix multiple times to create a new matrix.
+              <img src="images\numpy04.jpg" alt="numpy04" width="300">
+             
+            
+              We set reps to (3, 4) and A will be repeated 3 times for the "rows" and 4 times in the direction of the columns. 
+        </small></p>
+    <pre><code class="python">
+import numpy as np
+x = np.array([ [1, 2], [3, 4]])
+np.tile(x, (3,4))
+
+x = np.array([ 3.4])
+y = np.tile(x, (5,)) 
+print(y)
+    </code></pre>
+</div>
+</section>
+
+<section>
+    <div class="discussion">
+    <p><small> For an array 'A' of shape (2, 3, 4, 5), a 'reps' of (2, 2) is treated as (1, 1, 2, 2) </small></p>
+<pre><code class="python">
+import numpy as np
+x = np.array([[1, 2], [3, 4]])
+print(np.tile(x, 2))
+
+x = np.array([[1, 2], [3, 4]])
+print(np.tile(x, (2, 1)))
+
+x = np.array([[1, 2], [3, 4]])
+print(np.tile(x, (2, 2)))
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>10. Random Numbers and Probability</h1>
+    <h2>10.1 random.uniform</h2>
+    <p> <small> The `random.uniform()` function from the NumPy module can be used to create a NumPy array with uniform distribution. 
+        `random.randn()` function from the NumPy module can be used to create a NumPy array with normal distribution. 
+        `random.randint()` function from the NumPy module can be used to create a  NumPy array with random integers between a certain range.</small></p>
+    <pre><code class="python">
+# the lower bound, the second parameter specifies the upper bound
+uniform_random = np.random.uniform(4, 5) 
+print(uniform_random)
+
+normal_random = np.random.randn(4, 5)
+print(normal_random)
+
+integer_random = np.random.randint(10, 50, 5)
+print(integer_random)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>10.2 Random Numbers</h2>
+    <pre><code class="python">
+import random
+random_number = random.random()
+print(random_number)
+
+# fastest and most efficient
+import numpy as np
+np.random.random(10)
+    </code></pre> 
+    <h2>10.3 Random Numbers Satisfying **sum-to-one** Condition</h2>
+    <pre><code class="python">
+import numpy as np
+
+list_of_random_floats = np.random.random(100)
+sum_of_values = list_of_random_floats.sum()
+print(sum_of_values)
+
+normalized_values = list_of_random_floats / sum_of_values
+print(normalized_values.sum())
+    </code></pre>    
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>10.4 Random `Integer` Numbers</h2>
+    <pre><code class="python">
+import numpy as np
+
+outcome = np.random.randint(1, 7, size=10)
+print(outcome)
+
+# "half-open" interval
+print(np.random.randint(1, 7))
+print(np.random.randint(1, 7, size=1))
+print(np.random.randint(1, 7, size=10))
+print(np.random.randint(1, 7, size=(10,))) # the same as the previous one
+print(np.random.randint(1, 7, size=(5, 4)))
+    </code></pre> 
+    <h2>10.5 Random `Samples`</h2>
+    <pre><code class="python">
+import numpy as np
+x = np.random.random_sample((3, 4))
+print(x)
+
+# generate arrays with values from an arbitrary interval [a, b), 
+# where a has to be less than b. (b - a) * random_sample() + a
+a = -3.4
+b = 5.9
+A = (b - a) * np.random.random_sample((3, 4)) + a
+print(A)
+
+import random
+print(random.sample(range(1, 50), 6))
+    </code></pre>     
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <p><small>We want to create now `1000` random numbers between `130` and `230` that have a <strong>gaussian distribution*</strong> 
+        with the mean value mu set to `550` and the standard deviation sigma is set to `30`.</small></p>
+    <pre><code class="python">
+from random import gauss
+
+n = 1000
+values = []
+frequencies = {}
+
+while len(values) < n:
+    value = gauss(180, 30)
+    if 130 < value < 230:
+        frequencies[int(value)] = frequencies.get(int(value), 0) + 1
+        values.append(value)
+        
+print(values[:10])
+
+# Do the same with `normvariate`
+from random import normalvariate
+
+n = 1000
+values = []
+frequencies = {}
+
+while len(values) < n:
+    value = normalvariate(180, 30)
+    if 130 < value < 230:
+        frequencies[int(value)] = frequencies.get(int(value), 0) + 1
+        values.append(value)
+
+freq = list(frequencies.items())
+freq.sort()
+
+
+plt.plot(*list(zip(*freq)))
+    </code></pre>    
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>11. Matrix Arithmetics</h1>
+    <pre><code class="python">
+# Scalar Product / Dot Product
+import numpy as np
+x = np.array([1, 2, 3])
+y = np.array([-7, 8, 9])
+np.dot(x, y)
+
+dot = np.dot(x ,y)
+x_modulus = np.sqrt((x*x).sum())
+y_modulus = np.sqrt((y*y).sum())
+
+cos_angle = dot / x_modulus / y_modulus # cosine of angle between x and y
+angle = np.arccos(cos_angle)
+angle
+angle * 360 / 2 / np.pi # angle in degrees
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>11.1 Matrix Product</h2>
+    <img src="images\numpy05.jpeg" alt="numpy05" width="300">
+    <pre><code class="python">
+import numpy as np
+x = np.array( ((2,3), (3, 5)) ) # array
+y = np.matrix( ((1,2), (5, -1)) ) #matrix
+print(np.dot(x,y))
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>11.2 Cross Product</h2>
+    <pre><code class="python">
+import numpy as np
+x = np.array([0, 0, 1])
+y = np.array([0, 1, 0])
+
+np.cross(x, y)
+np.cross(y, x)
+    </code></pre>
+    <h2>11.3 Element-wise multiply</h2>
+    <pre><code class="python">
+row1 = [10,12,13]
+row2 = [45,32,16]
+row3 = [45,32,16]
+
+nums_2d = np.array([row1, row2, row3])
+print(nums_2d)
+
+multiply = np.multiply(nums_2d, nums_2d)
+print(multiply)
+    </code></pre>    
+</div>
+</section>
+
+
+<section>
+    <div class="discussion">
+    <h1>12. Linear Algebra Operations</h1>
+    <p><small>
+<table border="1">
+    <tr>
+        <td>Functions</td>
+        <td>Descriptions</td>
+    </tr>
+    <tr>
+        <td>`dot()`</td>
+        <td>performs matrix multiplication</td>
+    </tr>
+    <tr>
+        <td>`transpose()`</td>
+        <td>transposes a matrix</td>
+    </tr>
+    <tr>
+        <td>`linalg.inv()`</td>
+        <td>calculates the inverse of a matrix</td>
+    </tr>
+    <tr>
+        <td>`linalg.det()`</td>
+        <td>calculates the determinant of a matrix</td>
+    </tr>
+    <tr>
+        <td>`flatten()`</td>
+        <td>transforms a matrix into 1D array</td>
+    </tr>
+    <tr>
+        <td>`inner()`</td>
+        <td>calculates inner product of arrays</td>
+    </tr>
+    <tr>
+        <td>`outer()`</td>
+        <td>calculates outer product of arrays</td>
+    </tr>
+    <tr>
+        <td>`linalg.solve()`</td>
+        <td>solves linear matrix equation</td>
+    </tr>
+    <tr>
+        <td>`linalg.inv()`</td>
+        <td>calculates the multiplicative inverse of the matrix</td>
+    </tr>
+    <tr>
+        <td>`trace()`</td>
+        <td>calculates the sum of diagonal elements</td>
+    </tr>
+    <tr>
+        <td>`linalg.eig()`</td>
+        <td>eigenvectors and eigenvalue</td>
+    </tr>
+</table>
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <pre><code class="python">
+# dot
+import numpy as np
+
+# create two matrices
+matrix1 = np.array([[1, 3], [5, 7]])            
+matrix2 = np.array([[2, 6], [4, 8]])
+
+# calculate the dot product of the two matrices
+result = np.dot(matrix1, matrix2)
+print("matrix1 x matrix2: \n",result)
+
+# get transpose of matrix1
+result = np.transpose(matrix1)
+print(result)
+
+# find inverse of matrix1
+result = np.linalg.inv(matrix1)
+print(result)
+
+# find determinant of matrix1
+result = np.linalg.det(matrix1)
+print(result)
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <p><small>`Flattening` a matrix simply means converting a matrix into a 1D array.</small></p>
+    <pre><code class="python">
+    import numpy as np
+# create a 2x3 matrix
+matrix1 = np.array([[1, 2, 3], 
+             		[4, 5, 7]])
+
+result = matrix1.flatten()
+print("Flattened 2x3 matrix:", result)
+    </code></pre>
+</div>
+</section>
+
+
+</body>
+</html>

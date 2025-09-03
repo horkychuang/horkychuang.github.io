@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 4 Slides</title>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 4 Object-Oriented Programming
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+            <p>
+                Object-oriented programming (OOP) is a widely used programming paradigm that reduces development times—making it easier to read, reuse, and maintain your code.
+                Before we start introducing the object-oriented code, let's classify some statements.
+            </p>
+            <ol>
+               <li><strong>Encapsulation</strong> is a software design practice of bundling the data and the methods that operate on that data.</li>
+               <li><strong>Methods</strong> encode behavior of an object and are represented by `functions`.</li>
+               <li><strong>Attributes</strong> encode the state of an object and are represented by `variables`.</li>
+           </ol>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <p> There are two common programming methods: 
+        <strong>procedural programming</strong> and <strong>object-oriented programming (OOP)</strong>. 
+        So far you have been creating procedural programs.
+    <ol>
+        <li>Object-oriented programming (OOP) shifts the focus from thinking about code as a sequence of actions to looking at your program as a collection of objects that interact with each other. Class acts as the blueprints for every object in Python. 
+            We'll then leverage principles called inheritance and polymorphism to reuse and optimize code.</li>
+        <li>In a procedural program, data and the functions are separate entities. Usually, the variables are passed to the functions that perform the desired operations. The focus of procedural programming is on creating the procedures or functions, that operate on the program’s data. Procedural programming works well. 
+            However, as programs become larger and more complex, 
+            the separation of a program's data and the code that operates on the data can lead to problems.</li>
+    </ol> 
+      </p>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>1 OOP in Python</h1>
+    <p>In Python, `everything is an object`. 
+        This includes things like numbers, strings, lists, sets, tuples, and dictionaries. An object has two aspects:
+    <ol>
+        <li>Instance variables containing data; these describe the `attribute` of the object</li>
+        <li>Methods that provide `means` of manipulating the object.</li>
+    </ol> 
+    </p>
+    <pre><code class="python">
+# Daily closing prices of a stock (e.g., $TSLA) in USD
+stock_prices = [142.50, 145.30, 149.10, 146.80]  # Prices from Mon–Thu
+stock_prices.append(151.20)  # Friday's closing price
+stock_prices
+    </code></pre>
+    <p><small>The list [142.50, 145.30, 149.10, 146.80] is an object. 
+        In order to use an object, there must be a way to reference them. 
+        In Python this is done by binding objects to names. Here, list object is bounded by name s. 
+        The <strong>append()</strong> is a method that you can use with lists, 
+        stock_prices.append(151.20)  changes the named list to have the value [142.5, 145.3, 149.1, 146.8, 151.2]</small></p>
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>2. Class</h1>
+        <p>  Classes combine `functions`  and `data` into one neat package. Making an `object` from a class is called `instantiation`, 
+        and you work with instances of a class. We'll write classes and create instances of those classes.</small></p>
+    <h2>2.1 Creating a Class</h2> 
+    <p>A class is a set of statements that define `methods`(storing the behavior) and data `attributes` (storing the state).</small></p>
+    <pre><code class="python">
+class BankAccount: 
+    def __init__(self, owner, balance=0): # constructor
+        self.owner = owner     # instannce attributes:账户持有人
+        self.balance = balance # instannce attributes:余额
+
+    def deposit(self, amount):
+        """存款"""
+        if amount > 0:
+            self.balance += amount
+            print(f"已存入 {amount:.2f} 元")
+        else:
+            print("存款金额必须大于0")
+
+    def withdraw(self, amount):
+        """取款"""
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            print(f"已取出 {amount:.2f} 元")
+        else:
+            print("餘额不足或金额無效")
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>2.2 Making an Instance 實例化 (Objects)<Title></Title></h1>
+    <p><small>To create an instance object, `call` the class and pass the `arguments`, if required.</small></p>
+    <pre><code class="python">
+acc = BankAccount("Jack", 10000) # need assign the parameters
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>2.3 Accessing Attributes and Calling Methods<Title></Title></h1>
+    <p><small>We can `access` the object's attributes and methods using the `dot operator` with object</small></p>
+    <pre><code class="python">
+acc = BankAccount("Jack", 10000) 
+# instantiation first!!!!!!
+acc.owner           # instance attribute
+a = acc.deposit()   # instance method
+p = r.withdraw()
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>Now, putting all together:</small></p>
+    <pre><code class="python">
+    class BankAccount: 
+    def __init__(self, owner, balance=0): # constructor
+        self.owner = owner     # instannce attributes：账户持有人
+        self.balance = balance # instannce attributes：余额
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            print(f"Deposited {amount:.2f}")
+        else:
+            print("The amount must be greater than 0")
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            print(f"Withdrawn {amount:.2f} ")
+        else:
+            print("Insufficient balance or invalid amount") 
+
+
+acc = BankAccount("Jack", 10000) 
+# instantiation first!!!!!!
+acc.owner           # instance attribute
+a = acc.deposit()   # instance method
+p = r.withdraw()
+
+print('Deposit =',a)
+print('Withdraw =',p)
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>2.4 Class attributes and instance attributes<Title></Title></h1>
+    <p> <small> The attribute data will be unique for each instance of the class. But, If you define attributes <strong>outside the class constructor</strong>, 
+        you will find these attributes are `class attributes` and will be shared among all the object of the class:</small></p>
+    <pre><code class="python">
+class Transaction:
+    bank_name = "NCNU Bank"  # class attribute：Bank Name, not __init_
+
+    def __init__(self, trader, amount, asset):
+        self.trader = trader        # instance attribute
+        self.amount = amount        # instance attribute
+        self.asset = asset          # instance attribute
+
+# Make a Transaction
+t1 = Transaction("Gogoro", 100000, "AAPL")
+t2 = Transaction("Yamaha", 50000, "TSMC")
+
+print(t1.amount) 
+print(t2.amount) 
+    </code></pre>
+    <p><small>`Class attributes 類屬性` are used to maintain values that remain the same for all objects created from the class. 
+        An `instance attribute實例屬性` is a property that is unique to each individual object (instance) created from the class. 
+        A `class attritute` represents the property of the class, not of a specific object of the class.</small></p>
+    <pre><code class="python">
+print(t1.bank_name)
+print(t2.bank_name)
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>2.5 Modifying Attribute Values<Title></Title></h1>
+    <p><small>We use <strong>dot notation</strong> to access the `car.wheels` attribute, and set its value directly. 
+        Or incrementing an Attribute's Value Through a Method</small></p>
+    <pre><code class="python">
+t1.trader = 'Susuki'
+#
+t1.trader('Susuki')
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>2.6 The Bank Account Class<Title></Title></h1>
+    <p><small>
+      `Private attributes` are one way to be accessed **within the class** and should not be accessed from outside the class. 
+      we can prefix it with a `double underscore ( __ )`. 
+      In other words, make an attribute `private`, start its name with `two underscores`.
+    </small></p>
+    <pre><code class="python">
+# defining BankAccount class
+class BankAccount:
+    def __init__(self,amount):
+        self.__balance = amount 
+
+    def deposit(self,amount):
+        self.__balance += amount
+
+    def withdraw(self,amount):
+        if self.__balance >= amount:
+            self.__balance -= amount
+        else:
+            print('Insufficient balance')
+
+    def get_balance(self):
+        return self.__balance
+
+# Create BankAccount object and perform operations
+amount = int(input('Enter the initial amount: ')) 
+account = BankAccount(amount)
+print('Your balance is', account.get_balance())
+
+amount = int(input('Enter amount to deposit: '))
+account.deposit(amount)
+print('Your balance is', account.get_balance())
+
+amount = int(input('Enter amount to withdraw: '))
+account.withdraw(amount)
+print('Your balance is', account.get_balance())
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>2.7 Class method<Title></Title></h1>
+    <p><small>A <strong>class method</strong> is a `method` that is bound to a *class* rather than its object.  
+        Python allows us to define *class methods* by using the `@classmethod` decorator 
+        and a special first argument `cls`(similar to self in instance methods). 
+
+        In this case, we passed the method `get_default_rate` into a class method using the `@classmethod` decorator. 
+        The class method accepts the class `FinancialInstitution` as a parameter rather than FinancialInstitution's instance. </small></p>
+    <pre><code class="python">
+class FinancialInstitution:
+    # Class attribute: shared by all instances
+    default_interest_rate = 0.04
+    institution_type = "Bank"
+
+    def __init__(self, name, location):
+        self.name = name
+        self.location = location
+
+    @classmethod
+    def get_default_rate(cls):
+        return cls.default_interest_rate
+
+    @classmethod
+    def describe_type(cls):
+        print(f"This is a {cls.institution_type} with default interest rate: {cls.default_interest_rate:.2%}")
+
+
+# Call class method DIRECTLY using the CLASS (no instance needed) ---
+print("Step 1: Calling class methods directly using the class:")
+FinancialInstitution.describe_type()           # Output: This is a Bank with default interest rate: 4.00%
+
+# --- 2. Create an instance first, then call class method via the INSTANCE ---
+print("Step 2: Creating an instance first, then calling class methods via instance:")
+
+my_bank = FinancialInstitution("City Savings Bank", "New York")
+
+# These class methods can still be called through the instance
+print(my_bank.get_default_rate())    # Output: 0.04
+my_bank.describe_type()              # Output: This is a Bank with default interest rate: 4.00%
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>3. Inheritance and Polymorphism<Title></Title></h1>
+    <p><small> `Inheritance` and `polymorphism` are fundamental concepts that allow for more efficient and organized code. 
+        These concepts are crucial for building complex software systems, enabling code reuse, 
+        and implementing elegant solutions to software design problems. </small> </p>
+    <h2>3.1 Inheritance</h2>
+    <p><small>Inheritance is a mechanism that allows a new class to <strong>inherit</strong> attributes and methods from an existing class. 
+        The original class is called the `parent class` (also known as the base or superclass), 
+        and the new class is the `child class`(subclass or derived class). 
+        The child class can <strong>inherit any or all of the attributes and methods</strong> of its parent class. 
+        Importunely, child class can add new attributes and methods or modify existing ones while still retaining the functionality of the parent class.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide">
+        <div class="bb">
+            <pre><code class="python">
+# LoanAccount inherced from BankAccount
+class LoanAccount(BankAccount):
+    loan_interest_rate = 0.08  # Annual interest rate for loans
+
+    def __init__(self, borrower, loan_amount):
+        super().__init__(borrower, 0)  # 贷款账户初始余额为
+        self.loan_amount = loan_amount  # Total amount borrowed
+        self.repayment = 0  # Amount repaid so far
+
+    def repay(self, amount):
+        self.repayment += amount
+        remaining = self.loan_amount - self.repayment
+        print(f"Repayment of {amount:.2f}. 
+              Remaining loan balance: {remaining:.2f}")
+
+    def get_balance(self): # overwrite
+        return self.loan_amount - self.repayment
+
+# Usage example
+loan = LoanAccount("Toyota", 50000)
+loan.repay(10000)
+loan.repay(5000)
+print(f"Remaining loan balance: {loan.get_balance():.2f}")
+    </code></pre>
+    <p><small>
+    <ol>
+        <li>The `super()` function is a special function that allows us to call a method from the parent class. 
+            This line tells Python to call the `__init__()` method from BankAccount, 
+            which gives an LoanAccount instance all the attributes defined in that method.</li>
+        <li>We can add `new attributes and methods` necessary to differentiate the child class from the parent class:
+            a new attribute `loan_interest_rate` `loan_amount` and `repayment`, 
+            a method called `get_balance()` and `repay()` </li>
+    </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>The following rules you need to know about parent classes and child classes:
+        <ol>
+        <li>The child class inherits `all` the members of the parent class <strong>by default</strong></li>
+        <li>The `private` members of the parent class <strong>cannot</strong> be directly accessed by the members of the child class </li>
+        <li>The child class can access the `public` members of the superclass directly and define the new ones </li>
+    </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 15 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>3.2 Multiple Inheritance<Title></Title></h1>
+    <p><small>A subclass can inherit from more than one parent class, it is a priority to find out if there is such a method in the subclass, 
+        if not, it will `from left to right` find out if there is a call method with the same name under the <strong>parent class</strong>.</small></p>
+    <pre><code class="python">
+class RiskAdvisor:
+    def advise(self):
+        return "Diversify investments."
+
+class TaxAdvisor:
+    def advise(self):
+        return "To save taxes and improve returns."
+
+class FinancialAdvisor(TaxAdvisor, RiskAdvisor):
+    # Method Resolution Order (MRO): Python searches TaxAdvisor first, then RiskAdvisor
+    pass
+
+# Instantiate the FinancialAdvisor
+advisor = FinancialAdvisor()
+
+# Call the advise() method
+print(advisor.advise())
+# To save taxes and improve returns  
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 16 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>4. Polymorphism<Title></Title></h1>
+    <p><small>Polymorphism is the ability of different classes to be treated as instances of the same class through inheritance. 
+        It allows functions to use objects of different classes interchangeably if they share a common superclass. 
+        To design classes effectively, we need to understand how `inheritance and polymorphism work together`.</small></p>
+<pre><code class="python">
+class Asset:
+    def __init__(self, name):
+        self.name = name
+
+    def get_value(self):
+        """
+        Valuation method (abstract).
+        Should be overridden by subclasses.
+        """
+        pass  # Acts as a placeholder — meant to be implemented in child classes
+    
+class Stock(Asset):
+    def __init__(self, name, shares, price_per_share):
+        super().__init__(name)
+        self.shares = shares
+        self.price_per_share = price_per_share
+
+    def get_value(self):
+        """Returns the current market value of the stock"""
+        return self.shares * self.price_per_share  # 股票市值
+    # Market value = shares × price
+    
+class Bond(Asset):
+    def __init__(self, name, face_value, yield_rate):
+        super().__init__(name)
+        self.face_value = face_value
+        self.yield_rate = yield_rate
+
+    def get_value(self):
+        """Returns the maturity value of the bond"""
+        return self.face_value * (1 + self.yield_rate)  
+    # Future value at maturity # 债券到期价值
+    
+# Create a portfolio with different types of assets
+portfolio = [Stock("TSMC", 100, 950),  # 100 shares at $950 each
+             Bond("Government Bond", 100000, 0.03)       
+             # $100,000 face value, 3% yield
+]
+
+# Calculate total portfolio value using polymorphism
+total_value = sum(asset.get_value() for asset in portfolio)
+
+# Output the result
+print(f"Total portfolio value: {total_value:,.2f}") 
+    </code></pre>
+    <p><small>Polymorphism determines which class method implementation to perform based on the `class` of the call, which is what polymorphism means.</small></p>
+        </div>
+    </div>
+
+    <!-- Slide 18 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>4.1 Overriding Methods from the Parent Class<Title></Title></h1>
+    <p><small>Method overriding is the ability of a `child class` to provide its `own method` that is already defined in its parent class. 
+        We can define a method in the <strong>child class</strong> with the `same name` as any method you want to <strong>override</strong> in the parent class that doesn’t fit what you’re trying to model with the child class</small></p>
+    <pre><code class="python">
+# Base class: Investment Account
+class Investment:
+    def __init__(self, name):
+        self.name = name
+
+    def get_annual_return(self):
+        """Abstract method — to be overridden by subclasses"""
+        pass
+
+class SavingsAccount(Investment):
+    def __init__(self, name, balance, rate=0.02):
+        super().__init__(name)
+        self.balance = balance
+        self.rate = rate
+
+    def get_annual_return(self):
+        return self.balance * self.rate  # 2% interest
+
+class StockPortfolio(Investment):
+    def __init__(self, name, current_value, initial_value):
+        super().__init__(name)
+        self.current_value = current_value
+        self.initial_value = initial_value
+
+    def get_annual_return(self):
+        # Simple capital gain as return 
+        return self.current_value - self.initial_value
+
+class RealEstate(Investment):
+    def __init__(self, name, rental_income):
+        super().__init__(name)
+        self.rental_income = rental_income
+
+    def get_annual_return(self):
+        return self.rental_income  # Annual rental income 
+    
+# Create three different investment instances
+savings = SavingsAccount("Emergency Fund", balance=10000)
+stocks = StockPortfolio("S&P 500", current_value=15000, 
+                        initial_value=12000)
+property = RealEstate("Apartment Rental", rental_income=8000)
+
+# All instances use the SAME method name: get_annual_return()
+print(f"{savings.name}: {savings.get_annual_return():.2f}")
+print(f"{stocks.name}: {stocks.get_annual_return():.2f}")
+print(f"{property.name}: {property.get_annual_return():.2f} ") 
+    </code></pre>
+    <p><small>`Investment` is a parent class that defines a method `get_annual_returnspeak`, 
+        which does nothing. `savings`, `stocks` and `property` are child classes that inherit from `Investment` 
+        and <strong>override</strong> the `get_annual_return` method, respectively.</small></p>
+        </div>
+    </div>
+
+
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

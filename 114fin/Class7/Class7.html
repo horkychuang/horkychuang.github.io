@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 7</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 7 Data Visualization</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Today's Topics</a></li>
+        <li><a href="#topic1">Matplotlib</a></li>
+        <li><a href="#topic2">Pandas</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section>
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>Data visualization is a key skill for aspiring data scientists. They creates meaningful and insightful plots. 
+        We'll learn how to build various types of plots, and customize them to be more visually appealing and interpretable.</small></p>
+    <h2>Matplotlib</h2>  
+    <pre><code class="python">
+# python -m pip install --user matplotlib # via `the command line (cmd) `
+pip install matplotlib
+import matplotlib.pyplot as plt
+print(plt.__version__)
+    </code></pre> 
+</div>
+</section>
+
+<section id="topic1">
+    <div class="discussion">
+    <p><small>Most of the Matplotlib utilities lies under the `pyplot` submodule, and are usually imported under the `plt` alias</small></p>
+    <pre><code class="python">
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
+%matplotlib inline
+    </code></pre>
+    <p><small>The command `%matplotlib inline` makes only sense, if you work with `Ipython Notebook such as colab`.</small></p>
+    <pre><code class="python">
+import matplotlib.pyplot as plt
+squares = [1, 4, 9, 16, 25]
+
+fig, ax = plt.subplots()
+ax.plot(squares)
+plt.show()
+
+plt.plot(squares)
+plot.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>1. Matplotlib</h1>
+    <h2>1.1 Plotting</h2>
+    <p><small>By default, the `plot()` function draws a <strong>line from point to point.</strong> 
+        The function takes parameters for specifying points in the diagram. 
+        Parameter 1 is an array containing the points on the <strong>x-axis</strong>. 
+        Parameter 2 is an array containing the points on the <strong>y-axis</strong>.</small></p>
+    <pre><code class="python">
+import matplotlib.pyplot as plt
+x = np.array([1, 8])
+y = np.array([3, 10])
+
+plt.plot(x, y)
+plt.show()
+
+# Without Line
+plt.plot(x, y, 'o')
+plt.show()
+
+# Default X-Points
+plt.plot(y)
+plt.show()
+    </code></pre>    
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>1.2 Markers</h2>
+    <p><small>We can use the keyword argument `marker` to emphasize each point with a specified marker</small></p>
+    <pre><code class="python">
+y = np.array([3, 8, 1, 10])
+
+plt.plot(y, marker = 'o')
+plt.show()
+
+plt.plot(y, marker = '*')
+plt.show()
+    </code></pre>
+    <h2>1.2.1 Format Strings `fmt`</h2>
+    <p><samll>We can also use the *shortcut string notation* parameter to specify the marker. 
+        This parameter is also called `fmt`, and is written with this syntax: *marker*|*line*|*colo</samll></p>
+    <pre><code class="python">
+y = np.array([3, 8, 1, 10])
+
+plt.plot(y, 'o:r')
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>1.2.2 Marker Size</h2>
+    <p><small>We can use the keyword argument `markersize` or the shorter version, `ms` to set the size of the markers:</small></p>
+    <pre><code class="python">
+y = np.array([3, 8, 1, 10])
+
+plt.plot(y, marker = 'o', ms = 20)
+plt.show()
+    </code></pre>
+    <h2>1.2.3 Marker Color</h2>
+    <p><small>We can use the keyword argument `markersize` or the shorter version, `ms` to set the size of the markers:</small></p>
+    <pre><code class="python">
+y = np.array([3, 8, 1, 10])
+
+plt.plot(y, marker = 'o', ms = 20, mec = 'r')
+plt.show()
+    </code></pre>
+    <p><small>We can use the keyword argument `markerfacecolor` or the shorter `mfc` to set the color inside the edge of the markers</small></p>
+    <pre><code class="python">
+y = np.array([3, 8, 1, 10])
+
+plt.plot(y, marker = 'o', ms = 20, mfc = 'r')
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <h2>1.3 Line</h2>
+    <pre><code class="python">
+y = np.array([3, 8, 1, 10])
+
+plt.plot(y, linestyle = 'dotted') # 'dashed'
+plt.show() 
+    </code></pre>
+    <h2>1.3.1 Shorter Syntax</h2>
+    <p><small>The line style can be written in a shorter syntax: 
+        `linestyle` can be written as `ls`. `dotted` can be written as `:`. `dashed` can be written as `--`:</small></p>
+    <h2>1.3.2 Line Color</h2>
+    <pre><code class="python">
+y = np.array([3, 8, 1, 10])
+
+plt.plot(y, color = 'r')
+plt.show()
+    </code></pre>
+    <h2>1.3.3 Line Width</h2>
+    <p><small>We can use the keyword argument `linewidth` or the shorter `lw` to change the width of the line</small></p>
+    <pre><code class="python">
+y = np.array([3, 8, 1, 10])
+
+plt.plot(y, linewidth = '20.5')
+plt.show()
+    </code></pre>
+    <h2>1.3.4 Multiple Lines</h2>
+    <p><small>we can plot as many lines as you like by simply adding more `plt.plot()` functions</small></p>
+    <pre><code class="python">
+y1 = np.array([3, 8, 1, 10])
+y2 = np.array([6, 2, 7, 11])
+
+plt.plot(y1)
+plt.plot(y2)
+
+plt.show()
+
+x1 = np.array([0, 1, 2, 3])
+y1 = np.array([3, 8, 1, 10])
+x2 = np.array([0, 1, 2, 3])
+y2 = np.array([6, 2, 7, 11])
+
+plt.plot(x1, y1, x2, y2)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>1.4 Labels and Title</h2>
+    <p><small>With Pyplot, we can use the `xlabel()` and `ylabel()` functions to set a label for the x- and y-axis. 
+              We can use the `title()` function to set a title for the plot.
+    </small></p>
+    <pre><code class="python">
+x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+
+plt.plot(x, y)
+
+plt.title("Sports Watch Data")
+plt.xlabel("Average Pulse")
+plt.ylabel("Calorie Burnage")
+
+plt.show()
+    </code></pre>
+    <p><small>We can use the `fontdict` parameter in `xlabel()`, `ylabel()`, and `title()` to set font properties for the title and labels</small></p>
+    <pre><code class="python">
+x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+
+font1 = {'family':'serif','color':'blue','size':20}
+font2 = {'family':'serif','color':'darkred','size':15}
+
+plt.title("Sports Watch Data", fontdict = font1)
+plt.xlabel("Average Pulse", fontdict = font2)
+plt.ylabel("Calorie Burnage", fontdict = font2)
+
+plt.plot(x, y)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>1.5 Adding Grid Lines</h2>
+    <p><small>We can use the `grid()` function to add `grid lines` to the plot</small></p>
+    <pre><code class="python">
+x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+
+plt.title("Sports Watch Data")
+plt.xlabel("Average Pulse")
+plt.ylabel("Calorie Burnage")
+
+plt.plot(x, y)
+plt.grid()
+
+plt.show() 
+    </code></pre>
+    <h2>1.6 Legend</h2>
+    <p><small>To add an <strong>explanation</strong> for each wedge, use the `legend()` function</small></p>
+    <pre><code class="python">
+y = np.array([35, 25, 25, 15])
+mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
+
+plt.pie(y, labels = mylabels)
+plt.legend()
+plt.show()  
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>2. Popular graph</h1>
+    <h2>2.1 Scatter</h2>
+    <p><small>The `scatter()` function plots one dot for each observation. 
+        It needs two arrays of the same length, one for the values of the x-axis, and one for values on the y-axis:</small></p>
+    <pre><code class="python">
+x = np.array([5,7,8,7,2,17,2,9,4,11,12,9,6])
+y = np.array([99,86,87,88,111,86,103,87,94,78,77,85,86])
+plt.scatter(x, y, color = 'hotpink')
+
+x = np.array([2,2,8,1,15,8,12,9,7,3,11,4,7,14,12])
+y = np.array([100,105,84,105,90,99,90,95,94,100,79,112,91,80,85])
+plt.scatter(x, y, color = '#88c999')
+
+plt.show()
+    </code></pre>    
+</div>
+</section>
+
+
+<section>
+    <div class="discussion">
+    <h2>2.2 Bars</h2>
+    <p><small>we can use the `bar()` function to draw bar graphs.    </small></p>
+    <pre><code class="python">
+x = np.array(["A", "B", "C", "D"])
+y = np.array([3, 8, 1, 10])
+
+plt.bar(x,y)
+plt.show()  
+    </code></pre>
+    <h2>2.3 Horizontal Bars</h2>
+    <p><small>If we want the bars to be displayed horizontally instead of vertically, use the `barh()` function. </small></p>
+    <pre><code class="python">
+x = np.array(["A", "B", "C", "D"])
+y = np.array([3, 8, 1, 10])
+
+plt.barh(x, y, color = "red")
+plt.show() 
+    </code></pre>
+    <pre><code class="python">
+x = np.array(["A", "B", "C", "D"])
+y = np.array([3, 8, 1, 10])
+
+plt.bar(x, y, width = 0.1) # height
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.4 Histograms </h2>
+    <p><small>we use the `hist()` function to create histograms. 
+        The `hist()` function will use an array of numbers to create a histogram, the array is sent into the function as an argument.    </small></p>
+    <pre><code class="python">
+x = np.random.normal(170, 10, 250)
+
+plt.hist(x)
+plt.show() 
+    </code></pre>
+    <h2>2.5 Pie Charts </h2>
+    <p><small>we can use the `pie()` function to draw pie charts.</small></p>
+    <pre><code class="python">
+y = np.array([35, 25, 25, 15])
+
+plt.pie(y)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>3. Ax.plot()<Title></Title></h1>
+    <h2>3.1 Figure and Axes</h2>
+    <p><small> A matplotlib object is a tree-like structure of matplotlib objects which build a "hierarchy". 
+        The top of the tree-like structure of matplotlib objects is the `figure` object. 
+        A figure can be seen as the container which contains one or more plots. The plots are called `axes` in matplotlib jargon. 
+        Axes is the plural of the word "axis", which gives us a misleading idea. We can think about "axes" as a synonym for the word "plot". 
+    </small> </p>
+    <img src="images\mat01.jpg" alt="mat01" width="300">
+    <p><small>We have already mentioned a figure may also contain more than one axes</small></p>
+    <img src="images\mat02.jpg" alt="mat02" width="300">
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <p><small>The terms `axes` and `figure` and in particular the relationship between them can be quite confusing to beginners in Matplotlib. 
+        Similarly difficult to access and understand are many of the terms `Spine`, `Tick` and `Axis`. 
+        Their function and meaning are easy to crasp, if you see look at them in the following diagram:    </small></p>
+    <img src="images\mat03.jpg" alt="mat03" width="300">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>3.2 Subplot() and Subplots()</h2>
+    <p><small> Both methods can create as many figures and plots. 
+        If we want to create the figure object and `axes` which is a 1x2 array of axes objects.   </small></p> 
+    <pre><code class="python">
+import matplotlib.pyplot as plt
+x = [1,2,3,4,5]
+y = [5,4,3,2,1]
+
+# subplot"s"
+fig, (ax1, ax2) = plt.subplots(1, 2) # 1*2
+ax1.plot(x)
+ax2.plot(y)
+plt.show()
+
+# or
+fig, ax = plt.subplots(2) # 2*1
+ax[0].plot(x)
+ax[1].plot(y)
+plt.show()
+
+
+# subplot
+fig = plt.figure()
+ax1 = plt.subplot(121)
+ax1.plot(x)
+ax2 = plt.subplot(122)
+ax2.plot(y)
+
+# or built-in method of fig
+fig = plt.figure()
+fig.add_subplot(121)
+plt.plot(x)
+
+fig.add_subplot(122)
+plt.plot(y)
+plt.show()
+    </code></pre>       
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>3.3 Basic Figure and Ax</h2>
+    <pre><code class="python">
+import matplotlib.pyplot as plt
+import numpy as np
+
+# layout
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3) # 1*3
+
+# data
+data=np.random.randn(50,).cumsum()
+
+# ax.plot() - line
+ax1.plot(data, 'k--')
+ax2.plot(data, "r-")
+ax3.plot(data, "b.")
+
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>3.3.1 Color, Markings, and Line Styles</h2>
+    <pre><code class="python">
+import matplotlib.pyplot as plt
+import numpy as np
+
+# layout
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3) # 1*3
+
+# data
+data=np.random.randn(50,).cumsum()
+
+# ax.plot() - line
+ax1.plot(data, 'k--', drawstyle='steps-post', label='Stepwise')
+ax2.plot(data, "r-", drawstyle='steps-post', label='Stepwise')
+ax3.plot(data, "b.", drawstyle='steps-post', label='Stepwise')
+
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>3.3.2 Label and Legend</h2>
+    <pre><code class="python">
+import matplotlib.pyplot as plt
+import numpy as np
+
+# layout
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3) # 1*3
+
+# data
+data=np.random.randn(50,).cumsum()
+
+# ax.plot() - line
+ax1.plot(data, 'k--', drawstyle='steps-post', label='Stepwise')
+ax1.set_title('First Graph')
+ax2.plot(data, "r-", drawstyle='steps-post', label='Stepwise')
+ax2.set_title('First Graph')
+ax3.plot(data, "b.", drawstyle='steps-post', label='Stepwise')
+ax3.set_title('First Graph')
+
+ax2.legend(loc='best')
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>4. Seaborn Library</h1>
+    <p><small>Seaborn is a powerful Python library that makes it easy to create informative and attractive data visualizations. </small></p>
+    <h2>4.1 Box Plot()</h2>
+    <p><small>A `box plot` helps to maintain the distribution of quantitative data. 
+        The main body of the box plot showing the quartiles and the median's confidence intervals if enabled. 
+        The medians have horizontal lines at the median of each box and while whiskers have the vertical lines extending to the most extreme, 
+        non-outlier data points and caps are the horizontal lines at the ends of the whiskers.</small></p>
+        <pre><code class="python">
+# Import Matplotlib and Seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# use to set style of background of plot
+seaborn.set(style='whitegrid')
+tip = seaborn.load_dataset('tips')
+
+sns.boxplot(x ='total_bill', color = "green")
+sns.boxplot(x='day', y='tip', data=tip, linewidth=2.5)
+sns.boxplot(x="day", y="total_bill", hue="smoker",
+                data=tips, palette="Set2", dodge=True)
+sns.boxplot(data = tip,orient="h") # orient="v
+sns.boxplot(x='day', y='tip', data=tip, order=['Sun', 'Sat', 'Fri', 'Thur'])
+sns.boxplot(x='day', y='tip', data=tip, showmeans=True,
+                meanprops={"marker": "+",
+                       "markeredgecolor": "black",
+                       "markersize": "10"})
+
+plt.ylabel("tip", size=14)
+plt.xlabel("day", size=14)
+plt.title("Tips", size=18)
+
+# Show plot
+plt.show()   
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>4.2 Violin Plot()</h2>
+    <p><small>A `violin plot` plays a similar activity that is pursued through `whisker or box` plot do</small></p>
+    <pre><code class="python">
+# Import Matplotlib and Seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+seaborn.set(style = 'whitegrid') 
+fmri = seaborn.load_dataset("fmri") 
+    
+sns.violinplot(x ="timepoint", y ="signal", 
+                   hue ="region", style ="event", linewidth = 4, data = fmri,
+                  palette="Set2", dodge=True, split=True, scale="count")
+# Show plot
+plt.show()   
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>4.3 Swarmplot()</h2>
+    <p><small>Draw a `categorical scatterplot` with non-overlapping points. This function is similar to `stripplot`</small></p>
+    <pre><code class="python">
+# Import Matplotlib and Seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# loading dataset 
+data = sns.load_dataset("tips") 
+  
+# plot the swarmplot 
+# size set to 5 
+sns.swarmplot(x ="day", y = "total_bill",hue = "size",  
+              orient = "h", data = data, size = 5, dodge = True) 
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>4.4 Histplot()</h2>
+    <P><small>A histogram is a bar plot 
+        where the axis representing the data variable is divided into 
+        a set of `discrete` bins and the count of observations falling within each bin.</small></P>
+    <pre><code class="python">
+# Import necessary libraries
+import seaborn as sns
+import numpy as np
+import pandas as pd
+
+# Load dataset
+penguins = sns.load_dataset("penguins")
+
+# Plot histogram
+sns.histplot(data = penguins, x = "body_mass_g", kde = True, 
+             binwidth=3, hue = "species", shrink=.8 , element="step") 
+# multiple="stack", "dodge"; stat="density"
+
+# Load dataset
+tips = sns.load_dataset("tips")
+ 
+# Plot histogram
+sns.histplot(data = tips, x = "size", stat = "probability", discrete = True)
+
+# show the plots 
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>4.5 Distplot()</h2>
+    <p><small>A Distplot or distribution plot, depicts the variation in the data distribution. 
+        Distplot represents the overall distribution of `continuous` data variables</small></p>
+    <pre><code class="python">
+# Import Matplotlib and Seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+from vega_datasets import data
+
+# assign dataset 
+dataset = data.seattle_weather()
+
+# depict illustration 
+sns.distplot(dataset['temp_min'], 
+             hist_kws={'color':'green', 'edgecolor':'black', 
+                       'linewidth':2, 'linestyle':'--'})
+
+# show the plots 
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>4.6 Pairplot()</h2>
+    <p><small> To plot `multiple pairwise bivariate distributions` between variables within a data set. 
+        Each numeric variable in the data will be spread over the y-axes across a single row and the x-axes across a single column by default</small></p>
+    <pre><code class="python">
+# Import Matplotlib and Seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# loading dataset using seaborn
+data = sns.load_dataset('tips')
+
+# simply plot a pairplot 
+sns.pairplot(data, kind='reg', palette="husl")
+# pairplot with hue sex
+sns.pairplot(data, hue ='sex', markers=["o", "s"])
+# Selected Variables
+selected_vars = ['total_bill', 'tip']
+sns.pairplot(data, vars=selected_vars, diag_kind = 'kde')
+
+# show the plots 
+plt.show()    
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>4.7 Correlation Heatmap</h2>
+    <p><small>A correlation heatmap is a heatmap that shows a 2D correlation matrix between two discrete dimensions, 
+        using colored cells to represent data from usually a monochromatic scale.</small></p>
+    <pre><code class="python">
+# import modules 
+import matplotlib.pyplot as mp 
+import pandas as pd 
+import seaborn as sns 
+  
+# Generate a large random dataset
+rs = np.random.RandomState(33)
+d = pd.DataFrame(data=rs.normal(size=(100, 26)),
+                 columns=list(ascii_letters[26:]))
+
+# Compute the correlation matrix
+corr = d.corr()
+
+# Generate a mask for the upper triangle
+mask = np.triu(np.ones_like(corr, dtype=bool))
+
+# Set up the matplotlib figure
+f, ax = plt.subplots(figsize=(11, 9))
+
+# Generate a custom diverging colormap
+cmap = sns.diverging_palette(230, 20, as_cmap=True)
+
+# Draw the heatmap with the mask and correct aspect ratio
+sns.heatmap(corr, mask=mask, cmap=cmap, vmax=.3, center=0, annot=True, 
+            square=True, linewidths=.5, cbar_kws={"shrink": .5})
+
+# displaying heatmap 
+mp.show() 
+    </code></pre>
+</div>
+</section>
+
+
+
+
+</body>
+</html>

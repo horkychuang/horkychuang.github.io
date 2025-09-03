@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11 Slides</title>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black; /* Light Yellow Background */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+            justify-content: center; /* Center text vertically */
+            align-items: center; /* Center text horizontally */
+        }
+        .slide.active {
+            display: block;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<!-- Slides --> <!-- Slides --><!-- Slides -->
+<!-- Slides Cover -->
+<body>
+    <!-- Cover Slide: Class 0 Introduction -->
+    <div class="slide active">
+    <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+        <!-- Image at the top -->
+        <div style="text-align: center; padding-top: 20px;">
+            <img src="images\04103.jpg" alt="04103" style="max-width: 500%; height: auto; max-height: 350px; border-radius: 8px;">
+        </div>
+        
+        <div>
+            <h1 style="text-align: center;">
+                Class 1 Introduction II
+            </h1><br>
+            <h3 style="text-align: center; margin-top: 10px;">
+                Wen-Bin Chuang<br>
+                September 02, 2025<br>
+                NCNU, FIN
+            </h3>
+        </div>
+    </div>
+</div>
+
+<!-- Slides I --> <!-- Slides Go -->
+<div class="slide"> 
+    <div class="aa">
+    <h1>Today's Topics<Title></Title></h1>
+    <ol>
+        <li><strong>Data Structure</strong>: LIST, TUPLE, DICTIONARY, SET</li>
+        <li><strong>File Handling</strong> : OPEN(), Write(), With()</li>
+        <li><strong>Types of Errors</strong>: Syntax Errors, Logical Errors, Run time Errors.</li>
+    </ol> 
+    </div>
+</div>
+
+<div class="slide"> <!-- 這裡使用slide -->
+    <div class="bb">
+    <h1>List<Title></Title></h1>
+    <p><small>
+A <strong>list</strong> is an <strong>ordered</strong> collection of items which can be of varied data types. 
+Lists are <strong>mutable</strong>, meaning they can be altered after their creation. 
+A list is a built-in data type used to store an ordered collection of items. 
+These items can be of different types (e.g., integers, strings, other lists, etc.), 
+and lists are **mutable** , meaning their contents can be changed after creation. 
+</small></p>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Creating a List<Title></Title></h1>
+    <p><small>They are defined by <strong>square brackets [ ]</strong>, with items separated by commas</small></p>
+    <pre><code class="python">
+# my_list = [item1, item2, item3]
+
+numbers = [10, 20, 30, 40] # integers
+add = [8, 'Deepak', 'India', 9210458408] # different types
+empty = [] # empty list
+
+# List of integers
+numbers = [1, 2, 3, 4, 5]
+
+# List of strings
+fruits = ["apple", "banana", "cherry"]
+
+# Mixed data types
+mixed = [1, "hello", True, 3.14]
+
+# Nested list
+nested = [1, [2, 3], [4, 5]]
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Common List Operations<Title></Title></h1>
+    <h2>Accessing List Elements</h2>
+    <p> <small> List items can be accessed by their <strong>index</strong> . 
+        Each item has an index indicating its position in the list. 
+        The first item in a list is at index <strong>0</strong>, the second at index 1, and so on.</small>
+    </p>
+    <pre><code class="python">
+fruits = ["apple", "banana", "cherry"] # strings
+print(fruits)
+
+print(fruits[1]) # Outputs 'banana'
+# with -1 referring to the last item
+
+print(fruits[-1]) # cherry
+
+fruits = ["apple", "banana", "cherry"]
+print(fruits[0])  # Output: apple
+print(fruits[-1]) # Output: cherry (last item)
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Modifying Lists<Title></Title></h1>
+    <pre><code class="python">
+print(fruits)
+fruits[1] = "blueberry"
+# adding elements to the `End` of a List
+fruits.append("orange") 
+print(fruits)
+
+# Inserting Elements into a List
+fruit.insert(1, 'kiwi')
+fruit.sort()
+# fruit.sort(reverse=True)
+
+
+# remove elements from a List
+fruits.remove("apple") 
+print(fruits)
+
+fruits = ["apple", "banana", "cherry"]
+fruits[1] = "blueberry"
+print(fruits)  # Output: ['apple', 'blueberry', 'cherry']
+
+popped = fruits.pop()  # Removes last item
+print(popped)   # Output: cherry
+print(fruits)   # Output: ['apple']
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>List Operations<Title></Title></h1>
+    <p><small>concatenation, repetition, and <strong>methods</strong> like sort(), reverse(), and extend() </small></p>
+    <pre><code class="python">
+vegetables = ["carrot", "potato"]
+all_items = fruits + vegetables # Concatenation
+print(all_items)
+
+a = [20,30,40]
+b = a*2     # * operator repeats a list
+print(b)
+# [20, 30, 40, 20, 30, 40]
+
+mango in fruit
+# false
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <pre><code class="python">
+# Length of a List
+cars = ['bmw', 'audi', 'toyota', 'subaru']
+print(len(cars)) #length
+
+# Looping Through an Entire List
+magicians = ['alice', 'david', 'carolina']
+for magician in magicians:
+    print(magician)
+    
+# sorting
+numbers = [3, 1, 4, 2]
+numbers.sort()
+print(numbers)  # Output: [1, 2, 3, 4]
+# Reversing
+numbers.reverse()
+print(numbers)  # Output: [4, 3, 2, 1]
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Slicing a List<Title></Title></h1>
+    <p><small> Keep in mind that Python stops one item <strong>before the second index</strong> (but not including) you specify.</small>
+    </p>
+    <pre><code class="python">
+players = ['charles', 'martina', 'michael', 'florence', 'eli']
+print(players[0:3])
+
+print(players[1:4])
+
+print(players[:4])
+
+print(players[2:])
+
+print(players[-3:]) 
+
+numbers = [0, 1, 2, 3, 4, 5]
+print(numbers[1:4])  # Output: [1, 2, 3]
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Tuples<Title></Title></h1>
+    <p><small>A <strong>tuple</strong> is an ordered, <stong>immutable</stong> collection of items. Like lists, 
+        tuples can store multiple items in a single variable, but unlike lists, 
+        tuples cannot be changed after creation (i.e., they are immutable)</small></p>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Creating a Tuple<Title></Title></h1>
+    <p><small>
+      Similar to a list in terms of indexing, nested objects, and iteration. 
+      However, unlike lists, tuples are immutable. Once a tuple is created, it cannot be altered.
+      Tuples are defined by <strong>parentheses ()</strong>, with items separated by commas
+    </small></p>
+    <pre><code class="python">
+# tuple = (item1, item2, item3)
+dimensions = (120, 750)
+print(dimensions)
+
+# Tuple of integers
+numbers = (1, 2, 3)
+
+# Tuple of strings
+fruits = ("apple", "banana", "cherry")
+
+# Mixed data types
+mixed = (1, "hello", True)
+
+# Nested tuple
+nested = (1, (2, 3), (4, 5))
+
+# Empty tuple
+empty = ()
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Accessing Tuple Elements<Title></Title></h1>
+    <pre><code class="python">
+print(dimensions[0]) # Outputs 120
+# dimensions[0] = 250 # This would raise an error
+
+fruits = ("apple", "banana", "cherry")
+print(fruits[0])   # Output: apple
+print(fruits[-1])  # Output: cherry
+
+numbers = (0, 1, 2, 3, 4, 5)
+print(numbers[1:4])  # Output: (1, 2, 3)
+
+fruits = ("apple", "banana", "cherry")
+fruits[1] = "blueberry"  # ❌ TypeError: 'tuple' object does not support item assignment
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <p><small> Tuples support <strong>concatenation and repetition</strong> but do not have as many built-in methods as lists.
+    </small> </p>
+    <pre><code class="python">
+more_dimensions = (30, 42)
+all_dimensions = dimensions + more_dimensions
+print(all_dimensions)
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Dictionaries<Title></Title></h1>
+    <p><small>
+        A dictionary in Python is an <strong>unordered</strong> collection of data values, used to store data values like a map. 
+        The dictionaries hold <strong>key-value pairs</strong>. Keys in a dictionary must be unique and immutable, 
+        which typically are strings, numbers, or tuples. 
+    </small></p>
+    </div>
+</div>
+
+
+
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Creating a Dictionary<Title></Title></h1>
+    <p><small>Dictionaries are defined by <strong>(curly) braces { }</strong> with each item being a pair in the form key: value.</small></p>
+<pre><code class="python">
+'''
+my_dict = {
+    key1: value1,
+    key2: value2,
+    key3: value3
+}
+'''
+
+person = {"name": "Alice", "age": 25, "city": "Tainan"}
+print(person)
+
+# Simple dictionary
+student = {
+    "name": "Alice",
+    "age": 20,
+    "grade": "A"
+}
+
+# Dictionary with mixed value types
+person = {
+    "name": "Bob",
+    "age": 25,
+    "is_student": False,
+    "hobbies": ["reading", "gaming"]
+}
+
+# Empty dictionary
+empty_dict = {}
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Accessing Dictionary Elements<Title></Title></h1>
+    <p><small>we can access the <strong>values</strong> in the dictionary by referring to its <strong>key</strong>.</small></p>
+    <pre><code class="python">
+print(person["name"]) # Outputs 'Alice'
+
+student = {"name": "Alice", "age": 20}
+print(student["name"])  # Output: Alice
+
+# Using .get() to avoid KeyError
+print(student.get("grade"))  # Output: None
+print(student.get("grade", "Not Found"))  # Output: Not Found 
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Modifying Dictionaries<Title></Title></h1>
+    <p><small>Dictionaries are <strong>mutable</strong>. we can add new key-value pairs, modify values, or delete key-value pairs.</small></p>
+<pre><code class="python">
+person["age"] = 30 # Update age
+person["profession"] = "Market Manager" # Add new key-value pair
+
+del person["city"] # Remove key-value pair
+print(person)
+
+student = {"name": "Alice", "age": 20}
+
+# Add new key-value pair
+student["grade"] = "A"
+print(student)  # Output: {'name': 'Alice', 'age': 20, 'grade': 'A'}
+
+# Update existing value
+student["age"] = 21
+print(student)  # Output: {'name': 'Alice', 'age': 21, 'grade': 'A'}
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <pre><code class="python">
+# Removing Elements
+student = {"name": "Alice", "age": 21, "grade": "A"}
+
+# Remove by key
+del student["grade"]
+print(student)  # Output: {'name': 'Alice', 'age': 21}
+
+# Remove and return value
+age = student.pop("age")
+print(age)      # Output: 21
+print(student)  # Output: {'name': 'Alice'}
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <pre><code class="python">
+student = {"name": "Alice", "age": 21, "grade": "A"}
+
+# Loop through keys
+for key in student:
+    print(key)
+
+# Loop through values
+for value in student.values():
+    print(value)
+
+# Loop through key-value pairs
+for key, value in student.items():
+    print(f"{key}: {value}")
+    
+for stock, price in portfolio.items():
+    print(f"{stock}: ${price}")
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Dictionary Method<Title></Title></h1>
+    <p><small> Dictionaries have built-in methods, such as <strong>get()</strong>, <strong>keys()</strong>, <strong>values()</strong>, and <strong>items()</strong>.</small> </p>
+    <pre><code class="python">
+print(person.keys()) # Outputs all keys
+
+print(person.values()) # Outputs all values
+
+# Looping Through All the Keys
+favorite_languages = {'jen': 'python',
+                      'sarah': 'c',
+                      'edward': 'rust',
+                      'phil': 'python',
+}
+
+for name in favorite_languages.keys(): #keys
+    print(name.title())
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <pre><code class="python">
+# **Nesting:** A List of Dictionaries
+alien_0 = {'color': 'green', 'points': 5}
+alien_1 = {'color': 'yellow', 'points': 10}
+alien_2 = {'color': 'red', 'points': 15}
+
+aliens = [alien_0, alien_1, alien_2]
+
+for alien in aliens:
+    print(alien)
+    
+students = {
+    "101": {
+        "name": "Alice",
+        "grade": "A"
+    },
+    "102": {
+        "name": "Bob",
+        "grade": "B"
+    }
+}
+
+print(students["101"]["name"])  # Output: Alice  
+
+investors = {
+    "1001": {"name": "Alice", "portfolio_value": 1200000},
+    "1002": {"name": "Bob", "portfolio_value": 850000}
+}
+print(investors["1001"]["name"])  # Alice
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Sets<Title></Title></h1>
+    <P><small>A <strong>set</strong> is an <strong>unordered</strong> , <strong>mutable</strong> collection of <strong>unique</strong> elements. 
+        Sets are useful for storing items where duplicates are not allowed , 
+        and order does not matter . 
+        Sets are are ideal for performing mathematical set operations like unions, intersections, and differences.</small></P>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Creating a Set<Title></Title></h1>
+    <p><small>Sets are defined by <strong>curly braces {}</strong> or the set() function, and they automatically remove duplicate items.</small></p>
+    <pre><code class="python">
+# my_set = {item1, item2, item3}
+colors = {"red", "blue", "green", "red"}
+print(colors) # Outputs {"red", "blue", "green"}
+
+# Set of numbers
+numbers = {1, 2, 3, 4}
+
+# Set of strings
+fruits = {"apple", "banana", "cherry"}
+
+# Mixed data types
+mixed = {1, "hello", True}
+
+# Duplicate values are automatically removed
+dup_set = {1, 2, 2, 3}
+print(dup_set)  # Output: {1, 2, 3}
+    </code></pre>
+  </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Set Operations:<Title></Title></h1>
+    <p><small>Since sets are unordered, you cannot access elements by index. 
+        We can loop through the set items, or check if a value is present</small></p>
+    <pre><code class="python">
+# Adding Elements
+fruits = {"apple", "banana"}
+fruits.add("cherry")
+print(fruits)  # Output: {'banana', 'cherry', 'apple'}
+
+# Removing Elements
+fruits = {"apple", "banana", "cherry"}
+fruits.remove("banana")  # Raises KeyError if element not found
+print(fruits)  # Output: {'cherry', 'apple'}
+
+fruits.discard("banana")  # No error if element not found
+
+# Check Membership
+if "blue" in colors:
+    print("Blue is in the set")
+    
+# Length of Set
+fruits = {"apple", "banana", "cherry"}
+print(len(fruits))  # Output: 3
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Modifying Sets<Title></Title></h1>
+    <p><small>We can add items to sets using the <strong>add()</strong> method, and multiple items using the update() method.
+        Items can be removed using <strong>remove()</strong> or <strong>discard()</strong>.
+    </small></p>
+    <pre><code class="python">
+colors.add("yellow")
+colors.discard("green")
+print(colors)
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Set Algebra (Mathematical Operations)<Title></Title></h1>
+    <p><small>Sets are ideal for mathematical operations like <strong>unions (|)</strong>, <strong>intersections (&)</strong>, 
+        and <strong>differences (-)</strong>.</small></p>
+    <pre><code class="python">
+primary_colors = {"red", "blue", "yellow"}
+secondary_colors = {"green", "orange", "purple"}
+
+all_colors = primary_colors | secondary_colors # Union of sets
+common_colors = primary_colors & secondary_colors # Intersection of sets
+unique_colors = primary_colors - secondary_colors # Difference of sets
+
+A = {1, 2, 3}
+B = {3, 4, 5}
+
+# Union
+print(A | B)         # Output: {1, 2, 3, 4, 5}
+print(A.union(B))   # Same result
+
+# Intersection
+print(A & B)         # Output: {3}
+print(A.intersection(B))  # Same result
+
+# Difference
+print(A - B)         # Output: {1, 2}
+print(A.difference(B))    # Same result
+
+# Symmetric Difference (elements in A or B but not both)
+print(A ^ B)         # Output: {1, 2, 4, 5}
+print(A.symmetric_difference(B))  # Same result
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Converting between data types: Implicit and Explicit Conversion<Title></Title></h1>
+    <h2>Implicit Conversion</h2>
+    <pre><code class="python">
+num_int = 456
+num_float = 1.67
+
+sum = num_int + num_float
+print("Sum:", sum)
+print("Data type of sum:", type(sum))
+    </code></pre>
+    </div>
+</div>
+
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>Explicit Conversion</h2>
+    <pre><code class="python">
+# String to integer:
+num_str = "456"
+num_int = int(num_str)
+print("Data type of num_int:", type(num_int))
+
+# String to Float:
+str_to_float = float("123.45")
+print(str_to_float, type(str_to_float))
+
+
+str_price = "150.50"
+price = float(str_price)  # 字串轉浮點數
+
+shares = 10
+value = str(shares)  # 數字轉字串
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <pre><code class="python">
+# Integer/Float to String:
+int_to_str = str(100)
+float_to_str = str(123.45)
+print(int_to_str, type(int_to_str))
+print(float_to_str, type(float_to_str))
+
+# Interger to float:
+int_to_float = float(100)
+print(int_to_float, type(int_to_float))
+
+# Float to Integer
+float_to_int = int(123.45)
+print(float_to_int, type(float_to_int))
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <pre><code class="python">
+# Converting to Lists:
+my_tuple = (1, 2, 3)
+tuple_to_list = list(my_tuple)
+print(tuple_to_list, type(tuple_to_list))
+
+# Converting to Tuples:
+my_list = [1, 2, 3]
+list_to_tuple = tuple(my_list)
+print(list_to_tuple, type(list_to_tuple))
+
+# Converting to Sets:
+my_list = [1, 1, 2, 2, 3, 3]
+list_to_set = set(my_list)
+print(list_to_set, type(list_to_set)) 
+    </code></pre>
+    <pre><code class="python">
+# in Operator
+number = 33
+number in (10,4,33,99)
+# True
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>File Handling<Title></Title></h1>
+    <p><small>In Python, we can <strong>read</strong> , <strong>write</strong> , <strong>append</strong> , and <strong>delete</strong> files using built-in functions. 
+        The `with` statement automatically closes the file after the block is executed.</small></p>
+    <h2>Open()</h2>
+    <p><small>Use the built-in `open()` function: The open() function requires the name of the file 
+        and the <strong>mode</strong> in which the file should be opened, such as <strong>'r' for reading</strong>, 
+        <strong>'w' for writing</strong>, **'a' for appending**, and **'b' for binary mode**.
+        Always remember to close the file after use with `file.close()`.</small></p>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <pre><code class="python">
+file = open('example.txt', 'mode')
+
+# Read entire file
+with open("example.txt", "r") as file:
+    content = file.read()
+    print(content)
+
+# Read line by line
+with open("example.txt", "r") as file:
+    for line in file:
+        print(line.strip())  # Remove newline characters
+
+# Read all lines as a list
+with open("example.txt", "r") as file:
+    lines = file.readlines()
+    print(lines) 
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Files write()<Title></Title></h1>
+    <p><small>Writing to a file involves opening it in <strong>write ('w')</strong> or <strong>append ('a') mode</strong>. 
+        If a file is opened in write mode, any existing content is erased. In append mode, new content is added at the end of the file</small></p>
+    <pre><code class="python">
+# **Writing to a File**:  `write()`
+# Overwrite file or create if not exists
+with open("example.txt", "w") as file:
+    file.write("Hello, World!\n")
+    file.write("This is a new line.")
+
+file = open('example_write.txt', 'w')
+file.write("Hello, Python!\n")
+file.write("Writing to a file is easy.\n")
+file.close()
+
+# **Appending to a File**
+# Add to the end of the file
+with open("example.txt", "a") as file:
+    file.write("\nAppended line.")
+file.close()
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Types of Errors<Title></Title></h1>
+    <h2>Syntax Errors (Parsing Errors)</h2>
+    <p><small>These occur when the Python **parser** finds incorrect syntax in the code</small></p>
+    <pre><code class="python">
+# Most syntax errors are `typos, incorrect indentation, 
+# or incorrect arguments`
+
+print "Hello World!"
+
+if portfolio_return > 10%:  # ❌ 遺漏冒號
+    print("Good return")
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Logical errors<Title></Title></h1>
+    <p><small>
+        These errors are <strong>not detected by the interpreter</strong> , 
+        and they can be <strong>difficult to find</strong> because the program runs without any error messages..
+    </small></p>
+    <pre><code class="python">
+x = 3
+y = 4
+average = x + y / 2
+print(average)
+
+# Goal: Print numbers from 1 to 5
+for i in range(1, 5):
+    print(i)
+# It does not print 5 , because range(1, 5) ends at 4   
+
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>Run time errors<Title></Title></h1>
+    <pre><code class="python">
+# `undefined variable or mistyped the variable name`
+day = "Sunday"
+print(Day)
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>Handling Exceptions with `try` and `except`<Title></Title></h1>
+    <p><small>
+        We can catch and handle exceptions using `try` and `except`.
+    </small></p>
+    <pre><code class="python">
+'''
+try:
+    # code that may cause an error
+except ExceptionType:
+    # handle the error
+'''
+try:
+    num = int(input("Enter a number: "))
+    result = 100 / num
+    print("Result:", result)
+except ValueError:
+    print("Please enter a valid number.")
+except ZeroDivisionError:
+    print("Cannot divide by zero.")  
+    </code></pre>
+    </div>
+</div>
+
+
+
+<!-- Controls 不動--><!-- Controls 不動--><!-- Controls 不動-->
+<div class="controls">
+    <button onclick="prevSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+    // Slide Navigation Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Initialize
+    showSlide(currentSlide);
+</script>
+
+</body>
+</html>

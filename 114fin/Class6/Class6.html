@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 6</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 6 Pandas Library</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Today's Topics</a></li>
+        <li><a href="#topic1">Pandas 1</a></li>
+        <li><a href="#topic2">Pandas 2</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="Introduction">
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>The word pandas is an acronym which is derived from "Python and data analysis" and "panel data". 
+        It is used for data manipulation and analysis. 
+        It provides special data structures and operations for the manipulation of numerical tables and time series.
+
+        We'll learn how to manipulate DataFrames, as we `extract`, `filter`, and `transform` datasets for analysis. 
+        Using pandas we'll explore all the `core data science` concepts. 
+        We'll learn how to `import`, `clean`, `calculate statistics`, and `create visualizations?`
+        —using pandas to add to the power of Python!</small></p>
+    <h2>1. Installing and import pandas</h2>
+    <pre><code class="python">
+# python -m pip install --user pandas # via `the command line (cmd) `
+pip install pandas
+import pandas as pd
+print(pd.__version__)
+    </code></pre>
+</div>
+</section>
+
+<section>
+    <div class="discussion">
+    <h1>2. Series</h1>
+    <p><small> Pandas Series is like a `column` in a table. It is a `one-dimensional array` holding data of any type. 
+        If nothing else is specified, the values are labeled with their `index number`. 
+        <strong>First value has index 0</strong>, second value has index 1 etc. 
+    </small></p>
+    <pre><code class="python">
+import pandas as pd
+S = pd.Series([11, 28, 72, 3, 5, 8])
+S
+```
+0    11
+1    28
+2    72
+3     3
+4     5
+5     8
+dtype: int64
+```
+print(s[0])
+# The right column contains our `data`, whereas the left column contains the `index`.
+print(S.index)
+print(S.values)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.1 Indexing</h2>
+    <p><small>With the `index` argument, we can `name your own labels`</strong></small></p>
+    <pre><code class="python">
+fruits = ['apples', 'oranges', 'cherries', 'pears']
+S1 = pd.Series([20, 33, 52, 10], index=fruits)
+S2 = pd.Series([17, 13, 31, 32], index=fruits)
+print(S1 + S2)
+print("sum of S: ", sum(S))
+```
+apples      37
+oranges     46
+cherries    83
+pears       42
+dtype: int64
+
+print(S['apples'])
+print(S[['apples', 'oranges', 'cherries']])
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>Create a `simple Pandas Series` from a dictionary</h2>
+    <pre><code class="python">
+calories = {"day1": 420, "day2": 380, "day3": 390}
+var = pd.Series(calories)
+print(var)
+
+var = pd.Series(calories, index = ["day1", "day2"])
+print(var)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>3. DataFrame</h1>
+    <h2>3.1 Creating a DataFrame</h2>
+    <p><small>Data sets in Pandas are usually `multi-dimensional tables`. 
+        A Pandas `DataFrame is a 2 dimensional data structure`, like a 2 dimensional array</small></p>
+    <pre><code class="python">
+# build by Series Objects
+import pandas as pd
+data = {
+  "calories": [420, 380, 390],
+  "duration": [50, 40, 45]
+}
+df = pd.DataFrame(data)
+
+
+years = range(2014, 2018)
+shop1 = pd.Series([2409.14, 2941.01, 3496.83, 3119.55], index=years)
+shop2 = pd.Series([1203.45, 3441.62, 3007.83, 3619.53], index=years)
+shop3 = pd.Series([3412.12, 3491.16, 3457.19, 1963.10], index=years)
+
+shops_df = pd.concat([shop1, shop2, shop3], axis=1) # vertical stack
+shops_df
+    </code></pre>
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <h2>3.2 Setting and removing indexes</h2>
+    <p><small>The `reset_index()` method can remove an index of the dataframe</small></p>
+    <pre><code class="python">
+# Create a DataFrame
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35]
+})
+
+# Set the 'Name' column as the index
+df = df.set_index('Name')
+
+# Reset the index, by default the old index becomes a column
+df_reset = df.reset_index()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>3.3 Inspecting a DataFrame</h2>
+    <p><small>The `head()` method returns the headers and a specified number of rows, starting from the top. 
+        The `tail()` method returns the headers and a specified number of rows, starting from the bottom.</small></p>
+    <pre><code class="python">
+city_frame.head() # returns the first few rows
+city_frame.info() # information on each of the columns
+city_frame.shape() # returns the number of rows and columns
+city_frame.describe() # calculates a few summary statistics for each column
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>3.4 Accessing Rows via `index names -- loc`</h2>
+    <p><small>Pandas use the `loc` attribute to return `one or more specified row(s)`</small></p>
+    <pre><code class="python">
+data = {
+  "calories": [420, 380, 390],
+  "duration": [50, 40, 45]
+}
+df = pd.DataFrame(data)
+
+print(df)
+#refer to the row index:
+print(df.loc[0])
+
+#use a list of indexes:
+print(df.loc[[0, 1]]) 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <pre><code class="python">
+city_frame = pd.DataFrame(cities, columns=("name", "population"), 
+                          index=cities["country"])
+print(city_frame.loc["Germany"]) # loc for index 
+
+# select pandas DataFrame rows based on conditions
+condition = city_frame.population>2000000
+print(city_frame.loc[condition])
+
+# and -- &
+condition1 = (city_frame.population>1500000)
+condition2 = (city_frame['name'].str.contains("m"))
+print(city_frame.loc[condition1 & condition2])
+
+# or -- |
+condition1 = (city_frame.population>3000000)
+condition2 = (city_frame['name'].str.contains("m"))
+print(city_frame.loc[condition1 | condition2])
+    </code></pre> 
+    <h2>3.5 Accessing Rows by `Index Position - iloc`</h2>
+    <pre><code class="python">
+df = city_frame.iloc[[3, 2, 0, 5, 0]] # row: 
+print(df) 
+    </code></pre>   
+</div>
+</section>
+
+
+<section>
+    <div class="discussion">
+    <h2>3.6 Assigning New Columns</h2>
+    <pre><code class="python">
+cities = {"name": ["London", "Berlin", "Madrid", "Rome", 
+                   "Paris", "Vienna", "Bucharest", "Hamburg"],
+          "population": [8615246, 3562166, 3165235, 2874038,
+                         2273305, 1805681, 1803425, 1760433],
+          "country": ["England", "Germany", "Spain", "Italy",
+                     "Germany", "Hungary", "Poland", "Spain"]}
+
+city_frame = pd.DataFrame(cities,
+                          columns=["country", 
+                                   "population",
+                                   "cum_population"], # create new column first
+                          index=cities["name"])
+
+city_frame
+
+city_frame["cum_population"] = city_frame["population"].cumsum() # then add the value
+city_frame
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>4. Cleaning Data</h1>
+    <h2>4.1 Remove Rows</h2>
+    <p><small>One way to deal with empty cells is to remove rows that contain empty cells    </small></p>
+    <pre><code class="python">
+# the dropna() method returns a new DataFrame, and will not change the original.
+new_df = df.dropna()
+print(new_df.to_string())
+
+# Remove all rows with NULL values of the original DataFrame
+df.dropna(inplace = True)
+print(df.to_string()) 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>4.2 Replace Empty Values</h2>
+    <p><small> The `fillna()` method allows us to replace empty cells with a value    </small> </p>
+    <pre><code class="python">
+# Replace NULL values with the number 130:
+df = pd.read_csv('data.csv')
+df.fillna(130, inplace = True)  
+    </code></pre>
+    <h2>4.3 Replace Only For Specified Columns</h2>
+    <pre><code class="python">
+df["Calories"].fillna(130, inplace = True) 
+    </code></pre>
+    <h2>4.4 Replace Using Mean, Median, or Mode</h2>
+    <pre><code class="python">
+x = df["Calories"].mean() # median(), mode()[0]
+df["Calories"].fillna(x, inplace = True) 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>4.5 Removing Duplicates</h2>
+    <p><small>The `duplicated()` method returns a Boolean values for each row.    </small></p>
+    <pre><code class="python">
+data=pd.DataFrame({"a":["one","two"]*3,
+                   "b":[1,1,2,3,2,3]})
+data
+
+data.duplicated()
+data.drop_duplicates()
+# Remove all duplicates:
+df.drop_duplicates(inplace = True) 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>5. Sorting by `values`</h1>
+    <pre><code class="python">
+city_frame = city_frame.sort_values(by="cum_population", ascending=False)
+print(city_frame)
+    </code></pre>    
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>6. Applying a Function</h1>
+    <pre><code class="python">
+df=pd.DataFrame(
+    np.random.randn(4,3),
+    columns=list("ABC"),
+    index=["Kim","Susan","Tim","Tom"])
+df
+
+np.abs(df)
+
+f=lambda x:x.max()-x.min()
+df.apply(f)
+
+df.apply(f,axis=1)
+
+def f(x):
+    return x**2
+df.apply(f)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>7. Summarizing & Computing Descriptive Statistics<Title></Title></h1>
+    <pre><code class="python">
+import pandas as pd
+
+df=pd.DataFrame(
+    [[2.4,np.nan],[6.3,-5.4],
+     [np.nan,np.nan],[0.75,-1.3]],
+    index=["a","b","c","d"],
+    columns=["one","two"])
+df
+
+df.describe()
+df.sum()
+df.sum(axis=1)
+df.mean(axis=1)
+df.mean(axis=1,skipna=False)
+df.idxmax()
+df.idxmin()
+df.cumsum()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>8. Missing Data</h1>
+    <pre><code class="python">
+from numpy import nan as NA
+df=pd.DataFrame([[1,2,3],[4,NA,5],
+                 [NA,NA,NA]])
+df
+df.isnull() # true
+df.dropna(how="all") 
+df.fillna(method="ffill")
+df.fillna(method="ffill",limit=1)
+
+data=pd.Series([1,0,NA,5])
+data
+data.fillna(data.mean())
+df
+df.fillna(df.mean())
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>9. Aggregating DataFrames</h1>
+    <h2>9.1 Groupby() Summary</h2>
+    <pre><code class="python">
+import pandas as pd
+beverages = pd.DataFrame({'Name': ['Robert', 'Melinda', 'Brenda',
+                                   'Samantha', 'Melinda', 'Robert',
+                                   'Melinda', 'Brenda', 'Samantha'],
+                          'Coffee': [3, 0, 2, 2, 0, 2, 0, 1, 3],
+                          'Tea':    [0, 4, 2, 0, 3, 0, 3, 2, 0]})
+    
+beverages
+
+beverages[['Coffee', 'Tea']].sum()    # .mean
+res = beverages.groupby(['Name']).sum()
+print(res)
+
+beverages.groupby(['Name']).mean()
+beverages.groupby(['Name']).count()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>9.2 `Multiple grouped` summaries</h2>
+    <pre><code class="python">
+import pandas as pd
+data = {'Company':['GOOG','GOOG','MSFT','MSFT','FB','FB'],
+        'Product':['Maps','Search','Excel','Word','Ads','FB App'],
+        'Sales':[200,400,300,600,100,150]}
+df = pd.DataFrame(data)
+
+# Group by Company
+df_grouped = df.groupby('Company')
+
+# group the sample data by Company and Product
+df_grouped = df.groupby(['Company', 'Product'])
+df_grouped['Sales'].sum()   
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>10. Reading and Writing Data</h1>
+    <h2> 10.1 Read and write CSV</h2>
+    <p><small>CSV files contains plain text and is a well know format that can be read by everyone including Pandas.
+               If your data sets are stored in a file, Pandas can load them into a DataFrame.</small></p>
+    <pre><code class="python">
+# Load a comma separated file (CSV file) into a DataFrame:
+import pandas as pd
+exchange_rates = pd.read_csv("dollar_euro.csv", sep=" ", encoding='big5')
+print(exchange_rates)
+print(df.to_string()) # print the entire dataframe
+
+df.to_csv("countries_total_population.csv")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>10.2 Read  and write JSON</h2>
+    <P><small>Big data sets are often stored, or extracted as JSON. 
+        JSON is plain text, but has the format of an object, 
+        and is well known in the world of programming, including Pandas.</small></P>
+    <pre><code class="python">
+df = pd.read_json('data.json')
+
+print(df.to_string())
+    </code></pre>
+    <p><small>JSON objects have the same format as Python dictionaries.</small></p>
+    <pre><code class="python">
+data = {
+  "Duration":{
+    "0":60,
+    "1":60,
+    "2":60,
+    "3":45,
+    "4":45,
+    "5":60
+  },
+  "Pulse":{
+    "0":110,
+    "1":117,
+    "2":103,
+    "3":109,
+    "4":117,
+    "5":102
+  },
+  "Maxpulse":{
+    "0":130,
+    "1":145,
+    "2":135,
+    "3":175,
+    "4":148,
+    "5":127
+  },
+  "Calories":{
+    "0":409,
+    "1":479,
+    "2":340,
+    "3":282,
+    "4":406,
+    "5":300
+  }
+}
+
+df = pd.DataFrame(data)
+
+print(df) 
+   </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>11. Combining & Merging Datasets</h1>
+    <h2>11.1 Merging on Column</h2>
+    <pre><code class="python">
+d1=pd.DataFrame(
+    {"key":["a","b","c","c","d","e"],
+     "num1":range(6)})
+d2=pd.DataFrame(
+    {"key":["b","c","e","f"],
+     "num2":range(4)})
+     
+print(d1)
+print(d2)  
+
+pd.merge(d1, d2)
+pd.merge(d1, d2, on='key') # the same column name
+
+d3=pd.DataFrame(
+    {"key1":["a","b","c","c","d","e"],
+     "num1":range(6)})
+d4=pd.DataFrame(
+    {"key2":["b","c","e","f"],
+     "num2":range(4)})
+     
+pd.merge(d3,d4,left_on="key1",right_on="key2")  # different column name
+pd.merge(d1,d2,how="outer")
+pd.merge(d1,d2,how="left")
+pd.merge(d1,d2,how="right")
+pd.merge(d1, d2, how='inner') 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>11.2 Merging on index</h2>
+    <pre><code class="python">
+right=pd.DataFrame(
+    [[1,2],[3,4],[5,6]],
+    index=["a","c","d"],
+    columns=["Tom","Tim"])
+left=pd.DataFrame(
+    [[7,8],[9,10],[11,12],[13,14]],
+    index=["a","b","e","f"],
+    columns=["Sam","Kim"]) 
+    
+pd.merge(right,left, 
+         right_index=True, 
+         left_index=True, 
+         how="outer")     
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>11.3 Concatenating Along an Axis</h2>
+    <pre><code class="python">
+df1 = pd.DataFrame(
+    np.arange(6).reshape(3, 2),
+    index=['a', 'b', 'c'],
+    columns=['one', 'two'])
+df2 = pd.DataFrame(
+    10+np.arange(4).reshape(2,2),
+    index=['a', 'c'],
+    columns=['three', 'four'])
+    
+pd.concat([df1, df2], axis=1, 
+          keys=['s1', 's2'],
+          sort=False)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>12. Pandas Pivot</h1>
+    <p><small>`Pivoting` refers to the transformation of data from one form to another, 
+        typically involving the <strong>rotation</strong> or <strong>reorganization</strong> of the data around certain `key variables`.</small></p>
+    <pre><code class="python">
+# Sample data
+data = {
+    'Color': ['red', 'green', 'blue', 'red', 'green', 'blue'],
+    'Number': ['one', 'two', 'one', 'two', 'one', 'two'],
+    'Time': [345, 325, 898, 989, 23, 143],
+    'Point': [1, 2, 3, 4, 5, 6]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+df
+    </code></pre>
+    <p><small>We use `A` as the index and `B` for the new column names in the following examples</small></p>
+    <pre><code class="python">
+df2 = df.pivot(index='Color', columns='Number')
+df2
+
+df3 = df.pivot(index='Color',  columns='Number',
+               values=['Time', 'Point'])
+df3
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>13. Numpy Array and Pandas DataFram</h1>
+    <h2>13.1 NumPy Array to Pandas DataFrame</h2>
+    <pre><code class="python">
+import numpy as np
+my_array = np.array([[11, 22, 33], [44, 55, 66]])
+print(my_array)
+print(type(my_array))
+
+# Convert the NumPy Array to Pandas DataFrame
+import pandas as pd
+df = pd.DataFrame(my_array, columns=['Column_A', 'Column_B', 'Column_C'])
+print(df)
+print(type(df))
+
+# Add an Index to the DataFrame
+# index=['Item_1', 'Item_2']
+df = pd.DataFrame(my_array, 
+                  columns=['Column_A', 'Column_B', 'Column_C'], 
+                  index=['Item_1', 'Item_2'])
+
+print(df)
+print(type(df)) 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>13.2 Pandas DataFrame to NumPy Array</h2>
+    <pre><code class="python">
+import pandas as pd
+data = {'Age': [25, 47, 38],
+        'Birth Year': [1995, 1973, 1982],
+        'Graduation Year': [2016, 2000, 2005]
+        }
+df = pd.DataFrame(data)
+print(df)
+
+import numpy as np
+# Convert the DataFrame to a NumPy Array
+my_array = df.to_numpy()
+print(my_array)
+
+## another method
+my_array = df.values
+print(my_array)
+    </code></pre>
+</div>
+</section>
+
+
+</body>
+</html>

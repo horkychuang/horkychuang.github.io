@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 2</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 2 Control Structure</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Today's Topics</a></li>
+        <li><a href="#topic1">Decision-making</a></li>
+        <li><a href="#topic2">Repeating Actions</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="Introduction">
+    <div class="summary">
+    <h1>Today's Topics</h1>
+    <ol>
+        <li><strong>Decision-Making</strong>: IF, IF Else, If Elif Else</li>
+        <li><strong>Repeating Actions</strong> : While Loop and For Loop</li>
+    </ol> 
+</div>
+</section>
+
+<section id="topic1">
+    <div class="discussion">
+    <h1>Decision Structures</h1>
+    <p><small><strong>Decision Structures</strong> are used to control the flow of execution based on certain conditions. 
+They allow programs to make decisions and execute different blocks of code depending on whether a condition is `True` or `False`. 
+    </small></p>
+    <ol>
+        <li><strong>`if` statement</strong></li>
+        <li><strong>`if...else` statement</strong> </li>
+        <li><strong>`if..elif...else` Statement</strong></li>
+        <li><strong>nested `if` statement</strong> </li>
+    </ol> 
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>if statement</h1>
+    <p><small>If the <straong>condition (Boolean expressions) is true</straong>, statement is executed; otherwise it is <strong>skipped</strong></small></p>
+    <img src="images\050801.jpg" alt="050801" width="300">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <pre><code class="python">
+#This program illustrates if statement.
+'''
+If condition:
+    # code to execute if condition is True
+'''
+number = int(input("Enter a number:"))
+if number < 0:
+    number =  - number
+    print("The absolute value of number is", number)
+
+    age = 18
+if age >= 18:
+    print("You are eligible to vote.")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>if-else Statement</h1>
+    <p><small>The <straong>condition</straong> is evaluated first. If the condition is true, statement1 is executed. 
+        If the condition is false, statement 2 is executed. Used to execute one block of code 
+        if the condition is `True`, and another if it is `False`</small></p>
+    <img src="images\050802.jpg" alt="050802" width="300">
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <pre><code class="python">
+'''
+if condition:
+    # code if True
+else:
+    # code if False
+'''
+# This program test a number is even or odd.
+number = int(input('Enter number: '))
+
+if number%2 == 0:
+    print(number, 'is even.')
+else:
+    print(number, 'is odd.')
+    
+age = 16
+if age >= 18:
+    print("You can vote.")
+else:
+    print("You cannot vote yet.") 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>if-elif-else Statement</h1>
+    <p><small>The <stroang>if-elif-else</stroang> statement is used when you have <strong>multiple conditions</strong> to check. 
+        It allows you to test multiple conditions and execute the corresponding block of code for the first true condition encountered. 
+        If the conditions in the <stroang>if and all elif</stroang> statements evaluate to false, the `else` block is executed.
+        <strong>elif</strong> is an abbreviation of "else if." Again, exactly one branch will be executed. There is no limit of the number of elif statements, but the last branch has to be an else statement.
+        Used when you have **multiple conditions** to check</small></p>
+    <img src="images\050803.jpg" alt="050803" width="300">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <pre><code class="python">
+'''
+if condition1:
+    # code
+elif condition2:
+    # code
+else:
+    # code
+'''
+# This program determines greater number.
+x = int(input("Enter first number:"))
+y = int(input("Enter second number:"))
+
+if x < y:
+    print (x, "is less than", y)
+elif x > y:
+    print (x, "is greater than", y)
+else:
+    print (x, "and", y, "are equal")  
+    
+marks = 75
+if marks >= 90:
+    print("Grade: A")
+elif marks >= 80:
+    print("Grade: B")
+elif marks >= 70:
+    print("Grade: C")
+else:
+    print("Grade: D") 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>Nested Decision Structures</h1>
+    <p><small>One <strong>conditional</strong> can also be nested. 
+        Nested if statements are used when you need to check <strong>multiple conditions</strong> within another condition.
+        An `if` statement inside another `if` statement.</small></p>
+    <pre><code class="python">
+# This program determines greater number.
+x = int(input("Enter first number:"))
+y = int(input("Enter second number:"))
+
+if x == y:
+    print (x, "and", y, "are equal")
+else:
+    if x < y:
+        print (x, "is less than", y)
+    else:
+        print (x, "is greater than", y)
+    </code></pre>    
+</div>
+</section>
+
+
+<section>
+    <div class="discussion">
+    <h1>Logical Operators in Condition Tests</h1>
+    <p><small>
+      <strong>Logical operators</strong> are often used in <strong>condition tests</strong> (especially in `if`, `elif`, and `else` statements) to combine or modify conditions
+    </small></p>
+    <h2>"and" Operator</h2>
+    <p><small>
+      It returns True if <strong>all the conditions are true</strong>. Otherwise, it returns False
+    </small></p>
+    <pre><code class="python">
+# Checking Age and Salary for Loan Eligibility
+age = 25
+salary = 50000
+
+if age >= 18 and salary >= 30000:
+    print("You are eligible for a loan.")
+else:
+    print("You are not eligible for a loan.")
+    
+age = 25
+
+if age >= 18 and age <= 60:
+    print("You are eligible to work.")  
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>"or" Operator</h1>
+    <p><small>
+      It returns True if <strong>at least one</strong> of the conditions is true, and False if all the conditions are false
+    </small></p>
+    <pre><code class="python">
+# Checking if a Student has Passed in at Least One Subject
+subject1 = 70
+subject2 = 55
+      
+if subject1 >= 50 or subject2 >= 50:
+    print("The student has passed in at least one subject.")
+else:
+    print("The student has failed in all subjects.")
+    
+day = "Sunday"
+
+if day == "Saturday" or day == "Sunday":
+    print("It's a weekend!") 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>"not" Operator</h1>
+    <p><small> It returns True if the condition is false, and False if the condition is true.
+    </small> </p>
+    <pre><code class="python">
+answer = 17
+if answer != 42:
+    print("That is not the correct answer. Please try again!")
+    
+is_raining = True
+
+if not is_raining:
+    print("You don't need an umbrella.")
+else:
+    print("Take an umbrella.")  
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h1>Repeating Actions</h1>
+    <p><small>
+        Like running a block of code multiple times — you use <strong>looping structures</strong>. 
+        These are essential for automating repetitive tasks, such as. 
+    </small></p>
+    <ol>
+        <li>Processing items in a list.</li>
+        <li>Repeating until a condition is met</li>
+        <li>Running a block of code a fixed number of times</li>
+    </ol>
+    <p><small>
+        We often require a set of statements to be executed <strong>a number of times</strong>. 
+        This type of program execution is called looping. Python provides the following construct. 
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Types of Loops in Python</h1>
+    <ol>
+        <li><strong>`for` loop</strong> : for iterating over a sequence (like lists, strings, ranges, etc.).</li>
+        <li><strong>`while` loop</strong> : for repeating as long as a condition is `True`</li>
+    </ol>
+    <p><small>
+        Also, <strong>loop control statements</strong> like `break`, `continue`, and `pass` help manage loop behavior.
+    </small></p>    
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>The while Loop</h1>
+    <p><small>Use when you want to <strong>repeat until a condition is no longer true</strong> . 
+     If we want to execute a piece of code as long as <strong>the condition is true</strong>, 
+     we can use a while loop. There are three different kinds of loops</small></p>
+    <ol>
+        <li><strong>Count-controlled loops</strong> : repeating a loop for a certain number of times.</li>
+        <li><strong>Condition-controlled loop</strong> : repeated until a given condition changes</li>
+        <li><strong>Collection-controlled loop</strong> : through the elements of a 'collection', which can be an array, list or other ordered sequence</li>
+    </ol>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <pre><code class="python">
+'''
+while condition:
+    # code to repeat
+'''
+
+# This program print message 5 times.
+i = 1
+while i <= 5:
+    print("I love programming in Python!")
+    i = i + 1
+    </code></pre>
+    <p><small>Be careful with <strong>infinite loops</strong> — always ensure the condition will eventually become `False`.</small></p>
+    <pre><code class="python">
+# This program print n natural numbers.
+n = int(input('Enter the value of n: '))
+i = 1
+while i <= n:
+    print(i, end=' ')
+    i = i + 1
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <pre><code class="python">
+# # Using a while loop with an existing iterable
+student_names = ["Alice", "Bob", "Charlie", "David"]
+index = 0
+
+## the use of `len()` function to get the length of the list.
+while index < len(student_names):
+    print("Student:", student_names[index])
+    index += 1
+    
+# another
+# The list method `pop` removes and returns the last element present in the list.
+while student_names:
+    current_student = student_names.pop()
+    print("Current Student:", current_student)
+
+print("All students have been processed.")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>For Loop</h1>
+    <p><small>
+    Use when you <strong>know how many times</strong> you want to repeat an action.
+    A for loop is used for iterating <strong>over a sequence</strong> (such as a list, tuple, dictionary, set, or string).  
+    First, we can generate a sequence using <strong>range() function</strong>. 
+    The general format range (start, stop, step) takes three arguments. 
+    Start and Step are the optional arguments. A start argument is a starting number of the sequence. 
+    If start is not specified it starts with 0. The stop argument is ending number of sequence. 
+    The step argument is linear difference of numbers. The default value of the step is 1 if not specified
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Range(start, stop, step)</h1>
+    <pre><code class="python">
+'''
+for variable in sequence:
+    # code to repeat
+'''
+
+for i in range (10):
+     print(i, end = ' ')     
+     
+for i in range(2, 10):
+    print(i, end = ' ')
+
+for i in range(3, 31, 3):
+    print(i, end = ' ')
+    
+# This program prints backward counting
+for i in range(5,0,-1):
+    print(i)  
+    
+# Loop through a string
+for char in "Python":
+    print(char)    
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Loop through List, Tuple, Dictionary</h1>
+    <pre><code class="python">
+student_names = ["Alice", "Bob", "Charlie", "David"]
+
+for name in student_names:
+    print("Student:", name)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Nested Loops</h1>
+    <P><small>A loop that inside another loop is called a nested loop.</small></P>
+    <pre><code class="python">
+# This program prints pattern 
+for i in range(1,4):
+    for j in range(1,5):
+        print(j, end = ' ')
+    print()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Create a result from for loop</h1>
+    <pre><code class="python">
+result = []
+for k in range(2, 11):
+    result.append(k)
+    
+print(result) 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Loop Intervention</h1>
+    <ol>
+        <li><strong>`break`</strong>: Stop the loop early.</li>
+        <li><strong>`continue`</strong>: Skip the current iteration</li>
+    </ol>
+    <p><small> <strong>break</strong> exits the loop prematurely, 
+        and <strong>continue</strong> skips the rest of the current iteration and moves to the next one.</small></p>
+    <pre><code class="python">
+student_names = ["Alice", "Bob", "Charlie", "David"]
+
+for name in student_names:
+    if name == "Charlie":
+        break
+    print(name)
+    
+for i in range(10):
+    if i == 5:
+        break
+    print(i) 
+
+for number in range(1, 20):
+if number == 12:
+    continue
+    print(number)   
+# This loop skips the number 12 and continues printing up to 19    
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <pre><code class="python">
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)
+
+# Using **continue** in a Loop
+current_number = 0
+while current_number < 10:
+    current_number += 1
+    if current_number % 2 == 0:
+        continue
+        
+print(current_number)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Nest Loops (Mathematical Operations)</h1>
+    <p><small>A loop inside another loop.</small></p>
+    <pre><code class="python">
+for i in range(1, 4):
+    for j in range(1, 3):
+        print(f"i = {i}, j = {j}")
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>Do-While Loop Behavior</h1>
+    <p><small>There is no built-in <strong>do-while</strong> loop like in some other programming languages. 
+        However, you can achieve the same behavior using a while loop with a break statement. 
+        Here's how you can emulate a <strong>do-while<strong> loop in Python.
+        
+        <strong>Executes the block of code at least once</strong>   
+        </small></p>
+    <pre><code class="python">
+'''
+while True:
+    # code to execute at least once
+
+    if not condition:
+        break
+'''
+while True:
+    user_input = input("Enter 'exit' to stop: ")
+    if user_input == 'exit':
+        break
+
+while True:
+    number = int(input("Enter a positive number: "))
+    if number > 0:
+        print("Thank you!")
+        break
+    else:
+        print("That's not positive. Try again.") 
+    </code></pre>
+    <P><small>This approach is similar to a <strong>do-while</strong> loop where the loop body is guaranteed to execute <strong>at least once</strong> before the condition is checked</small></P>
+</div>
+</section>
+
+
+
+
+</body>
+</html>

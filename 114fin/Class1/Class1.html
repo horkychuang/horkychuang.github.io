@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 1</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 1 Introduction</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic">Our Course</a></li>
+        <li><a href="#today">Today's Topics</a></li>
+        <li><a href="#go">Python Go</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="Introduction">
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>
+Python has quickly emerged as a preferred tool for data analysis due to its simplicity, versatility, 
+and vast community support. With its intuitive syntax and extensive library ecosystem, 
+this elegant programming language allows you to tackle complex problems efficiently.
+
+Whether you are building a data-intensive application or working with an experienced data scientist, 
+Python provides a robust platform for exploring, visualizing, and modeling time-dependent data.
+</small></p>
+</div>
+</section>
+
+<section>
+    <div class="discussion">
+    <p><small>
+Time-series analysis involves examining historical data to uncover patterns, trends, and other valuable insights. 
+It is a crucial step in understanding the behavior of time-dependent data and making predictions for the future.
+</small></p>
+<img src="images\090401.png" alt="090401" width="300" height="300">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Python Code</h1>
+    <pre><code class="python">
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import matplotlib.pyplot as plt
+
+df = yf.download("BTC-USD", 
+                 start="2023-01-01",
+                 end="2030-12-31",
+                 progress=False)
+
+# Plot the time-series data
+plt.plot(data.index, data['Close'])
+plt.xlabel('Time')
+plt.ylabel('Value')
+plt.xticks(rotation = 45)
+plt.title('Time Series Data')
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <p> <small> Python brings a host of benefits to the table regarding Finance (time-series) analysis:
+    <ol>
+        <li>It is a <strong>user-friendly</strong> language: Python is known for its simplicity and user-friendliness. 
+            Its intuitive syntax makes it easy to learn, even for beginners.</li>
+        <li>It is widely available in the <strong>open-source</strong> world: This means it is freely available to use and is continuously improved and supported by a vibrant community of developers. The open-source nature of Python enables data scientists to access a wealth of resources, tools, 
+            and libraries for analyzing time-series data without incurring additional costs.</li>
+        <li>It has <strong>extensive library</strong> support: These libraries, such as pandas, NumPy, Matplotlib, Statsmodels, and Scikit-Learn, provide various functions and tools tailored to the unique challenges of working with time-dependent data. 
+            They simplify complex operations, allowing you to focus on extracting meaningful insights rather than reinventing the wheel.</li>
+    </ol>     
+  </small>
+    </p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+<img src="images\090402.PNG" alt="090402" width="300">
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <h1>Topic in Our Course</h1>
+    <ol>
+        <li><strong>Environment</strong>.</li>
+        <li><strong>Base Python</strong> : Variable and Data Type, Working with Data, Control Structures and Functions and Modules</li>
+        <li><strong>Advance Python</strong>: pandas, NumPy, matplotlib, statsmodels, and scikit-learn.</li>
+        <li><strong>Additional Finance Information</strong>.</li>
+    </ol> 
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>IDE for Python</h1>
+    <p><small>integrated development environment (IDE) refers to a software application that offers computer programmers with extensive software development abilities</small></p>
+<img src="images\090403.png" alt="090403">
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Google Colaboratory</h1>
+    <p> <small> <strong>Colab</strong> for short,is a free Jupyter notebook environment provided by Google 
+        where you can use free GPUs and TPUs which can solve all these issues. 
+        It contains almost all the modules you need for data science analysis. 
+        
+        These tools include but are not limited to Numpy, Scipy, Pandas, etc. 
+        Even deep learning frameworks, such as Tensorflow, Keras and Pytorch are also included.</small>
+    </p>
+<img src="images\090404.png" alt="090404">
+</div>
+</section>
+
+<section id="today">
+<div class="summary">
+    <h1>Today's Topics</h1>
+    <ol>
+        <li><strong>Simple Python Introduction</strong></li>
+        <li><strong>Basic Knowledge</strong></li>
+        <li><strong>Variable</strong></li>
+        <li><strong>Data Type: Fundamental Types</strong>.</li>
+    </ol>
+</div>
+</section>
+
+
+<section>
+    <div class="discussion">
+    <h1>Python History</h1>
+    <p><small>
+      It was created by Guido van Rossum, and released in 1991. It's great as a first language because it is concise and easy to read. 
+      You can use it for web development, to handle big data, machine learning, data science, and software development. 
+      So, once you learn the fundamentals, you can grow into the role of your choice!
+    </small></p>
+<img src="images\01.jpg" alt="01"  width="600">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <p><small>Python version 1.0 was released in January 1994. The major new features included in this release were the functional programming tools lambda, map, 
+        filter and reduce, which Guido Van Rossum never liked. Six and a half years later in October 2000, <strong>Python 2.0</strong> was introduced. 
+        
+        Python flourished for another 8 years in the versions 2.x before the next major release as <strong>Python 3.0</strong> (also known as "Python 3000" and "Py3K") was released. Python 3 is not backwards compatible with Python 2.x.</small></p>
+
+</div>
+</section>
+
+<section id="go">
+<div class="discussion">
+    <h1>Basic Knowledge</h1>
+    <h2><strong>print()</strong>  Function</h2>
+    <p><small> The <strong>print()</strong> function in Python is one of the most commonly used built-in functions. 
+        It is used to output text, numbers, or other data types to the standard output device (like your screen), or to a file.
+    </small> </p>
+    <pre><code class="python">
+# print(value1, value2, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+# Default is a newline
+print("Hello, World!")
+print("Name:", "Alice", "Age:", 25)
+print("Orange", "Mango", "Apple")
+print("apple", "banana", "cherry", sep=", ")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>f-strings</h1>
+    <p><small>
+        It is a way to embed expressions inside string literals, using curly braces `{}`. 
+        place expressions (like variables, calculations, function calls, etc.) inside `{}` and Python will replace them with their values.
+    </small></p>
+    <pre><code class="python">
+# f"Your text here {expression}"
+name = "Alice"
+age = 25
+
+print(f"My name is {name} and I am {age} years old.")
+portfolio_return = 49.999
+
+print(f"Expected Portfolio Return: {portfolio_return}")
+print(f"Annual Return: {calculate_annual_returns(monthly_returns):.2f}%")
+# :.2f means format the number to 2 decimal places
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Comments in Python</h1>
+    <p><small>Comments in Python are used to explain code, make it more readable, 
+        or temporarily disable parts of the code during testing or debugging.</small></p>
+<pre><code class="python">
+# Single-Line Comments
+# This program displays an address.
+print("National Chi-Nan University") #Displays School Name
+print("Puli, Nantou")
+
+# Multi-Line Comments
+"""
+This is a multi-line comment
+that explains a block of code.
+"""
+print("Hello, world!") 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Indentation is Mandatory</h1>
+    <p><small>Unlike many other languages that use braces `{}` to define blocks of code, Python uses <strong>whitespace (indentation)</strong> to indicate blocks.</small></p>
+    <pre><code class="python">
+# Indentation: **4 space!!!!!!!**
+if True:
+    print("This is indented.")
+    
+from math import sqrt         # block 1
+n = input("Maximum Number? ") # block 2
+n = int(n)+1                  # block 3
+for a in range(1,n):          # block 4
+    for b in range(a,n):      # block 4.1 in 4
+        c_square = a**2 + b**2
+        c = int(sqrt(c_square))
+        if ((c_square - c**2) == 0): # block 4. 1.1 in 4.1
+            print(a, b, c)  
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Case-Sensitive</h1>
+    <p><small>Python is <strong>case-sensitive</strong> , so `Variable`, `variable`, and `VARIABLE` are all different.</small></p>
+<pre><code class="python">
+name = "Alice"
+Name = "Bob"
+print(name)  # Outputs: Alice
+print(Name)  # Outputs: Bob 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>No Semicolons Needed</h1>
+    <pre><code class="python">
+# Statements:
+# single-line statement
+print("Hello, Python!") 
+
+# use semicolons if you want to write multiple statements in a single line
+print("Hello"); print("World")  # Valid, but not commonly used
+
+# multi-line statement
+my_list = [
+  1, 2, 3,
+  4, 5, 6
+  ]
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Keywords Are Reserved</h1>
+    <p><small>Python has <strong>reserved keywords</strong> that you cannot use as variable names.</small></p>
+<pre><code class="python">
+if, else, for, while, def, class, return, import, try, except, ...
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Variables Don't Need Declaration</h1>
+    <p><small> You don't need to declare the type of a variable before using it.
+    </small> </p>
+    <pre><code class="python">
+x = 10        # Integer
+y = "Hello"   # String
+z = 3.14      # Float
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Variables and Data Types</h1>
+    <h2>Variable</h2>
+    <p><small>
+        A <strong>variable</strong> is a named reference to a value. 
+            You can think of it as a <strong>label</strong> for data stored in the computer's memory. we <strong>assign = </strong> value to it.
+    </small></p>
+    <pre><code class="python">
+a = 10
+b = 15
+c = a + b
+print("Sum of numbers are", c)
+
+name = "Alice"
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Rules for Variable Names</h1>
+    <ol>
+        <li>A variable name can begin with a letter, dollar sign ($),or an underscore (_). It <strong>must not</strong> start with a number.</li>
+        <li>A variable name should describe the kind of information that the variable stores. 
+            For example, firstName might be used to store a person's first name. firstName rather than firstnarne</li>
+        <li>A variable name should not be a <strong>keyword</strong> or reserved words</li>
+        <li>A variable name cannot contain spaces.</li>
+        <li>Uppercase and lowercase characters are distinct (score and Score).</li>
+    </ol>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <pre><code class="python">
+age = 25
+name = "John"
+email_address = "john@example.com"
+total_sales = 500.50
+first_name = "Mary"
+    </code></pre>
+
+    <pre><code class="python">
+# Invalid variable names:
+2nd_grade = 80    # cannot start with a number
+first-name = "John"    # cannot use hyphens
+total/sales = 500    # cannot use forward slash
+email address = "john@example.com"    # cannot use spaces
+if = 10    # cannot use Python keywords as variable names
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Dynamic Typing</h1>
+    <p><small>Python is dynamically typed , which means you can reassign variables to different types at any time</small></p>
+<pre><code class="python">
+x = 5         # x is an integer
+x = "Hello"   # Now x is a string
+x = 3.14      # Now x is a float
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Multiple Assignment</h1>
+    <p><small>You can assign values to multiple variables in one line. Or assign the <strong>same value</strong> to multiple variables:</small></p>
+    <pre><code class="python">
+a, b, c = 1, 2, 3
+x = y = z = 0
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Data Type</h1>
+    <p><small>In Python, <strong>data types</strong> are used to define the kind of data a variable can hold. 
+        Python is a <strong>dynamically typed</strong> language, which means you don't have to explicitly declare the data type of a variable 
+        — Python automatically assigns the data type based on the value assigned to the variable.</small></p>
+<img src="images\060202.jpg" alt="060202" width="600">
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>Fundamental types</h1>
+    <h2>Strings</h2>
+    <p><small> The <strong>`str`</strong> (string) data type in Python is used to represent <strong>textual data</strong> . 
+        Strings are <strong>immutable sequences</strong> of Unicode characters. 
+
+     You can create strings using: Single quotes `'...'` or Double quotes `"..."`
+    </small> </p>
+    <pre><code class="python">
+s1 = 'Harry'
+s2 = "Porter"
+s3 = '''This is a
+multi-line statement.'''
+s4 = """Another
+multi-line statement."""
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <p><small>
+        Each character in a string has an <strong>index</strong> that specifies its <strong>position</strong> in the string
+    </small></p>
+    <img src="images\060203.png" alt="060203" width="600">
+   <img src="images\060204.png" alt="060204" width="600">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <p><small>Use a backslash `\` to insert special characters:</small></p>
+<table border="1">
+    <tr>
+        <td>Escape sequence</td>
+        <td>Descriptive</td>
+    </tr>
+    <tr>
+        <td>`\n`</td>
+        <td>New line</td>
+    </tr>
+    <tr>
+        <td>`	`</td>
+        <td>Tab</td>
+    </tr>
+    <tr>
+        <td>`\\`</td>
+        <td>Backslash</td>
+    </tr>
+    <tr>
+        <td>`\&quot;`or`\&#39;`</td>
+        <td>Quotation marks</td>
+    </tr>
+</table>
+
+<pre><code class="python">
+print("Hello\nWorld")  # Prints Hello, then a new line with World
+print("He said, \"Hi!\"")  # Prints: He said, "Hi!"
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <p><small></small></p>
+    <pre><code class="python">
+# slicing
+s = "CBSE Python"
+print(s[0:7]) # not 7
+# CBSE Py
+
+fruit = 'banana'
+for letter in fruit:
+    print (letter)  
+    </code></pre>
+    <pre><code class="python">
+# slicing
+first_name = "Harry"
+last_name = "Porter"
+
+full_name = first_name + " " + last_name # Concatenation
+print(full_name) # Outputs: Harry Porter
+
+# Interesting
+"This is a string."
+'This is also a string.' 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Numeric Types:</h1>
+    <p><small>Python supports <strong>integers</strong>, <strong>floating point numbers</strong>, and <strong>complex numbers</strong>.</small></p>
+    <ol>
+        <li><strong>int</strong> : Integers (e.g., `5`, `-3`, `1000`).</li>
+        <li><strong>float</strong> : Floating-point numbers (e.g., `3.14`, `-0.001`)</li>
+        <li><strong>complex</strong> : Complex numbers (e.g., `1+2j`, `3j`) .</li>
+    </ol>
+<pre><code class="python">
+my_integer = 150
+my_float = 5.2
+sum = my_integer + my_float
+print(sum) # Outputs: 155.2
+
+# 4/2 # 2.0
+2 * 3.0 # 6.0
+3.0 ** 2 # 9.0
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Boolean Type</h1>
+    <p><small>Used to represent truth values. Booleans are often the result of comparison or logical operations.</small></p>
+    <ol>
+        <li><strong>bool</strong> : Either `True` or `False`.</li>
+    </ol>
+    <pre><code class="python">
+x = 10
+(x >= 5) & (x <= 11)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Dynamic Typing</h1>
+    <pre><code class="python">
+var = 12
+print(var) # Outputs: 12
+
+var = "Now I'm a string"
+print(var) # Outputs: Now I'm a string
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Mutable and Immutable Data Types</h1>
+    <ol>
+        <li>Mutable objects can <strong>change their value</strong>  but keep their <strong>id()</strong>, which include *list*, *dict*, *set*..</li>
+        <li>Immutable objects cannot change their value and include **int**, *float*, *bool*, *string*, *tuple*.</li>
+    </ol>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Operators Operators</h1>
+    <p><small>
+        <strong>Operators</strong> are special symbols or keywords used to perform operations on variables and values. 
+        They allow you to manipulate data, perform arithmetic calculations, compare values, make logical decisions, and more.
+        Operators are categorized into several types: *arithmetic*, *comparison*, and *Relational, Logical assignment, and In* operators..
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Arithmetic Operators</h1>
+    <p><small>
+        Used to perform mathematical operations.
+    </small></p>
+    <pre><code class="python">
+# Arithmetic Operation
+sum = 5 + 3
+difference = 5 - 3
+product = 5 * 3
+quotient = 5 / 3
+remainder = 5 % 3
+quotientA = 5 // 3
+power = 5 ** 3
+
+10 / 3
+
+10.0 / 3.0
+
+9 // 3
+
+10 // 3
+
+11//3
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Comparison Operators</h1>
+    <p><small>Used to compare two values. Returns a <strong>boolean</strong> (`True` or `False`)</small></p>
+    <pre><code class="python">
+# Relational Operators - True or False
+5 == 3 # Equal to
+5 != 3 # Not equal to
+5 > 3  # Greater than
+5 < 3  # Less than
+5 >= 3 # Greater than or equal to
+5 <= 3 # Less than or equal to
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Assignment Operators</h1>
+    <p><small>Used to assign values to variables</small></p>
+<pre><code class="python">
+# Assignment Operators
+x = 5               
+x += 5 #  x = x + 5
+x -= 5 #  x = x - 5
+x *= 5 #  x = x * 5
+x /= 5 #  x = x / 5
+x %= 5 #  x = x % 5
+x //= 5 #  x = x // 5
+x **= 5 #  x = x ** 5
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Logical Operators</h1>
+    <p><small>Used to combine conditional statements.</small></p>
+    <pre><code class="python">
+# Logical Operator
+x = 6
+x < 5 and x < 10 # Returns True if both statements are true
+# False
+x < 5 or x < 10 # Returns True if at least one statement is true
+# True
+not(x < 5 and x < 10) # Reverses the result
+# True
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Membership Operators</h1>
+    <p><small>Used to test whether a value is present in a sequence (like string, list, tuple, etc.)..</small></p>
+<pre><code class="python">
+# in Operator
+number = 33
+number in (10,4,33,99) Returns True if value is found
+# True
+
+# not in operator
+'b' not in 'apple' # Returns True if value is NOT found
+    </code></pre>
+</div>
+</section>
+
+
+</body>
+</html>
