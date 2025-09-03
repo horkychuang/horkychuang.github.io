@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 0</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 0 Introduction for Data Science</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">Supervised Learning</a></li>
+        <li><a href="#topic2">Unsupervised Learning</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+ <section id="Introduction">
+    <div class="discussion">
+    <h1>Today's Topic</h1>
+    <ol>
+        <li>What's the Data Science?</li>
+        <li>Data Science I: Supervised Learning</li>
+        <li>Data Science II: Unsupervised Learning</li>
+    </ol> 
+</div>
+</section>
+
+<section>
+    <div class="summary">
+    <h1>Data Science</h1>
+    <p><small>
+        Data Science is a multi-disciplinary field which combines statistics, machine learning, artificial intelligence and database technology.  
+        Many businesses have stored large amounts of data over years of operation, and data science is able to extract very valuable knowledge from this data.  
+        The businesses are then able to leverage the extracted knowledge into more clients, more sales, and greater profits. 
+        This is also true in the engineering and medical fields.
+    </small></p>
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <h1>Data Science<Title></Title></h1>
+    <img src="images\ch1-1B.jpg" alt="ch1-1B" width="300">
+    <p><small>
+    <ul>
+        <li>Statistics: The science of collecting, classifying, summarizing, organizing, analyzing, and interpreting data.</li>
+        <li>Artificial Intelligence: The study of computer algorithms dealing with the simulation of intelligent behaviors in order to perform those activities that are normally thought to require intelligence</li>
+        <li>Machine Learning: The study of computer algorithms to learn in order to improve automatically through experience</li>
+        <li>Database: The science and technology of collecting, storing and managing data so users can retrieve, add, update or remove such data.</li>
+    </ul>
+    Statistics and mathematics are of paramount importance for complete and concrete knowledge of ML. 
+    The mathematical and statistical algorithms used in making the predictions are based on concepts like linear algebra, 
+    matrix multiplications, concepts of geometry, vector-space diagrams, and so on.
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>Applications of Data Science</h2>
+    <p><small>
+       <ul>
+        <li>Email spam detection</li>
+        <li>Face detection and matching (e.g., iPhone XVI)</li>
+        <li>Web search (e.g., DuckDuckGo, Bing, Google)</li>
+        <li>Sports predictions</li>
+        <li>Post office (e.g., sorting letters by zip codes)</li>
+        <li>ATMs (e.g., reading checks)</li>
+        <li>Credit card fraud Stock predictions</li>
+      </ul>
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>4V for Data Science</h1>
+    <img src="images\ch1-1A.jpeg" alt="ch1-1A" width="300">
+    <p><small>
+       <ul>
+        <li>Volume: The data is `huge`</li>
+        <li>Variety: Your data is `unstructured` (e.g. a collection of Twitter statuses: some with images, some with links or simply plain text statuses)</li>
+        <li>Velocity: Your data is `continuously` flowing</li>
+        <li>Value</li>
+      </ul>   
+    </small></p>   
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>Categories of Data Science</h2>
+    <img src="images\ch1-1E.png" alt="ch1-1E" width="300">
+    <p><small> 
+       The raw material is the historical data which is analyzed and modeled to generate a predictive algorithm. 
+       The historical data available and the business problem to be solved allow us 
+       to classify the machine learning algorithms in broadly four classes: 
+       supervised learning, unsupervised learning, semi-supervised learning, and reinforcement learning. 
+    </small></p>
+    <img src="images\2025072306.jpg" alt="2025072306" width="600">
+</div>
+</section>
+
+<section id="topic1">
+<div class="discussion">
+    <h2>Supervised Learning Algorithms</h2>
+    <p><small>
+    Supervised models are statistical models which use both the input data and the desired output to predict the future. 
+    The output is the value that we wish to predict and is referred to as the target variable and the data used to make that prediction is called training data. 
+    The target variable is sometimes referred to as the label.
+    </small></p>
+    <img src="images\ch1-2.jpg" alt="ch1-2" width="300">
+    <p><small>
+        Supervised learning problems are used in demand prediction, credit card fraud detection, customer churn prediction, premium estimation, etc. 
+        Supervised learning algorithms can be further broken into regression algorithms and classification algorithms
+    </small></p>
+</div>
+</section>
+
+
+
+<section >
+<div class="summary">
+    <h2>Regression algorithms</h2>
+    <img src="images\2025072307.jpg" alt="2025072307" width="300">
+    <p><small>
+        Regression algorithms are are used to predict the values of a continuous variable. 
+        A regression model will be able to find the inherent patterns in the data and fit a mathematical equation describing the relationship
+    </small></p>  
+    <img src="images\2025072308.jpg" alt="2025072308" width="300"> 
+    <p><small>
+        The objective of the linear regression problem is to find the line of best fit which is able to explain the randomness present in the data
+    </small></p> 
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <p><small>
+        For example, You want to go straight to the target and find out how much a customer might spend based on their historic data. 
+        You are now looking at a numerical scale measurement for an answer. 
+        It can range anywhere from £5 to £15 per visit. Imagine every time you see a new customer walk into your bakery you see the amount they are most likely to spend floating above their head. This is a `regression` situation
+    </small></p>
+    <p><small>
+        The next regression algorithm we are discussing is Tree based solutions. For tree-based algorithms like decision trees, random forests etc. 
+        The algorithm will start from the top and then like an “if-else” block will split iteratively to create nodes and sub-nodes till we reach a terminal node
+    </small></p>
+    <img src="images\2025072309.jpg" alt="2025072309" width="300">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Classification Algorithms</h1>
+    <p><small>
+       Classification algorithms are used to predict the values of a categorical variable which is the dependent variable. 
+       This target variable can be binary (Yes/No, good/bad, fraud/genuine, pass/fail, etc.) or multi-class (positive/negative/neutral, Yes/No/Don’t know, etc.).
+    </small></p>
+    <img src="images\2025072310.jpg" alt="2025072310" width="300">
+    <img src="images\ch1-3.jpg" alt="ch1-3" width="300">
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <p><small> 
+        For example, Imagine you own a bakery. But you want to know if the people truly like your bakery or not.  
+        The answer you are looking forward is a simple Yes or No. `Do people like your bakery or not? `<br>
+        This type of machine learning is known as `classification`. 
+        Sometimes there are more than 2 categories. For example how much do people like your bakery (Very much, Quite a bit, Not at all). 
+        These are ordinal classifiers. Ordinal classifiers can also be 1, 2 or 3 but remember this is not the same as regression 
+    </small> </p>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h1>Unsupervised Learning Algorithms</h1>
+    <p><small>
+        Unsupervised learning is the set of approaches that focus on finding hidden patterns and insights from the given dataset. 
+        In such cases, we do not require labelled data. The goal of such approaches is 
+        to find the underlying structure of the data, simplify or compress the dataset, or group the data according to inherent similarities.<br>
+        Imagine you are given some paper labels.  The task is to arrange them using some similarities. 
+        Now there are multiple approaches to that problem. You can use color, shape, or size. 
+        Here we do not have any label with us to guide on this arrangement. This is the difference which unsupervised algorithm have.<br>
+        Unsupervised learning is hence used for pattern detection, exploring the insights in the dataset 
+        and understanding the structure of it, segmentation, and anomaly detection.
+    </small></p>
+    <img src="images\2025072311.jpg" alt="2025072311" width="300">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Clustering Algorithms</h1>
+    <p><small>
+        One common task in unsupervised learning is clustering, which is a method of grouping data points (or objects) into clusters 
+        so that the objects that are similar to each other are assigned to one group 
+        while making sure that they are significantly different from the items present in other groups. 
+        It is highly useful in identifying potential customer segments for directing the marketing efforts and partitioning an image for segmenting into different objects
+    </small></p>
+    <img src="images\ch1-1I.png" alt="ch1-1I" width="300">  
+    <p><small>
+        you just want to know if there are groups of customers who are likely to act in a particular way. 
+        Do little kids always go for the cupcakes with cartoon characters. 
+        Do young teens with their girlfriend / boyfriend go for heart shaped one? 
+        You want the data to frame the question and answer it. 
+        We are looking for `patterns, groups or clusters` in the data. This is the `Clustering` problem.
+    </small></p> 
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Dimensionality Reduction</h1>
+    <img src="images\ch1-1H.png" alt="ch1-1H" width="300"> 
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Semi-supervised learning and Reinforcement learning</h1>
+    <p><small>
+       Semi-supervised learning is a middle-path of the two approaches. 
+       The primary reason for a semi-supervised approach is lack of availability of a complete labeled dataset for training.
+       In semi-supervised learning, we train initially on less number of labeled data points available using a supervised algorithm. 
+       And then we use it to label or pseudo-label new data points. 
+       The two datasets (labeled and pseudo-labeled) are combined together and we use this dataset further for analysis.
+    </small></p>
+    <p><small>
+       Reinforcement learning solutions are self-sustained solutions which train themselves using a sequence of trial and error. 
+       The heart of reinforcement learning is reward signals. 
+       If the action is positive then the reward is positive indicating to continue on it. 
+       If the action is negative, the reward will penalize the activity. 
+       Hence, the solution will always correct itself and move ahead thereby improving itself iteratively.
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>In Sum<Title></Title></h1>
+    <img src="images\ch1-5.png" alt="ch1-5" width="800"> 
+</div>
+</section>
+
+
+
+
+
+
+</body>
+</html>

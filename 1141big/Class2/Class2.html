@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 2</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 2 EZ Python III</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">Numpy Library</a></li>
+        <li><a href="#topic2">Pandas Library</a></li>
+        <li><a href="#topic3">Data Visualization</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+ <section id="Introduction">
+    <div class="discussion">
+    <h1>Today's Topic</h1>
+    <ol>
+        <li>Numpy, pandas, Data Visualization</li>
+    </ol> 
+</div>
+</section>
+
+<section>
+    <div class="summary">
+    <h1>A. Numpy Library</h1>
+    <p><small>
+        NumPy (Numeric Python) is a module for Python. Array is a collection of "items" of the same type. The item of array can be accessed using index.
+    </small></p>
+    <h2>1. Creating ndarrays</h2>
+    <pre><code class="python">
+# python -m pip install --user numpy # via `the command line (cmd) `
+pip install numpy
+import numpy as np
+    </code></pre>
+    <pre><code class="python">
+# 1D: Monthly sales for one region (in thousands USD)
+monthly_sales = np.array([120.5, 135.2, 140.0, 130.8, 145.6])
+print(" Monthly Sales (K USD):", monthly_sales)
+print(" Shape:", monthly_sales.shape)
+
+# 2D: Sales by Region and Product (North, South) × (Laptops, Accessories)
+sales_2d = np.array([[250, 80],   # North
+                     [180, 95]])  # South
+print("\n Sales by Region & Product (K USD):")
+print(sales_2d)
+print("Shape:", sales_2d.shape, "| Dimensions:", sales_2d.ndim)
+
+# 4D: Simulated revenue cube (Year × Quarter × Region × Product)
+revenue_cube = np.array(range(16)).reshape((2, 2, 2, 2)) * 10 + 100
+print("\n 4D Revenue Cube (simulated, K USD):", revenue_cube.shape)
+
+# Flatten for export
+flat_revenue = revenue_cube.flatten()
+print("Flattened Data (for reporting):", flat_revenue[:8], "...")
+    </code></pre>
+    <pre><code class="python">
+# Evenly spaced revenue targets over 50 periods (planning)
+revenue_targets = np.linspace(100, 500, num=50)
+
+# Random daily customer flow simulation
+customer_flow = np.arange(0.5, 10.4, 0.8)
+    </code></pre>
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <h2>1.2 Creating special ndarrays</h2>
+    <pre><code class="python">
+# Initialize matrices
+zeros_template = np.zeros((2, 5))  # Blank report template
+identity_matrix = np.identity(3)   # For financial model stability checks
+
+# ndarray with np.ones
+np.ones(shape=(2,2))
+
+# ndarray with np.arange
+np.arange(5)
+
+# an ndarray with np.random.randn that "not need to reshape"
+np.random.randn(2,2)
+    </code></pre>
+    <h2>2 Data types</h2>
+    <pre><code class="python">
+np.array([-1, 0, 1], dtype=np.float64)
+np.array([-1, 0, 1], dtype=np.bool)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic1">
+<div class="discussion">
+    <h2>2.1 Shape and Size of an ndarray</h2>
+    <img src="images\numpy01.jpg" alt="numpy01" width="300">
+    <h2>2.2 Indexing of ndarrays</h2>
+    <img src="images\060208.png" alt="060208" width="300">
+    <img src="images\060209.png" alt="060209" width="300">
+    <pre><code>
+# Simulated profit margins (%) across 3 regions and 3 products
+np.random.seed(42)  # For reproducibility
+profit_matrix = np.random.randn(3, 3) * 15 + 5  # Mean ~5%, std ~15%
+print("\n Simulated Profit Margins (%):")
+print(np.round(profit_matrix, 1))
+
+# Extract insights
+print("First region:", profit_matrix[0])
+print("Best product in Region 1:", profit_matrix[0, np.argmax(profit_matrix[0])])
+
+# Boolean indexing: Find loss-making products
+loss_makers = profit_matrix < 0
+print("Loss-making cells:", profit_matrix[loss_makers])
+
+## using the `&` and `| `operators
+# Moderate performers: between -5% and +10%
+moderate = (profit_matrix > -5) & (profit_matrix < 10)
+print("Moderate performers:", np.round(profit_matrix[moderate], 1)) 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>2.3 ndarray slicing</h2>
+    <pre><code>
+# Slicing: Analyze last two regions and first two products
+subset = profit_matrix[1:, :2]
+print(" Subset (Regions 2-3, Products 1-2):")
+print(subset)
+
+# create a copy of an ndarray
+arr_copy = arr.copy()
+
+arr_copy[1:2] = 1;
+arr_copy 
+    </code></pre>   
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>3. ndarray operations </h2>
+    <pre><code>
+arr2D = np.array([[1, 2], [3, 4]])
+arr2D.shape
+
+arr2D * 4 # scalar
+
+2*arr2D + 3*arr2D
+
+arr2D ** 2
+
+arr2D + 10
+    </code></pre>
+    <h2>3.1 Arithmetic operation with ndarrays</h2>
+    <pre><code>
+print("\n Performance Summary:")
+print(" Min Margin:", np.round(np.min(profit_matrix), 1), "%")
+print(" Max Margin:", np.round(np.max(profit_matrix), 1), "%")
+print(" Average Margin:", np.round(np.mean(profit_matrix), 1), "%")
+print(" Row Averages (by region):", np.round(np.mean(profit_matrix, axis=1), 1))
+print(" Col Averages (by product):", np.round(np.mean(profit_matrix, axis=0), 1))
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <pre><code>
+# Finding the index of the maximum value
+np.argmax(arr)
+np.argmax(arr, axis=1)
+# Find best region (by average margin)
+region_avg = np.mean(profit_matrix, axis=1)
+best_region_idx = np.argmax(region_avg)
+print(f"\n Best Performing Region: #{best_region_idx + 1}")
+print(f"Average Profit Margin: {region_avg[best_region_idx]:.1f}%")
+
+print("\n Analysis complete. Ready for executive summary.")
+
+# Calculating the cumulative sum of elements
+# Cumulative performance (e.g., quarterly buildup)
+cumulative = np.cumsum(profit_matrix, axis=1)
+print("Cumulative by Product:", np.round(cumulative, 1))
+
+# Finding NaNs
+# Simulate missing data (e.g., unreported region)
+profit_with_nan = profit_matrix.copy()
+profit_with_nan[1, :] = np.nan  # Region 2 missing
+print("\n With Missing Data:")
+print(profit_with_nan)
+print("NaN Locations:", np.isnan(profit_with_nan))
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <pre><code>
+# Finding the truth values
+arr1 = np.random.randn(9).reshape((3,3))
+arr2 = np.random.randn(9).reshape((3,3))
+np.greater(arr1, arr2)
+arr1 > arr2
+
+# Boolean operations
+arr_bool = (arr > -0.5) & (arr < 0.5)
+
+# Sorting 1D ndarrays
+arr1D = np.random.randn(10)
+np.sort(arr1D)
+np.argsort(arr1D) # creates an array of indices
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>3.2 Linear Algebra with ndarrays</h2>
+    <pre><code>
+# matrix product
+x = np.array( ((2,3), (3, 5)) ) 
+y = np.array( ((1,2), (5, -1)) ) 
+np.dot(x,y)
+
+# Cross Product
+np.cross(x, y)
+np.cross(y, x)
+
+# Element-wise multiply
+np.multiply(x, y)
+    </code></pre>
+    <pre><code>
+# get transpose
+np.transpose(x)
+
+# find inverse
+np.linalg.inv(x)
+
+# find determinant
+np.linalg.det(x)
+
+# find trace
+np.trace(y)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <pre><code>
+# define the coefficient matrix A
+A = np.array([[2, 4], [6, 8]])
+
+# define the constant vector b
+b = np.array([5, 6])
+
+# solve the system of linear equations Ax = b
+x = np.linalg.solve(A, b)
+
+A = np.array([[1, 2, 3], 
+              [1, 3, 4], 
+              [3, 2, 1]])
+evalue, evect = np.linalg.eig(A) # Eigenvalues and Eigenvectors 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>3.3 Broadcasting within ndarrays</h2>
+    <p><small>
+        The smaller array is "broadcasted" in a way that it has the same shape as the larger array.
+    </small></p>
+    <pre><code>
+# Base sales matrix (3 products across 3 regions)
+base_sales = np.array([[110, 120, 130],
+                       [210, 220, 230],
+                       [310, 320, 330]])
+
+# Regional growth multipliers (e.g., marketing boost)
+growth_rates = np.array([1.1, 1.2, 1.05])
+
+# Broadcasting: Apply growth rate per region
+projected_sales = base_sales * growth_rates
+print("\n Projected Sales After Growth Adjustment (K USD):")
+print(projected_sales.astype(int))
+    </code></pre>
+    <img src="images\numpy02.png" alt="numpy02" width="300">
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>4. Random Numbers and Probability</h2>
+    <pre><code>
+uniform_random = np.random.uniform(4, 5) # uniform distribution
+normal_random = np.random.randn(4, 5) # normal distribution
+integer_random = np.random.randint(10, 50, 5) # integers between a certain range
+
+np.random.random(10) # random numbers
+
+# generate arrays with values from an arbitrary interval [a, b), 
+# where a has to be less than b. (b - a) * random_sample() + a
+a = -3.4
+b = 5.9
+A = (b - a) * np.random.random_sample((3, 4)) + a # Random Samples       
+
+# Simulate 4 weeks of daily demand (normal distribution)
+daily_demand = np.random.randn(4, 5) * 50 + 300  # Mean=300, Std=50
+print("\n Simulated Daily Demand:")
+print(daily_demand.astype(int))
+
+# Random order quantities (integer)
+order_sizes = np.random.randint(20, 100, 5)
+print(" Simulated Order Sizes:", order_sizes)
+
+# Sensitivity test: Random inputs in range [-3.4, 5.9]
+a, b = -3.4, 5.9
+noise = (b - a) * np.random.random_sample((3, 4)) + a
+print("Sensitivity Noise:", np.round(noise, 2))
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>B. Pandas LIbrary</h1>
+    <p><small>
+        The word pandas is an acronym which is derived from "Python and data analysis" and "panel data". It is used for data manipulation and analysis. 
+        The pandas library contains two fundamental data structures <mark>Series</mark> and <mark>DataFrames</mark>. 
+        Most operations data in Python are based upon DataFrames.
+    </small></p>
+    <h2>1. Series and DataFrames</h2>
+    <pre><code>
+# python -m pip install --user pandas # via `the command line (cmd) `
+pip install pandas
+import pandas as pd
+print(pd.__version__)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="discussion">
+    <h2>1.1 Series</h2>
+    <p><small>
+       One-dimensional series of **homogenous** values (integer values, string values, double values, and so on). 
+       The values are labeled with their "index number". **First value has index 0**, second value has index 1 etc  
+    </small></p>
+    <pre><code>
+ser1 = pd.Series(range(1, 6))
+# The right column contains our `data`, 
+# whereas the left column contains the `index`. 
+
+#  specify custom index names
+ser2 = pd.Series(range(1, 6),
+                 index=['a', 'b', 'c', 'd', 'e'])
+
+ser2.index
+ser2.values
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>1.2 DataFrames</h1>
+    <p><small>
+       A Pandas DataFrame is a <mark>2 dimensional</mark> data structure, like a 2 dimensional array that consist of <mark>three</mark> components.
+    </small></p>
+    <pre><code>
+df1 = pd.DataFrame({'A': range(1,5,1),
+                    'B': range(10,50,10),
+                    'C': range(100, 500, 100)})
+# pass the index= parameter
+df2 = pd.DataFrame({'A': range(1,5,1),
+                    'B': range(10,50,10),
+                    'C': range(100, 500, 100)},
+                   index=['a', 'b', 'c', 'd'])
+    </code></pre>
+    <pre><code>
+loan_data = {
+    "Name": ["Jones", "Smith", "Lynn", "Rebecca", "Vizon", "Phyllis", 
+             "Roberto", "Sybil", "Fernando", "Eric", "Michael",                        "Fredrick", "Allan", "Mary", "Joseph"],
+    "Amount": [10000, 20000, 1000, 500, 700, 850, 900, 1500, 12000,                      16000,1350, 16000, 8000, 7500, 850],
+    "Age": [45, 38, 25, 29, 31, 42, 50, 33, 27, 36, 40, 48, 34, 39, 44],
+    "City": ["Taipei", "Kaohsiung", "Taichung", "Hsinchu", "Tainan", 
+             "Pingtung", "Yilan", "Hualien", "Keelung", "Miaoli", 
+             "Changhua", "Nantou", "Yunlin", "Chiayi", "Taitung"]
+}
+
+df = pd.DataFrame(data=loan_data)
+print("Raw Loan Data:")
+print(df.head())
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>1.3 Setting and removing indexes</h1>
+    <pre><code>
+# Use 'Name' as index for reporting
+df = df.set_index('Name')
+
+print("\n Data with Customer Index:")
+print(df.head(3))
+
+# Reset index (e.g., for export)
+df_export = df.reset_index()
+print("\n Reset index (ready for CSV):")
+print(df_export.columns.tolist())
+
+# Basic EDA
+print("\n Dataset Info:")
+print(f"Shape: {df.shape}")
+df.info()
+print("\n Descriptive Statistics:")
+print(df.describe())
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>2. DataFrame operation</h1>
+    <h2>2.1 Indexing, selection, and filtering</h2>
+    <pre><code>
+# index by columns names
+df2['B']
+df2[['A', 'C']]
+
+# Boolean selection
+df2[(df2['D'] > 1000) & (df2['D'] <= 3000)]
+    </code></pre>
+    <pre><code>
+# Accessing Rows via `Index names -- loc`
+df2.loc[['c', 'd']] 
+
+# Accessing Rows by `Index Position - iloc`
+df2.iloc[[0]]
+    </code></pre>   
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>2.2 Dropping rows and columns</h2>
+    <pre><code>
+# drop the row at index b
+df2.drop('b') # index is still there but the values are all 0
+
+# modify the original DataFram
+df2.drop('b', inplace=True) # clear all elements of row b
+
+#  drop columns
+df2.drop(['A', 'B'], axis=1)
+
+# Remove all duplicates:
+df2.drop_duplicates(inplace = True)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic1">
+<div class="discussion">
+    <h2>2.3. Sorting values and ranking</h2>
+    <pre><code>
+df = pd.DataFrame(np.random.randn(5,5), 
+                  index=np.random.randint(0, 100, size=5),
+                  columns=np.random.randint(0,100,size=5))
+
+# sorting by index
+df.sort_index()
+
+# sort by column names
+df.sort_index(axis=1)
+
+# sort by values
+df.sort_values(by=df.columns[0], ascending=False)
+
+# rank/order of values (in ascending order) in each column
+df.rank()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.4 Descriptive Statistics</h2> 
+    <pre><code>
+df=pd.DataFrame(
+    [[2.4,np.nan],[6.3,-5.4],
+     [np.nan,np.nan],[0.75,-1.3]],
+    index=["a","b","c","d"],
+    columns=["one","two"])
+
+df.describe()
+df.sum()
+df.sum(axis=1)
+df.mean(axis=1)    
+    </code></pre>
+    <pre><code>
+df.mean(axis=1,skipna=False)
+df.idxmax()
+df.idxmin()
+df.cumsum()
+
+# Simulate missing data
+df.loc['Jones', 'Age'] = np.nan
+df.loc['Smith', 'Amount'] = np.nan
+
+print("\n With Missing Data:")
+print(df[df.isnull().any(axis=1)])
+
+# Drop rows with missing critical data
+df_clean = df.dropna(subset=['Amount'])  # Can't process without loan amount
+df_clean['Age'].fillna(df_clean['Age'].mean(), inplace=True)  # Impute age
+
+print("\n Cleaned Data (no missing Amount):")
+print(df_clean[['Amount', 'Age']].head())   
+    </code></pre>
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <h2>3. Arithmetic operations</h2>
+    <pre><code>
+df1 = pd.DataFrame(np.random.randn(3,2),
+                   index=['A', 'C', 'E'],
+                   columns=['colA', 'colB'])
+df2 = pd.DataFrame(np.random.randn(4,3),
+                   index=['A', 'B', 'C', 'D'],
+                   columns=['colA', 'colB', 'colC'])
+
+# summation of elements if the index and column exists in both
+# DataFrames, otherwise it is NaN
+df1 + df2
+df1.add(df2, fill_value=0) 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>3.1 Merging and combining multiple DataFrame</h2>
+    <pre><code>
+# different column name without index name
+df1=pd.DataFrame({"key1":["a","b","c","c","d","e"],
+                   "num1":range(6)})
+df2=pd.DataFrame({"key2":["b","c","e","f"],
+                   "num2":range(4)})
+
+# merge by columns
+# specify the behavior of the join (outer, inner, left, or right join) using the
+# how= parameter
+pd.merge(df1, df2, left_on="key1",right_on="key2") # inner join
+pd.merge(df1, df2, left_on="key1",right_on="key2", how='left') 
+pd.merge(df1, df2, left_on="key1",right_on="key2", how='right') 
+pd.merge(df1, df2, left_on="key1",right_on="key2", how='outer') 
+# all columns
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <pre><code>
+# join()
+df1.join(df2)
+
+# merge by rows
+pd.concat([df1, df2])
+pd.concat([df1, df2], axis=1)
+    </code></pre>
+    <pre><code>
+# join by index names
+right=pd.DataFrame( [[1,2],[3,4],[5,6]],
+                    index=["a","c","d"],
+                    columns=["Tom","Tim"])
+left=pd.DataFrame( [[7,8],[9,10],[11,12],[13,14]],
+                  index=["a","b","e","f"],
+                  columns=["Sam","Kim"]) 
+    
+pd.merge(right,left, right_index=True, left_index=True, how="outer") 
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h2>4. Grouping operations</h2>
+    <p><small>
+       <ul>
+        <li>First, the data is split into groups based on one or more keys</li>
+        <li>Then we apply necessary functions to these groups to compute the desired results</li>
+       </ul>
+    </small></p>
+    <pre><code>
+data = {'Category': ['A', 'B', 'A', 'B', 'A', 'B'],
+        'Value': [10, 20, 30, 40, 50, 60]} 
+df = pd.DataFrame(data) 
+
+grouped = df.groupby('Category')
+grouped.describe()
+
+# Compute the mean value for each group 
+mean_values = grouped.mean() 
+
+# Get the sum of values for each group 
+sum_values = grouped.sum()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <pre><code>
+# DataFrameGroupBy.apply(...) accepts different functions and 
+# applies them to each group of the grouped object
+grouped.apply(pd.DataFrame.unstack)
+
+# DataFrameGroupBy.agg(...) accepts functions and 
+# aggregates each column for each group using that method
+df.groupby('Category').agg({'Value':['sum',,'count']})
+
+# DataFrameGroupBy.transform(...) that 
+# transform works on one column at a time and 
+# returns a sequence of values of the same length as the series
+
+from scipy import stats
+df.groupby('Category').transform(stats.zscore)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>5. Missing data</h2>
+    <pre><code>
+df = pd.DataFrame({'A': [1, 2, np.nan],
+                   'B': [4, np.nan, np.nan],
+                   'C': [7, 8, 9]})
+# Filtering out missing data
+df.isnull()
+
+# To drop rows that have NaN 
+df.dropna(how='all') # for all fields
+df2.dropna(how='any') # for any fields
+
+# Filling in missing data
+df.fillna(method='backfill', inplace=True) # ffill
+
+x = df['C'].mean() # median(), mode()[0]
+df['A'].fillna(x, inplace = True)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>6. The transformation with functions and mappings</h2>
+    <pre><code>
+gender=["m","f"]
+data=pd.DataFrame({
+    "height":np.random.randint(150,190,100),
+    "weight":np.random.randint(40,90,100),
+    "gender":[gender[x] for x in np.random.randint(0,2,100)],
+    }
+)
+
+# map() method by row, M--> 1, F-->0
+data["gender"] = data["gender"].map({"M":1, "F":0})
+    </code></pre>
+    <pre><code>
+# apply() method by row, using the lambda
+data["gender"] = data["gender"].apply(lambda x: x.upper())
+
+f=lambda x:x.max()-x.min()
+data['height'].apply(f)
+data['wieight'].apply(f,axis=1)
+
+# pandas.DataFrame.applymap(...) method 
+# allows us to apply functions to data values 
+df2.drop('Category', axis=1).applymap(np.exp) 
+# drop first then calculates the exponential
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>6.1 Discretization/bucketing</h2>
+    <pre><code>
+data ={
+ "Loanee_names": ["Jones","Smith","Lynn","Rebbeca","Vizon","Phylis","Roberto","Sypla","Fernado","Eric","Michale","Fredrick","Allan","Mary","Joseph"], 
+ "Loan_amount":[10000, 20000,1000,500,700,850,900,1500,12000,16000,1350,16000,8000,7500,850]
+ }
+df = pd.DataFrame(data = data)
+bins= np.linspace(df["Loan_amount"].min(),df["Loan_amount"].max(),3)
+    </code></pre>
+    <pre><code>
+# pd.cut
+labels = ["Group 1","Group 2","Group 3"]
+#Categorising:
+df["Group"] = pd.cut(df["Loan_amount"],bins =bins,
+                     labels = labels, include_lowest = True)
+df["Group"].value_counts()
+
+# qcut -- quartiles to cut 
+# each category has the same amount of observations
+df['binsqcut'] = pd.qcut(df['Loan_amount'], q=3, precision=1, labels=labels)
+df['binsqcut'].value_counts()
+
+# pandas.Categorical.categories attribute 
+# provides us with the bucket ranges
+pd.cut(arr, bins=5).categories
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>6.2 Permuting and sampling</h2>
+    <pre><code>
+df = pd.DataFrame(np.random.randn(10,5),
+                  index=np.sort(np.random.randint(0, 100,size=10)),
+                  columns=list('ABCDE'))
+
+# numpy.random.permutation(...) method 
+# randomly shuffles along the Index axis
+df.loc[np.random.permutation(df.index)]
+
+# randomly sample with replacement
+df.iloc[np.random.randint(0, len(df), size=5)]
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>7. Pandas Pivot</h2>
+    <p><small>
+        "Pivoting" refers to the transformation of data from one form to another, 
+        typically involving the <mark>rotation</mark> or <mark>reorganization</mark> of the data around certain "key variables"
+    </small></p>
+    <pre><code>
+# Add region based on city
+region_map = {
+    'Taipei': 'North', 'Kaohsiung': 'South', 'Taichung': 'Central',
+    'Hsinchu': 'North', 'Tainan': 'South', 'Pingtung': 'South',
+    'Yilan': 'North', 'Hualien': 'East', 'Keelung': 'North',
+    'Miaoli': 'North', 'Changhua': 'Central', 'Nantou': 'Central',
+    'Yunlin': 'Central', 'Chiayi': 'South', 'Taitung': 'East'
+}
+df_final['Region'] = df_final['City'].map(region_map)
+
+# Pivot: Total loans by Region and Risk Group
+pivot_table = pd.pivot_table(df_final, 
+                             index='Region', 
+                             columns='Risk_Group', 
+                             values='Amount', 
+                             aggfunc='sum', 
+                             fill_value=0)
+print("\n Loan Volume by Region & Risk:")
+print(pivot_table.astype(int))
+    </code></pre>
+    <p><small>
+        We use "A" as the index and "B" for the new column names.
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>8. Numpy Array and Pandas DataFrame</h2>
+    <p><small>
+       Keep in mind: "nparray" only value, while "dataframe" value, columns, index 
+    </small></p>
+    <pre><code>
+import numpy as np
+my_array = np.array([[11, 22, 33], [44, 55, 66]])
+print(my_array)
+print(type(my_array))
+
+# Convert the NumPy Array to Pandas DataFrame
+import pandas as pd
+df = pd.DataFrame(my_array, columns=['Column_A', 'Column_B', 'Column_C'])
+print(df)
+print(type(df))
+    </code></pre>
+    <pre><code>
+import pandas as pd
+data = {'Age': [25, 47, 38],
+        'Birth Year': [1995, 1973, 1982],
+        'Graduation Year': [2016, 2000, 2005]
+        }
+df = pd.DataFrame(data)
+print(df)
+
+import numpy as np
+# Convert the DataFrame to a NumPy Array
+my_array = df.to_numpy()
+print(my_array)
+
+## another method
+my_array = df.values
+print(my_array)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic3">
+<div class="discussion">
+    <h1>C. Data Visualization</h1>
+    <p><small>
+        Data visualization is a key skill for aspiring data scientists. 
+        They creates meaningful and insightful plots. 
+        We’ll learn how to build various types of plots, and customize them to be more visually appealing and interpretable.
+    </small></p>
+    <h2>1. Matplotlib</h2>
+    <pre><code>
+# python -m pip install --user matplotlib # via `the command line (cmd) `
+pip install matplotlib
+print(plt.__version__)
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+%matplotlib inline
+    </code></pre>
+    <p><small>
+       The command "%matplotlib inline" makes only sense, if you work with "Ipython Notebook such as colab".
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>1.1 Matplotlib Plotting</h2>
+    <p><small>
+       By default, the "plot()" function draws a <mark>line from point to point.</mark> 
+       The function takes parameters for specifying points in the diagram. 
+       Parameter 1 is an array containing the points on the `x-axis`. 
+       Parameter 2 is an array containing the points on the `y-axis`. 
+    </small></p>
+    <pre><code>
+x = np.array([1, 8])
+y = np.array([3, 10])
+
+plt.plot(x, y)
+plt.show()
+
+# Without Line
+plt.plot(x, y, 'o')
+plt.show()
+
+# Default X-Points
+plt.plot(y)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>1.1.1  Marker Size and Color</h2>
+    <pre><code>
+y = np.array([3, 8, 1, 10])
+
+# `ms` to set the size of the markers
+plt.plot(y, marker = 'o', ms = 20)
+plt.show()
+
+# `mec` to set the color of the *edge* of the markers
+
+plt.plot(y, marker = 'o', ms = 20, mec = 'r')
+plt.show()
+    </code></pre>
+    <h2>1.1.2 Matplotlib Line</h2>
+    <pre><code>
+y = np.array([3, 8, 1, 10])
+plt.plot(y, linestyle = 'dotted') # 'dashed'
+plt.show()
+
+y1 = np.array([3, 8, 1, 10])
+y2 = np.array([6, 2, 7, 11])
+
+plt.plot(y1)
+plt.plot(y2)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>2. Layout</h1>
+    <h2>2.1 Labels and Title</h2>
+    <p><small>
+       we can use the "xlabel()" and "ylabel()" functions to set a label for the x- and y-axis. 
+       The "title()" function to set a title for the plot  
+    </small></p>
+    <pre><code>
+x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+
+plt.plot(x, y)
+
+plt.title("Sports Watch Data")
+plt.xlabel("Average Pulse")
+plt.ylabel("Calorie Burnage")
+
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.2  Legend</h2>
+    <p><small>
+       add an `explanation` for each wedge, use the "legend()" function.
+    </small></p>
+    <pre><code>
+x = np.array([80, 85, 90, 95, 100, 105, 110, 115, 120, 125])
+y = np.array([240, 250, 260, 270, 280, 290, 300, 310, 320, 330])
+
+plt.plot(x, y)
+
+plt.title("Sports Watch Data")
+plt.xlabel("Average Pulse")
+plt.ylabel("Calorie Burnage")
+
+plt.legend()
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>3. The type of Plots</h1>
+    <h2>3.1 Scatter - `plt.scatter()`</h2>
+    <pre><code>
+# Simulate ad spend (K USD) and resulting sales
+ad_spend = np.array([50, 60, 70, 80, 90, 100])
+sales = np.array([120, 130, 145, 150, 160, 175])
+
+plt.figure(figsize=(8, 5))
+plt.scatter(ad_spend, sales, color='#2ca02c', alpha=0.7)
+plt.title(" Advertising Spend vs. Sales Performance")
+plt.xlabel("Ad Spend (K USD)")
+plt.ylabel("Sales (K USD)")
+plt.grid(True, alpha=0.3)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>3.2 Bars - `plt.bar()`</h2>
+    <pre><code>
+products = np.array(["Laptops", "Phones", "Tablets", "Accessories"])
+revenue = np.array([240, 180, 90, 70])
+
+plt.figure(figsize=(8, 5))
+plt.bar(products, revenue, color=['skyblue', 'lightcoral', 
+                                  'lightgreen', 'gold'])
+plt.title(" Revenue by Product Category")
+plt.xlabel("Product")
+plt.ylabel("Revenue (K USD)")
+plt.xticks(rotation=15)
+plt.show()
+
+# Horizontal Bars- `plt.barh()`
+stores = ["Taipei", "Kaohsiung", "Taichung", "Hsinchu", "Tainan"]
+performance = [95, 88, 92, 85, 80]
+
+plt.figure(figsize=(8, 5))
+plt.barh(stores, performance, color='steelblue')
+plt.title(" Store Performance Score")
+plt.xlabel("Performance Index")
+plt.grid(axis='x', alpha=0.3)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>3.3 Histograms - `plt.hist`</h2>
+    <pre><code>
+# Simulate customer ages
+np.random.seed(42)
+customer_ages = np.random.normal(38, 10, 500).clip(18, 70)
+
+plt.figure(figsize=(8, 5))
+plt.hist(customer_ages, bins=20, color='teal', alpha=0.7, edgecolor='black')
+plt.title(" Customer Age Distribution")
+plt.xlabel("Age")
+plt.ylabel("Number of Customers")
+plt.grid(axis='y', alpha=0.3)
+plt.show() 
+    </code></pre>
+    <h2>3.4 Pie Charts - `plt.pie()`</h2>
+    <pre><code>
+regions = ["North", "South", "Central", "East"]
+market_share = [40, 30, 20, 10]
+explode = [0.1, 0, 0, 0]  # Highlight North region
+
+plt.figure(figsize=(7, 7))
+plt.pie(market_share, labels=regions, autopct='%1.1f%%', startangle=90, explode=explode)
+plt.title(" Market Share by Region")
+plt.show() 
+
+y = np.array([35, 25, 25, 15])
+mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
+myexplode = [0.2, 0, 0, 0]
+
+plt.pie(y, labels = mylabels, explode = myexplode)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>Ax.plot()</h1>
+    <h2>4.1 Figure and Axes</h2>
+    <p><small>
+       A matplotlib object is a tree-like structure of matplotlib objects which build a "hierarchy". 
+       The top of the tree-like structure of matplotlib objects is the `figure` object. 
+       A figure can be seen as the container which contains one or more plots. 
+       The plots are called `axes` in matplotlib jargon. 
+       Axes is the plural of the word "axis", which gives us a misleading idea. 
+       We can think about "axes" as a synonym for the word "plot". 
+    </small></p>
+    <img src="images\mat01.jpg" alt="mat01" width="300">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <pre><code>
+months = np.arange(1, 7)
+actual_sales = np.array([120, 135, 140, 130, 145, 160])
+target_sales = np.array([125, 130, 135, 140, 145, 150])
+
+plt.figure(figsize=(9, 5))
+plt.plot(months, actual_sales, marker='o', 
+         label='Actual Sales', linewidth=2)
+plt.plot(months, target_sales, linestyle='--', 
+         marker='s', label='Sales Target', linewidth=2)
+
+plt.title(" Actual vs. Target Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales (K USD)")
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.xticks(months, ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
+plt.show()    
+    </code></pre>
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <p><small>A figure may also contain more than one axes</small>
+    <img src="images\mat02.jpg" alt="mat02" width="600">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>4.2 Subplot() and Subplots()</h2>
+    <pre><code>
+import matplotlib.pyplot as plt
+x = [1,2,3,4,5]
+y = [5,4,3,2,1]
+
+# subplot"s"
+fig, (ax1, ax2) = plt.subplots(1, 2) # 1*2
+ax1.plot(x)
+ax2.plot(y)
+plt.show()
+
+# or
+fig, ax = plt.subplots(2) # 2*1
+ax[0].plot(x)
+ax[1].plot(y)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <pre><code>
+fig = plt.figure()
+ax1 = plt.subplot(121)
+ax1.plot(x)
+ax2 = plt.subplot(122)
+ax2.plot(y)
+
+# or built-in method of fig
+fig = plt.figure()
+fig.add_subplot(121)
+plt.plot(x)
+
+fig.add_subplot(122)
+plt.plot(y)
+plt.show() 
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h2>4.3 Basic Figure and Ax</h2>
+    <pre><code>
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 8))
+fig.suptitle("Business Intelligence Dashboard", 
+             fontsize=16, fontweight='bold')
+
+# Line: Sales Trend
+ax1.plot(months, actual_sales, marker='o', color='blue')
+ax1.set_title("Sales Trend")
+ax1.grid(True, alpha=0.3)
+
+# Bar: Product Revenue
+ax2.bar(products, revenue, color='skyblue')
+ax2.set_title("Revenue by Product")
+ax2.tick_params(axis='x', rotation=15)
+
+# Histogram: Age Distribution
+ax3.hist(customer_ages, bins=15, color='teal', alpha=0.7)
+ax3.set_title("Customer Age Distribution")
+ax3.set_xlabel("Age")
+
+# Pie: Market Share
+ax4.pie(market_share, labels=regions, autopct='%1.1f%%', startangle=90)
+ax4.set_title("Market Share")
+
+plt.tight_layout()
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>2. Pandas Plot</h1>
+    <pre><code>
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+# Simulate flight passenger data over time
+dates = pd.date_range('2020-01-01', periods=60, freq='M')
+passengers = np.random.randint(300, 500, size=60).cumsum()
+
+flights = pd.DataFrame({
+    'Date': dates,
+    'Passengers': passengers
+}).set_index('Date')
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>2.1 Hist Plots</h2>
+    <pre><code>
+data.info()
+data['Age'].hist()
+    </code></pre>
+    <h2>2.2 Line Plots</h2>
+    <pre><code>
+# Simulated monthly sales (in K USD)
+months = np.array([1, 2, 3, 4, 5, 6])  # Jan to Jun
+sales = np.array([120, 135, 140, 130, 145, 160])
+
+plt.figure(figsize=(8, 5))
+plt.plot(months, sales, marker='o', ms=8, 
+         mec='blue', linestyle='-', color='green')
+
+plt.title("Monthly Sales Trend (2025)", fontsize=14, fontweight='bold')
+plt.xlabel("Month")
+plt.ylabel("Sales (K USD)")
+plt.grid(True, alpha=0.3)
+plt.xticks(months, ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'])
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.3 Scatter Plots</h2>
+    <pre><code>
+flights.plot.scatter(x='year' , y='passengers' , figsize=(8,6))
+    </code></pre>
+    <h2>2.4 Bar Plots</h2>
+    <pre><code>
+# Simulate customer data
+np.random.seed(123)
+data = pd.DataFrame({
+    'Sex': np.random.choice(['Female', 'Male'], 100),
+    'Age': np.random.randint(18, 70, 100)
+})
+
+# Calculate mean age by gender
+sex_mean = data.groupby('Sex')['Age'].mean()
+
+df_gender = pd.DataFrame({
+    'Gender': ['Female', 'Male'],
+    'Age': sex_mean.reindex(['Female', 'Male']).values
+})
+
+df_gender.plot.bar(x='Gender', y='Age', figsize=(8, 5), 
+                   title="Average Customer Age by Gender", 
+                   legend=False, color=['pink', 'lightblue'])
+plt.ylabel("Age")
+plt.xticks(rotation=0)
+plt.grid(axis='y', alpha=0.3)
+plt.show()
+
+# barh()
+df.plot.barh(x='Gender' , y='Age' , figsize=(8,6))
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>2.5 Box Plots</h2>
+    <pre><code>
+# Simulate tip data
+tip_data = pd.DataFrame({
+    'day': np.random.choice(['Mon', 'Tue', 'Wed', 'Thu', 'Fri'], 200),
+    'total_bill': np.random.lognormal(3, 0.5, 200) * 10
+})
+
+# Sort days for better visualization
+tip_data['day'] = pd.Categorical(tip_data['day'], 
+                           categories=['Mon', 'Tue', 'Wed', 'Thu', Fri'],
+                                       ordered=True)
+
+tip_data.boxplot(by='day', column=['total_bill'], 
+                 vert=False, grid=False, figsize=(9, 5))
+plt.title("Sales Distribution by Day of Week")
+plt.suptitle("")  # Remove default title
+plt.xlabel("Total Bill (USD)")
+plt.show()
+
+# vert=False
+tip.boxplot(by ='day', column =['total_bill'], vert=False, grid = False)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.6 Area Plots</h2>
+    <pre><code>
+# Area Plot
+flights.plot.area(y='Passengers', figsize=(9, 5), 
+                  title="Cumulative Passengers Over Time")
+plt.ylabel("Passengers")
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+
+</body>
+</html>

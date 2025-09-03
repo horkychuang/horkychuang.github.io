@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 1A</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 11 EZ Python</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">Basic Knowledge III</a></li>
+        <li><a href="#topic2">Basic Knowledge IV</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+ <section id="Introduction">
+    <div class="discussion">
+    <h1>Today's Topic</h1>
+    <ol>
+        <li>Python Introduction</li>
+        <li>Basic Knowledge III : Control Structure</li>
+        <li>Basic Knowledge IV : Functions and Packages</li>
+    </ol> 
+</div>
+</section>
+
+<section>
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>
+        They allow for <mark>decision-making</mark> and <mark>repeating actions</mark>, which are fundamental in creating dynamic and responsive programs.
+    </small></p>
+    <h2>A. Decision Structures</h2>
+    <p><small>
+       The program always needs to be executed depending upon a particular condition. 
+       Python provides the following statements for implementing the decision structure. 
+       <ul>
+         <li>if statement</li>
+         <li>if else statement</li>
+         <li>if-elif-else Statement</li>
+         <li>nested if statement</li>
+       </ul>
+    </small></p>
+</div>
+</section>
+
+
+<section id="topic1">
+<div class="summary">
+    <h2>1.1 if statement</h2>
+    <p><small>
+        If the `condition (Boolean expressions) is true`, statement is executed; otherwise it is `skipped`
+    </small></p>
+    <img src="images\050801.jpg" alt="050801" width="300">
+    <pre><code class="python">
+# Check if revenue is negative and convert to absolute value for reporting
+revenue = float(input("Enter monthly revenue (can be negative): "))
+
+if revenue < 0:
+    revenue = -revenue
+
+print("The absolute value of revenue is", revenue, "USD")
+    </code></pre>
+</div>
+</section>
+
+<section id="topic1">
+<div class="discussion">
+    <h1>1.2 if-else Statement</h1>
+    <p><small>
+       The `condition` is evaluated first. If the condition is true, statement1 is executed. If the condition is false, statement 2 is executed.
+    </small></p>
+    <img src="images\050802.jpg" alt="050802" width="300">
+    <pre><code>
+# Categorize product ID for inventory management
+product_id = int(input('Enter product ID: '))
+
+if product_id % 2 == 0:
+    print(f"Product ID {product_id} is even → Category: Electronics")
+else:
+    print(f"Product ID {product_id} is odd → Category: Apparel") 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>1.3 if-elif-else Statement</h1>
+    <p><small>
+       The `if-elif-else` statement is used when you have `multiple conditions` to check. 
+       It allows you to test multiple conditions and execute the corresponding block of code for the first true condition encountered. 
+       If the conditions in the *if* and all *elif* statements evaluate to false, the `else` block is executed.<br>
+       <mark>elif</mark> is an abbreviation of "else if." 
+       Again, exactly one branch will be executed. There is no limit of the number of elif statements, but the last branch has to be an else statement.
+    </small></p>
+    <img src="images\050803.jpg" alt="050803" width="300"> 
+    <pre><code>
+# Compare Q1 and Q2 sales
+q1_sales = float(input("Enter Q1 sales (in USD): "))
+q2_sales = float(input("Enter Q2 sales (in USD): "))
+
+if q1_sales < q2_sales:
+    print(f"Q1 sales ({q1_sales}) are lower than Q2 sales ({q2_sales}).")
+elif q1_sales > q2_sales:
+    print(f"Q1 sales ({q1_sales}) are higher than Q2 sales ({q2_sales}).")
+else:
+    print(f"Q1 and Q2 sales are equal at {q1_sales}.")  
+    </code></pre>  
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>1.4 Nested Decision Structures</h2>
+    <p><small>
+       One `conditional can also be nested`. Nested `if` statements are used when you need to check `multiple conditions` within another condition 
+    </small></p>
+    <pre><code>
+# Alternative nested structure for sales comparison
+q1 = float(input("Enter Q1 sales: "))
+q2 = float(input("Enter Q2 sales: "))
+
+if q1 == q2:
+    print(f"Q1 and Q2 sales are equal → No change.")
+else:
+    if q1 < q2:
+        print(f"Q1 sales are lower → Consider promotional campaign.")
+    else:
+        print(f"Q1 outperformed Q2 → Review successful strategies.")
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>2. Logical Operators in Condition Tests</h1>
+    <h2>2.1 "and" Operator</h2>
+    <p><small>
+       It returns True if <mark>all the conditions are true</mark>. Otherwise, it returns False
+    </small></p>
+    <pre><code>
+# Loan eligibility check based on age and income
+customer_age = 25
+annual_income = 50000
+
+if customer_age >= 18 and annual_income >= 30000:
+    print(" Customer is eligible for a loan.")
+else:
+    print(" Customer does not meet eligibility criteria.")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.2  "or" Operator</h2>
+    <p><small>
+        It returns True if at least one of the conditions is true, and False if all the conditions are false
+    </small></p>  
+    <pre><code>
+# Check if a customer passed at least one performance metric
+kpi_q1 = 70
+kpi_q2 = 55
+
+if kpi_q1 >= 50 or kpi_q2 >= 50:
+    print(" Customer passed at least one quarter.")
+else:
+    print(" Customer failed both quarters.")
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>2.3 "not" Operator</h2>
+    <p><small>
+        It returns True if the condition is false, and False if the condition is true
+    </small></p>
+    <pre><code>
+# Validate budget input
+expected_budget = 42000
+actual_budget = 17000
+
+if actual_budget != expected_budget:
+    print(" Budget mismatch! Please verify the data.")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>B. Repeating Actions</h1>
+    <p><small>
+       We often require a set of statements to be executed **a number of times**. This type of program execution is called looping. Python provides the following construct.
+       <ul>
+         <li>while loop</li>
+         <li>For loop</li>
+       </ul>
+    </small></p>
+    <h2>1. The while Loop</h2>
+    <p><small>
+        If we want to execute a piece of code as long as <mark>the condition is true</mark>, 
+        we can use a `while` loop. There are three different kinds of loops:
+        <ul>
+            <li>Count-controlled loops: repeating a loop for a certain number of times</li>
+            <li>Condition-controlled loop: will be repeated until a given condition changes</li>
+            <li>Collection-controlled loop: through the elements of a 'collection', which can be an array, list or other ordered sequence</li>
+        </ul>
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <pre><code>
+# Print motivational message for team
+i = 1
+while i <= 5:
+    print(" I love analyzing business data!")
+    i = i + 1  
+    </code></pre>
+    <pre><code>
+# Process customer list by index
+customers = ["Alice Lin", "Bob Chen", "Charlie Wu", "Diana Liu"]
+index = 0
+while index < len(customers):
+    print("Processing customer:", customers[index])
+    index += 1
+    
+# another
+# Process order queue using pop()
+pending_orders = ["Order-1001", "Order-1002", "Order-1003"]
+while pending_orders:
+    current_order = pending_orders.pop()
+    print(" Shipped:", current_order)
+print(" All orders processed.")
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>2. For Loop</h2>
+    <p><small>
+       A for loop is used for iterating <mark>over a sequence</mark> (such as a list, tuple, dictionary, set, or string).  
+       First, we can generate a sequence using `range() function`. 
+       The general format range (start, stop, step) takes three arguments. 
+       Start and Step are the optional arguments. A start argument is a starting number of the sequence. 
+       If start is not specified it starts with 0. 
+       The stop argument is ending number of sequence. 
+       The step argument is linear difference of numbers. The default value of the step is 1 if not specified. 
+    </small></p>
+    <h2>2.1 Range(start, stop, step)</h2>
+    <pre><code>
+# Loop through days 0 to 9
+for day in range(10):
+    print(f"Day {day}", end=' ')
+print()
+
+# Analyze days 2 to 9
+for day in range(2, 10):
+    print(f"Analysis for Day {day}", end=' ')
+print()
+
+# Every 3rd month: review point
+for month in range(3, 31, 3):
+    print(f"Review Month {month}", end=' ')
+print()
+
+# Countdown to quarter end
+for day in range(5, 0, -1):
+    print(f"Closing in {day} days...")
+print(" Quarter closed!")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.2 in List, Tuple, Dictionary</h2>
+    <pre><code>
+# Process marketing leads
+leads = ["Alice Lin", "Bob Chen", "Marketing Team", "David Wang"]
+for lead in leads:
+    print("Email sent to:", lead)
+    </code></pre>
+    <h2>2.3 Nested Loops</h2>
+    <p><small>
+        A loop that inside another loop is called a nested loop
+    </small></p>
+    <pre><code>
+# Print weekly sales pattern
+for week in range(1, 4):
+    for day in range(1, 5):
+        print(f"Day{day}", end=' ')
+    print()
+    </code></pre>
+    <h2>2.4 Create a result from for loop</h2>
+    <pre><code>
+# Build ROI forecast list
+roi_list = []
+for year in range(2, 11):
+    roi_list.append(f"Year-{year}: 12% ROI")
+print(roi_list)
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>3. For loop + Condition Behavior</h1>
+    <p><small>
+       <mark>break</mark> exits the loop prematurely, and <mark>continue</mark> skips the rest of the current iteration and moves to the next one.  
+    </small></p>
+    <pre><code>
+# Stop processing when reaching VIP client
+clients = ["Alice Lin", "Bob Chen", "VIP Client", "David Wang"]
+for client in clients:
+    if client == "VIP Client":
+        break
+    print("Processing:", client)
+
+# Skip invalid transaction ID
+for trans_id in range(1, 20):
+    if trans_id == 12:
+        continue
+    print(f"Processing Transaction {trans_id}")
+    </code></pre>
+    <pre><code>
+# Skip even weeks in reporting
+week = 0
+while week < 10:
+    week += 1
+    if week % 2 == 0:
+        continue
+    print(f"Generate report for Week {week}")
+
+# Interactive city data input
+prompt = "\nEnter city name (type 'quit' to exit): "
+while True:
+    city = input(prompt)
+    if city == 'quit':
+        break
+    else:
+        print(f"Collecting data from {city.title()}...")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>4. Do-While Loop Behavior</h1>
+    <p><small>
+       There is no built-in <mark>do-while</mark> loop like in some other programming languages. 
+       However, you can achieve the same behavior using a `while` loop with a `break` statement. 
+       Here's how you can emulate a **do-while** loop in Python
+    </small></p>
+    <pre><code>
+while True:
+    user_input = input("Enter 'exit' to stop: ")
+    if user_input == 'exit':
+        break
+    </code></pre>
+    <p><small>
+       This approach is similar to a `do-while` loop 
+       where the loop body is guaranteed to execute <mark>at least once</mark> before the condition is checked 
+    </small></p>
+</div>
+</section>
+
+<section id="topic2">
+<div class="discussion">
+    <h1>C. Functions and Packages</h1>
+    <p><small>
+       They allow us to encapsulate a task or a set of instructions into a self-contained block, which can be executed whenever needed 
+    </small></p>
+    <h2>1. Functions</h2>
+    <p><small>
+        Functions are named <mark>blocks of code</mark> designed to do one specific job. 
+        When we want to perform a particular task that you’ve defined in a function, you call the function responsible for it
+    </small></p>
+    <h2>1.1 Defining a Function and Call</h2>
+    <p><small>
+       A function is defined using the `def keyword`, 
+       followed by a <mark>function name</mark>, <mark>parentheses ()</mark>, and a <mark>colon :</mark>. 
+       The `indented` block of code` following the `: ` is the body of the function 
+    </small></p>
+    <pre><code>
+# Define a function to greet users in a BI dashboard
+def welcome_user():
+    print("Hello! Welcome to the Sales Analytics Dashboard.")
+
+# Calling the function
+welcome_user()
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>1.2 Function with Arguments</h2>
+    <pre><code>
+# Greet a specific user (e.g., logged-in analyst)
+def welcome_user(username):
+    print(f"Hello, {username.title()}! Here is your daily report.")
+
+welcome_user('chen')
+    </code></pre>
+    <h2>1.2.1 Arguments and Parameters</h2> 
+    <p><small>
+        We defined greet_user() to require a value for the variable username. 
+        Once we called the function and gave it the information (a person’s name), it printed the right greeting.
+        <ul>
+            <li>An <mark>argument</mark> is a piece of information that’s passed from a function call to a function. 
+                The value was assigned to the <mark>parameter</mark> username</li>
+        </ul>
+    </small></p>  
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>1.2.2 Multiple Parameters</h2>
+    <p><small>
+       A function definition can have `multiple parameters`, a function call may need multiple arguments. 
+       You can pass arguments to your functions in a number of ways. 
+       You can use <mark>positional arguments</mark>, which need to be in `the same order` `the parameters` were written. 
+       In other words, the number of arguments in the call <mark>must match exactly with</mark> the function definition 
+    </small></p>
+    <pre><code>
+# Positional Arguments: Analyze sales by region and product
+def report_sales(region, product):
+    print(f"\nSales data for {region.upper()} region.")
+    print(f"Top product: {product.title()}.")
+
+report_sales('taipei', 'laptop')
+
+# Function to calculate revenue: price × quantity
+def calculate_revenue(price, quantity):
+    return price * quantity
+
+total = calculate_revenue(299.99, 150)  # Price = $299.99, Qty = 150 units
+print(f"Total Revenue: ${total:,.2f}")
+    </code></pre>
+</div>
+</section>
+
+<section id="topic1">
+<div class="discussion">
+    <p><small>
+       Keyword argument<br>
+       A keyword argument is a <mark>name-value pair</mark> that we pass to a function. We `directly associate` the name and the value within the argument, 
+       so when you pass the argument to the function. 
+       In other words, pass arguments by `explicitly specifying the name` of the parameter
+    </small></p>
+    <pre><code>
+# Keyword Arguments: Clear labeling for financial clarity
+def report_sales(region, product):
+    print(f"\nSales data for {region.upper()} region.")
+    print(f"Top product: {product.title()}.")
+
+report_sales(region='kaohsiung', product='wireless earbuds')
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>1.2.3 Default Values</h2>
+    <p><small>
+        We can define a <mark>default value</mark>> for each parameter. 
+        If an argument for a parameter is provided in the function call, 
+        Python uses the argument value. If not, it uses the parameter’s default value.
+    </small></p>  
+    <pre><code>
+# Default Arguments: Assume default product category is 'electronics'
+def report_sales(product, category='electronics'):
+    print(f"\nReporting on {product.title()}, classified under {category}.")
+
+report_sales(product='smartwatch')
+
+# Function with default and required parameters
+def add_sales(base_sales=50000, bonus_sales=0):
+    return base_sales + bonus_sales
+
+monthly_total = add_sales(bonus_sales=12000)
+print(f"Total Monthly Sales: ${monthly_total:,}")
+    </code></pre>
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <h2>1.2.4 Passing a List</h2>
+    <pre><code>
+# Passing a list: Send customer names for personalized emails
+def send_reports(customers):
+    for customer in customers:
+        msg = f" Monthly report has been sent to {customer.title()}."
+        print(msg)
+
+client_list = ['alice lin', 'bob chen', 'diana wu']
+send_reports(client_list) 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>1.3 Return Values</h1>
+    <p><small>
+       A function doesn’t always have to display its output directly. 
+       Instead, it can process some data and then return a value or set of values. 
+       The value the function returns is called a return value. 
+    </small></p>
+    <pre><code>
+# Returning a Simple Value: Net profit calculation
+def calculate_profit(revenue, cost):
+    return revenue - cost
+
+profit = calculate_profit(85000, 62000)
+print(f"Net Profit: ${profit:,}")
+
+# Returning Multiple Values: Financial metrics
+def financial_metrics(revenue, cost):
+    profit = revenue - cost
+    margin = (profit / revenue) * 100
+    return profit, margin
+
+net_profit, profit_margin = financial_metrics(100000, 70000)
+print(f"Profit: ${net_profit:,}, Margin: {profit_margin:.1f}%")
+
+# Return a dictionary: Build a customer profile
+def build_customer(first_name, last_name, age=None, segment=None):
+    customer = {
+        'first': first_name,
+        'last': last_name
+    }
+    if age:
+        customer['age'] = age
+    if segment:
+        customer['segment'] = segment
+    return customer
+
+top_client = build_customer('linda', 'huang', age=34, segment='premium')
+print(top_client)
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>1.4 Passing an Arbitrary Number of Arguments</h2>
+    <pre><code>
+# Variable-length arguments (*args): Dynamic sales inputs
+def calculate_total_sales(*sales):
+    print("Processing daily sales entries:")
+    print(sales)
+    return sum(sales)
+
+daily_total = calculate_total_sales(12000, 15000, 9800, 13200)
+print(f"Total Sales: ${daily_total:,}")
+
+# Accept arbitrary keyword arguments (**kwargs): Flexible reporting
+def log_report(**details):
+    print("\n Report Generation Log:")
+    for key, value in details.items():
+        print(f"{key.title()}: {value}")
+        
+log_report(
+    analyst="Chen Wei",
+    region="Northern",
+    date="2025-04-05",
+    status="Completed"
+) 
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h2>1.5 Lambda/ Anonymous</h2>
+    <p><small>
+       A lambda function can take n number of arguments <mark>at a time</mark>. But it returns only one argument at a time. they don't have a name.  
+       We define the lambda keyword in Python to an unnamed function such as <mark>lambda input_arguments : expression</mark> 
+    </small></p>
+    <pre><code>
+# Lambda function: Inline calculation (e.g., tax)
+(lambda price, tax_rate: price * (1 + tax_rate))(299.99, 0.08)
+
+# Named function alternative
+def tsmc_tax(price, tax_rate):
+    return price * (1 + tax_rate)
+
+tsmc_tax(299.99, 0.08)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>1.5.1 with map()、filter() and reduce()</h2>
+    <pre><code>
+# `map()` function: Apply transformation to all items 
+sales_ntd = [25000, 30000, 28000, 32000]
+exchange_rate = 0.032  # NTD to USD
+sales_usd = list(map(lambda x: x * exchange_rate, sales_ntd))
+print("Sales in USD:", [f"${s:.0f}" for s in sales_usd])
+
+# `filter()` method: Extract high-performing days (sales > $900)
+daily_sales = [850, 920, 700, 950, 880, 1000]
+high_sales_days = list(filter(lambda x: x > 900, daily_sales))
+print("High Sales Days (>$900):", high_sales_days)
+
+
+# List comprehension with lambda: Pre-calculate square targets
+squares = [lambda num = num: num ** 2 for num in range(0, 11)]
+print("Square values from 0 to 10:")
+for square in squares:
+    print(square(), end=" ")
+print()
+
+# Lambda with if-else: Risk classification
+classify_risk = lambda score: "High Risk" if (score < 50) else "Low Risk"
+print("\nRisk Level:", classify_risk(42))  # High Risk
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>D. Modules and Packages</h1>
+    <p><small>
+       Modules and packages are key concepts that facilitate code reuse and organization. 
+       A module is a file containing our definitions and statements, and a package is a way of organizing related modules into a directory hierarchy.<br>
+       One advantage of functions is the way they separate blocks of code from your main program.  
+       We can go a step further by storing your functions in a <mark>separate file</mark> called a module and then importing that module into your main program. 
+    </small></p>
+    <h2>1.1 Importing an Entire Module</h2>
+    <p><small>
+      A module is a file ending in <matk>.py</matk> that contains the code you want to import into your program  
+    </small></p>
+    <pre><code>
+import math
+print(math.sqrt(16)) # Outputs: 4.0
+    </code></pre>
+    <h2>1.2 Importing Specific Functions and Give a Function an Alias</h2>
+    <pre><code>
+<pre><code>
+import pandas as pd
+    </code></pre>
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>2. Python's Standard Library</h1>
+    <h2>2.1 Modules math and datetime</h2>
+    <pre><code>
+import math
+print(math.factorial(5)) # Outputs: 120
+print(math.pow(2, 3)) # Outputs: 8.0
+
+from datetime import datetime
+now = datetime.now()
+print(now.strftime("%Y-%m-%d %H:%M:%S")) 
+# Outputs formatted current time
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>2.2 os, sys, json</h2>
+    <pre><code>
+import os
+print(os.getcwd()) # Outputs current working directory
+
+import sys
+print(sys.path) # Outputs the list of search paths for modules
+
+import json
+json_data = '{"name": "Alice", "age": 30}'
+python_obj = json.loads(json_data)
+print(python_obj) # Outputs: {'name': 'Alice', 'age': 30}
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.3 random and requests</h2>
+    <pre><code>
+import random
+print(random.randint(1, 10)) 
+# Outputs a random integer between 1 and 10
+
+import requests
+response = requests.get('https://api.github.com')
+print(response.status_code) 
+# Outputs the status code of the response
+    </code></pre>
+</div>
+</section>
+
+
+
+
+</body>
+</html>

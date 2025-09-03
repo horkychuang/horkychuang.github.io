@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 3</title>
+
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP */
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 3 Supervised Learning I</h1>
+    <ul>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">Numpy Library</a></li>
+        <li><a href="#topic2">Pandas Library</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="introduction">
+    <div class="discussion">
+        <h1>Today's Topic</h1>
+        <ol>
+            <li>Basic for Supervised Learning</li>
+            <li>Type of Data</li>
+            <li>EZ Classification</li>
+        </ol>
+    </div>
+</section>
+
+<!-- Types of Data Section -->
+<section id="topic1">
+    <div class="summary">
+        <h2>A. Types of Data</h2>
+        <p><small>
+            Data is a collection of facts, observations, measures, text, numbers, images, and videos. 
+        </small></p>
+        <img src="images/2025072301.jpg" alt="2025072301" width="300">
+        <p><small>
+            <ul>
+                <li><mark>Qualitative Data</mark> is the data type that cannot be measured or weighed, for example, taste, color, odor, fitness, name, etc. 
+                    Formally put, when we categorize something or make a classification for it.
+                    <ul>
+                        <li><mark>Binary data</mark>: has only two classes that are mutually exclusive. E.g., Yes/No, dry/wet, hard/soft, good/bad, true/false.</li>
+                        <li><mark>Nominal data</mark>: categorized without order. E.g., names, address, gender. Only mode can be used as central tendency.</li>
+                    </ul>
+                </li>
+            </ul>
+        </small></p>
+
+        <!-- Math Equation: Bayes' Theorem -->
+        <p>
+            The Naive Bayes classifier uses Bayes' Theorem:
+        </p>
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            P(Y|X) = \frac{P(X|Y) \cdot P(Y)}{P(X)}
+            $$
+        </div>
+        <p><small>
+            Where:
+            <ul>
+                <li>$P(Y)$: Prior probability of class $Y$</li>
+                <li>$P(X|Y)$: Likelihood (class-conditional probability)</li>
+            </ul>
+        </small></p>
+    </div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>Python Example</h2>
+    <pre><code>
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+    </code></pre>
+</div>
+</section>
+
+</body>
+</html>

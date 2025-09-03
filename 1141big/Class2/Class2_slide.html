@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 2 Slides</title>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 2 EZ Python III
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>A. Numpy Library</h1>
+    <p><small>
+        NumPy (Numeric Python) is a module for Python. Array is a collection of "items" of the same type. 
+        The item of array can be accessed using index.
+    </small></p>
+    <h2>1. Creating ndarrays</h2>
+    <h2>1.1 Creating special ndarrays</h2>
+    <h2>2 Data types</h2>
+    <h2>2.1 Shape and Size of an ndarray</h2>
+    <img src="images\numpy01.jpg" alt="numpy01" width="300">
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>2.2 Indexing of ndarrays</h2>
+    <img src="images\060208.png" alt="060208" width="300">
+    <img src="images\060209.png" alt="060209" width="300">
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>3. ndarray operations </h2>
+            <h2>3.1 Arithmetic operation with ndarrays</h2>
+            <h2>3.2 Linear Algebra with ndarrays</h2>
+            <h2>3.3 Broadcasting within ndarrays</h2>
+            <img src="images\numpy02.png" alt="numpy02" width="300">
+            <h2>4. Random Numbers and Probability</h2>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>B. Pandas LIbrary</h1>
+    <p><small>
+        The word pandas is an acronym which is derived from "Python and data analysis" and "panel data". It is used for data manipulation and analysis. 
+        The pandas library contains two fundamental data structures <mark>Series</mark> and <mark>DataFrames</mark>. 
+        Most operations data in Python are based upon DataFrames.
+    </small></p>
+    <h2>1. Series and DataFrames</h2>
+    <h2>1.1 Series</h2>
+    <p><small>
+       One-dimensional series of **homogenous** values (integer values, string values, double values, and so on). 
+       The values are labeled with their "index number". **First value has index 0**, second value has index 1 etc  
+    </small></p>
+    <h1>1.2 DataFrames</h1>
+    <p><small>
+       A Pandas DataFrame is a <mark>2 dimensional</mark> data structure, like a 2 dimensional array that consist of <mark>three</mark> components.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>1.3 Setting and removing indexes</h1>
+            <h1>2. DataFrame operation</h1>
+    <h2>2.1 Indexing, selection, and filtering</h2>
+    <h2>2.2 Dropping rows and columns</h2>
+    <h2>2.3. Sorting values and ranking</h2>
+    <h2>2.4 Descriptive Statistics</h2>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>3. Arithmetic operations</h1>
+            <h2>3.1 Merging and combining multiple DataFrame</h2>
+            <h1>4. Grouping operations</h1>
+            <p><small>
+       <ul>
+        <li>First, the data is split into groups based on one or more keys</li>
+        <li>Then we apply necessary functions to these groups to compute the desired results</li>
+       </ul>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>5. Missing data</h1>
+            <h1>6. The transformation with functions and mappings</h1>
+            <h1>7. Pandas Pivot</h1>
+    <p><small>
+        "Pivoting" refers to the transformation of data from one form to another, 
+        typically involving the <mark>rotation</mark> or <mark>reorganization</mark> of the data around certain "key variables"
+    </small></p>
+           <h1>8. Numpy Array and Pandas DataFrame</h1>
+    <p><small>
+       Keep in mind: "nparray" only value, while "dataframe" value, columns, index 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>C. Data Visualization</h1>
+    <p><small>
+        Data visualization is a key skill for aspiring data scientists. 
+        They creates meaningful and insightful plots. 
+        We’ll learn how to build various types of plots, and customize them to be more visually appealing and interpretable.
+    </small></p>
+    <h2>1. Matplotlib</h2>
+    <pre><code>
+# python -m pip install --user matplotlib # via `the command line (cmd) `
+pip install matplotlib
+print(plt.__version__)
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+%matplotlib inline
+    </code></pre>
+    <p><small>
+       The command "%matplotlib inline" makes only sense, if you work with "Ipython Notebook such as colab".
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>1 Matplotlib Plotting</h2>
+    <p><small>
+       By default, the "plot()" function draws a <mark>line from point to point.</mark> 
+       The function takes parameters for specifying points in the diagram. 
+       Parameter 1 is an array containing the points on the `x-axis`. 
+       Parameter 2 is an array containing the points on the `y-axis`. 
+    </small></p>
+    <h2>1.1  Marker Size and Color</h2>
+    <p><small>
+      <ol>
+        <li>`ms` to set the size of the markers.</li>
+        <li>`mec` to set the color of the *edge* of the markers</li>
+        <li>marker = 'o`.</li>
+      </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>2. Layout</h1>
+    <h2>2.1 Labels and Title</h2>
+    <p><small>
+       we can use the "xlabel()" and "ylabel()" functions to set a label for the x- and y-axis. 
+       The "title()" function to set a title for the plot  
+    </small></p>
+    <h2>2.2  Legend</h2>
+    <p><small>
+       add an `explanation` for each wedge, use the "legend()" function.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>3. The type of Plots</h1>
+    <h2>3.1 Scatter - `plt.scatter()`</h2>
+    <h2>3.2 Bars - `plt.bar()`</h2>
+    <h2>3.3 Histograms - `plt.hist`</h2>
+    <h2>3.4 Pie Charts - `plt.pie()`</h2>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Ax.plot()</h1>
+    <h2>4.1 Figure and Axes</h2>
+    <p><small>
+       A matplotlib object is a tree-like structure of matplotlib objects which build a "hierarchy". 
+       The top of the tree-like structure of matplotlib objects is the `figure` object. 
+       A figure can be seen as the container which contains one or more plots. 
+       The plots are called `axes` in matplotlib jargon. 
+       Axes is the plural of the word "axis", which gives us a misleading idea. 
+       We can think about "axes" as a synonym for the word "plot". 
+    </small></p>
+    <img src="images\mat01.jpg" alt="mat01" width="400">
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>A figure may also contain more than one axes</small>
+    <img src="images\mat02.jpg" alt="mat02" width="600">
+        <h2>4.2 Subplot() and Subplots()</h2>
+        </div>
+    </div>
+
+    
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

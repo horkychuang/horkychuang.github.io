@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 1</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 1 EZ Python</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">Basic Knowledge I</a></li>
+        <li><a href="#topic2">Basic Knowledge II</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+ <section id="Introduction">
+    <div class="discussion">
+    <h1>Today's Topic</h1>
+    <ol>
+        <li>Python Introduction</li>
+        <li>Basic Knowledge I : Variable and Data Type</li>
+        <li>Basic Knowledge II : Data Collection</li>
+    </ol> 
+</div>
+</section>
+
+<section>
+    <div class="summary">
+    <h1>Introduction</h1>
+    <img src="images\01.jpg" alt="01" width="300">
+    <p><small>
+        Python is a modern programming language. It was created by Guido van Rossum, and released in 1991. 
+        It’s great as a first language because it is concise and easy to read. 
+        You can use it for web development, to handle big data, machine learning, data science, and software development. 
+        So, once you learn the fundamentals, you can grow into the role of your choice!
+    </small></p>
+</div>
+</section>
+
+
+<section >
+<div class="summary">
+    <h2>print() Function</h2>
+    <pre><code class="python">
+# Display key product categories in the retail business
+print("Electronics", "Apparel", "Home & Kitchen")
+
+# Show financial performance metrics
+print(f"Expected Return: {return}")
+print(f"Annual Return: {annual_returns(monthly_returns):.2f}%")
+    </code></pre>
+    <h2>Comments in Python</h2>
+    <pre><code class="python">
+# Single-Line Comments: Adding context for clarity
+print("National Chi-Nan University")  # Institution name for research project
+print("Puli, Nantou")  # Location of data collection
+
+# Multi-Line Comments: Explaining a critical data processing block
+"""
+This is a multi-line comment
+describing the logic used to identify high-performing sales regions
+based on monthly revenue and growth trends.
+"""
+print("Hello, world!")
+    </code></pre>
+    <h2>Basic Syntax Rules</h2>
+    <pre><code class="python">
+# Indentation: **4 spaces for structured decision logic**
+if total_sales > target:
+    print("Sales target achieved.")  # Actionable insight
+    </code></pre>
+</div>
+</section>
+
+<section id="topic1">
+<div class="discussion">
+    <h1>Basic Knowledge I: Variables</h1>
+    <h2>1. Variables</h2>
+    <p><small>
+       <ul>
+        <li>A variable is a name that represents a value in the computer’s memory</li>
+        <li>we assign<mark> = </mark> value to it (e.g., iPhone XVI)</li>
+      </ul>
+    </small></p>
+    <pre><code>
+# Basic arithmetic for daily operations
+revenue = 10
+cost = 15
+profit = cost - revenue  # Profit calculation 
+print("Net loss from operations:", profit) 
+    </code></pre>
+    <h2>2. Naming Rule of Variable</h2>
+    <pre><code>
+# Defining business variables with meaningful names
+customer_age = 25
+customer_name = "John"
+email_address = "john@example.com"
+total_sales = 500.50
+sales_rep = "Mary"
+
+# Invalid variable names (examples of what NOT to do in BI scripts):
+2nd_quarter_sales = 80          # ❌ Cannot start with a number
+first-name = "John"             # ❌ Hyphens are invalid
+total/sales = 500               # ❌ Special characters not allowed
+email address = "john@example.com"  # ❌ Spaces break syntax
+if = 10                         # ❌ 'if' is a reserved keyword 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>A. Data Type</h1>
+    <h2>1. Strings</h2>
+    <p><small>
+       Each character in a string has an <mark>index</mark> that specifies its `position` in the string.<br>
+       Strings can be enclosed in <mark>single quotes ('...')</mark> or <mark>double quotes ("...")</mark>
+    </small></p>
+    <img src="images\060204.png" alt="060204" width="300">   
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>1.1 Slicing</h2>
+    <img src="images\ch1-1E.png" alt="ch1-1E" width="300">
+    <pre><code>
+# slicing: Extracting relevant parts of business data
+s = "Sales_Q3_Report_Final"
+print(s[0:10])  
+# Output: Sales_Q3_R
+
+# A product code (e.g., for validation or analysis)
+product_code = 'PRD789'
+for char in product_code:
+    print(char)  
+# Outputs each character: P, R, D, 7, 8, 9
+
+# Concatenation: Combining business fields
+first_name = "Emma"
+last_name = "Chen"
+
+full_name = first_name + " " + last_name 
+print(full_name)  
+
+# Length: Counting characters 
+customer_id = 'CUST98765'
+len(customer_id)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic1">
+<div class="discussion">
+    <h2>2. Numbers</h2>
+    <p><small>
+       <ul>
+          <li>Python supports `integers`, `floating point numbers`, and `complex numbers`. </li>
+       </ul>
+    </small></p>
+    <pre><code>
+# Numeric operations: Financial calculations
+revenue = 250000    # in USD
+cost = 4500.75
+profit_estimate = revenue - cost
+print(profit_estimate)  # Outputs: 245499.25
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>3.Booleans</h2>
+    <p><small>
+        <ul>
+            <li>Either <mark>True</mark> or <mark>False</mark></li>
+        </ul>
+    </small></p>  
+    <pre><code>
+# Customer status tracking
+is_active = True
+is_registered_for_webinar = False
+
+if is_active and not is_registered_for_webinar:
+    print("not yet registered for webinar – send reminder.")  
+# Triggers targeted marketing actions
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>4. Dynamic Typing and Mutable</h2>
+    <pre><code>
+# Dynamic typing: Flexibility in data handling
+record_id = 1001
+print(record_id)  # Outputs: 1001 (numeric ID)
+
+record_id = "CUST-1001-Q3"  # Now includes context (customer + quarter)
+print(record_id)  # Outputs: CUST-1001-Q3 
+    </code></pre>
+    <p><small>
+        Mutable and Immutable Data Types
+        <ul>
+            <li>Mutable objects can <mark>change their value</mark> but keep their `id()`, which include `list`, `dict`, `set`</li>
+            <li>Immutable objects cannot change their value and include `int`, `float`, `bool`, `string`, `tuple`</li>
+        </ul>
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>B. Operators Operators </h1>
+    <p><small>
+       Operators are categorized into several types: *arithmetic*, *comparison*, and *Relational, Logical assignment, and In* operators
+    </small></p>
+    <pre><code>
+# Arithmetic Operations: Financial & Operational Calculations
+total_revenue = 250000 + 75000        # Sum: Q1 + Q2 revenue → 325,000
+cost_of_goods = 250000 - 180000       # Difference: Gross profit → 70,000
+gross_margin = 1500 * 45.99           # Product: Units sold × price 
+average_order_value = 45000 / 1200    # Quotient: Total sales / orders 
+leftover_inventory = 1007 % 50        
+monthly_target = 95000 // 30          # Floor division: Daily sales goal 
+growth_projection = 1.08 ** 5      # Power: 8% annual growth over 5 years 
+    </code></pre>
+    <pre><code>
+# Relational Operators: Performance & Threshold Checks
+actual_sales == target_sales          # Check if goal was met 
+revenue_2023 != revenue_2022          # Compare year-over-year performance
+profit_margin > 0.15                  # Is margin > 15%? 
+customer_age < 18                     # Is customer a minor? 
+total_orders >= 100                   # Store at least 100 orders?
+avg_delivery_time <= 2.5              # Is delivery time under 2.5 days? 
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <pre><code>
+# Assignment Operators: Accumulating Business Metrics
+quarterly_sales = 50000
+quarterly_sales += 65000              # Add Q2 sales → 115,000
+quarterly_sales -= 5000               # Deduct returns → 110,000
+quarterly_sales *= 1.1                # Apply 10% forecast growth 
+quarterly_sales /= 12                 # Monthly average → ~10,083
+quarterly_sales %= 1000               # Extract remainder for precision
+quarterly_sales //= 100               
+quarterly_sales **= 2  
+    </code></pre>
+    <pre><code>
+# Logical Operators: Decision-Making in BI
+customer_age = 65
+is_senior = customer_age >= 60
+is_active = True
+
+is_senior and is_active          # True: Target for senior loyalty program
+is_senior or is_student          # True if either condition is met 
+not(is_senior and is_active)     # Negation: Filter out seniors from general campaign
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <pre><code>
+# Membership Operator: Categorization & Filtering
+region_code = "R3"
+region_code in ("R1", "R2", "R3")    # True 
+
+# Input & Type Conversion: Interactive Data Collection
+age = input("Enter customer age: ")   # e.g., user types "32"
+age = int(age)                        # Convert string input to integer
+print(f"Customer is {age} years old.")  # Used in demographic analysis
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>C. Converting Types</h1>
+    <pre><code>
+age = input("Enter wer age: ") # input() returns a string
+age = int(age) # Convert string to integer
+print(f"we are {age} years old.")
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="discussion">
+    <h1>Basic Knowledge II: Data Collection</h1>
+    <h2>A. List</h2>
+    <p><small>
+      A <mark>list</mark> is an <mark>ordered</mark> collection of items which can be of `varied data types`. 
+      Lists are <mark>mutable</mark>, meaning they can be altered after their creation.  
+    </small></p>
+    <h2>1.1 Creating a List</h2>
+    <p><small>
+        They are defined by <mark>square brackets [ ]</mark>, with items separated by commas
+    </small></p>
+    <pre><code>
+# Sales data: List of quarterly revenues (in thousands)
+sales = [250, 300, 280, 320]  # Q1, Q2, Q3, Q4 → all integers
+
+# Mixed-type list: Customer record (ID, name, region, contact)
+customer_record = [1001, 'Linda Chen', 'Taiwan', 0935123456]  
+
+# Empty list: Initialize for dynamic data collection (e.g., new leads)
+new_leads = []
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>1.2 Accessing List Elements</h1>
+    <p><small>
+       List items can be accessed by their <mark>index</mark> . 
+       Each item has an index indicating its position in the list. 
+       The first item in a list is at index <mark>0</mark>, the second at index 1, and so on
+    </small></p>
+    <pre><code>
+# Product list: Top-selling items in e-commerce store
+products = ["laptop", "smartphone", "tablet"]
+print(products)  # Outputs: ['laptop', 'smartphone', 'tablet']
+
+# Access second product (index 1)
+print(products[1])  # Outputs: 'smartphone'
+
+# Access last item using negative indexing
+print(products[-1])  # Outputs: 'tablet'
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>1.3 Modifying Lists</h1>
+    <pre><code>
+# Update product due to inventory change
+products[1] = "wireless earbuds"  # Replace smartphone with trending item
+
+# Add new product to end of list
+products.append("smartwatch")
+
+# Remove discontinued item
+products.remove("laptop")
+
+print(products)  # Updated product catalog
+
+# Insert new product at position 1
+products.insert(1, "fitness tracker")
+
+# Sort products alphabetically for reporting
+products.sort()
+# products.sort(reverse=True)  # For descending order
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>1.4 List Operations</h2>
+    <p><small>
+       <ul>
+        <li>concatenation, repetition, and **methods** like sort(), reverse(), and extend() </li>
+       </ul>
+    </small></p>
+    <pre><code>
+# Another category: Physical store inventory
+accessories = ["charger", "case", "screen protector"]
+
+# Combine online and in-store product lists
+full_inventory = products + accessories
+print(full_inventory)
+
+# Repeat seasonal sales targets for multiple regions
+base_targets = [100, 120, 90]
+expanded_targets = base_targets * 2  # Apply same targets to two regions
+print(expanded_targets)  # [100, 120, 90, 100, 120, 90]
+
+# Check if a product is in inventory
+"tablet" in products  # Returns True or False 
+
+# Find total number of products
+len(full_inventory)  # Useful for dashboard KPIs
+
+# Loop through sales team members for performance review
+sales_team = ['Alice Lin', 'David Wang', 'Sofia Huang']
+
+for member in sales_team:
+    print(f"Reviewing performance: {member}")
+    </code></pre>   
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h2>1.5 Slicing a Lis</h2>
+    <p><small>
+       Keep in mind that Python stops one item **before the second index** (but not including) you specify. 
+    </small></p>
+    <pre><code>
+# Slicing: Analyze top performers from leader board
+leaderboard = ['Charles', 'Martina', 'Michael', 'Florence', 'Eli']
+
+print(leaderboard[0:3])   # Top 3 performers
+print(leaderboard[1:4])   # Middle-ranked staff
+print(leaderboard[:4])    # First 4 employees
+print(leaderboard[2:])    # From 3rd onward
+print(leaderboard[-3:])  # Last 3 employees → potential at-risk performers
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>B. Tuple</h1>
+    <h2>1.1 Creating a Tuple</h2>
+    <p><small>
+        Similar to a list in terms of indexing, nested objects, and iteration. 
+        However, unlike lists, tuples are <mark>immutable</mark>. 
+        Once a tuple is created, it cannot be altered.  
+        Tuples are defined by <mark>parentheses ()</mark>, with items separated by commas
+    </small></p>  
+    <pre><code>
+# Immutable data: Fixed dimensions (e.g., store size in sq ft)
+store_size = (1200, 800)  # Width, Length
+print(store_size)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <h2>1.2 Accessing Tuple Elements</h2>
+    <pre><code>
+print(store_size[0])  # Access width → 1200
+
+# store_size[0] = 1500  # ❌ Error! Tuples are immutable → protects critical data
+
+# Combine dimensions from multiple stores
+store_b_size = (900, 700)
+all_store_sizes = store_size + store_b_size
+print(all_store_sizes)  # (1200, 800, 900, 700) 
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>C. Dictionaries</h1>
+    <p><small>
+       A dictionary in Python is an <mark>unordered</mark> collection of data values, used to store data values like a map. 
+       The dictionaries hold <mark>key-value pairs</mark>. 
+       Keys in a dictionary must be unique and immutable, which typically are strings, numbers, or tuples. 
+    </small></p>
+    <h2>1.1 Creating a Dictionary </h2>
+    <p><small>
+       Dictionaries are defined by <mark>(curly) braces { }</mark> with each item being a pair in the form key: value. 
+    </small></p>
+    <pre><code>
+# Dictionary: Customer profile (key-value pairs)
+customer = {
+    "name": "Alice Wu",
+    "age": 25,
+    "city": "Tainan"
+}
+print(customer)
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>1.2 Accessing Dictionary Elements</h2>
+    <p><small>
+       we can access the <mark>values</mark> in the dictionary by referring to its <mark>key</mark> 
+    </small></p>
+    <pre><code>
+print(customer["name"])  # Retrieve customer name
+    </code></pre>
+    <h2>1.3 Modifying Dictionaries</h2>
+    <p><small>
+       Dictionaries are mutable. we can add new key-value pairs, modify values, or delete key-value pairs 
+    </small></p>
+    <pre><code>
+# Update customer info
+customer["age"] = 30
+customer["profession"] = "Marketing Manager"  # Add new attribute
+
+# Remove outdated field
+del customer["city"]
+print(customer)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h2>1.4 Dictionary Methods</h2>
+    <p><small>
+       Dictionaries have built-in methods, such as `get()`, `keys()`, `values()`, and `items()` 
+    </small></p>
+    <pre><code>
+# Extract keys and values for reporting
+print(customer.keys())    # ['name', 'age', 'profession']
+print(customer.values())  # ['Alice Wu', 30, 'Marketing Manager']
+
+# Loop through customer survey respondents
+survey_responses = {
+    'jen': 'python',
+    'sarah': 'c',
+    'edward': 'rust',
+    'phil': 'python',
+}
+
+for respondent in survey_responses.keys():
+    print(f"Respondent: {respondent.title()}")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>D. Sets</h1>
+    <h2>1.1 Creating a Set</h2>
+    <p><small>
+       A set is an <mark>unordered</mark> collection of unique items. Sets are are ideal for performing mathematical set operations like unions, intersections, and differences.<br> 
+       Sets are defined by <mark>curly braces {}</mark> or the set() function, and they automatically remove duplicate items 
+    </small></p>
+    <pre><code>
+# Set: Unique categories (no duplicates) – e.g., customer feedback tags
+feedback_tags = {"refund", "delivery", "quality", "refund", "support", "delivery"}
+print(feedback_tags)  # Outputs unique tags only
+    </code></pre>
+    <h2>1.2 Accessing Set Elements</h2>
+    <p><small>
+       we can loop through the set items, or check if a value is present.
+    </small></p>
+    <pre><code>
+if "delivery" in feedback_tags:
+    print("Delivery issue reported → escalate to logistics team")
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>1.3 Modifying Sets</h2>
+    <p><small>
+      We can add items to sets using the <mark>add()</mark> method, and multiple items using the update() method. 
+      Items can be removed using <mark>remove()</mark> or <mark>discard()</mark>  
+    </small></p>
+    <pre><code>
+# Add new category
+feedback_tags.add("pricing")
+
+# Remove resolved category
+feedback_tags.discard("support")
+print(feedback_tags)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>1.4 Set Operations</h2>
+    <p><small>
+      Sets are ideal for mathematical operations like <mark>unions (|)</mark>, <mark>intersections (&)</mark>, and <mark>differences (-)</mark> 
+    </small></p>
+    <pre><code>
+# Set operations for market analysis
+digital_channels = {"email", "social", "search"}
+traditional_channels = {"TV", "radio", "print", "social"}
+
+all_channels = digital_channels | traditional_channels       # Union
+shared_channels = digital_channels & traditional_channels   # Intersection
+digital_only = digital_channels - traditional_channels       # Difference
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>E. Explicit Conversion</h1>
+    <h2>Implicit Conversion</h2>
+    <pre><code>
+# Numeric operations: Financial analysis
+revenue_million = 456
+cost_per_unit = 1.67
+
+profit_estimate = revenue_million + cost_per_unit
+print("Profit Estimate:", profit_estimate)
+print("Data type of result:", type(profit_estimate))# float due to decimal
+    </code></pre>
+    <h2>Explicit Conversion</h2>
+    <pre><code>
+# String to integer:
+num_str = "456"
+num_int = int(num_str)
+print("Data type of num_int:", type(num_int))
+
+# String to Float:
+str_to_float = float("123.45")
+print(str_to_float, type(str_to_float))
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <pre><code>
+# String to integer: Convert sales input from form
+sales_str = "456"
+sales_num = int(sales_str)
+print("Data type of sales_num:", type(sales_num))  # <class 'int'>
+
+# String to float: Parse pricing data
+price_float = float("123.45")
+print(price_float, type(price_float))
+
+# Integer/Float to string: For report generation
+units_sold = str(100)
+avg_rating = str(4.7)
+print("Units sold: " + units_sold, type(units_sold))
+print("Average rating: " + avg_rating, type(avg_rating))
+
+# Integer to float: For precise calculations
+int_to_float = float(100)
+print(int_to_float, type(int_to_float))  # 100.0 <class 'float'>
+# Float to integer: Round down for reporting (e.g., full units sold)
+float_to_int = int(123.45)
+print(float_to_int, type(float_to_int))  # 123 <class 'int'>
+    </code></pre>
+    <pre><code>
+# Converting to Lists: From tuple (e.g., database row)
+quarter_data = (250, 300, 280)
+quarter_list = list(quarter_data)
+print(quarter_list, type(quarter_list))
+
+# Converting to Tuples: Immutable backup of list
+product_list = ["laptop", "tablet", "smartphone"]
+product_tuple = tuple(product_list)
+print(product_tuple, type(product_tuple))
+
+# Converting to Sets: Remove duplicates from survey responses
+responses = ["Yes", "No", "Yes", "Maybe", "No", "Yes"]
+unique_responses = set(responses)
+print(unique_responses, type(unique_responses))  # {'Yes', 'No', 'Maybe'}
+    </code></pre>
+</div>
+</section>
+
+
+
+
+
+</body>
+</html>

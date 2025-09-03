@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 1 Slides</title>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 1 EZ Python I
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+    <img src="images\01.jpg" alt="01" width="500">
+    <p><small>
+        Python is a modern programming language. It was created by Guido van Rossum, and released in 1991. 
+        It’s great as a first language because it is concise and easy to read. 
+        You can use it for web development, to handle big data, machine learning, data science, and software development. 
+        So, once you learn the fundamentals, you can grow into the role of your choice!
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>print() Function</h2>
+    <pre><code class="python">
+# Display key product categories in the retail business
+print("Electronics", "Apparel", "Home & Kitchen")
+
+# Show financial performance metrics
+print(f"Expected Return: {return}")
+print(f"Annual Return: {annual_returns(monthly_returns):.2f}%")
+    </code></pre>
+    <h2>Comments in Python</h2>
+    <pre><code class="python">
+# Single-Line Comments: Adding context for clarity
+print("National Chi-Nan University")  # Institution name for research project
+print("Puli, Nantou")  # Location of data collection
+
+# Multi-Line Comments: Explaining a critical data processing block
+"""
+This is a multi-line comment
+describing the logic used to identify high-performing sales regions
+based on monthly revenue and growth trends.
+"""
+print("Hello, world!")
+    </code></pre>
+    <h2>Basic Syntax Rules</h2>
+    <pre><code class="python">
+# Indentation: **4 spaces for structured decision logic**
+if total_sales > target:
+    print("Sales target achieved.")  # Actionable insight
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Basic Knowledge I: Variables</h1>
+    <h2>1. Variables</h2>
+    <p><small>
+       <ul>
+        <li>A variable is a name that represents a value in the computer’s memory</li>
+        <li>we assign<mark> = </mark> value to it (e.g., iPhone XVI)</li>
+      </ul>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>2. Naming Rule of Variable</h2>
+    <pre><code>
+# Defining business variables with meaningful names
+customer_age = 25
+customer_name = "John"
+email_address = "john@example.com"
+total_sales = 500.50
+sales_rep = "Mary"
+
+# Invalid variable names (examples of what NOT to do in BI scripts):
+2nd_quarter_sales = 80          # ❌ Cannot start with a number
+first-name = "John"             # ❌ Hyphens are invalid
+total/sales = 500               # ❌ Special characters not allowed
+email address = "john@example.com"  # ❌ Spaces break syntax
+if = 10                         # ❌ 'if' is a reserved keyword 
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>A. Data Type</h1>
+            <h2>1. Numbers</h2>
+    <p><small>
+       <ul>
+          <li>Python supports <mark>integers</mark>, <mark>floating point numbers</mark>, and <strong>complex numbers</strong>. </li>
+       </ul>
+    </small></p> 
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>2. Strings</h2>
+    <p><small>
+       Each character in a string has an <mark>index</mark> that specifies its `position` in the string.<br>
+       Strings can be enclosed in <mark>single quotes ('...')</mark> or <mark>double quotes ("...")</mark>
+    </small></p>
+    <img src="images\060204.png" alt="060204" width="600"> 
+    
+    <h2>2.1 Slicing</h2>
+
+    <h2>3.Booleans</h2>
+    <p><small>
+        <ul>
+            <li>Either <mark>True</mark> or <mark>False</mark></li>
+        </ul>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">            
+    <h1>B. Operators Operators </h1>
+    <p><small>
+       Operators are categorized into several types: <mark>arithmetic</mark>, <mark>comparison</mark>, 
+       and <mark>Relational, Logical assignment</mark>, and <mark>In</mark> operators
+    </small></p>    
+    <h1>C. Converting Types</h1>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Basic Knowledge II: Data Collection</h1>
+    <h2>A. List</h2>
+    <p><small>
+      A <mark>list</mark> is an <mark>ordered</mark> collection of items which can be of `varied data types`. 
+      Lists are <mark>mutable</mark>, meaning they can be altered after their creation.  
+    </small></p>
+    <h2>1.1 Creating a List</h2>
+    <p><small>
+        They are defined by <mark>square brackets [ ]</mark>, with items separated by commas
+    </small></p>
+    <h1>1.2 Accessing List Elements</h1>
+    <p><small>
+       List items can be accessed by their <mark>index</mark> . 
+       Each item has an index indicating its position in the list. 
+       The first item in a list is at index <mark>0</mark>, the second at index 1, and so on
+    </small></p>
+    <h1>1.3 Modifying Lists</h1>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>1.4 List Operations</h2>
+    <p><small>
+       <ul>
+        <li>concatenation, repetition, and methods like sort(), reverse(), and extend() </li>
+       </ul>
+    </small></p>
+            <h2>1.5 Slicing a List</h2>
+    <p><small>
+       Keep in mind that Python stops one item **before the second index** (but not including) you specify. 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>B. Tuple</h1>
+    <h2>1.1 Creating a Tuple</h2>
+    <p><small>
+        Similar to a list in terms of indexing, nested objects, and iteration. 
+        However, unlike lists, tuples are <mark>immutable</mark>. 
+        Once a tuple is created, it cannot be altered.  
+        Tuples are defined by <mark>parentheses ()</mark>, with items separated by commas
+    </small></p> 
+    <h2>1.2 Accessing Tuple Elements</h2>
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>C. Dictionaries</h1>
+    <p><small>
+       A dictionary in Python is an <mark>unordered</mark> collection of data values, used to store data values like a map. 
+       The dictionaries hold <mark>key-value pairs</mark>. 
+       Keys in a dictionary must be unique and immutable, which typically are strings, numbers, or tuples. 
+    </small></p>
+    <h2>1.1 Creating a Dictionary </h2>
+    <p><small>
+       Dictionaries are defined by <mark>(curly) braces { }</mark> with each item being a pair in the form key: value. 
+    </small></p>
+    <h2>1.2 Accessing Dictionary Elements</h2>
+    <p><small>
+       we can access the <mark>values</mark> in the dictionary by referring to its <mark>key</mark> 
+    </small></p>
+    <h2>1.3 Modifying Dictionaries</h2>
+    <p><small>
+       Dictionaries are mutable. we can add new key-value pairs, modify values, or delete key-value pairs 
+    </small></p>
+    <h2>1.4 Dictionary Methods</h2>
+    <p><small>
+       Dictionaries have built-in methods, such as `get()`, `keys()`, `values()`, and `items()` 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide">
+        <div class="bb">
+    <h1>D. Sets</h1>
+    <h2>1.1 Creating a Set</h2>
+    <p><small>
+       A set is an <mark>unordered</mark> collection of unique items. Sets are are ideal for performing mathematical set operations like unions, intersections, and differences.<br> 
+       Sets are defined by <mark>curly braces {}</mark> or the set() function, and they automatically remove duplicate items 
+    </small></p>
+    <h2>1.2 Accessing Set Elements</h2>
+    <p><small>
+       we can loop through the set items, or check if a value is present.
+    </small></p>
+    <h2>1.3 Modifying Sets</h2>
+    <p><small>
+      We can add items to sets using the <mark>add()</mark> method, and multiple items using the update() method. 
+      Items can be removed using <mark>remove()</mark> or <mark>discard()</mark>  
+    </small></p>
+    <h2>1.4 Set Operations</h2>
+    <p><small>
+      Sets are ideal for mathematical operations like <mark>unions (|)</mark>, <mark>intersections (&)</mark>, and <mark>differences (-)</mark> 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>E. Explicit Conversion</h1>
+    <h2>Implicit Conversion</h2>
+    <h2>Explicit Conversion</h2>
+        </div>
+    </div>
+
+    
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
