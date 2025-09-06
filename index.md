@@ -1,4 +1,4 @@
-# Welcome to My GitHub Repository
+# Welcome to Horkychuang GitHub Repository
 
 This repository contains files organized in a nested directory structure. Each file is contained within its own subdirectory under the main A and B directories.
 
@@ -7,7 +7,7 @@ This repository contains files organized in a nested directory structure. Each f
 - [a1A](./114fin/Class1/Class11_slide.html)
 - [b1A](./1141big/Class0/Class0_slide.html)
 
-## 📁 Directory A
+## 📁 Directory A - for Python in FIN
 
 Individual file directories in A:
 
@@ -24,7 +24,7 @@ Individual file directories in A:
 - [a9](./114fin/Class9/Class9_slide.html) - File Class0_slide in directory A/a9
 - [a10](./114fin/Class10/Class10_slide.html) - File Class0_slide in directory A/a10
 
-## 📁 Directory B
+## 📁 Directory B for Big Data and Business Intelligence in IBM
 
 Individual file directories in B:
 
