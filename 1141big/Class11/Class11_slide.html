@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 11 NLP with Chinese Text
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+    <p><small>
+        <mark>Natural Language Processing (NLP)</mark> is a field of artificial intelligence (AI) 
+        that focuses on the interaction between `computers` and `human language`. 
+        It aims to enable machines to understand, interpret, and generate human language in a way that is both meaningful and useful.<br>
+        <mark>Text mining</mark> is a subtype of data mining. 
+        It focuses on `data mining` and `ML methods` as it relates to textual information. 
+        More specifically, it extracts the `information from text files unstructured textual resources`. 
+        A wide array of text files can be used in text mining including structured and unstructured data in emails, social media posts, and web content. 
+    </small></p>
+    <img src="images\w10_01.jpg" alt="w10_01" width="500">
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>The Process of Text Mining</h2>
+    <img src="images\w10_02.jpg" alt="w10_02" width="500">
+    <p><small>
+        <ol>
+            <li><mark>Text cleanup</mark>: remove ads from web pages, normalize text converted from binary formats, deal with tables,figures and formulas,	…</li>
+            <li><mark>Tokenization</mark>: Splitting up a string of characters into a set of tokens. 
+                Tokenization is the process of breaking up a given `text` into units called tokens. 
+                A sentence of 10 words, then, would contain 10 tokens.</li>
+        </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Why NLP for Chinese is Different?</h2>
+    <p><small>
+        <table border="1">
+    <tr>
+        <td>Type</td>
+        <td>English</td>
+        <td>Chinese</td>
+    </tr>
+    <tr>
+        <td>Word Separation</td>
+        <td>Spaces between words</td>
+        <td>No spaces — need segmentation</td>
+    </tr>
+    <tr>
+        <td>Characters</td>
+        <td>Letters form words</td>
+        <td>Characters often carry meaning</td>
+    </tr>
+    <tr>
+        <td>Tokenization</td>
+        <td>Split by space</td>
+        <td>Need tools like**Jieba**</td>
+    </tr>
+</table>
+    <ol>
+        <li>English: `"I love Badminton"` → `["I", "love", "Badminton"]`</li>
+        <li>Chinese: `"我愛羽球"` → Must segment into `["我", "愛", "羽球"]`</li>
+    </ol>
+    </small></p> 
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>The process for NLP in Chinese</h1>
+    <p><small>
+      <table border="1">
+    <tr>
+        <td>Step</td>
+        <td>Purpose</td>
+    </tr>
+    <tr>
+        <td>1. Segmentation (`jieba`)</td>
+        <td>Split Chinese text into words</td>
+    </tr>
+    <tr>
+        <td>2. Cleaning</td>
+        <td>Remove punctuation and stop words</td>
+    </tr>
+    <tr>
+        <td>3. Word Frequency</td>
+        <td>Find important words</td>
+    </tr>
+    <tr>
+        <td>4. TF-IDF</td>
+        <td>Convert text to numbers (vectors)</td>
+    </tr>
+    <tr>
+        <td>5. Cosine Similarity</td>
+        <td>Measure how similar two texts are</td>
+    </tr>
+</table>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <p>Jieba library<small>
+    <mark>Jieba</mark> is a popular Python library for Chinese text processing, 
+    widely used for its robust word segmentation capabilities. 
+    It supports multiple segmentation modes (precise, full, and search), part-of-speech tagging, 
+    and keyword extraction using algorithms like TF-IDF and TextRank. 
+    Jieba is efficient, customizable (e.g., allows user-defined dictionaries), 
+    and well-suited for tasks like text preprocessing for recommender systems, sentiment analysis, or information retrieval in Chinese.
+    </small></p>
+    <pre><code>
+import jieba
+
+text = "我愛打羽球，也喜歡看NBA比賽。"
+
+# Cut into words
+words = jieba.lcut(text, cut_all=True)
+print("Segmented words:", words)
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Text Cleaning (Remove Punctuation, Stop Words)</h2>
+    <pre><code>
+# Define common Chinese stop words
+stop_words = {'，', '。', '！', '？', '的', '了', '是', '在', '我', '有', '和', '就', '不', '都', '一'}
+
+# Clean the words
+filtered_words = [word for word in words if word not in stop_words and len(word) > 1]
+print("Filtered words:", filtered_words)
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Basic Text Mining</h1>
+    <h2>TF-IDF – Turn Text into Numbers</h2>
+    <p><small>
+        <mark>TF-IDF</mark> stands for <mark>Term Frequency</mark> – Inverse Document Frequency. 
+        It’s a statistical measure used to evaluate how important a word is to a document in a collection (called a *corpus*). 
+        <ol>
+            <li><mark>TF</mark>: Term Frequency – how often a word appears in a document</li>
+            <li><mark>IDF</mark>: Inverse Document Frequency – how unique the word is across documents</li>
+            <li>TF-IDF = TF × IDF</li>
+        </ol>
+    </small></p>
+    <h2>Compute Similarity (Cosine Similarity)</h2>
+    <pre><code>
+from sklearn.metrics.pairwise import cosine_similarity
+
+similarity_matrix = cosine_similarity(X)
+print("Similarity matrix:")
+print(similarity_matrix)
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Term Frequency Analysis</h2>
+    <p><small>
+        The use of term frequency is to measure the `occurrence frequency` of each word or phrase in a given text. 
+        It helps in understanding the structure, themes, and keywords of the text, 
+        with applications in information retrieval, text classification, and text mining. T
+        he main idea is simple and intuitive: it <mark>counts</mark> the occurrences of each word (or phrase) in the text 
+        and determines the importance of a word in the text based on its frequency.
+    </small></p>
+        <h2>Word Frequency Analysis</h2>
+    <p><samll>
+    Count how often each word appears in a text or collection of texts
+    </samll></p>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Keyword Extraction</h2>
+    <p><small>
+        The purpose is to identify and extract the most representative or important words or phrases from a given text. 
+        These words or phrases are typically used to summarize the content or help users understand the main theme of the text. 
+        Keyword extraction aids in compressing information, providing summaries, or being utilized in various natural language processing tasks such as document classification, search engine optimization, and topic modeling.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Visualize with WordCloud</h2>
+    <p><small>
+       A WordCloud provides an intuitive visual representation of word frequencies, 
+       where word size reflects frequency or importance, 
+       making it easier to identify key themes (e.g., genres or concepts) in the dataset.
+       A <mark>Word Cloud</mark> (or tag cloud) is a visual representation of text data where:
+       <ol>
+        <li>The size of each word corresponds to its <mark>frequency</mark> (or importance)</li>
+        <li>More frequent words appear <mark>larger and bolder</mark></li>
+        <li>It’s great for quickly seeing the <mark>main topics</mark> in Chinese articles, reviews, or social media</li>
+       </ol> 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <pre><code>
+# Colab 進行matplotlib繪圖時顯示繁體中文
+# 下載台北思源黑體並命名taipei_sans_tc_beta.ttf，移至指定路徑
+!wget -O TaipeiSansTCBeta-Regular.ttf https://drive.google.com/uc?id=1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_&export=download
+
+import matplotlib
+
+# 改style要在改font之前
+# plt.style.use('seaborn')
+
+matplotlib.font_manager.fontManager.addfont('TaipeiSansTCBeta-Regular.ttf')
+matplotlib.rc('font', family='Taipei Sans TC Beta')
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Customize Your Word Cloud</h2>
+    <p><small>
+       <ol>
+        <li>Colors: colormap='plasma', 'cool', 'Set2', etc</li>
+        <li>Shape: Use a mask image (e.g., speech bubble)</li>
+        <li>Background: background_color='black'</li>
+        <li>Max font size: max_font_size=80</li>
+        <li>Contour: contour_width=3, contour_color='steelblue'</li>
+       </ol> 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Topic Modeling & Topic Representation</h1>
+    <p><small>
+      <mark>Topic Modeling</mark> is an unsupervised machine learning technique used 
+      to discover latent topics (themes) in a collection of text documents. 
+      It identifies patterns of co-occurring words to group documents into topics, each represented by a set of keywords.<br>
+      Topic modelling is a technique to automatically identify and group similar words or phrases in a text. 
+      This lets us figure out the central ideas or themes in a group of documents.<br>
+      <mark>Topic Representation</mark> refers to how topics are modeled and interpreted, 
+      typically as distributions of words or documents. Each topic is represented by a set of high-probability words (e.g., “space, adventure, sci-fi” for a Sci-Fi topic), and each document is represented as a mixture of topics. Common algorithms like **Latent Dirichlet Allocation (LDA)** or **Non-Negative Matrix Factorization (NMF)** are used to generate these representations, 
+      providing interpretable insights into text content.
+    </small></p>
+    <p><small>
+        <ol>
+            <li>Topic model: Refers to the mathematical or computational method</li>
+            <li>Topic Representation: how the discovered topics are expressed, encoded, or visualized after modeling</li>
+        </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Sentiment Analysis</h1>
+    <p><small>
+       <mark>Sentiment Analysis</mark> (also called <mark>Opinion Mining</mark>) means: 
+       Automatically detecting whether a piece of text expresses <mark>positive</mark>, <mark>negative</mark>, or <mark>neutral</mark> emotion.
+    <table border="1">
+    <tr>
+        <td>Text</td>
+        <td>Sentiment</td>
+    </tr>
+    <tr>
+        <td>“這部電影太棒了！”</td>
+        <td>😊 Positive</td>
+    </tr>
+    <tr>
+        <td>“服務很差，不會再來了。”</td>
+        <td>😠 Negative</td>
+    </tr>
+    <tr>
+        <td>“今天天氣是陰天。”</td>
+        <td>😐 Neutra</td>
+    </tr>
+</table>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 15 -->
+    <div class="slide">
+        <div class="bb">
+            <p><small>
+       Two Approaches to Sentiment Analysis:
+    <table border="1">
+    <tr>
+        <td>Method</td>
+        <td>How to Work</td>
+        <td>Benefit</td>
+    </tr>
+    <tr>
+        <td>Lexicon-Based</td>
+        <td>Use word lists (e.g., 好 = +1, 差 = -1)</td>
+        <td>Fast, no training needed</td>
+    </tr>
+    <tr>
+        <td>Machine Learning / Deep Learning</td>
+        <td>Train a model on labeled data</td>
+        <td>More accurate, handles context</td>
+    </tr>
+</table>    
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 16 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Lexicon-based</h1>
+    <p><small>
+     The common English emotion dictionaries are the `nrc`, `bing`, and `AFINN` dictionaries, etc. 
+     The nrc dictionary is provided by Saif Mohammad and Peter Turney, the AFINN dictionary is created by Finn Årup Nielsen, 
+     and the bing dictionary is created by Bing Liu and collaborators, etc. The `nrc` dictionary labels words binary (yes/no) in categories such as positive, negative, angry, expectant, disgusted, fearful, happy, sad, surprised, and trusting.`BING` Dictionaries categorize words as positive and negative in binary terms.The `AFINN' dictionary assigns each word a value between -5 and 5, 
+     with negative values representing negative emotions and positive values representing positive emotions.
+    </small></p>
+    <p><small>
+       For simplified Chinese, HowNet (中國知網) Emotion Dictionary, 
+       Dalian Polytechnic University (大連理工大學) Emotion Vocabulary Ontology, 
+       and Harbin (哈工大) Institute of Technology (HIT) Expanded Synonym Forest are the top choices. 
+       For the Traditional Chinese version, the NTSUSD Chinese Affective Polarity Dictionary, 
+       which includes both Simplified and Traditional Chinese, has 11,088 words, 
+       of which 2,812 are positive words and 8,276 are negative words. 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 17 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Machine Learning-Based Sentiment Analysis</h2>
+    <p><small>
+       Machine Learning-Based means we train a model using labeled data, rather than relying on manually crafted rules or lexicons. 
+       The model “learns” patterns from examples to generalize to new, unseen text.
+       <ol>
+        <li>Data Collection & Preparation: Gather labeled dataset: text + sentiment labels (binary or multi-class)</li>
+        <li>Text Preprocessing: as before</li>
+        <li>Feature Extraction: Convert text into numerical vectors for ML models such as Bag-of-Words (BoW), IF-IDF, Word Embeddings..</li>
+        <li>Model Selection & Training</li>
+        <li>Model Evaluation and Make a prediction</li>
+       </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
