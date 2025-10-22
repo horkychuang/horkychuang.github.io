@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 10 Recurrent Neural Networks (RNNs)
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+    <p><small>
+        Recurrent Neural Networks (RNNs) are a class of neural networks designed to handle <mark>sequential data</mark>, 
+        where the order of inputs matters. 
+        Unlike traditional feedforward neural networks, which process inputs independently, 
+        RNNs maintain a <mark>memory</mark> of previous inputs through recurrent connections. 
+        This allows them to capture dependencies and patterns over time or sequence, 
+        making them ideal for tasks like natural language processing (e.g., sentiment analysis), 
+        time series forecasting (e.g., stock prices), speech recognition, and machine translation. 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Architecture</h2>
+    <p><small>
+       An RNN processes a sequence of inputs $x_1, x_2, \dots$ step by step. 
+       The code of RNN is the **hidden state** which will be updated at each time step. 
+       At each time step t, it updates a hidden state $s_t$ using the current input $x_t$ and the previous hidden state $s_{t-1}$. 
+       The output at each step (or only the final step) can be used for predictions for next time step. <br>
+       The core equation is
+       <div style="text-align: center; margin: 20px 0;">
+            $$
+            s_t =f(s_{t-1}W+x_t U) \text{and}
+            y_t=s_tV
+            $$
+        </div>
+        <ol>
+            <li>U: Transforms the input, $x_t$ , into the state, $s_t$</li>
+            <li>W: Transforms the previous state, $s_{t−1}$, into the current state, $s_t$</li>
+            <li>V: Maps the newly computed internal state, $s_t$, to the output, $y_t$.</li>
+        </ol>
+        U, V, and W apply linear transformation over their respective inputs. The most basic case of such a transformation is the familiar FC operation. 
+        Here, f is the non-linear activation function (such as tanh, sigmoid, or ReLU).
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>
+    The recurrence relation defines how the state evolves step by step over the sequence via a feedback loop over previous states. 
+    An important implication of this is that RNNs have <mark>memory</mark> over time 
+    because the states, $s_t$, contain information based on the previous steps.
+    </small></p>
+    <img src="images/062705.jpg" alt="062705" width="500">
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <pre><code>
+# Stage II: Define SimpleRNN model
+model = tf.keras.Sequential([
+    tf.keras.layers.SimpleRNN(64, input_shape=(timesteps, 1), return_sequences=False), # return_sequence importance!!!!!!
+    tf.keras.layers.Dense(1)  # Regression output
+])
+
+# Stage III: Compile the model
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), 
+              loss='mean_squared_error', 
+              metrics=['mae'])
+    </code></pre> 
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Vanishing Gradient and Exploding Gradient</h1>
+    <p><small>
+       In Recurrent Neural Networks (RNNs), Vanishing Gradient and Exploding Gradient are two critical problems 
+       that arise during the training process, 
+       especially when using <mark>Backpropagation</mark> Through Time (BPTT) to compute gradients.
+       <ol>
+        <li>The <mark>vanishing gradient</mark> occurs when the gradients of the loss function with respect to the model’s parameters become extremely small as they are backpropagated through time. 
+            For example, $(0.1)^1, (0.1)^2, \cdots, (0.1)^{100000} $</li>
+            <ol>
+                <li>Like trying to hear a whisper from someone far away — the signal fades before it reaches you</li>
+            </ol>
+        <li>The <mark>exploding gradient</mark> is the opposite: gradients grow exponentially large during backpropagation, 
+            causing weight updates to become huge and destabilizing training. 
+            For example, $(1.4)^1, (1.4)^2, \cdots, (1.4)^{100000} $. </li>
+            <ol>
+                <li>Like a microphone too close to a speaker — small input causes a loud, disruptive feedback loop</li>
+            </ol>    
+       </ol>
+       To address limitations, improved versions like Long Short-Term Memory (LSTM) 
+       and Gated Recurrent Units (GRU) use gates to control information flow, preserving long-term dependencies better.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Long Short-Term Memory (LSTM)</h1>
+    <p><small>
+       Unlike basic RNNs (like SimpleRNN used in the previous example), 
+       which struggle with vanishing or exploding gradients during backpropagation through time, 
+       LSTMs address this issue through a gated architecture. 
+       This allows them to selectively <mark>remember</mark> or <mark>forget</mark> some information over extended time periods, 
+       making them ideal for tasks like time series prediction, natural language processing (e.g., text generation), 
+       and speech recognition. 
+    </small></p>
+    <img src="images\062708.jpg" alt="062708" width="400">
+    <p><small>
+        LSTMs can capture long-term dependencies, making them more robust than SimpleRNN for tasks requiring memory of earlier inputs. 
+        LSTM can remember important information and forget unimportant information.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Architecture</h2>
+    <p><samll>
+    Hochreiter and Schmidhuber studied the problems of vanishing and exploding gradients extensively and came up with a solution 
+    by maintaining a <mark>cell state</mark> $C_t$ (long-term memory) 
+    and a <mark>hidden state</mark> $h_t$ (short-term memory/output). 
+    They use three gates to control information flow:
+    <ol>
+        <li><mark>Forget Gate</mark>: Decides what to <mark>discard</mark> from the cell state using a sigmoid function
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)
+            $$
+            </div>
+        </li>
+        <li><mark>Input Gate</mark>: Determines what <mark>new</mark> information to store in the cell state
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            i_t = \sigma(W_i \cdot [h_{t-1}, x_t] + b_i), \quad \tilde{C}_t = \tanh(W_C \cdot [h_{t-1}, x_t] + b_C)
+            $$
+            </div>
+        </li>
+        <li><mark>Output Gate</mark>: Controls the output based on the cell state
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            o_t = \sigma(W_o \cdot [h_{t-1}, x_t] + b_o), \quad h_t = o_t \cdot \tanh(C_t)
+            $$
+            </div>
+        </li>
+    </ol>
+    The cell state is updated as
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            C_t = f_t \cdot C_{t-1} + i_t \cdot \tilde{C}_t
+            $$
+            </div>
+    </samll></p>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <pre><code>
+# Stage II: Define LSTM model
+model = tf.keras.Sequential([
+    tf.keras.layers.LSTM(64, input_shape=(timesteps, 1), return_sequences=False), # return_sequence importance!!!!!!
+    tf.keras.layers.Dense(1)  # Regression output
+])
+
+# Stage III: Compile the model
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), 
+              loss='mean_squared_error', 
+              metrics=['mae'])
+
+# Stage IV: Train with validation
+history = model.fit(X_train, y_train, epochs=20, batch_size=32, verbose=1,
+                    validation_data=(X_test, y_test))
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Gated Recurrent Unit (GRU)</h1>
+    <p><small>
+        GRUs address the vanishing gradient problem of basic RNNs (like SimpleRNN) 
+        by using gates to control the flow of information, allowing them to capture dependencies over time. 
+        Compared to LSTMs, GRUs have fewer parameters, making them faster to train while often performing comparably, 
+        especially for tasks like sequence classification, time series prediction, or natural language processing.<br>
+        GRUs are computationally lighter than LSTMs (fewer gates: 2 vs. 3) 
+        and often achieve similar performance, making them a good choice for resource-constrained environments or smaller datasets. 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Architecture</h2>
+    <p><small>
+        GRUs process a sequence $x_1, x_2, \dots, xt$ 
+        by maintaining a hidden state $h_t$, which serves as both memory and output. They use two gates:
+        <ol>
+            <li><mark>Update Gate</mark>: Determines how much of the previous hidden state to <mark>retain</mark> 
+                versus how much <mark>new</mark> information to incorporate
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            z_t = \sigma(W_z \cdot [h_{t-1}, x_t] + b_z)
+            $$
+            </div>
+        </li>
+        <li><mark>Reset Gate</mark>: Decides how much of the previous hidden state to <mark>forget</mark> 
+            when computing the candidate statee
+            <div style="text-align: center; margin: 20px 0;">
+            $$
+            r_t = \sigma(W_r \cdot [h_{t-1}, x_t] + b_r)
+            $$
+            </div>
+        </li>
+        </ol>
+        The candidate state and final hidden state are computed as
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+            {h}_t = \tanh(W_h \cdot [r_t \cdot h_{t-1}, x_t] + b_h), \quad h_t = (1 - z_t) \cdot h_{t-1} + z_t \cdot \tilde{h}_t
+            $$
+            </div>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <pre><code>
+# Stage II: Define GRU model
+model = tf.keras.Sequential([
+    tf.keras.layers.GRU(64, input_shape=(timesteps, 1), return_sequences=False),
+    tf.keras.layers.Dense(1)  # Regression output
+])
+
+# Stage III: Compile the model
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), 
+              loss='mean_squared_error', 
+              metrics=['mae'])
+
+# Stage IV: Train with validation
+history = model.fit(X_train, y_train, epochs=20, batch_size=32, verbose=1,
+                    validation_data=(X_test, y_test))
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Stacked LSTM</h1>
+    <p><small>
+        A <mark>Stacked LSTM</mark> is an extension of the Long Short-Term Memory (LSTM) architecture 
+        where multiple LSTM layers are stacked on top of each other.
+        Multiple LSTM layers are chained, 
+        where the output sequence of one layer (hidden states $h_t$ for all timesteps) becomes the input to the next layer. <br>
+        For simplify, we can stack multiple RNNs to form a stacked RNN. The cell state, $s_t^l$, 
+        of an RNN cell at level l at time t will take the output, $y_t^{l−1}$ , 
+        of the RNN cell from levell -1 and the previous cell state, $s_{t−1}^l$ , of the cell at the same level l as the input:
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            s_t^l=f(s_{t-1}^l,y_t^{l-1})
+            $$
+        </div>
+    </small></p>
+    <img src="images/062706.jpg" alt="062706" width="500">
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide">
+        <div class="bb">
+            <pre><code>
+# Stage II: Define Stacked LSTM model
+model = tf.keras.Sequential([
+    tf.keras.layers.LSTM(64, input_shape=(timesteps, 1), return_sequences=True),  # First LSTM layer
+    tf.keras.layers.LSTM(64, return_sequences=False),  # Second LSTM layer
+    tf.keras.layers.Dense(1)  # Regression output
+])
+
+# Stage III: Compile the model
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), 
+              loss='mean_squared_error', 
+              metrics=['mae'])
+
+# Stage IV: Train with validation
+history = model.fit(X_train, y_train, epochs=20, batch_size=32, verbose=1,
+                    validation_data=(X_test, y_test))
+
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Bidirectional LSTM</h1>
+    <p><small>
+       Unlike a standard LSTM, which processes sequences unidirectionally (typically from past to future), 
+       a <mark>Bidirectional LSTM (BiLSTM)</mark> combines two LSTM layers: one processing the sequence <mark>forward</mark> 
+       and another processing it <mark>backward</mark>. 
+       This allows the model to capture context from both past and future time steps, making it particularly effective for tasks 
+       where understanding the full sequence context is beneficial, such as time-series prediction, natural language processing, or speech recognition.
+    </small></p>
+    <h2>How It Differs from Standard LSTM</h2>
+    <p><small>
+        <ol>
+            <li>Standard LSTM processes data in one direction, limiting its context to past information</li>
+            <li>BiLSTM doubles the computational cost (due to two LSTM layers) 
+                but often yields better performance when context from both directions is relevant.</li>
+        </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 15 -->
+    <div class="slide">
+        <div class="bb">
+            <pre><code>
+# Stage II: Define BiLSTM model
+model = tf.keras.Sequential([
+    tf.keras.layers.Bidirectional(
+        tf.keras.layers.LSTM(64, return_sequences=False), 
+        input_shape=(timesteps, 1)
+    ),  # BiLSTM layer
+    tf.keras.layers.Dense(1)  # Regression output
+])
+
+# Stage III: Compile the model
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001), 
+              loss='mean_squared_error', 
+              metrics=['mae'])
+
+# Stage IV: Train with validation
+history = model.fit(X_train, y_train, epochs=20, batch_size=32, verbose=1,
+                    validation_data=(X_test, y_test))
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

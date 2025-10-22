@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 9 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 9 Deep Learning
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+    <p><small>
+        The first example of an Neural Network is called the <mark>perceptron</mark>, 
+        and this was invented by Frank Rosenblatt in 1957 The `*perceptron` is a classification algorithm. 
+        The perceptron is an example of a simple one-layer neural feedforward network. 
+        It has a vector of weights, w, and its output is a function, f(x ⋅ w), of the dot product, $x \cdot w$  of the weights and input. 
+    </small></p>
+    <img src="images\061101.jpg" alt="061101" width="600">
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Neural Network</h2>
+    <p><small>
+       A classic multilayer perceptron has <mark>multiple</mark> interconnected perceptrons.
+       An example of a neural network is shown in this figure. The left column is called the input layer; 
+       the right column the output layer; and the middle column the middle layer. The middle layer is also known as a hidden layer.
+       The units that are organized in different sequential layers (input layer, one or more hidden layers, and an output layer). 
+       The following diagram depicts an neural network with one hidden layer. 
+    </small></p>
+    <img src="images\062517.jpg" alt="062517" width="600">
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>
+       The functions that can be defined as follows
+       <div style="text-align: center; margin: 20px 0;">
+            $$
+            y=f(\sum_{i=1}^n x_iw_i+b)\\
+y=f(x\cdot w+b)
+            $$
+        </div>
+        ,where The b is thus referred to as a bias while w is referred to as weight. 
+        The f(x) function shown below is typically called an <mark>activation function</mark>. 
+        The activation function has the following properties: `Non-linear` and `Differentiable`.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Multi-layer Neural Networks</h2>
+    <p><small>
+    These extra layers are called <mark>hidden layers</mark>. 
+    The following diagram demonstrates a four-layer fully connected NN with two hidden layers
+    </small></p>
+    <img src="images\062519.jpg" alt="062519" width="500">
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Activation functions</h1>
+    <p><small>
+       <mark>Sigmoid</mark>: Its output is bounded between 0 and 1 and can be interpreted stochastically as the probability of the unit being active.<br>
+       <img src="images/062520.jpg" alt="062520" width="300"> <br>
+       <mark>Hyperbolic tangent (tanh)</mark>: The name speaks for itself. The principal difference with the sigmoid is that the tanh is in the (-1, 1) range.<br>
+       <img src="images/062521.jpg" alt="062521" width="400"> <br>
+    </small></p>   
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <p><small>
+            <mark>Rectified Linear Unit (ReLU)</mark>: the ReLU repeats its input when x > 0 and stays at 0 otherwise.
+       <img src="images/062522.jpg" alt="062522" width="400"> <br>
+            <mark>Leaky ReLU</mark>: When $x < 0$, the leaky ReLU outputs x multiplied by some constant, $\alpha (0 < \alpha < 1)$, 
+       instead of 0. The following diagram shows the leaky ReLU formula, its derivative, and their graphs for $\alpha = 0.2$:
+       <img src="images/062523.jpg" alt="062523" width="400"> 
+            </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>
+                <mark>Softmax</mark>: It is the activation function of the output layer in `classification problems`. 
+       Let’s assume that the output of the final network layer is a vector, $z=(z_1, z_2,..., z_n)$. 
+       Each of the n elements represents one of n classes, to which the input sample might belong. To determine the network prediction, 
+       we’ll take the index, i, of the highest value, $z_i$ , and assign the input sample to the class it represents.
+       <div style="text-align: center; margin: 20px 0;">
+            $$
+            f(z_i)=\frac{\text{exp}(z_i)}{\sum_{j=1}^n \text{exp}(z_j)}
+            $$
+       </div>
+            </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Train Neural Network</h1>
+    <p><small>
+       Given the model and dataset, we talk about training, we mean automatically acquiring optimum <mark>weight and b</mark> parameters from training data. 
+       We shall use a method called `gradient method` to detect the least <mark>loss function</mark> value that utilizes the gradient of a function. 
+    </small></p>
+    <h2>Loss Function</h2>
+    <p><small>
+    The current state of the neural network training is represented by a score. 
+    The score used in neural network training is called a loss function. 
+    Even if a loss function is utilized, square mistakes or cross-entropy errors are usually summed up.
+    <ul>
+        <li>Sum of squared errors</li>
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            E=\frac{1}{2}\sum_k (y_k -t_k)^2
+            $$
+        </div>
+        , where $y_k$ is the result of the neural network and $t_k$ is the label for the data. 
+        <li>Cross-entropy error</li> 
+        <div style="text-align: center; margin: 20px 0;">
+            $$
+            E=-\sum_k t_k log(y_k)
+            $$
+        </div>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Backpropagation</h2>
+    <p><small>
+        Assumed that Taro purchased two oranges and three mangoes. 
+        The cost of one orange was 100 yen and of one mango was 150 yen. 
+        A tax of 10% was levied on consumption. 
+        The amount of money that he paid may be calculated.
+    </small></p>
+    <img src="images\062001.jpg" alt="062001" width="800">
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <p><small>
+        After creating a computational graph, we make the calculation from left to right. It is called <mark>forward propagation</mark>.<br>
+        
+        On the other hand, from right to left can also be taken into consideration. 
+        This is termed backward propagation and is referred to as <mark>backpropagation</mark> (or backprop).<br>
+        If we need to determine how the final amount paid is influenced by each of the three variables (prices of a mango, quantity of mangoes, and consumption tax). 
+        That means we need to find the derivative of the amount paid for the mango’s prices, the derivative of the amount payable with respect to the number of mangoes, 
+        and the derivative of the amount paid as far as consumption tax is concerned. 
+    </small></p>
+    <img src="images\062005.jpg" alt="062005" width="800">
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Gradient method</h2>
+    <p><small>
+       The gradients here are those of a loss function for weight parameters. 
+       For example, let’s assume that a neural network has the weight W (2x3 array) only, 
+       and the loss function is L. In this case, we can express the gradient as $\frac{\partial L}{\partial W}$
+    </small></p>
+    <div style="text-align: center; margin: 20px 0;">
+            $$
+           W=\left( \begin{matrix}
+w_{11} & w_{12} & w_{13} \\
+w_{21} & w_{22} & w_{23}
+\end{matrix} \right) \\
+
+\frac{\partial L}{\partial W}=\left( \begin{matrix}
+\frac{\partial L}{\partial w_{11}} & \frac{\partial L}{\partial w_{12}} & \frac{\partial L}{\partial w_{13}} \\
+\frac{\partial L}{\partial w_{21}} & \frac{\partial L}{\partial w_{22}} & \frac{\partial L}{\partial w_{23}}
+\end{matrix} \right)
+            $$
+    </div>
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>
+        There are two popular gradient methods
+        <ol>
+            <li>Stochastic Gradient Descent(SGD)</li>
+            <li>Adaptive Moment Estimation</li>
+        </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Types of Neural Networks</h2>
+    <p><small>
+        Over the years, different types have been developed to solve specific kinds of problems. 
+        Below are the main types of neural networks used  today
+    </small></p>
+    <table border="1">
+    <tr>
+        <td>Data Type</td>
+        <td>Network</td>
+    </tr>
+    <tr>
+        <td>Tabular / Vector</td>
+        <td>MLP (Multilayer Perceptron)</td>
+    </tr>
+    <tr>
+        <td>Images / Grids</td>
+        <td>CNN (Convolutional NN)</td>
+    </tr>
+    <tr>
+        <td>Sequences / Text</td>
+        <td>RNN → LSTM/GRU → Transformer</td>
+    </tr>
+    <tr>
+        <td>Unsupervised / Encoding</td>
+        <td>Autoencoder</td>
+    </tr>
+    <tr>
+        <td>Generation</td>
+        <td>GAN, VAE, Diffusion Models</td>
+    </tr>
+    <tr>
+        <td>Attention-based</td>
+        <td>Transformer</td>
+    </tr>
+</table>
+        </div>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Pytorch and Keras version</h1>
+    <p><small>
+       Keras and PyTorch are two of the most popular tools for deep learning. 
+       <mark>Keras</mark> is a high-level deep learning API designed for ease of use and rapid prototyping. 
+       Originally developed by François Chollet, it now serves as the official high-level API for TensorFlow, Google’s deep learning framework. 
+       <mark>PyTorch</mark> is an open-source deep learning framework developed by Facebook’s AI Research lab (FAIR). 
+       It emphasizes flexibility and dynamic computation. .
+    </small></p>
+    <p><small>
+        <ol>
+            <li>Start with Keras if you're new to deep learning or want to build models quickly since Keras: 
+                Faster to write and debug for standard tasks.</li>
+            <li>Switch to PyTorch when you need more control, want to do research, 
+                or dive into advanced topics since better for custom loss functions, complex training logic, or debugging step-by-step</li>    
+        </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 15 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Build a Model</h1>
+    <p><small>
+       After get the train data at Stage I, we build the model.
+       <ol>
+        <li>Model: sequence() is a **model class** in Keras that allows you to <mark>stack layers linearly</mark>. 
+            Think of it as a “layer sandwich” — you stack layers from input to output.</li>
+        <li>
+            <pre><code>
+model = tf.keras.Sequential([
+Layer1,
+Layer2,
+Layer3,
+...
+])
+            </code></pre>
+        </li>
+        <li>Dense() is a <mark>fully connected neural network layer</mark> 
+            — every neuron in this layer connects to every neuron in the previous layer. 
+            Dense layer in Keras combines the linear transformation (matrix multiplication and bias addition) 
+            and the activation function into a single layer</li>
+        <li>
+            <pre><code>
+Dense(
+    units,                 # number of neurons in this layer
+    activation=None,       # activation function (e.g., 'relu', 'softmax')
+    input_shape=None,      # only needed for first layer
+    use_bias=True,         # whether to add bias (default: True)
+    kernel_initializer='glorot_uniform',  # weight initializer
+    ...
+)
+# output = activation(dot(input, weights) + bias)                
+            </code></pre>
+        </li> 
+        <ol>
+            <li>tf.keras.layers.Dense: (output_dim, activation,  input_dim, **kwargs)</li>
+            <li>input_dim or input_shape: input_shape(100, ) = input_dim(100)</li>
+        </ol>   
+       </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 16 -->
+    <div class="slide">
+        <div class="aa">
+            <pre><code>
+# Build model
+model = Sequential([
+    Dense(128, activation='relu', input_shape=(784,)),  # hidden layer 1
+    Dense(64, activation='relu'),                      # hidden layer 2
+    Dense(10, activation='softmax')                    # output layer
+])
+'''
+Input: 784 features 
+Hidden layer 1: 128 neurons with ReLU
+Output layer: 10 neurons with Softmax (for 10-class classification)
+'''
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 17 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Set up the Loss Function and optimizer parameters</h1>
+    <p><small>
+       After building your model with `tf.keras.Sequential` and `Dense` layers at Stage II, you must <mark>compile</mark> it with:
+       <ol>
+        <li>A <mark>loss function</mark> — tells the model what to minimize</li>
+        <li>An <mark>optimizer</mark> — tells the model *how* to update weights</li>
+        <li>(Optional) <mark>Metrics</mark> — to monitor performance (e.g., accuracy)</li>
+       </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 18 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Basic Theorem</h2>
+        <p><small>
+    <table border="1">
+    <tr>
+        <td>Type</td>
+        <td>Output Shape</td>
+        <td>Label Format</td>
+        <td>loss Function</td>
+    </tr>
+    <tr>
+        <td>Binary Classification</td>
+        <td>`(None, 1)`</td>
+        <td>0 or 1</td>
+        <td>`binary_crossentropy;`</td>
+    </tr>
+    <tr>
+        <td>Multi-Class Classification</td>
+        <td>`(None, N)`</td>
+        <td>Integer (0,1,2...)</td>
+        <td>`sparse_categorical_crossentropy`</td>
+    </tr>
+    <tr>
+        <td>Multi-Class (One-Hot)</td>
+        <td>`(None, N)`</td>
+        <td>One-hot vectors</td>
+        <td>`categorical_crossentropy`</td>
+    </tr>
+    <tr>
+        <td>Regression</td>
+        <td>`(None, 1)`or more</td>
+        <td>Continuous values</td>
+        <td>`mse`(Mean Squared Error)</td>
+    </tr>
+</table>
+        <mark>Tip</mark>: Use `sparse_categorical_crossentropy` if your labels are integers (e.g., `3`), 
+        and `categorical_crossentropy` if they’re one-hot (e.g., `[0,0,0,1,0,0,0,0,0,0]`).
+        </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 19 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Optimizers — How the Model Learns</h2>
+    <p><small>
+      <ol>
+        <li>SGD — Stochastic Gradient Descent: Simple, classic optimizer, Often needs tuning (learning rate, momentum)</li>
+        <li>Adam — Adaptive Moment Estimation: Usually works well out-of-the-box, Adaptive learning rate per parameter, Default learning rate = `0.001`</li>
+      </ol>
+      <ol>
+        <li>Learning Rate — The Most Important Hyperparameter</li>
+      </ol> 
+      <pre><code>
+model.compile(
+    optimizer=Adam(learning_rate=0.001),
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+      </code></pre>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 20 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Train a Model</h2>
+    <p><small>
+       In Stage IV, we need the `epochs`, `batch_size`, and `verbose` — are fundamental to training neural networks. 
+       They control <mark>how long</mark>, <mark>how much data at a time</mark>, and <mark>how much feedback</mark> you get during training.
+    <ol>
+        <li>One <mark>epoch</mark> = one full pass over the entire training dataset. 
+            If you have 1000 training samples and set `epochs=5` → model sees all 1000 samples <mark>5 times</mark>.</li>
+        <li><mark>batch_size</mark>: How Many Samples to Process Before Updating Weights. 
+            Training data is split into `small groups` called batches.
+            For Rxample, batch_size=32 means that each batch has <mark>32 samples</mark>. 
+            If we have 1,000 training samples → ~32 batches per epoch (`1000 / 32 ≈ 31.25`). 
+            Common batch sizes: `16`, `32`, `64`, `128`</li>  
+        <li>`verbose=1`: **Progress bar**(default) — shows % done, loss, metrics</li>      
+    </ol>
+    <pre><code>
+# Train the model
+model.fit(X_train, y_train, epochs=1000, batch_size=32, verbose=1)
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 21 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Evaluating the trained models</h2>
+    <p><small>
+       In Stage V Testing how well your trained model performs on **unseen data** (`X_test`, `y_test`).
+       <pre><code>
+##### Test data
+X_test = np.random.rand(200, 100)  # 200 samples, 100 features
+y_test = np.random.randint(0, 10, size=(200,))  # 10 classes
+y_test = LabelBinarizer().fit_transform(y_test)  # One-hot encode labels
+
+####### Evaluate on test data
+test_loss, test_accuracy = model.evaluate(X_test, y_test, verbose=0)
+print(f'Test Loss: {test_loss:.4f}, Test Accuracy: {test_accuracy:.4f}')
+       </code></pre> 
+        </div>
+    </div>
+
+<!-- Slide 22 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Plot for loss and accuracy</h2>
+    <p><small>
+        To understand how your model is learning — and whether it's overfitting, underfitting, or just right in Stage VI.
+    </small></p>
+    <pre><code>
+import matplotlib.pyplot as plt
+# Train the model and track metrics
+history = model.fit(X_train, y_train, epochs=1000, batch_size=32, verbose=1,
+                    validation_data=(X_test, y_test))
+
+# Extract metrics from history
+train_loss = history.history['loss']
+train_accuracy = history.history['accuracy']
+test_loss = history.history['val_loss']
+test_accuracy = history.history['val_accuracy']
+epochs = range(1, 11)
+
+# Plot loss
+plt.figure(figsize=(12, 5))
+plt.subplot(1, 2, 1)
+plt.plot(epochs, train_loss, label='Training Loss')
+plt.plot(epochs, test_loss, label='Test Loss')
+plt.title('Training and Test Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+
+# Plot accuracy
+plt.subplot(1, 2, 2)
+plt.plot(epochs, train_accuracy, label='Training Accuracy')
+plt.plot(epochs, test_accuracy, label='Test Accuracy')
+plt.title('Training and Test Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 23 -->
+    <div class="slide">
+        <div class="bb">
+            <p><small>
+      <ol>
+        <li>Healthy Training (Good Fit)</li>
+        <li>
+            <pre><code>
+Train Loss ──↘  
+Val Loss ─────↘ (close to train)
+
+Train Acc ──↗  
+Val Acc ─────↗ (close to train)
+            </code></pre>
+        </li>
+        <li>Overfitting</li>
+        <li>
+            <pre><code>
+Train Loss ────────↘↘↘ (keeps dropping)
+Val Loss ──────↘↗↗ (starts rising after epoch 5)
+
+Train Acc ─────────↗↗↗
+Val Acc ──────↗↘ (peaks then drops)
+            </code></pre>
+        </li>
+        <li>Underfitting</li>
+        <li>
+            <pre><code>
+Train Loss ──────── flat
+Val Loss ─────────── flat
+            </code></pre>
+        </li>
+      </ol> 
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 24 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Plot Confusion Matrix or Classification Report</h2>
+    <p><small>
+        Sometimes, After model.fit(), we can plot confusion matrix or classification report in Stage VII 
+    </small></p>
+    <pre><code>
+import seaborn as sns
+from sklearn.metrics import classification_report, confusion_matrix
+# ----------------------------
+# Predictions
+# ----------------------------
+y_pred = model.predict(X_test)
+y_pred_classes = np.argmax(y_pred, axis=1)
+
+# ----------------------------
+# Classification Report
+# ----------------------------
+print("\n" + "="*60)
+print("CLASSIFICATION REPORT")
+print("="*60)
+print(classification_report(y_test, y_pred_classes))
+
+# ----------------------------
+# Confusion Matrix
+# ----------------------------
+cm = confusion_matrix(y_test, y_pred_classes)
+
+plt.figure(figsize=(10, 8))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+            xticklabels=range(10), yticklabels=range(10))
+plt.title('Confusion Matrix', fontsize=16)
+plt.xlabel('Predicted Label', fontsize=12)
+plt.ylabel('True Label', fontsize=12)
+plt.show()
+    </code></pre>
+        </div>
+    </div>
+
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

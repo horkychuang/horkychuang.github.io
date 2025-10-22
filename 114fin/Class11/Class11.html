@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 11</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 11 NLP with Chinese Text</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#topic1">Simple Text Mining</a></li>
+        <li><a href="#topic2">Topic Model</a></li>
+        <li><a href="#topic3">Sentiment</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+ <section>
+    <div class="discussion">
+    <h1>Today's Topic</h1>
+    <ol>
+        <li>Introduction</li>
+        <li>Simple Text mining</li>
+        <li>Topic Model</li>
+        <li>Sentiment Analysis</li>
+    </ol> 
+</div>
+</section>
+
+<section id="introduction">
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>
+        <mark>Natural Language Processing (NLP)</mark> is a field of artificial intelligence (AI) 
+        that focuses on the interaction between `computers` and `human language`. 
+        It aims to enable machines to understand, interpret, and generate human language in a way that is both meaningful and useful.<br>
+        <mark>Text mining</mark> is a subtype of data mining. 
+        It focuses on `data mining` and `ML methods` as it relates to textual information. 
+        More specifically, it extracts the `information from text files unstructured textual resources`. 
+        A wide array of text files can be used in text mining including structured and unstructured data in emails, social media posts, and web content. 
+    </small></p>
+    <img src="images\w10_01.jpg" alt="w10_01" width="300">
+</div>
+</section>
+
+
+<section id="topic1">
+<div class="discussion">
+    <h2>The Process of Text Mining</h2>
+    <img src="images\w10_02.jpg" alt="w10_02" width="500">
+    <p><small>
+        <ol>
+            <li><mark>Text cleanup</mark>: remove ads from web pages, normalize text converted from binary formats, deal with tables,figures and formulas,	…</li>
+            <li><mark>Tokenization</mark>: Splitting	up a string	of characters into a set of	tokens. 
+                Tokenization is the process of breaking up a given `text` into units called tokens. 
+                A sentence of 10 words, then, would contain 10 tokens.</li>
+        </ol>
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>Why NLP for Chinese is Different?</h2>
+    <p><small>
+        <table border="1">
+    <tr>
+        <td>Type</td>
+        <td>English</td>
+        <td>Chinese</td>
+    </tr>
+    <tr>
+        <td>Word Separation</td>
+        <td>Spaces between words</td>
+        <td>No spaces — need segmentation</td>
+    </tr>
+    <tr>
+        <td>Characters</td>
+        <td>Letters form words</td>
+        <td>Characters often carry meaning</td>
+    </tr>
+    <tr>
+        <td>Tokenization</td>
+        <td>Split by space</td>
+        <td>Need tools like**Jieba**</td>
+    </tr>
+</table>
+    <ol>
+        <li>English: `"I love Badminton"` → `["I", "love", "Badminton"]`</li>
+        <li>Chinese: `"我愛羽球"` → Must segment into `["我", "愛", "羽球"]`</li>
+    </ol>
+    </small></p> 
+</div>
+</section>
+
+
+<section>
+<div class="discussion">
+    <h1>The process for NLP in Chinese</h1>
+    <p><small>
+      <table border="1">
+    <tr>
+        <td>Step</td>
+        <td>Purpose</td>
+    </tr>
+    <tr>
+        <td>1. Segmentation (`jieba`)</td>
+        <td>Split Chinese text into words</td>
+    </tr>
+    <tr>
+        <td>2. Cleaning</td>
+        <td>Remove punctuation and stop words</td>
+    </tr>
+    <tr>
+        <td>3. Word Frequency</td>
+        <td>Find important words</td>
+    </tr>
+    <tr>
+        <td>4. TF-IDF</td>
+        <td>Convert text to numbers (vectors)</td>
+    </tr>
+    <tr>
+        <td>5. Cosine Similarity</td>
+        <td>Measure how similar two texts are</td>
+    </tr>
+</table>
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <p>Jieba library<small>
+    <mark>Jieba</mark> is a popular Python library for Chinese text processing, 
+    widely used for its robust word segmentation capabilities. 
+    It supports multiple segmentation modes (precise, full, and search), part-of-speech tagging, 
+    and keyword extraction using algorithms like TF-IDF and TextRank. 
+    Jieba is efficient, customizable (e.g., allows user-defined dictionaries), 
+    and well-suited for tasks like text preprocessing for recommender systems, sentiment analysis, or information retrieval in Chinese.
+    </small></p>
+    <pre><code>
+import jieba
+
+text = "我愛打羽球，也喜歡看NBA比賽。"
+
+# Cut into words
+words = jieba.lcut(text, cut_all=True)
+print("Segmented words:", words)
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Text Cleaning (Remove Punctuation, Stop Words)</h2>
+    <pre><code>
+# Define common Chinese stop words
+stop_words = {'，', '。', '！', '？', '的', '了', '是', '在', '我', '有', '和', '就', '不', '都', '一'}
+
+# Clean the words
+filtered_words = [word for word in words if word not in stop_words and len(word) > 1]
+print("Filtered words:", filtered_words)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Basic Text Mining</h1>
+    <h2>TF-IDF – Turn Text into Numbers</h2>
+    <p><small>
+        <mark>TF-IDF</mark> stands for <mark>Term Frequency</mark> – Inverse Document Frequency. 
+        It’s a statistical measure used to evaluate how important a word is to a document in a collection (called a *corpus*). 
+        <ol>
+            <li><mark>TF</mark>: Term Frequency – how often a word appears in a document</li>
+            <li><mark>IDF</mark>: Inverse Document Frequency – how unique the word is across documents</li>
+            <li>TF-IDF = TF × IDF</li>
+        </ol>
+    </small></p>
+    <h2>Compute Similarity (Cosine Similarity)</h2>
+    <pre><code>
+from sklearn.metrics.pairwise import cosine_similarity
+
+similarity_matrix = cosine_similarity(X)
+print("Similarity matrix:")
+print(similarity_matrix)
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Term Frequency Analysis</h2>
+    <p><small>
+        The use of term frequency is to measure the `occurrence frequency` of each word or phrase in a given text. 
+        It helps in understanding the structure, themes, and keywords of the text, 
+        with applications in information retrieval, text classification, and text mining. T
+        he main idea is simple and intuitive: it <mark>counts</mark> the occurrences of each word (or phrase) in the text 
+        and determines the importance of a word in the text based on its frequency.
+    </small></p>
+    <pre><code>
+import jieba
+from collections import Counter
+import pandas as pd
+
+# Sample Chinese text
+text = """
+自然語言處理是人工智慧的重要分支，它讓電腦能夠理解、分析和生成人類語言。
+近年來，隨著深度學習的發展，自然語言處理在機器翻譯、情感分析、問答系統等領域取得了顯著進展。
+中文文本處理尤其具有挑戰性，因為中文沒有明顯的詞邊界，需要先進行分詞。
+自然語言處理的應用非常廣泛，包括智慧客服、搜尋引擎、語音助手等。
+"""
+
+# Step 1: Segment text using jieba
+words = jieba.lcut(text)
+
+# Step 2: Optional — Filter out stopwords (you can load a custom list)
+# Here’s a minimal stopword list for demo
+stopwords = {'的', '是', '在', '和', '等', '、', '，', '。', '隨著', '因為', '需要', '先', '它', '讓', '了', '非常'}
+
+# Filter out stopwords and single-character tokens (optional, to reduce noise)
+filtered_words = [word for word in words if word not in stopwords and len(word) > 1]
+
+# Step 3: Count term frequencies
+term_freq = Counter(filtered_words)
+
+# Step 4: Display top 10 most frequent terms
+print("=== Top 10 Term Frequencies ===")
+top_terms = term_freq.most_common(10)
+
+for term, freq in top_terms:
+    print(f"{term}: {freq}")
+
+# Optional: Convert to DataFrame for better visualization
+df = pd.DataFrame(top_terms, columns=['Term', 'Frequency'])
+print("\n=== As DataFrame ===")
+print(df)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>Word Frequency Analysis</h2>
+    <p><samll>
+    Count how often each word appears in a text or collection of texts
+    </samll></p>
+    <pre><code>
+from collections import Counter
+
+# Simulate more text (like from news or user input)
+long_text = """
+我愛打籃球，也喜歡看NBA比賽。籃球比賽非常精彩，球員技術高超。
+Taiwan男籃正在備戰亞洲杯，希望取得好成績。
+"""
+
+words = jieba.lcut(long_text)
+filtered_words = [w for w in words if w not in stop_words and len(w) > 1]
+
+# Count frequency
+word_freq = Counter(filtered_words)
+print("Top words:", word_freq.most_common(5))
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Keyword Extraction</h2>
+    <p><small>
+        The purpose is to identify and extract the most representative or important words or phrases from a given text. 
+        These words or phrases are typically used to summarize the content or help users understand the main theme of the text. 
+        Keyword extraction aids in compressing information, providing summaries, or being utilized in various natural language processing tasks such as document classification, search engine optimization, and topic modeling.
+    </small></p>
+    <pre><code>
+import jieba.analyse
+
+# Sample Chinese text
+text = """
+自然語言處理是人工智慧的重要分支，它讓電腦能夠理解、分析和生成人類語言。
+近年來，隨著深度學習的發展，自然語言處理在機器翻譯、情感分析、問答系統等領域取得了顯著進展。
+中文文本處理尤其具有挑戰性，因為中文沒有明顯的詞邊界，需要先進行分詞。
+"""
+
+# TF-IDF based keyword extraction
+print("=== TF-IDF Keywords ===")
+keywords_tfidf = jieba.analyse.extract_tags(text, topK=5, withWeight=True, allowPOS=())
+
+for keyword, weight in keywords_tfidf:
+    print(f"{keyword}: {weight:.4f}")
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h2>Visualize with WordCloud</h2>
+    <p><small>
+       A WordCloud provides an intuitive visual representation of word frequencies, 
+       where word size reflects frequency or importance, 
+       making it easier to identify key themes (e.g., genres or concepts) in the dataset.
+       A <mark>Word Cloud</mark> (or tag cloud) is a visual representation of text data where:
+       <ol>
+        <li>The size of each word corresponds to its <mark>frequency</mark> (or importance)</li>
+        <li>More frequent words appear <mark>larger and bolder</mark></li>
+        <li>It’s great for quickly seeing the <mark>main topics</mark> in Chinese articles, reviews, or social media</li>
+       </ol> 
+    </small></p>
+    <pre><code>
+# Colab 進行matplotlib繪圖時顯示繁體中文
+# 下載台北思源黑體並命名taipei_sans_tc_beta.ttf，移至指定路徑
+!wget -O TaipeiSansTCBeta-Regular.ttf https://drive.google.com/uc?id=1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_&export=download
+
+import matplotlib
+
+# 改style要在改font之前
+# plt.style.use('seaborn')
+
+matplotlib.font_manager.fontManager.addfont('TaipeiSansTCBeta-Regular.ttf')
+matplotlib.rc('font', family='Taipei Sans TC Beta')
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+    </code></pre>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h2>Customize Your Word Cloud</h2>
+    <p><small>
+       <ol>
+        <li>Colors: colormap='plasma', 'cool', 'Set2', etc</li>
+        <li>Shape: Use a mask image (e.g., speech bubble)</li>
+        <li>Background: background_color='black'</li>
+        <li>Max font size: max_font_size=80</li>
+        <li>Contour: contour_width=3, contour_color='steelblue'</li>
+       </ol> 
+    </small></p>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h1>Topic Modeling & Topic Representation</h1>
+    <p><small>
+      <mark>Topic Modeling</mark> is an unsupervised machine learning technique used 
+      to discover latent topics (themes) in a collection of text documents. 
+      It identifies patterns of co-occurring words to group documents into topics, each represented by a set of keywords.<br>
+      Topic modelling is a technique to automatically identify and group similar words or phrases in a text. 
+      This lets us figure out the central ideas or themes in a group of documents.<br>
+      <mark>Topic Representation</mark> refers to how topics are modeled and interpreted, 
+      typically as distributions of words or documents. Each topic is represented by a set of high-probability words (e.g., “space, adventure, sci-fi” for a Sci-Fi topic), and each document is represented as a mixture of topics. Common algorithms like **Latent Dirichlet Allocation (LDA)** or **Non-Negative Matrix Factorization (NMF)** are used to generate these representations, 
+      providing interpretable insights into text content.
+    </small></p>
+    <p><small>
+        <ol>
+            <li>Topic model: Refers to the mathematical or computational method</li>
+            <li>Topic Representation: how the discovered topics are expressed, encoded, or visualized after modeling</li>
+        </ol>
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Sentiment Analysis</h1>
+    <p><small>
+       <mark>Sentiment Analysis</mark> (also called <mark>Opinion Mining</mark>) means: 
+       Automatically detecting whether a piece of text expresses <mark>positive</mark>, <mark>negative</mark>, or <mark>neutral</mark> emotion.
+    <table border="1">
+    <tr>
+        <td>Text</td>
+        <td>Sentiment</td>
+    </tr>
+    <tr>
+        <td>“這部電影太棒了！”</td>
+        <td>😊 Positive</td>
+    </tr>
+    <tr>
+        <td>“服務很差，不會再來了。”</td>
+        <td>😠 Negative</td>
+    </tr>
+    <tr>
+        <td>“今天天氣是陰天。”</td>
+        <td>😐 Neutra</td>
+    </tr>
+</table>
+    </small></p>
+
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <p><small>
+       Two Approaches to Sentiment Analysis:
+    <table border="1">
+    <tr>
+        <td>Method</td>
+        <td>How to Work</td>
+        <td>Benefit</td>
+    </tr>
+    <tr>
+        <td>Lexicon-Based</td>
+        <td>Use word lists (e.g., 好 = +1, 差 = -1)</td>
+        <td>Fast, no training needed</td>
+    </tr>
+    <tr>
+        <td>Machine Learning / Deep Learning</td>
+        <td>Train a model on labeled data</td>
+        <td>More accurate, handles context</td>
+    </tr>
+</table>    
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>Lexicon-based</h1>
+    <p><small>
+     The common English emotion dictionaries are the `nrc`, `bing`, and `AFINN` dictionaries, etc. 
+     The nrc dictionary is provided by Saif Mohammad and Peter Turney, the AFINN dictionary is created by Finn Årup Nielsen, 
+     and the bing dictionary is created by Bing Liu and collaborators, etc. The `nrc` dictionary labels words binary (yes/no) in categories such as positive, negative, angry, expectant, disgusted, fearful, happy, sad, surprised, and trusting.`BING` Dictionaries categorize words as positive and negative in binary terms.The `AFINN' dictionary assigns each word a value between -5 and 5, 
+     with negative values representing negative emotions and positive values representing positive emotions.
+    </small></p>
+    <p><small>
+       For simplified Chinese, HowNet (中國知網) Emotion Dictionary, 
+       Dalian Polytechnic University (大連理工大學) Emotion Vocabulary Ontology, 
+       and Harbin (哈工大) Institute of Technology (HIT) Expanded Synonym Forest are the top choices. 
+       For the Traditional Chinese version, the NTSUSD Chinese Affective Polarity Dictionary, 
+       which includes both Simplified and Traditional Chinese, has 11,088 words, 
+       of which 2,812 are positive words and 8,276 are negative words. 
+    </small></p>
+</div>
+</section>
+
+
+<section>
+<div class="summary">
+    <h2>Machine Learning-Based Sentiment Analysis</h2>
+    <p><small>
+       Machine Learning-Based means we train a model using labeled data, rather than relying on manually crafted rules or lexicons. 
+       The model “learns” patterns from examples to generalize to new, unseen text.
+       <ol>
+        <li>Data Collection & Preparation: Gather labeled dataset: text + sentiment labels (binary or multi-class)</li>
+        <li>Text Preprocessing: as before</li>
+        <li>Feature Extraction: Convert text into numerical vectors for ML models such as Bag-of-Words (BoW), IF-IDF, Word Embeddings..</li>
+        <li>Model Selection & Training</li>
+        <li>Model Evaluation and Make a prediction</li>
+       </ol>
+    </small></p>
+</div>
+</section>
+
+
+
+</body>
+</html>
