@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 9</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 9 Sklearn Library</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Today's Topics</a></li>
+        <li><a href="#topic1">Sklearn I</a></li>
+        <li><a href="#topic2">Sklearn II</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="Introduction">
+    <div class="summary">
+    <h1>Introduction<Title></Title></h1>
+    <p><small>Data Science is a multi-disciplinary field which combines statistics, machine learning, artificial intelligence and database technology.  
+        Many businesses have stored large amounts of data over years of operation, and data science is able to extract very valuable knowledge from this data.  The businesses are then able to leverage the extracted knowledge into more clients, more sales, and greater profits. 
+        This is also true in the engineering and medical fields. </small></p> 
+    <img src="images\ch1-1B.jpg" alt="ch1-1B" width="300">
+</div>
+</section>
+
+<section id="topic1">
+    <div class="discussion">
+    <p><small> Machine learning is a branch of artificial intelligence that enables computers to learn from data and make predictions or decisions based on that data. 
+        Python has become one of the most popular programming languages for machine learning due to its simplicity, flexibility, and powerful libraries. 
+We will explore scikit-learn, one of the most popular Python libraries for machine learning.<br><br>
+
+Scikit-learn, also known as sklearn, is an open-source, machine learning and data modeling library for Python. 
+It features various classification, regression and clustering algorithms including support vector machines, 
+random forests, gradient boosting, k-means and DBSCAN, and is designed to interoperate with the Python libraries, 
+NumPy and SciPy.</small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Categories of Machine Learning<Title></Title></h1>
+    <p><small> There are some basic approaches: supervised learning and unsupervised learning. 
+        The main difference is that one uses labeled data to help predict outcomes, while the other does not. 
+        The raw material is the historical data which is analyzed and modeled to generate a predictive algorithm. 
+        The historical data available and the business problem to be solved allow us to classify the machine learning algorithms 
+        in broadly four classes: supervised learning, unsupervised learning, semi-supervised learning, and reinforcement learning.   </small></p>
+        <img src="images\2025072306.jpg" alt="202507230" width="800">
+    
+    <h2>Workflow of Supervised Learning algorithms</h2>   
+    <p><small>        
+    <ol>
+        <li>Step 1: Data Collection</li>
+        <li>Step 2: Data pre-processing
+            <ul>
+                <li>missing values, encoding categorical variables, and scaling numerical features</li>
+                <li>feature selection or extraction</li>
+            </ul>
+        </li>
+        <li>Step 3: Data Splitting</li>
+        <li>Step 4: Model Selection</li>
+        <li>Step 5: Training the Model
+            <ui>
+                <li>Model Evaluation</li>
+                <li>Fine-tuning</li>
+            </ui>
+        </li>
+    </ol>   
+    </small></p>
+    
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Supervised Learning Algorithms<Title></Title></h1>
+    <p><small>Supervised learning is statistical models where you have input variables (x) and an output variable (Y) 
+        and you use an algorithm to learn the mapping function from the input to the output. 
+        The output is the value that we wish to predict and is referred to as the target variable and the data used to make that prediction is called training data. 
+        The target variable is sometimes referred to as the label.</small></p>
+        <img src="images\ch1-2.jpg" alt="ch1-2" width="300">
+    <p><small>
+        Supervised learning problems are used in demand prediction, credit card fraud detection, customer churn prediction, premium estimation, etc. 
+        Supervised learning algorithms can be further broken into regression algorithms and classification algorithms.
+    </small></p>        
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>Regression algorithms</h2>
+    <p><small>Regression algorithms are are used to predict the values of a continuous variable. 
+        A regression model will be able to find the inherent patterns in the data and fit a mathematical equation describing the relationship.
+    </small></p>
+    <img src="images\2025072307.jpg" alt="2025072307" width="300">
+    <p><small>The objective of the linear regression problem is to find the line of best fit which is able to explain the randomness present in the data.</small></p>
+    <img src="images\2025072308.jpg" alt="2025072308" width="300">
+    <ui>
+        <li>Common algorithms for regression: Linear regression, Lasso regression, Support Vector Regression (SVR), Neural networks (for regression)</li>
+    </ui>
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <p><small>The next regression algorithm we are discussing is Tree based solutions. For tree-based algorithms like decision trees, random forests etc. 
+        The algorithm will start from the top and then like an “if-else” block will split iteratively to create nodes 
+        and sub-nodes till we reach a terminal node.</small></p>
+    <img src="images\2025072309.jpg" alt="2025072309" width="300">
+    <ui>
+        <li>There are other famous regression algorithms like k-nearest neighbor, gradient boosting, and deep learning based solutions</li>
+    </ui>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Classification Algorithms<Title></Title></h1>
+    <p><small>Classification algorithms are used to predict the values of a categorical variable which is the dependent variable. 
+        This target variable can be binary (Yes/No, good/bad, fraud/genuine, pass/fail, etc.) or multi-class (positive/negative/neutral, Yes/No/Don’t know, etc.)</small></p>
+    <img src="images\2025072310.jpg" alt="2025072310" width="300">
+    <img src="images\ch1-3.jpg" alt="ch1-3" width="300">
+    <ui>
+        <li>Common algorithms for classification: Logistic regression, Decision trees, Support vector machines (SVM), K-nearest neighbors (KNN), 
+                Random forest, Neural networks,  Deep neural networks, or deep learning, involve multiple hidden layers</li>
+    </ui>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Unsupervised Learning Algorithms<Title></Title></h1>
+    <p><small>Unsupervised learning is the set of approaches that focus on finding `hidden patterns` and insights from the given dataset. 
+        In such cases, we do not require labelled data. The goal of such approaches is to find the underlying structure of the data, 
+        simplify or compress the dataset, or group the data according to inherent similarities.<br>
+
+  Imagine you are given some paper labels.  The task is to arrange them using some similarities. 
+  Now there are multiple approaches to that problem. You can use color, shape, or size. 
+  Here we do not have any label with us to guide on this arrangement. This is the difference which unsupervised algorithm have.<br>
+
+  Unsupervised learning is hence used for pattern detection, exploring the insights in the dataset and understanding the structure of it, 
+  segmentation, and anomaly detection</small></p>
+    <img src="images\2025072311.jpg" alt="2025072311" width="300">
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>Clustering Algorithms<Title></Title></h1>
+    <p><small>One common task in unsupervised learning is clustering, which is a method of grouping data points (or objects) into clusters 
+        so that the objects that are similar to each other are assigned to one group 
+        while making sure that they are significantly different from the items present in other groups. 
+        It is highly useful in identifying potential customer segments for directing the marketing efforts and partitioning an image for segmenting into different objects.
+    </small></p>
+    <img src="images\ch1-1I.png" alt="ch1-1I" width="300">
+</div>
+</section>
+
+
+<section>
+    <div class="discussion">
+    <img src="images\ch1-5.png" alt="ch1-5" width="700">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Supervised Learning I : Classification<Title></Title></h1>
+    <h2>K Nearest Neighbors (KNN)</h2>
+    <p><small>
+      "Birds of a feather flock together". Data science uses this principle to classify data 
+      by placing it in the same category as <strong>similar</strong> or <strong>k nearest</strong> neighbors. 
+      <strong>K nearest neighbors</strong> is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure (e.g., distance functions). 
+      It is a lazy learning.<br>
+  The letter $k$ is a variable term implying that any number of nearest neighbors could be used. 
+  In particular, the "nearest" in similarity. The k-NN algorithm treats the features as coordinates in a multidimensional feature space.
+    </small></p>
+    <img src="images\ch3-1.png" alt="ch3-1" width="300">
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>Measures of Performance for Classification<Title></Title></h1>
+    <h2>Confusion Matrix</h2>
+    <p><small> <strong>Confusion matrix</strong> is a simple contingency table that is used to visualize the performance of a classification algorithm 
+        which may classify the elements into two or more classes. 
+        In the table, each row represents the items belonging to the actual classes, 
+        and each column represents the items belonging to the predicted classes    </small> </p>
+    <img src="images\churn_04.png" alt="churn_04" width="300">
+    <p><small>
+        <ol>
+        <li><strong>Recall</strong> : the ratio of positive test data items that are correctly identified out of all the items that are actually positive.</li>
+        <li><strong>Precision</strong> : ratio of the number of correctly predicted positive points to the number of all the points that were predicted as positive</li>
+        <li><strong>Accuracy</strong> : how many items are correctly classified into both the classes.</li>
+        <li><strong>F-measure</strong> : taking the harmonic mean of precision and recall</li>
+        <li><strong>ROC curve and AUC value</strong> : a plot between TPR (true positive rate) and FPR (false positive rate)</li>
+    </ol>
+    </small></p>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <pre><code class="python">
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.datasets import make_classification
+
+# Step 1: Generate a synthetic dataset with 356 rows and 8 features
+X, y = make_classification(n_samples=356, n_features=8, 
+                           n_informative=6, n_redundant=2, 
+                           n_classes=2, random_state=42)
+
+# Convert to DataFrame (optional, for better visualization)
+df = pd.DataFrame(X, columns=[f'Feature_{i+1}' for i in range(8)])
+df['Target'] = y
+
+print("Dataset shape:", df.shape)
+print("\nFirst 5 rows of the dataset:")
+print(df.head())
+
+# Step 2: Prepare features and target
+X = df.iloc[:, :-1]  # First 8 columns (features)
+y = df['Target']     # Last column (target)
+
+######------------#######
+# Step 3: Split the data into training and testing sets (80% train, 20% test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+
+# Step 4: Standardize the features (important for KNN)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Step 5: Train the KNN model
+k = 5  # Number of neighbors
+knn = KNeighborsClassifier(n_neighbors=k)
+knn.fit(X_train_scaled, y_train)
+
+# Feature importance using permutation importance
+perm_importance = permutation_importance(model, X_train_scaled, y_train, n_repeats=10, random_state=42)
+feature_importance = pd.DataFrame({
+    'Feature': X.columns,
+    'Importance': perm_importance.importances_mean,
+    'Std': perm_importance.importances_std
+})
+
+# Sort by importance
+significant_features = feature_importance.sort_values(by='Importance', ascending=False)
+
+print("\nFeature Importance (Permutation Importance):")
+print(significant_features)
+
+# Step 6: Make predictions
+y_pred = knn.predict(X_test_scaled)
+
+# Step 7: Evaluate the model
+accuracy = accuracy_score(y_test, y_pred)
+print(f"\nAccuracy: {accuracy:.4f}")
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# Confusion Matrix (Training)
+cm_train = confusion_matrix(y_train, y_train_pred)
+plt.figure(figsize=(6, 5))
+sns.heatmap(cm_train, annot=True, fmt='d', cmap='Blues', xticklabels=['No', 'Yes'], yticklabels=['No', 'Yes'])
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix (Training)')
+plt.show()
+
+# Training Accuracy and AUC
+train_accuracy = accuracy_score(y_train, y_train_pred)
+train_auc = roc_auc_score(y_train, y_train_pred_prob)
+print(f"\nTraining Accuracy: {train_accuracy:.4f}")
+print(f"Training AUC: {train_auc:.4f}")
+
+# Evaluate on test data
+y_test_pred_prob = model.predict_proba(X_test_scaled)[:, 1]
+y_test_pred = model.predict(X_test_scaled)
+test_accuracy = accuracy_score(y_test, y_test_pred)
+test_auc = roc_auc_score(y_test, y_test_pred_prob)
+print(f"\nTest Accuracy: {test_accuracy:.4f}")
+print(f"Test AUC: {test_auc:.4f}")
+
+# ROC Curve (Training and Test)
+fpr_train, tpr_train, _ = roc_curve(y_train, y_train_pred_prob)
+fpr_test, tpr_test, _ = roc_curve(y_test, y_test_pred_prob)
+
+plt.figure(figsize=(8, 6))
+plt.plot(fpr_train, tpr_train, label=f'Training (AUC = {train_auc:.4f})')
+plt.plot(fpr_test, tpr_test, label=f'Test (AUC = {test_auc:.4f})')
+plt.plot([0, 1], [0, 1], color='red', linestyle='--', label='Random Guess')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.legend()
+plt.grid(True)
+plt.show()
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Appropriate k<Title></Title></h1>
+    <p><small>
+        The balance between over-fitting and under-fitting the training data is a problem known as <strong>bias-variance tradeoff</strong>. 
+        Choosing a large k reduces the impact or variance caused by noisy data, but can bias the learner 
+    </small></p> 
+    <img src="images\ch3-2.png" alt="ch3-2" width="300"> 
+    <pre><code class="python">
+# Optional: Try different values of k to find the best one
+print("\n--- Testing different values of k ---")
+k_range = range(1, 11)
+scores = {}
+for k in k_range:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X_train_scaled, y_train)
+    y_pred_k = knn.predict(X_test_scaled)
+    scores[k] = accuracy_score(y_test, y_pred_k)
+    print(f"k={k}, Accuracy={scores[k]:.4f}")
+    </code></pre>  
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Supervised Learning II: Regression<Title></Title></h1>
+    <p><small>Regression is a a supervised learning technique that models the size and the strength of numeric relationships. 
+        Regression is concerned with specifying the relationship between a single numeric dependent variable (the value to be predicted) 
+        and one or more numeric independent variables (the predictors).</small></p>
+    <img src="images\ch7-1.png" alt="ch7-1" width="300">
+    <p><small>
+    The most basic linear regression models
+    <ol>
+        <li>Simple linear regression:  only a single independent variable</li>
+        <li>Multiple linear regression: two or more independent variables</li>
+    </ol>
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>What Is Linear Regression<Title></Title></h1>
+    <img src="images\2025070901.jpg" alt="2025070901" width="300">
+    <p><small>Be careful with <strong>infinite loops</strong> — always ensure the condition will eventually become `False`.
+    The objective of the linear regression analysis is to measure this relationship and arrive at a mathematical equation for the relationship. 
+    The relationship can be used to predict the values for unseen data points. 
+    For example, in the case of the house price problem, predicting the price of a 
+    house will be the objective of the analysis</small></p>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <img src="images\2025070902.jpg" alt="2025070902" width="300">
+    <p><small>It is represented by random error, 
+        which is the difference between the predicted and actual value of Y and is given by $\varepsilon=(\hat{Y}_i -Y_i)$. 
+        It is important to note that the smaller the value of this error, the better is the prediction. 
+        There can be multiple lines which can be said to represent the relationship.</small></p>
+    <img src="images\2025070903.jpg" alt="2025070903" width="300">
+    <p><small>Hence, it turns out that we have to find out the best mathematical equation 
+        which can minimize the random error and hence can be used for making the predictions.<br>
+    The Ordinary least-squares (OLS) method is one of the most used and quoted ones which minimize the sum of the squared distance between $Y$ and $\hat{Y}$
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <pre><code class="python">
+# Simple regression
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn.linear_model import LinearRegression
+from sklearn.datasets import make_regression
+
+# create a sample dataset 
+X,Y = make_regression(n_features=1, noise=5, n_samples=5000)
+
+plt.xlabel('Feature - X')
+plt.ylabel('Target - Y')
+plt.scatter(X,Y,s=5)
+
+# Build the model
+linear_model = LinearRegression()
+linear_model.fit(X,Y)
+
+linear_model.coef_
+linear_model.intercept_
+
+# prediction
+pred = linear_model.predict(X)
+plt.scatter(X,Y,s=25, label='training')
+plt.scatter(X,pred,s=25, label='prediction')
+plt.xlabel('Feature - X')
+plt.ylabel('Target - Y')
+plt.legend()
+plt.show()   
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Unsupervised Learning: Clustering</h1>
+    <p><small>Clustering is used to group objects with similar attributes in the same segments, and the objects with different attributes in different segments. 
+        The resultant clusters share similarities within themselves while they are more heterogeneous between each other. 
+        We are going to study basic clustering algorithms which are K-means clustering, hierarchical clustering, and DBSCAN clustering.</small></p>
+    <img src="images\2025072312.jpg" alt="2025072312" width="300">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>K-means clustering</h1>
+    <p><small>k-means clustering is an easy and straightforward approach. 
+        It is arguably the most widely used clustering method to segment the data points and create nonoverlapping clusters. 
+        We have to specify the number of clusters “k” we wish to create as an input and 
+        the algorithm will associate each observation to exactly one of the k clusters.<br>
+
+  The objective of k-means clustering is to ensure that the within-cluster variation is as small as possible 
+  while the difference between clusters is as big as possible. 
+  In other words, the members of the same cluster are most similar to each other while members in different clusters are dissimilar.</small></p>
+    <h2>Finding the optimum value of “k”</h2>
+    <p><small>One of the most popular methods to do so is the <strong>Elbow Method</strong> 
+        which calculate different scenarios for different numbers of clusters and then plot them in a line</small></p>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <pre><code class="python">
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+from sklearn.metrics import silhouette_score
+import seaborn as sns
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# -----------------------------------------------
+# Step 1: Use the same dataset (5600 rows, 7 columns)
+# -----------------------------------------------
+X, _ = make_blobs(n_samples=5600, centers=5, n_features=7, cluster_std=2.0, random_state=42)
+
+# Convert to DataFrame (we'll assume df from previous step, or recreate)
+df = pd.DataFrame(X, columns=[f'Feature_{i+1}' for i in range(7)])
+
+print("Dataset shape:", df.shape)
+print("\nFirst 5 rows:")
+print(df.head())
+
+# -----------------------------------------------
+# Step 2: Standardize the data
+# -----------------------------------------------
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(df)
+
+print("\nData has been standardized.")
+
+# -----------------------------------------------
+# Step 3: Find the best k using Elbow Method and Silhouette Analysis
+# -----------------------------------------------
+
+# Range of k values to test
+k_range = range(2, 11)  # Test k from 2 to 10
+
+# Lists to store results
+inertias = []
+silhouette_scores = []
+
+print("\nEvaluating K-Means for k from 2 to 10...")
+
+for k in k_range:
+    kmeans = KMeans(n_clusters=k, init='k-means++', n_init=10, random_state=42, max_iter=300)
+    kmeans.fit(X_scaled)
+    
+    inertias.append(kmeans.inertia_)  # WCSS (Within-cluster sum of squares)
+    
+    # Silhouette score (slower for large data — sample if needed)
+    if k > 1:
+        # Use a sample for silhouette to save time (optional)
+        sample_size = 1000
+        indices = np.random.choice(X_scaled.shape[0], size=sample_size, replace=False)
+        X_sample = X_scaled[indices]
+        score = silhouette_score(X_sample, kmeans.labels_[indices])
+        silhouette_scores.append(score)
+    else:
+        silhouette_scores.append(0)
+
+# -----------------------------------------------
+# Step 4: Plot Elbow and Silhouette
+# -----------------------------------------------
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+
+# Elbow Method
+ax1.plot(k_range, inertias, 'bo-', linewidth=2, markersize=6)
+ax1.set_title('Elbow Method for Optimal k')
+ax1.set_xlabel('Number of Clusters (k)')
+ax1.set_ylabel('Within-cluster Sum of Squares (WCSS)')
+ax1.grid(True)
+
+# Silhouette Analysis
+ax2.plot(k_range, silhouette_scores, 'ro-', linewidth=2, markersize=6)
+ax2.set_title('Silhouette Score vs k')
+ax2.set_xlabel('Number of Clusters (k)')
+ax2.set_ylabel('Silhouette Score')
+ax2.grid(True)
+
+plt.tight_layout()
+plt.show()
+
+# -----------------------------------------------
+# Step 5: Choose best k
+# -----------------------------------------------
+# Find k with highest silhouette score
+best_k_silhouette = k_range[np.argmax(silhouette_scores)]
+print(f"\nBest k based on Silhouette Score: {best_k_silhouette}")
+
+# Optional: Elbow "knee" detection (manual or use kneed library)
+# For this example, we'll go with silhouette
+
+# -----------------------------------------------
+# Step 6: Apply K-Means with best k and add labels to df
+# -----------------------------------------------
+final_k = best_k_silhouette  # or set to 5 if you know it from data
+
+kmeans_final = KMeans(n_clusters=final_k, init='k-means++', n_init=10, random_state=42)
+cluster_labels_kmeans = kmeans_final.fit_predict(X_scaled)
+
+# Add K-Means cluster labels to df
+df['KMeans_Cluster'] = cluster_labels_kmeans
+
+print(f"\nK-Means clustering completed with k = {final_k}")
+print("K-Means Cluster distribution:")
+print(df['KMeans_Cluster'].value_counts().sort_index())
+
+# Optional: Show first 10 rows with K-Means labels
+print("\nFirst 10 rows with K-Means cluster labels:")
+print(df[['KMeans_Cluster'] + [f'Feature_{i+1}' for i in range(7)]].head(10))
+
+# -----------------------------------------------
+# Step 7: (Optional) Visualize clusters using PCA
+# -----------------------------------------------
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_scaled)
+
+plt.figure(figsize=(8, 6))
+sns.scatterplot(
+    x=X_pca[:, 0], y=X_pca[:, 1],
+    hue=df['KMeans_Cluster'],
+    palette='Set1',
+    s=50,
+    alpha=0.8
+)
+plt.title(f'K-Means Clustering Results (k={final_k}) - PCA Projection')
+plt.xlabel('PCA Component 1')
+plt.ylabel('PCA Component 2')
+plt.legend(title='Cluster')
+plt.tight_layout()
+plt.show()
+
+# -----------------------------------------------
+# Final Output
+# -----------------------------------------------
+print(f"\n Final DataFrame shape: {df.shape}")
+print("Each row now has a K-Means cluster label in the 'KMeans_Cluster' column.")
+print("Access labels: df['KMeans_Cluster']")
+    </code></pre>
+</div>
+</section>
+
+
+
+
+</body>
+</html>

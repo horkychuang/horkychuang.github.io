@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 9 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 9 Sklearn Library
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+    <p><small>Data Science is a multi-disciplinary field which combines statistics, machine learning, artificial intelligence and database technology.  
+        Many businesses have stored large amounts of data over years of operation, and data science is able to extract very valuable knowledge from this data.  The businesses are then able to leverage the extracted knowledge into more clients, more sales, and greater profits. 
+        This is also true in the engineering and medical fields. </small></p> 
+    <img src="images\ch1-1B.jpg" alt="ch1-1B" width="500">
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+            <p><small> Machine learning is a branch of artificial intelligence that enables computers to learn from data and make predictions or decisions based on that data. 
+        Python has become one of the most popular programming languages for machine learning due to its simplicity, flexibility, and powerful libraries. 
+We will explore scikit-learn, one of the most popular Python libraries for machine learning.<br><br>
+
+Scikit-learn, also known as sklearn, is an open-source, machine learning and data modeling library for Python. 
+It features various classification, regression and clustering algorithms including support vector machines, 
+random forests, gradient boosting, k-means and DBSCAN, and is designed to interoperate with the Python libraries, 
+NumPy and SciPy.</small></p>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Categories of Machine Learning</h1>
+    <p><small> There are some basic approaches: supervised learning and unsupervised learning. 
+        The main difference is that one uses labeled data to help predict outcomes, while the other does not. 
+        The raw material is the historical data which is analyzed and modeled to generate a predictive algorithm. 
+        The historical data available and the business problem to be solved allow us to classify the machine learning algorithms 
+        in broadly four classes: supervised learning, unsupervised learning, semi-supervised learning, and reinforcement learning.   </small></p>
+        <img src="images\2025072306.jpg" alt="202507230" width="600">
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Workflow of Supervised Learning algorithms</h1>
+            <p><small>                
+    <ol>
+        <li>Step 1: Data Collection</li>
+        <li>Step 2: Data pre-processing
+            <ul>
+                <li>missing values, encoding categorical variables, and scaling numerical features</li>
+                <li>feature selection or extraction</li>
+            </ul>
+        </li>
+        <li>Step 3: Data Splitting</li>
+        <li>Step 4: Model Selection</li>
+        <li>Step 5: Training the Model
+            <ui>
+                <li>Model Evaluation</li>
+                <li>Fine-tuning</li>
+            </ui>
+        </li>
+    </ol>   
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Supervised Learning Algorithms</h1>
+    <p><small>Supervised learning is statistical models where you have input variables (x) and an output variable (Y) 
+        and you use an algorithm to learn the mapping function from the input to the output. 
+        The output is the value that we wish to predict and is referred to as the target variable and the data used to make that prediction is called training data. 
+        The target variable is sometimes referred to as the label.</small></p>
+        <img src="images\ch1-2.jpg" alt="ch1-2" width="500">
+    <p><small>
+        Supervised learning problems are used in demand prediction, credit card fraud detection, customer churn prediction, premium estimation, etc. 
+        Supervised learning algorithms can be further broken into regression algorithms and classification algorithms.
+    </small></p>  
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Regression algorithms</h2>
+    <p><small>Regression algorithms are are used to predict the values of a continuous variable. 
+        A regression model will be able to find the inherent patterns in the data and fit a mathematical equation describing the relationship.
+    </small></p>
+    <img src="images\2025072307.jpg" alt="2025072307" width="400">
+    <p><small>The objective of the linear regression problem is to find the line of best fit which is able to explain the randomness present in the data.</small></p>
+    <img src="images\2025072308.jpg" alt="2025072308" width="400">
+    <ui>
+        <li>Common algorithms for regression: Linear regression, Lasso regression, Support Vector Regression (SVR), Neural networks (for regression)</li>
+    </ui>
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <p><small>The next regression algorithm we are discussing is Tree based solutions. For tree-based algorithms like decision trees, random forests etc. 
+        The algorithm will start from the top and then like an “if-else” block will split iteratively to create nodes 
+        and sub-nodes till we reach a terminal node.</small></p>
+    <img src="images\2025072309.jpg" alt="2025072309" width="500">
+    <ui>
+        <li>There are other famous regression algorithms like k-nearest neighbor, gradient boosting, and deep learning based solutions</li>
+    </ui>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Classification Algorithms<Title></Title></h1>
+    <p><small>Classification algorithms are used to predict the values of a categorical variable which is the dependent variable. 
+        This target variable can be binary (Yes/No, good/bad, fraud/genuine, pass/fail, etc.) or multi-class (positive/negative/neutral, Yes/No/Don’t know, etc.)</small></p>
+    <img src="images\2025072310.jpg" alt="2025072310" width="400"><br>
+    <img src="images\ch1-3.jpg" alt="ch1-3" width="400">
+    <ui>
+        <li>Common algorithms for classification: Logistic regression, Decision trees, Support vector machines (SVM), K-nearest neighbors (KNN), 
+                Random forest, Neural networks,  Deep neural networks, or deep learning, involve multiple hidden layers</li>
+    </ui>
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Unsupervised Learning Algorithms</h1>
+    <p><small>Unsupervised learning is the set of approaches that focus on finding `hidden patterns` and insights from the given dataset. 
+        In such cases, we do not require labelled data. The goal of such approaches is to find the underlying structure of the data, 
+        simplify or compress the dataset, or group the data according to inherent similarities.<br>
+
+  Imagine you are given some paper labels.  The task is to arrange them using some similarities. 
+  Now there are multiple approaches to that problem. You can use color, shape, or size. 
+  Here we do not have any label with us to guide on this arrangement. This is the difference which unsupervised algorithm have.<br>
+
+  Unsupervised learning is hence used for pattern detection, exploring the insights in the dataset and understanding the structure of it, 
+  segmentation, and anomaly detection</small></p>
+    <img src="images\2025072311.jpg" alt="2025072311" width="300">
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Clustering Algorithms</h1>
+    <p><small>One common task in unsupervised learning is clustering, which is a method of grouping data points (or objects) into clusters 
+        so that the objects that are similar to each other are assigned to one group 
+        while making sure that they are significantly different from the items present in other groups. 
+        It is highly useful in identifying potential customer segments for directing the marketing efforts and partitioning an image for segmenting into different objects.
+    </small></p>
+    <img src="images\ch1-1I.png" alt="ch1-1I" width="500">
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <img src="images\ch1-5.png" alt="ch1-5" width="700">
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Supervised Learning I : Classification</h1>
+    <h2>K Nearest Neighbors (KNN)</h2>
+    <p><small>
+      "Birds of a feather flock together". Data science uses this principle to classify data 
+      by placing it in the same category as <strong>similar</strong> or <strong>k nearest</strong> neighbors. 
+      <strong>K nearest neighbors</strong> is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure (e.g., distance functions). 
+      It is a lazy learning.<br>
+  The letter $k$ is a variable term implying that any number of nearest neighbors could be used. 
+  In particular, the "nearest" in similarity. The k-NN algorithm treats the features as coordinates in a multidimensional feature space.
+    </small></p>
+    <img src="images\ch3-1.png" alt="ch3-1" width="400">
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Measures of Performance for Classification<Title></Title></h1>
+    <h2>Confusion Matrix</h2>
+    <p><small> <strong>Confusion matrix</strong> is a simple contingency table that is used to visualize the performance of a classification algorithm 
+        which may classify the elements into two or more classes. 
+        In the table, each row represents the items belonging to the actual classes, 
+        and each column represents the items belonging to the predicted classes    </small> </p>
+    <img src="images\churn_04.png" alt="churn_04" width="400">
+    <p><small>
+        <ol>
+        <li><strong>Recall</strong> : the ratio of positive test data items that are correctly identified out of all the items that are actually positive.</li>
+        <li><strong>Precision</strong> : ratio of the number of correctly predicted positive points to the number of all the points that were predicted as positive</li>
+        <li><strong>Accuracy</strong> : how many items are correctly classified into both the classes.</li>
+        <li><strong>F-measure</strong> : taking the harmonic mean of precision and recall</li>
+        <li><strong>ROC curve and AUC value</strong> : a plot between TPR (true positive rate) and FPR (false positive rate)</li>
+    </ol>
+        </div>
+    </div>
+
+    <!-- Slide 14 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Appropriate k</h1>
+    <p><small>
+        The balance between over-fitting and under-fitting the training data is a problem known as <strong>bias-variance tradeoff</strong>. 
+        Choosing a large k reduces the impact or variance caused by noisy data, but can bias the learner 
+    </small></p> 
+    <img src="images\ch3-2.png" alt="ch3-2" width="600"> 
+        </div>
+    </div>
+
+    <!-- Slide 15 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>Supervised Learning II: Regression</h1>
+    <p><small>Regression is a a supervised learning technique that models the size and the strength of numeric relationships. 
+        Regression is concerned with specifying the relationship between a single numeric dependent variable (the value to be predicted) 
+        and one or more numeric independent variables (the predictors).</small></p>
+    <img src="images\ch7-1.png" alt="ch7-1" width="500">
+    <p><small>
+    The most basic linear regression models
+    <ol>
+        <li>Simple linear regression:  only a single independent variable</li>
+        <li>Multiple linear regression: two or more independent variables</li>
+    </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 16 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>What Is Linear Regression</h1>
+    <img src="images\2025070901.jpg" alt="2025070901" width="500">
+    <p><small>Be careful with <strong>infinite loops</strong> — always ensure the condition will eventually become `False`.
+    The objective of the linear regression analysis is to measure this relationship and arrive at a mathematical equation for the relationship. 
+    The relationship can be used to predict the values for unseen data points. 
+    For example, in the case of the house price problem, predicting the price of a 
+    house will be the objective of the analysis</small></p>
+        </div>
+    </div>
+
+    <!-- Slide 17 -->
+    <div class="slide">
+        <div class="bb">
+            <img src="images\2025070902.jpg" alt="2025070902" width="400">
+    <p><small>It is represented by random error, 
+        which is the difference between the predicted and actual value of Y and is given by $\varepsilon=(\hat{Y}_i -Y_i)$. 
+        It is important to note that the smaller the value of this error, the better is the prediction. 
+        There can be multiple lines which can be said to represent the relationship.</small></p>
+    <img src="images\2025070903.jpg" alt="2025070903" width="400">
+    <p><small>Hence, it turns out that we have to find out the best mathematical equation 
+        which can minimize the random error and hence can be used for making the predictions.<br>
+    The Ordinary least-squares (OLS) method is one of the most used and quoted ones which minimize the sum of the squared distance between $Y$ and $\hat{Y}$
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 18 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Unsupervised Learning: Clustering</h1>
+    <p><small>Clustering is used to group objects with similar attributes in the same segments, and the objects with different attributes in different segments. 
+        The resultant clusters share similarities within themselves while they are more heterogeneous between each other. 
+        We are going to study basic clustering algorithms which are K-means clustering, hierarchical clustering, and DBSCAN clustering.</small></p>
+    <img src="images\2025072312.jpg" alt="2025072312" width="500">
+        </div>
+    </div>
+
+    <!-- Slide 19 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>K-means clustering</h1>
+    <p><small>k-means clustering is an easy and straightforward approach. 
+        It is arguably the most widely used clustering method to segment the data points and create nonoverlapping clusters. 
+        We have to specify the number of clusters “k” we wish to create as an input and 
+        the algorithm will associate each observation to exactly one of the k clusters.<br>
+
+  The objective of k-means clustering is to ensure that the within-cluster variation is as small as possible 
+  while the difference between clusters is as big as possible. 
+  In other words, the members of the same cluster are most similar to each other while members in different clusters are dissimilar.</small></p>
+    <h2>Finding the optimum value of “k”</h2>
+    <p><small>One of the most popular methods to do so is the <strong>Elbow Method</strong> 
+        which calculate different scenarios for different numbers of clusters and then plot them in a line</small></p>
+        </div>
+    </div>
+
+    
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>

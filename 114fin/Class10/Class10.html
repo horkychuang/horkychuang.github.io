@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9; /* Light Gray Background */
+            color: #333;
+        }
+
+        /* Navigation Bar at TOP*/
+        nav {
+            background-color: #3498db; /* Blue Background */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ecf0f1; /* Lighter White on Hover */
+        }
+
+        /* Section Styling */
+        section {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+
+        /* 兩種div的定義：Summary and Discussion */
+        .summary {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .discussion {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <h1>Class 10 Machine Learning in Time Series</h1>
+    <ul> <!-- NAV BAR在上面, 要跟下面的大 section們有連接 , -->
+        <li><a href="#introduction">Today's Topics</a></li>
+        <li><a href="#topic1">Sklearn I</a></li>
+        <li><a href="#topic2">Sklearn II</a></li>
+    </ul>
+</nav>
+
+<!-- Introduction Section -->
+<section id="Introduction">
+    <div class="summary">
+    <h1>Introduction</h1>
+    <p><small>
+        While <strong>traditional machine learning (ML) models</strong> are powerful, using them for <strong>time series forecasting</strong> requires special care — 
+        because time series data is fundamentally different from standard tabular data.
+         Here's what you <strong>should know in advance</strong> when applying traditional ML to time series: 
+    </small></p> 
+
+    <h2>Time Series Have Temporal Structure: Observations are dependent on time.</h2>
+    <p><samll>
+        In time series analysis, the chronological aspect refers to the inherent sequential and temporal ordering of data points, 
+        where past observations influence future ones. 
+        This requires models to respect time dependencies to avoid issues like data leakage or unrealistic predictions.
+    </samll></p>
+</div>
+</section>
+
+<section id="topic1">
+    <div class="discussion">
+    <h2>1.1 Check stationary</h2>
+    <p><small> Stationarity refers to the property where the statistical properties of a time series, such as mean, variance, and autocorrelation, remain constant over time. A stationary time series is essential because many statistical models assume this property for accurate predictions. 
+        As we want to improve our forecast, we want to explain stationarity in our model at least with a feature</small></p>
+    <pre><code class="python">
+from statsmodels.graphics.tsaplots import plot_pacf
+from statsmodels.tsa.stattools import adfuller
+
+def check_stationarity(series):
+    result = adfuller(series.values)
+
+    print('ADF Statistic: %f' % result[0])
+    print('p-value: %f' % result[1])
+    print('Critical Values:')
+    for key, value in result[4].items():
+        print('\t%s: %.3f' % (key, value))
+
+    if (result[1] <= 0.05) & (result[4]['5%'] > result[0]):
+        print("\u001b[32mStationary\u001b[0m")
+    else:
+        print("\x1b[31mNon-stationary\x1b[0m") 
+        
+check_stationarity(df.Close)  
+check_stationarity(df.Close.diff(periods=1).dropna()) # diff's p value have to smaller than 10% at least
+
+# creating theis variable
+df["close_diff_1"] = df.Close.diff(periods=1)
+
+df.index = df["Date"]
+df.drop("Date", axis=1, inplace=True)
+# df = date_features(df)
+    </code></pre> 
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>1.2 Checking Partial Autocorrelation<Title></Title></h1>
+    <p><small> Partial Autocorrelation is a measure used in time series analysis and statistics 
+        to identify the direct relationship between an observation at a specific time point and its lagged values, 
+        while controlling for the effect of other lags in between. 
+        It helps in understanding the direct influence of past observations on the current observation, 
+        eliminating the indirect influences through intermediate time points.  </small></p>
+    <pre><code class="python">
+plt.rc("figure", figsize=(10,5))
+plot_pacf(df['Close'], method='ywm')
+plt.show()
+
+# if The data exhibits significant autocorrelation at lag 1. 
+# Therefore, we will introduce a feature representing the price lagged by 1.
+df["close(-1)"] = df['Close'].shift(1)
+    </code></pre>    
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>2. Standard Train/Test Split and Cross-Validation?: Use Time-Aware Instead<Title></Title></h1>
+    <h2>2.1 Time-Aware Train/Test Split</h2>
+    <p><small>
+    <ul>
+        <li><strong>Fixed Split:</strong> Train on early data (e.g., first 80%) and test on recent data (last 20%)</li>
+        <li><strong>TimeSeriesSplit</strong>: Use scikit-learn's TimeSeriesSplit for iterative splits (e.g., train on periods 1-5, test on 6; then 1-6, test on 7).
+             This mimics real-world forecasting</li>
+    </ul>
+    </small></p>
+    <h2>2.2 Validation methods</h2>
+    <p><small>
+        A very popular approach to <strong>evaluating</strong> models' performance is called `cross-validation`. 
+        It is especially useful for choosing the best set of a model’s hyperparameters or selecting the best model for the problem we are trying to solve. 
+        Cross-validation is a technique that allows us to obtain reliable estimates of the model's generalization error 
+        by providing multiple estimates of the model's performance.
+    </small></p>        
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>2.2.1 Simple Time Split Validation</h2>
+    <img src="images\05290.png" alt="05290" width="300">
+    <p><small>
+        The tradtional validation scheme is called <strong>k-fold cross-validation</strong>, in which we randomly split the training data into k folds. 
+        However, k-fold cross-validation is not really suited for evaluating time series models, as it does not preserve the order of time. 
+        For example, in the first round, we train the model using the data from the last 4 folds while evaluating it using the first one.
+    </small></p>
+    <pre><code class="python">
+from sklearn.model_selection import train_test_split
+# Split the data into training and testing sets
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=42)
+    </code></pre>
+</div>
+</section>
+
+<section id="topic">
+<div class="discussion">
+    <h2>2.2.2 Walk-Forward Validation</h2>
+    <p><small>
+        When dealing with time series data, the traditional cross-validation methods may not be suitable due to the <strong>temporal nature</strong> of the data. 
+        Therefore, when evaluating a time series model, it is crucial to assess its performance on unseen future data points. 
+        The most common time series cross-validation techniques is the <strong>Walk-Forward Validation approach.<br>
+        There are two basic types: <strong>Anchored (Expanding Window)</strong> and <strong>Unanchored (Rolling Window)</strong>.
+        </strong></small></p>
+    <h2>Anchored walk-forward validation</h2>
+    <p><small>Anchored walk-forward validation, is called as `expanding windows validation`,
+        where the `training set always starts from the beginning of the dataset and grows with each step, while the test set moves forward by one step at a time. This means that with each iteration, the training data includes all prior information up to the current time step, 
+        which can be beneficial for time series that may need to retain all historical information for accurate forecasting</small></p>
+    <img src="images\052901.png" alt="052901" width="300">
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>Sliding Window Validation<Title></Title></h1>
+    <p><small>Unanchored walk-forward validation, also is called `rolling window validation`, uses a fixed-size training window that "slides" forward with each step. This means that the training data for each iteration does not start from the beginning of the dataset but instead moves forward, dropping the oldest observations and adding the latest ones. This method is particularly useful 
+        when you want to keep the model focused on recent data without relying too much on older, potentially less relevant information.</small></p>
+    <img src="images\052902.png" alt="052902" width="300">
+    <p><small>
+      With the same dataset of 100 observations and an initial training window size of 30: Anchored Walk-Forward Validation: 
+      The <mark>training set grows over time</mark> since the training data includes all past observations up to that point.
+      <ul>
+        <li>Step 1: Train on observations 1–30, test on 31</li>
+        <li>Step 2: Train on observations 1–31, test on 32</li>
+        <li>Step 3: Train on observations 1–32, test on 33.</li>
+        <li>And so forth</li>
+      </ul>
+      Unanchored Walk-Forward Validation: The <mark>training set size is fixed</mark> and "slides" forward as the validation progresses. 
+      Only the most recent observations are kept, and older data points are dropped from the training set. 
+      <ul>
+        <li>Step 1: Train on observations 1–30, test on 31</li>
+        <li>Step 2: Train on observations 2–31, test on 32</li>
+        <li>Step 3: Train on observations 3–32, test on 33.</li>
+        <li>And so forth</li>
+      </ul>  
+    </small></p>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>3. Feature Engineering Is Crucial<Title></Title></h1>
+    <p><small>Traditional ML models (like XGBoost) don’t understand time directly, 
+        so we must engineer time-based features: Incorporate Chronological Features: engineer features should capture temporal dependencies</small></p>
+    <ul>
+      <li>Lagged Variables. Choose lags based on domain knowledge or autocorrelation analysis (ACF plots)</li>
+      <li>Rolling Statistics: Rolling mean, std over past 3, 7, 30 days</li>
+      <li>Time-Based Features: `hour`, `day`, `month`, `year`, `day_of_week` </li>
+      <li>...</li>
+    </ul>
+    <pre><code class="python">
+# Lag Features
+import pandas as pd
+df['lag_1'] = df['close'].shift(1)
+df['lag_2'] = df['close'].shift(2)
+ #Rolling Statistics
+df['rolling_mean'] = df['close'].rolling(window=3).mean()
+df['rolling_std'] = df['close'].rolling(window=3).std()
+
+# Seasonal Decomposition
+from statsmodels.tsa.seasonal import seasonal_decompose
+decomposition = seasonal_decompose(df['close'], model='additive')
+decomposition.plot()
+
+import statsmodels.api as sm
+# Sample seasonal time series data
+seasonal_data = sm.tsa.seasonal_decompose(df['closee'], model='additive', period=4)
+
+# Extract and display the seasonal component
+df['seasonal'] = seasonal_data.seasonal
+    </code></pre>  
+</div>
+</section>
+
+<section>
+<div class="summary">
+    <h1>Technical indicators<Title></Title></h1>
+    <p><small>
+        <ul>
+            <li>Simple Moving Average (SMA): Averages the closing prices over a specified window, smoothing out price fluctuations and highlighting trends</li>
+            <li>Exponential Moving Average (EMA): Similar to SMA, EMA gives more weight to recent prices, making it sensitive to short-term price movements</li>
+            <li>Moving Average Convergence Divergence (MACD): Represents the difference between short-term EMA and long-term EMA, 
+                providing insights into the strength and direction of a trend.</li>
+            <li>Relative Strength Index (RSI): Measures the speed and change of price movements, indicating overbought or oversold conditions in the market.</li> 
+            <li>Bollinger Bands: Consist of a middle band (SMA) and upper/lower bands representing price volatility. They help identify price extremes and potential reversal points</li>   
+        </ul>
+    </small></p>
+    <pre><code class="python">
+def SMA(data, window_size):
+    return data['Close'].rolling(window=window_size).mean()
+
+def EMA(data, window_size):
+    return data['Close'].ewm(span=window_size).mean()
+
+def MACD(data, short_window, long_window):
+    short_EMA = EMA(data, short_window)
+    long_EMA = EMA(data, long_window)
+    return short_EMA - long_EMA
+
+def RSI(data, window_size):
+    delta = data['Close'].diff()
+    delta = delta[1:] 
+    up = delta.clip(lower=0)
+    down = -1*delta.clip(upper=0)
+    ema_up = up.ewm(com=window_size-1 , min_periods=window_size).mean()
+    ema_down = down.ewm(com=window_size-1 , min_periods=window_size).mean()
+    return ema_up/ema_down
+
+def Bollinger_Bands(data, window_size):
+    middle_band = SMA(data, window_size)
+    std_dev = data['Close'].rolling(window=window_size).std()
+    upper_band = middle_band + (std_dev*2)
+    lower_band = middle_band - (std_dev*2)
+    return upper_band, lower_band
+
+df['SMA'] = SMA(df, 13)
+df['EMA'] = EMA(df, 9) 
+df['MACD'] = MACD(df, 24, 52)
+df['RSI'] = RSI(df, 14)
+df['Upper_Band'], df['Lower_Band'] = Bollinger_Bands(df, 10)
+    </code></pre>  
+</div>
+</section>
+
+
+<section>
+    <div class="discussion">
+    <pre><code class="python">
+# Creating new features
+df["H_L_diff"] = df["High"] - df["Low"]
+df.drop("Adj Close", axis=1, inplace=True)
+df.drop("High", axis=1, inplace=True)
+df.drop("Low", axis=1, inplace=True)
+
+df["Bands_diff"] = df["Upper_Band"] - df["Lower_Band"]
+df.drop("Upper_Band", axis=1, inplace=True)
+df.drop("Lower_Band", axis=1, inplace=True)
+
+df["target"] = df["Close"].shift(-1) # -- regression problem
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>4. Handle Trends and Seasonality<Title></Title></h1>
+    <p><small>
+      <ul>
+        <li>Detrend: Fit a linear trend and model residuals.</li>
+        <li>Differencing: Use `y_t - y_t-1` instead of raw values</li>
+        <li>Decomposition: Extract trend/seasonal components and model them separately</li>
+        <li>Scale Features: Standardize or normalize numerical features (e.g., MinMaxScaler, StandardScaler)</li>
+      </ul>
+    </small></p>
+    <h2>5. Evaluate Properly</h2>
+    <p><small>
+       <ul>
+        <li>Metrics:RMSE, MAE, MAPE, SMAPE (for scale-dependent errors) and MASE (scaled, good for comparing across series)</li>
+        <li>Evaluation: Refit or update model as new data comes in, avoid single train/test split</li>
+       </ul><br>
+    Residuals analysis
+       <ul>
+         <li>Autocorrelation Check: Plot ACF of residuals to ensure no significant temporal patterns remain (use Ljung-Box test for confirmation)</li>
+         <li>Visual Inspection: Plot residuals over time to detect trends, seasonality, or heteroscedasticity</li>
+         <li>Feature Adjustment: If patterns are found, add more lagged features, adjust window sizes, or include external variables</li>
+       </ul>
+    </small></p>
+</div>
+</section>
+
+<section>
+<div class="discussion">
+    <h1>5. Additional Information<Title></Title></h1>
+    <h2>5.1 XGBoost Algorithm</h2>
+    <p><small> <strong>XGBoost Regressor</strong> (Extreme Gradient Boosting Regressor) is a machine learning model 
+        that implements gradient-boosted decision trees with a focus on computational efficiency and model performance. 
+        It builds an `ensemble of weak learners` (typically decision trees).<br>
+        An <strong>ensemble of weak learners</strong> is a machine learning technique 
+        where many simple models (called *weak learners*) are combined to make a much stronger, more accurate model.<br>
+        Common Methods Using Weak Learner:
+        <ul>
+            <li><strong>Boosting</strong> (e.g., XGBoost, AdaBoost): Each new learner tries to **correct the mistakes** of the previous ones</li>
+            <li><strong>Bagging</strong> (e.g., Random Forest):Many weak learners (trees) are trained **independently** on random subsets of data</li>
+        </ul>    
+    </small> </p>
+    
+    <p><small>
+        We need the these specific hyperparameters are commonly used in `XGBRegressor`
+        <ul>
+          <li>`n_estimators=100`: Number of decision trees (weak learners) to build</li>
+          <li>`learning_rate=0.1`:  controls how much each new tree contributese</li>
+          <li>`max_depth=3`:  how many splits it can make</li>
+         <li>`objective='reg:squarederror'`: the model tries to minimize</li>        
+        </ul>
+    </small></p>
+</div>
+</section>
+
+<section id="topic2">
+<div class="summary">
+    <h2>5.2 Ljung-Box test</h2>
+    <p><small>
+      The <strong>Ljung-Box test</strong> is a statistical hypothesis test used to determine 
+      whether a time series contains **significant autocorrelation** (correlation with its own past values) at any of a number of lags. 
+      Autocorrelation in residuals suggests that the model has not fully captured the time series' structure, indicating potential improvements needed
+    <ul>
+        <li><mark>Null Hypothesis (H₀):</mark>The data (or residuals) are <strong>independent</strong> — there is no autocorrelation up to a specified lag</li>
+        <li><mark>Alternative Hypothesis (H₁):</mark> There <strong>is autocorrelation</strong> in the data (or residuals) at one or more lags.</li>
+    </ul>
+    If the test is <strong>significant</strong> (p-value < 0.05), we reject H₀ — meaning the data are not random, and there's some pattern we might need to model.
+    </small></p>
+</div>
+</section>
+
+
+
+
+
+<section >
+<div class="summary">
+    <h1>Python Example<Title></Title></h1>
+    <h2>1.Feature Engineering:</h2>
+    <p><small>        
+        <ul>
+          <li>Calculates daily returns (Close price percentage change).</li>
+          <li>Adds lagged returns (1, 2, 3 days), 5-day volatility, 10/20-day SMAs, RSI (14-day), and time-based features (day of week, month)</li>
+          <li>Drops NaN values to ensure clean data</li>
+        </ul> 
+    </small></p>  
+    <pre><code class="python">
+# Feature Engineering
+def create_features(df):
+    # Calculate daily returns
+    df['returns'] = df['Close'].pct_change()
+    
+    # Lagged returns (past 1, 2, 3 days)
+    for lag in [1, 2, 3]:
+        df[f'returns_lag_{lag}'] = df['returns'].shift(lag)
+    
+    # Rolling volatility (standard deviation over 5 days)
+    df['volatility_5d'] = df['returns'].rolling(window=5).std()
+    
+    # Technical indicators: Simple Moving Average (SMA) and Relative Strength Index (RSI)
+    df['sma_10'] = df['Close'].rolling(window=10).mean()
+    df['sma_20'] = df['Close'].rolling(window=20).mean()
+    
+    # RSI calculation
+    delta = df['Close'].diff()
+    gain = delta.where(delta > 0, 0).rolling(window=14).mean()
+    loss = -delta.where(delta < 0, 0).rolling(window=14).mean()
+    rs = gain / loss
+    df['rsi_14'] = 100 - (100 / (1 + rs))
+    
+    # Time-based features
+    df['day_of_week'] = df.index.dayofweek
+    df['month'] = df.index.month
+    
+    # Drop rows with NaN values
+    df = df.dropna()
+    return df
+    </code></pre>  
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>2. Train/Test Split</h1>
+    <p><small>
+        <ul>
+            <li>Splits data chronologically (80% train, 20% test) to avoid leakage</li>
+        </ul>
+    </small></p>
+    <pre><code class="python">
+# Time-Aware Train/Test Split
+# Use 80% for training, 20% for testing
+train_size = int(0.8 * len(df))
+X_train = df[features][:train_size]
+y_train = df[target][:train_size]
+X_test = df[features][train_size:]
+y_test = df[target][train_size:]
+    </code></pre>
+    <h2>3. Model Training</h2>
+    <p><small>
+        <ul>
+            <li>Uses XGBoost with reasonable defaults (n_estimators=100, learning_rate=0.1, max_depth=5)</li>
+            <li>Performs walk-forward validation to simulate real-world forecasting</li>
+        </ul>
+    </small></p>
+    <pre><code class="python">
+# Model Training with Walk-Forward Validation
+tscv = TimeSeriesSplit(n_splits=5)
+model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, learning_rate=0.1, max_depth=5)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h1>4. Forecasting and Evaluation</h1>
+    <p><small>
+        <ul>
+            <li>Predicts returns on the test set and for the next day using the final mode</li>
+            <li>Computes RMSE, MAE, R², and directional accuracy (correct sign prediction) for both validation and test sets.</li>
+        </ul>
+    </small></p>
+    <pre><code class="python">
+rmse_scores, mae_scores, r2_scores, directional_scores = [], [], [], []
+for train_idx, val_idx in tscv.split(X_train):
+    X_tr, X_val = X_train.iloc[train_idx], X_train.iloc[val_idx]
+    y_tr, y_val = y_train.iloc[train_idx], y_train.iloc[val_idx]
+    
+    # Train model
+    model.fit(X_tr, y_tr)
+    
+    # Predict
+    y_pred = model.predict(X_val)
+    
+    # Evaluate
+    rmse = np.sqrt(mean_squared_error(y_val, y_pred))
+    mae = mean_absolute_error(y_val, y_pred)
+    r2 = r2_score(y_val, y_pred)
+    
+    # Directional accuracy
+    direction_correct = np.mean(np.sign(y_val) == np.sign(y_pred))
+    
+    rmse_scores.append(rmse)
+    mae_scores.append(mae)
+    r2_scores.append(r2)
+    directional_scores.append(direction_correct)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h2>5. Residuals Analysis</h2>
+    <p><small>
+        <ul>
+            <li>Plots residuals over time and their ACF to check for patterns</li>
+            <li>Runs Ljung-Box test to assess if residuals are uncorrelated (p-value > 0.05 suggests white noise).</li>
+        </ul>
+    </small></p>
+    <pre><code class="python">
+#  Residuals Analysis
+residuals = y_test - y_pred_test
+plt.figure(figsize=(10, 6))
+plt.plot(residuals.index, residuals, label='Residuals')
+plt.axhline(0, color='red', linestyle='--')
+plt.title('Residuals Plot')
+plt.legend()
+plt.savefig('residuals_plot.png')
+plt.close()
+
+# ACF of residuals
+acf_values = acf(residuals, nlags=20, fft=True)
+plt.figure(figsize=(10, 6))
+plt.stem(range(len(acf_values)), acf_values)
+plt.title('ACF of Residuals')
+plt.savefig('acf_residuals.png')
+plt.close()
+
+# Ljung-Box test
+ljung_box = sm.stats.acorr_ljungbox(residuals, lags=[10], return_df=True)
+print("\nLjung-Box Test for Residuals (lag=10):")
+print(ljung_box)
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="summary">
+    <h2>6. Feature Importance</h2>
+    <p><small>
+        <ul>
+            <li>Outputs feature importance scores from XGBoost to understand which features drive predictions</li>
+        </ul>
+    </small></p>
+    <pre><code class="python">
+feature_importance = pd.DataFrame({
+    'feature': features,
+    'importance': model.feature_importances_
+}).sort_values('importance', ascending=False)
+print("\nFeature Importance:")
+print(feature_importance)   
+    </code></pre>
+    <h2>7. Walk-Forward Validation</h2>
+    <p><small>
+        <ul>
+            <li>Uses TimeSeriesSplit to perform rolling validation, ensuring robustness</li>
+        </ul>
+    </small></p>
+    <h2>8.Prediction </h2>
+    <p><small>
+        <ul>
+            <li>Trains the final model on the full training set and predicts the next day’s return using the last available features</li>
+        </ul>
+    </small></p>
+    <pre><code class="python">
+# Final Prediction
+# Example: Predict next day's return (assuming we have features for the next day)
+last_features = df[features].iloc[-1:].copy()
+next_return = model.predict(last_features)[0]
+print(f"\nPredicted Next Day Return: {next_return:.4f}")   
+    </code></pre>
+</div>
+</section>
+
+<section >
+<div class="discussion">
+    <h1>Full Script<Title></Title></h1>
+    <pre><code class="python">
+import pandas as pd
+import numpy as np
+import yfinance as yf
+import xgboost as xgb
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.model_selection import TimeSeriesSplit
+import statsmodels.api as sm
+from statsmodels.tsa.stattools import acf
+import matplotlib.pyplot as plt
+
+# Step 1: Feature Engineering
+def create_features(df):
+    # Calculate daily returns
+    df['returns'] = df['Close'].pct_change()
+    
+    # Lagged returns (past 1, 2, 3 days)
+    for lag in [1, 2, 3]:
+        df[f'returns_lag_{lag}'] = df['returns'].shift(lag)
+    
+    # Rolling volatility (standard deviation over 5 days)
+    df['volatility_5d'] = df['returns'].rolling(window=5).std()
+    
+    # Technical indicators: Simple Moving Average (SMA) and Relative Strength Index (RSI)
+    df['sma_10'] = df['Close'].rolling(window=10).mean()
+    df['sma_20'] = df['Close'].rolling(window=20).mean()
+    
+    # RSI calculation
+    delta = df['Close'].diff()
+    gain = delta.where(delta > 0, 0).rolling(window=14).mean()
+    loss = -delta.where(delta < 0, 0).rolling(window=14).mean()
+    rs = gain / loss
+    df['rsi_14'] = 100 - (100 / (1 + rs))
+    
+    # Time-based features
+    df['day_of_week'] = df.index.dayofweek
+    df['month'] = df.index.month
+    
+    # Drop rows with NaN values
+    df = df.dropna()
+    return df
+
+# Step 2: Load and Prepare Data
+# Download AAPL data (e.g., 5 years of daily data)
+data = yf.download('AAPL', start='2020-01-01', end='2025-08-16', progress=False)
+df = create_features(data)
+
+# Define features and target
+features = ['returns_lag_1', 'returns_lag_2', 'returns_lag_3', 'volatility_5d', 
+            'sma_10', 'sma_20', 'rsi_14', 'day_of_week', 'month']
+target = 'returns'
+
+# Step 3: Time-Aware Train/Test Split
+# Use 80% for training, 20% for testing
+train_size = int(0.8 * len(df))
+X_train = df[features][:train_size]
+y_train = df[target][:train_size]
+X_test = df[features][train_size:]
+y_test = df[target][train_size:]
+
+# Step 4: Model Training with Walk-Forward Validation
+tscv = TimeSeriesSplit(n_splits=5)
+model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=100, learning_rate=0.1, max_depth=5)
+
+# Walk-forward validation
+rmse_scores, mae_scores, r2_scores, directional_scores = [], [], [], []
+for train_idx, val_idx in tscv.split(X_train):
+    X_tr, X_val = X_train.iloc[train_idx], X_train.iloc[val_idx]
+    y_tr, y_val = y_train.iloc[train_idx], y_train.iloc[val_idx]
+    
+    # Train model
+    model.fit(X_tr, y_tr)
+    
+    # Predict
+    y_pred = model.predict(X_val)
+    
+    # Evaluate
+    rmse = np.sqrt(mean_squared_error(y_val, y_pred))
+    mae = mean_absolute_error(y_val, y_pred)
+    r2 = r2_score(y_val, y_pred)
+    
+    # Directional accuracy
+    direction_correct = np.mean(np.sign(y_val) == np.sign(y_pred))
+    
+    rmse_scores.append(rmse)
+    mae_scores.append(mae)
+    r2_scores.append(r2)
+    directional_scores.append(direction_correct)
+
+# Print validation results
+print(f"Walk-Forward Validation Results:")
+print(f"Average RMSE: {np.mean(rmse_scores):.4f}")
+print(f"Average MAE: {np.mean(mae_scores):.4f}")
+print(f"Average R²: {np.mean(r2_scores):.4f}")
+print(f"Average Directional Accuracy: {np.mean(directional_scores):.4f}")
+
+# Step 5: Train Final Model on Full Training Data
+model.fit(X_train, y_train)
+
+# Step 6: Forecasting on Test Set
+y_pred_test = model.predict(X_test)
+
+# Step 7: Evaluation on Test Set
+rmse_test = np.sqrt(mean_squared_error(y_test, y_pred_test))
+mae_test = mean_absolute_error(y_test, y_pred_test)
+r2_test = r2_score(y_test, y_pred_test)
+directional_accuracy = np.mean(np.sign(y_test) == np.sign(y_pred_test))
+
+print("\nTest Set Evaluation:")
+print(f"RMSE: {rmse_test:.4f}")
+print(f"MAE: {mae_test:.4f}")
+print(f"R²: {r2_test:.4f}")
+print(f"Directional Accuracy: {directional_accuracy:.4f}")
+
+# Step 8: Residuals Analysis
+residuals = y_test - y_pred_test
+plt.figure(figsize=(10, 6))
+plt.plot(residuals.index, residuals, label='Residuals')
+plt.axhline(0, color='red', linestyle='--')
+plt.title('Residuals Plot')
+plt.legend()
+plt.savefig('residuals_plot.png')
+plt.close()
+
+# ACF of residuals
+acf_values = acf(residuals, nlags=20, fft=True)
+plt.figure(figsize=(10, 6))
+plt.stem(range(len(acf_values)), acf_values)
+plt.title('ACF of Residuals')
+plt.savefig('acf_residuals.png')
+plt.close()
+
+# Ljung-Box test
+ljung_box = sm.stats.acorr_ljungbox(residuals, lags=[10], return_df=True)
+print("\nLjung-Box Test for Residuals (lag=10):")
+print(ljung_box)
+
+# Step 9: Feature Importance
+feature_importance = pd.DataFrame({
+    'feature': features,
+    'importance': model.feature_importances_
+}).sort_values('importance', ascending=False)
+print("\nFeature Importance:")
+print(feature_importance)
+
+# Step 10: Final Prediction
+# Example: Predict next day's return (assuming we have features for the next day)
+last_features = df[features].iloc[-1:].copy()
+next_return = model.predict(last_features)[0]
+print(f"\nPredicted Next Day Return: {next_return:.4f}")   
+    </code></pre>
+</div>
+</section>
+
+
+
+
+
+
+</body>
+</html>
