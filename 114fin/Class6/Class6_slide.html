@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 6 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black; /* Light Yellow Background */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+            justify-content: center; /* Center text vertically */
+            align-items: center; /* Center text horizontally */
+        }
+        .slide.active {
+            display: block;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<!-- Slides --> <!-- Slides --><!-- Slides -->
+<!-- Slides Cover -->
+<body>
+    <!-- Cover Slide: Class 0 Introduction -->
+    <div class="slide active">
+    <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+        <!-- Image at the top -->
+        <div style="text-align: center; padding-top: 20px;">
+            <img src="images\04103.jpg" alt="04103" style="max-width: 500%; height: auto; max-height: 350px; border-radius: 8px;">
+        </div>
+        
+        <div>
+            <h1 style="text-align: center;">
+                Class 6 Pandas Library
+            </h1><br>
+            <h3 style="text-align: center; margin-top: 10px;">
+                Wen-Bin Chuang<br>
+                September 02, 2025<br>
+                NCNU, FIN
+            </h3>
+        </div>
+    </div>
+</div>
+
+<!-- Slides I --> <!-- Slides Go -->
+<div class="slide"> 
+    <div class="aa">
+    <h1>Introduction</h1>
+    <p><small>The word pandas is an acronym which is derived from "Python and data analysis" and "panel data". 
+        It is used for data manipulation and analysis. 
+        It provides special data structures and operations for the manipulation of numerical tables and time series.
+
+        We'll learn how to manipulate DataFrames, as we `extract`, `filter`, and `transform` datasets for analysis. 
+        Using pandas we'll explore all the `core data science` concepts. 
+        We'll learn how to `import`, `clean`, `calculate statistics`, and `create visualizations?`
+        —using pandas to add to the power of Python!</small></p>
+    <h2>1. Installing and import pandas</h2>
+    <pre><code class="python">
+# python -m pip install --user pandas # via `the command line (cmd) `
+pip install pandas
+import pandas as pd
+print(pd.__version__)
+    </code></pre> 
+    </div>
+</div>
+
+<div class="slide"> <!-- 這裡使用slide -->
+    <div class="bb">
+    <h1>2. Series</h1>
+    <p><small> Pandas Series is like a `column` in a table. It is a `one-dimensional array` holding data of any type. 
+        If nothing else is specified, the values are labeled with their `index number`. 
+        <strong>First value has index 0</strong>, second value has index 1 etc. 
+    </small></p>
+    <pre><code class="python">
+import pandas as pd
+s = pd.Series([11, 28, 72, 3, 5, 8])
+s
+```
+0    11
+1    28
+2    72
+3     3
+4     5
+5     8
+dtype: int64
+```
+print(s[0]) # 11
+
+# The right column contains our `data`, whereas the left column contains the `index`.
+print(s.index) # RangeIndex(start=0, stop=6, step=1)
+print(s.values) # [11 28 72  3  5  8]
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>2.1 Indexing</h2>
+    <p><small>With the `index` argument, we can `name your own labels`</strong></small></p>
+    <pre><code class="python">
+fruits = ['apples', 'oranges', 'cherries', 'pears']
+S1 = pd.Series([20, 33, 52, 10], index=fruits)
+S2 = pd.Series([17, 13, 31, 32], index=fruits)
+print(S1 + S2)
+print("sum of S: ", sum(S)) # sum of S:  127
+```
+apples      37
+oranges     46
+cherries    83
+pears       42
+dtype: int64
+```
+print(S1['apples']) # 20
+print(S1[['apples', 'oranges', 'cherries']])
+```
+apples      20
+oranges     33
+cherries    52
+dtype: int64
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>Create a `simple Pandas Series` from a dictionary</h2>
+    <pre><code class="python">
+calories = {"day1": 420, "day2": 380, "day3": 390}
+var = pd.Series(calories)
+print(var)
+```
+day1    420
+day2    380
+day3    390
+dtype: int64
+
+var = pd.Series(calories, index = ["day1", "day2"])
+print(var)
+```
+day1    420
+day2    380
+dtype: int64
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>3. DataFrame</h1>
+    <h2>3.1 Creating a DataFrame</h2>
+    <p><small>Data sets in Pandas are usually `multi-dimensional tables`. 
+        A Pandas `DataFrame is a 2 dimensional data structure`, like a 2 dimensional array</small></p>
+    <pre><code class="python">
+# build by Series Objects
+import pandas as pd
+data = {
+  "calories": [420, 380, 390],
+  "duration": [50, 40, 45]
+}
+df = pd.DataFrame(data)
+print(df)
+```
+   calories  duration
+0       420        50
+1       380        40
+2       390        45
+
+years = range(2014, 2018)
+shop1 = pd.Series([2409.14, 2941.01, 3496.83, 3119.55], index=years)
+shop2 = pd.Series([1203.45, 3441.62, 3007.83, 3619.53], index=years)
+shop3 = pd.Series([3412.12, 3491.16, 3457.19, 1963.10], index=years)
+
+shops_df = pd.concat([shop1, shop2, shop3], axis=1) # vertical stack
+shops_df
+```
+	    0	    1	    2
+2014	2409.14	1203.45	3412.12
+2015	2941.01	3441.62	3491.16
+2016	3496.83	3007.83	3457.19
+2017	3119.55	3619.53	1963.10
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>3.2 Setting and removing indexes</h2>
+    <p><small>The `reset_index()` method can remove an index of the dataframe</small></p>
+    <pre><code class="python">
+# Create a DataFrame
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35]
+})
+
+# Set the 'Name' column as the index
+df = df.set_index('Name')
+```
+	    Age
+Name	
+Alice	25
+Bob	    30
+Charlie	35
+
+# Reset the index, by default the old index becomes a column
+df_reset = df.reset_index()
+df_reset
+```
+	Name	Age
+0	Alice	25
+1	Bob	    30
+2	Charlie	35
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>3.3 Inspecting a DataFrame</h2>
+    <p><small>The `head()` method returns the headers and a specified number of rows, starting from the top. 
+        The `tail()` method returns the headers and a specified number of rows, starting from the bottom.</small></p>
+    <pre><code class="python">
+cities = {"name": ["London", "Berlin", "Madrid", "Rome", 
+                   "Paris", "Vienna", "Bucharest", "Hamburg"],
+          "population": [8615246, 3562166, 3165235, 2874038,
+                         2273305, 1805681, 1803425, 1760433],
+          "country": ["England", "Germany", "Spain", "Italy",
+                     "Germany", "Hungary", "Poland", "Spain"]}
+
+city_frame = pd.DataFrame(cities,
+                          columns=["country", 
+                                   "population",
+                                   ], # create new column first
+                          index=cities["name"])
+city_frame
+```
+           country  population
+London     England     8615246
+Berlin     Germany     3562166
+Madrid       Spain     3165235
+Rome         Italy     2874038
+Paris      Germany     2273305
+Vienna     Hungary     1805681
+Bucharest   Poland     1803425
+Hamburg      Spain     1760433
+
+city_frame.head() # returns the first few rows
+city_frame.info() # information on each of the columns
+city_frame.shape() # returns the number of rows and columns
+city_frame.describe() # calculates a few summary statistics for each column
+```
+	    population
+count	8.000000e+00
+mean	3.232441e+06
+std	    2.279748e+06
+min	    1.760433e+06
+25%	    1.805117e+06
+50%	    2.573672e+06
+75%	    3.264468e+06
+max	    8.615246e+06
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>3.4 Accessing Rows via `index names -- loc`</h2>
+    <p><small>Pandas use the `loc` attribute to return `one or more specified row(s)`</small></p>
+    <pre><code class="python">
+data = {
+  "calories": [420, 380, 390],
+  "duration": [50, 40, 45]
+}
+df = pd.DataFrame(data)
+print(df)
+```
+   calories  duration
+0       420        50
+1       380        40
+2       390        45
+
+#refer to the row index:
+print(df.loc[0])
+```
+calories    420
+duration     50
+Name: 0, dtype: int64
+
+#use a list of indexes:
+print(df.loc[[0, 1]]) 
+```
+   calories  duration
+0       420        50
+1       380        40
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>3.5 Accessing Rows by `Index Position - iloc`</h2>
+    <pre><code class="python">
+# Create a DataFrame
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35]
+})
+
+# Set the 'Name' column as the index
+df = df.set_index('Name')
+df
+```
+	   Age
+Name	
+Alice	25
+Bob	    30
+Charlie	35
+
+df1 = df.iloc[[1, 2, 0, 1]] # row: 
+print(df1)
+```
+         Age
+Name        
+Bob       30
+Charlie   35
+Alice     25
+Bob       30
+    </code></pre>   
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>3.6 Assigning New Columns</h2>
+    <pre><code class="python">
+cities = {"name": ["London", "Berlin", "Madrid", "Rome", 
+                   "Paris", "Vienna", "Bucharest", "Hamburg"],
+          "population": [8615246, 3562166, 3165235, 2874038,
+                         2273305, 1805681, 1803425, 1760433],
+          "country": ["England", "Germany", "Spain", "Italy",
+                     "Germany", "Hungary", "Poland", "Spain"]}
+
+city_frame = pd.DataFrame(cities,
+                          columns=["country", 
+                                   "population",
+                                   "cum_population"], # create new column first
+                          index=cities["name"])
+
+city_frame
+
+city_frame["cum_population"] = city_frame["population"].cumsum() # then add the value
+city_frame
+
+```
+country	        population cum_population
+London	England	  8615246	8615246
+Berlin	Germany	  3562166	12177412
+Madrid	Spain	  3165235	15342647
+Rome	Italy	  2874038	18216685
+Paris	Germany	  2273305	20489990
+Vienna	Hungary	  1805681	22295671
+Bucharest	Poland	1803425	24099096
+Hamburg	Spain	  1760433	25859529
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>4. Cleaning Data</h1>
+    <h2>4.1 Remove Rows</h2>
+    <p><small>One way to deal with empty cells is to remove rows that contain empty cells    </small></p>
+    <pre><code class="python">
+import pandas as pd
+import numpy as np
+
+# Create DataFrame with explicit NaN values
+df = pd.DataFrame({
+    'A': [1, 2, np.nan, 4],
+    'B': [np.nan, 2, 3, 4],
+    'C': [1, np.nan, np.nan, 4]
+})
+
+# Set the 'Name' column as the index
+df
+```
+	A	 B	 C
+0	1.0	NaN	1.0
+1	2.0	2.0	NaN
+2	NaN	3.0	NaN
+3	4.0	4.0	4.0
+
+# the dropna() method returns a new DataFrame, and will not change the original.
+new_df = df.dropna()
+print(new_df.to_string())
+print(df)
+```
+     A    B    C
+3  4.0  4.0  4.0
+     A    B    C
+0  1.0  NaN  1.0
+1  2.0  2.0  NaN
+2  NaN  3.0  NaN
+3  4.0  4.0  4.0
+
+# Remove all rows with NULL values of the original DataFrame
+df.dropna(inplace = True)
+print(df.to_string())
+```
+     A    B    C
+3  4.0  4.0  4.0
+
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>4.2 Replace Empty Values</h2>
+    <p><small> The `fillna()` method allows us to replace empty cells with a value    </small> </p>
+    <pre><code class="python">
+# Replace NULL values with the number 130:
+df = pd.read_csv('data.csv')
+df.fillna(130, inplace = True)  
+    </code></pre>
+    <h2>4.3 Replace Only For Specified Columns</h2>
+    <pre><code class="python">
+df["Calories"].fillna(130, inplace = True) 
+    </code></pre>
+    <h2>4.4 Replace Using Mean, Median, or Mode</h2>
+    <pre><code class="python">
+x = df["Calories"].mean() # median(), mode()[0]
+df["Calories"].fillna(x, inplace = True) 
+    </code></pre>
+    </div>
+</div>
+
+
+
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>4.5 Removing Duplicates</h2>
+    <p><small>The `duplicated()` method returns a Boolean values for each row.    </small></p>
+    <pre><code class="python">
+data=pd.DataFrame({"a":["one","two"]*3,
+                   "b":[1,1,2,3,2,3]})
+print(data)
+```
+     a  b
+0  one  1
+1  two  1
+2  one  2
+3  two  3
+4  one  2
+5  two  3
+
+# Remove all duplicates:
+data.drop_duplicates(inplace = True) 
+```
+	a	b
+0	one	1
+1	two	1
+2	one	2
+3	two	3
+<dfn></dfn>
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>5. Sorting by `values`</h1>
+    <pre><code class="python">
+cities = {"name": ["London", "Berlin", "Madrid", "Rome", 
+                   "Paris", "Vienna", "Bucharest", "Hamburg"],
+          "population": [8615246, 3562166, 3165235, 2874038,
+                         2273305, 1805681, 1803425, 1760433],
+          "country": ["England", "Germany", "Spain", "Italy",
+                     "Germany", "Hungary", "Poland", "Spain"]}
+
+city_frame = pd.DataFrame(cities,
+                          columns=["country", 
+                                   "population",
+                                   ], # create new column first
+                          index=cities["name"])
+
+print(city_frame)
+```
+           country  population
+London     England     8615246
+Berlin     Germany     3562166
+Madrid       Spain     3165235
+Rome         Italy     2874038
+Paris      Germany     2273305
+Vienna     Hungary     1805681
+Bucharest   Poland     1803425
+Hamburg      Spain     1760433
+
+city_frame = city_frame.sort_values(by="population", ascending=False)
+print(city_frame)
+```
+           country  population
+London     England     8615246
+Berlin     Germany     3562166
+Madrid       Spain     3165235
+Rome         Italy     2874038
+Paris      Germany     2273305
+Vienna     Hungary     1805681
+Bucharest   Poland     1803425
+Hamburg      Spain     1760433
+    </code></pre> 
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>6. Applying a Function</h1>
+    <pre><code class="python">
+df=pd.DataFrame(
+    np.random.randn(4,3),
+    columns=list("ABC"),
+    index=["Kim","Susan","Tim","Tom"])
+print(df)
+```
+              A         B         C
+Kim    0.692275  0.517037  0.227294
+Susan -0.243158  0.007332  1.056363
+Tim   -0.669133  0.230622 -0.467955
+Tom   -0.117188  0.141628  0.125054
+
+print(np.abs(df))
+```
+              A         B         C
+Kim    0.692275  0.517037  0.227294
+Susan  0.243158  0.007332  1.056363
+Tim    0.669133  0.230622  0.467955
+Tom    0.117188  0.141628  0.125054
+
+f=lambda x:x.max()-x.min()
+print(df.apply(f))
+```
+A    1.361408
+B    0.509705
+C    1.524317
+dtype: float64
+
+peint(df.apply(f,axis=1))
+```
+Kim      0.464981
+Susan    1.299520
+Tim      0.899755
+Tom      0.258816
+dtype: float64
+
+def f(x):
+    return x**2
+df.apply(f)
+```
+	       A	       B	      C
+Kim	    0.479244	0.267327	0.051663
+Susan	0.059126	0.000054	1.115902
+Tim	    0.447739	0.053186	0.218982
+Tom	    0.013733	0.020058	0.015639
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>7. Summarizing & Computing Descriptive Statistics<Title></Title></h1>
+    <pre><code class="python">
+import pandas as pd
+
+df=pd.DataFrame(
+    [[2.4,np.nan],[6.3,-5.4],
+     [np.nan,np.nan],[0.75,-1.3]],
+    index=["a","b","c","d"],
+    columns=["one","two"])
+df
+```
+	one	two
+a	2.40	NaN
+b	6.30	-5.4
+c	NaN	NaN
+d	0.75	-1.3
+
+df.describe()
+df.sum()
+```
+one    9.45
+two   -6.70
+dtype: float64
+
+df.sum(axis=1)
+```
+a    2.40
+b    0.90
+c    0.00
+d   -0.55
+dtype: float64
+
+df.mean(axis=1)
+df.mean(axis=1,skipna=False)
+df.idxmax()
+df.idxmin()
+df.cumsum()
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>8. Missing Data</h1>
+    <pre><code class="python">
+from numpy import nan as NA
+df=pd.DataFrame([[1,2,3],[4,NA,5],
+                 [NA,NA,NA]])
+df
+```
+	0	1	2
+0	1.0	2.0	3.0
+1	4.0	NaN	5.0
+2	NaN	NaN	NaN
+
+
+df.isnull() # true
+df.dropna(how="all") 
+```
+	0	1	2
+0	1.0	2.0	3.0
+1	4.0	NaN	5.0
+df.fillna(method="ffill")
+```
+	0	1	2
+0	1.0	2.0	3.0
+1	4.0	2.0	5.0
+2	4.0	2.0	5.0
+
+data=pd.Series([1,0,NA,5])
+data
+data.fillna(data.mean())
+df
+df.fillna(df.mean())
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>9. Aggregating DataFrames</h1>
+    <h2>9.1 Groupby() Summary</h2>
+    <pre><code class="python">
+import pandas as pd
+beverages = pd.DataFrame({'Name': ['Robert', 'Melinda', 'Brenda',
+                                   'Samantha', 'Melinda', 'Robert',
+                                   'Melinda', 'Brenda', 'Samantha'],
+                          'Coffee': [3, 0, 2, 2, 0, 2, 0, 1, 3],
+                          'Tea':    [0, 4, 2, 0, 3, 0, 3, 2, 0]})
+    
+beverages
+```
+	Name	Coffee	Tea
+0	Robert	3	0
+1	Melinda	0	4
+2	Brenda	2	2
+3	Samantha	2	0
+4	Melinda	0	3
+5	Robert	2	0
+6	Melinda	0	3
+7	Brenda	1	2
+8	Samantha	3	0
+
+beverages[['Coffee', 'Tea']].sum()    # .mean
+```
+Coffee    13
+Tea       14
+dtype: int64
+
+res = beverages.groupby(['Name']).sum()
+print(res)
+```
+          Coffee  Tea
+Name                 
+Brenda         3    4
+Melinda        0   10
+Robert         5    0
+Samantha       5    0
+
+beverages.groupby(['Name']).mean()
+beverages.groupby(['Name']).count()
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>9.2 `Multiple grouped` summaries</h2>
+    <pre><code class="python">
+import pandas as pd
+data = {'Company':['GOOG','GOOG','MSFT','MSFT','FB','FB'],
+        'Product':['Maps','Search','Excel','Word','Ads','FB App'],
+        'Sales':[200,400,300,600,100,150]}
+df = pd.DataFrame(data)
+```
+	Company	Product	Sales
+0	GOOG	Maps	200
+1	GOOG	Search	400
+2	MSFT	Excel	300
+3	MSFT	Word	600
+4	FB	    Ads	    100
+5	FB	    FB App	150
+
+# group the sample data by Company and Product
+df_grouped = df.groupby(['Company', 'Product'])
+df_grouped['Sales'].sum() 
+```
+Company  Product
+FB       Ads        100
+         FB App     150
+GOOG     Maps       200
+         Search     400
+MSFT     Excel      300
+         Word       600
+Name: Sales, dtype: int64  
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>10. Reading and Writing Data</h1>
+    <h2> 10.1 Read and write CSV</h2>
+    <p><small>CSV files contains plain text and is a well know format that can be read by everyone including Pandas.
+               If your data sets are stored in a file, Pandas can load them into a DataFrame.</small></p>
+    <pre><code class="python">
+# Load a comma separated file (CSV file) into a DataFrame:
+import pandas as pd
+exchange_rates = pd.read_csv("dollar_euro.csv", sep=" ", encoding='big5')
+print(exchange_rates)
+print(df.to_string()) # print the entire dataframe
+
+df.to_csv("countries_total_population.csv")
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>10.2 Read  and write JSON</h2>
+    <P><small>Big data sets are often stored, or extracted as JSON. 
+        JSON is plain text, but has the format of an object, 
+        and is well known in the world of programming, including Pandas.</small></P>
+    <pre><code class="python">
+df = pd.read_json('data.json')
+
+print(df.to_string())
+    </code></pre>
+    <p><small>JSON objects have the same format as Python dictionaries.</small></p>
+    <pre><code class="python">
+data = {
+  "Duration":{
+    "0":60,
+    "1":60,
+    "2":60,
+    "3":45,
+    "4":45,
+    "5":60
+  },
+  "Pulse":{
+    "0":110,
+    "1":117,
+    "2":103,
+    "3":109,
+    "4":117,
+    "5":102
+  },
+  "Maxpulse":{
+    "0":130,
+    "1":145,
+    "2":135,
+    "3":175,
+    "4":148,
+    "5":127
+  },
+  "Calories":{
+    "0":409,
+    "1":479,
+    "2":340,
+    "3":282,
+    "4":406,
+    "5":300
+  }
+}
+
+df = pd.DataFrame(data)
+
+print(df) 
+   </code></pre>
+  </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>11. Combining & Merging Datasets</h1>
+    <h2>11.1 Merging on Column</h2>
+    <pre><code class="python">
+d1=pd.DataFrame(
+    {"key":["a","b","c","c","d","e"],
+     "num1":range(6)})
+d2=pd.DataFrame(
+    {"key":["b","c","e","f"],
+     "num2":range(4)})
+     
+print(d1)
+print(d2)
+```
+  key  num1
+0   a     0
+1   b     1
+2   c     2
+3   c     3
+4   d     4
+5   e     5
+  key  num2
+0   b     0
+1   c     1
+2   e     2
+3   f     3  
+
+pd.merge(d1, d2)
+```
+	key	num1	num2
+0	b	1	    0
+1	c	2	    1
+2	c	3	    1
+3	e	5	    2
+pd.merge(d1, d2, on='key') # the same column name
+```
+	key	num1	num2
+0	b	1	    0
+1	c	2	    1
+2	c	3	    1
+3	e	5	    2
+
+d3=pd.DataFrame(
+    {"key1":["a","b","c","c","d","e"],
+     "num1":range(6)})
+d4=pd.DataFrame(
+    {"key2":["b","c","e","f"],
+     "num2":range(4)})
+     
+pd.merge(d3,d4,left_on="key1",right_on="key2")  # different column name
+pd.merge(d1,d2,how="outer")
+pd.merge(d1,d2,how="left")
+pd.merge(d1,d2,how="right")
+pd.merge(d1, d2, how='inner') 
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <pre><code class="python">
+d3=pd.DataFrame(
+    {"key1":["a","b","c","c","d","e"],
+     "num1":range(6)})
+d4=pd.DataFrame(
+    {"key2":["b","c","e","f"],
+     "num2":range(4)})
+  key1  num1
+0    a     0
+1    b     1
+2    c     2
+3    c     3
+4    d     4
+5    e     5
+  key2  num2
+0    b     0
+1    c     1
+2    e     2
+3    f     3     
+     
+pd.merge(d3,d4,left_on="key1",right_on="key2")  # different column name
+pd.merge(d1,d2,how="outer")
+pd.merge(d1,d2,how="left")
+pd.merge(d1,d2,how="right")
+pd.merge(d1, d2, how='inner') 
+```
+  key	num1	num2
+0	b	1	0
+1	c	2	1
+2	c	3	1
+3	e	5	2
+    </code></pre>
+    </div>
+</div>
+
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>11.2 Merging on index</h2>
+    <pre><code class="python">
+right=pd.DataFrame(
+    [[1,2],[3,4],[5,6]],
+    index=["a","c","d"],
+    columns=["Tom","Tim"])
+left=pd.DataFrame(
+    [[7,8],[9,10],[11,12],[13,14]],
+    index=["a","b","e","f"],
+    columns=["Sam","Kim"]) 
+```
+   Tom  Tim
+a    1    2
+c    3    4
+d    5    6
+   Sam  Kim
+a    7    8
+b    9   10
+e   11   12
+f   13   14
+
+pd.merge(right,left, 
+         right_index=True, 
+         left_index=True, 
+         how="outer") 
+```
+	Tom	Tim	Sam	Kim
+a	1.0	2.0	7.0	8.0
+b	NaN	NaN	9.0	10.0
+c	3.0	4.0	NaN	NaN
+d	5.0	6.0	NaN	NaN
+e	NaN	NaN	11.0	12.0
+f	NaN	NaN	13.0	14.0             
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>11.3 Concatenating Along an Axis</h2>
+    <pre><code class="python">
+df1 = pd.DataFrame(
+    np.arange(6).reshape(3, 2),
+    index=['a', 'b', 'c'],
+    columns=['one', 'two'])
+df2 = pd.DataFrame(
+    10+np.arange(4).reshape(2,2),
+    index=['a', 'c'],
+    columns=['three', 'four'])
+```
+   one  two
+a    0    1
+b    2    3
+c    4    5
+   three  four
+a     10    11
+c     12    13
+
+pd.concat([df1, df2], axis=1, 
+          keys=['s1', 's2'],
+          sort=False)
+```
+	s1	s2
+one	two	three	four
+a	0	1	10.0	11.0
+b	2	3	NaN	NaN
+c	4	5	12.0	13.0          
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h1>12. Pandas Pivot</h1>
+    <p><small>`Pivoting` refers to the transformation of data from one form to another, 
+        typically involving the <strong>rotation</strong> or <strong>reorganization</strong> of the data around certain `key variables`.</small></p>
+    <pre><code class="python">
+# Sample data
+data = {
+    'Color': ['red', 'green', 'blue', 'red', 'green', 'blue'],
+    'Number': ['one', 'two', 'one', 'two', 'one', 'two'],
+    'Time': [345, 325, 898, 989, 23, 143],
+    'Point': [1, 2, 3, 4, 5, 6]
+}
+
+# Create DataFrame
+df = pd.DataFrame(data)
+df
+```
+	Color	Number	Time	Point
+0	red	    one	    345	    1
+1	green	two	    325	    2
+2	blue	one	    898	    3
+3	red	    two	    989	    4
+4	green	one	    23	    5
+5	blue	two	    43	    6
+    </code></pre>
+    <p><small>We use `A` as the index and `B` for the new column names in the following examples</small></p>
+    <pre><code class="python">
+df2 = df.pivot(index='Color', columns='Number')
+df2
+```
+	    Time	Point
+Number	one	two	one	two
+Color				
+blue	898	143	3	6
+green	23	325	5	2
+red	    345	989	1	4
+
+df3 = df.pivot(index='Color',  columns='Number',
+               values=['Time', 'Point'])
+df3
+```
+	    Time	Point
+Number	one	two	one	two
+Color				
+blue	898	143	3	6
+green	23	325	5	2
+red	    345	989	1	4
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h1>13. Numpy Array and Pandas DataFrame</h1>
+    <h2>13.1 NumPy Array to Pandas DataFrame</h2>
+    <pre><code class="python">
+import numpy as np
+my_array = np.array([[11, 22, 33], [44, 55, 66]])
+print(my_array)
+```
+[[11 22 33]
+ [44 55 66]]
+print(type(my_array)) # <class 'numpy.ndarray'>
+
+# Convert the NumPy Array to Pandas DataFrame
+import pandas as pd
+df = pd.DataFrame(my_array, columns=['Column_A', 'Column_B', 'Column_C'])
+print(df)
+```
+   Column_A  Column_B  Column_C
+0        11        22        33
+1        44        55        66
+print(type(df)) # <class 'pandas.core.frame.DataFrame'>
+
+# Add an Index to the DataFrame
+# index=['Item_1', 'Item_2']
+df = pd.DataFrame(my_array, 
+                  columns=['Column_A', 'Column_B', 'Column_C'], 
+                  index=['Item_1', 'Item_2'])
+
+print(df)
+```
+        Column_A  Column_B  Column_C
+Item_1        11        22        33
+Item_2        44        55        66
+print(type(df)) 
+    </code></pre>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>13.2 Pandas DataFrame to NumPy Array</h2>
+    <pre><code class="python">
+import pandas as pd
+data = {'Age': [25, 47, 38],
+        'Birth Year': [1995, 1973, 1982],
+        'Graduation Year': [2016, 2000, 2005]
+        }
+df = pd.DataFrame(data)
+print(df)
+```
+   Age  Birth Year  Graduation Year
+0   25        1995             2016
+1   47        1973             2000
+2   38        1982             2005
+
+import numpy as np
+# Convert the DataFrame to a NumPy Array
+my_array = df.to_numpy()
+print(my_array)
+```
+[[  25 1995 2016]
+ [  47 1973 2000]
+ [  38 1982 2005]]
+
+## another method
+my_array = df.values
+print(my_array)
+    </code></pre>
+    </div>
+</div>
+
+
+
+
+
+<!-- Controls 不動--><!-- Controls 不動--><!-- Controls 不動-->
+<div class="controls">
+    <button onclick="prevSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+    // Slide Navigation Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Initialize
+    showSlide(currentSlide);
+</script>
+
+</body>
+</html>
