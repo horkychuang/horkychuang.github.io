@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 10 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 10 Machine Learning in Time Series
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, FIN
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Introduction</h1>
+    <p><small>
+        While <strong>traditional machine learning (ML) models</strong> are powerful, using them for <strong>time series forecasting</strong> requires special care — 
+        because time series data is fundamentally different from standard tabular data.
+         Here's what you <strong>should know in advance</strong> when applying traditional ML to time series: 
+    </small></p> 
+
+    <h2>Temporal Structure: Observations are dependent on time.</h2>
+    <p><samll>
+        In time series analysis, the chronological aspect refers to the inherent sequential and temporal ordering of data points, 
+        where past observations influence future ones. 
+        This requires models to respect time dependencies to avoid issues like data leakage or unrealistic predictions.
+    </samll></p>
+        </div>
+    </div>
+
+     <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>2. Standard Train/Test Split?: Use Time-Aware Instead</h2>
+    <h2>2.1 Time-Aware Train/Test Split</h2>
+    <p><small>
+    <ul>
+        <li><strong>Fixed Split:</strong> Train on early data (e.g., first 80%) and test on recent data (last 20%)</li>
+        <li><strong>TimeSeriesSplit</strong>: Use scikit-learn's TimeSeriesSplit for iterative splits (e.g., train on periods 1-5, test on 6; then 1-6, test on 7).
+             This mimics real-world forecasting</li>
+    </ul>
+    </small></p>
+    <h2>2.2 Validation methods</h2>
+    <p><small>
+        A very popular approach to <strong>evaluating</strong> models' performance is called `cross-validation`. 
+        It is especially useful for choosing the best set of a model’s hyperparameters or selecting the best model for the problem we are trying to solve. 
+        Cross-validation is a technique that allows us to obtain reliable estimates of the model's generalization error 
+        by providing multiple estimates of the model's performance.
+    </small></p> 
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>2.2.1 Simple Time Split Validation</h2>
+    <img src="images\05290.png" alt="05290" width="600">
+    <p><small>
+        The tradtional validation scheme is called <strong>k-fold cross-validation</strong>, in which we randomly split the training data into k folds. 
+        However, k-fold cross-validation is not really suited for evaluating time series models, as it does not preserve the order of time. 
+        For example, in the first round, we train the model using the data from the last 4 folds while evaluating it using the first one.
+    </small></p>
+    
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>2.2.2 Walk-Forward Validation</h2>
+    <p><small>
+        When dealing with time series data, the traditional cross-validation methods may not be suitable due to the <strong>temporal nature</strong> of the data. 
+        Therefore, when evaluating a time series model, it is crucial to assess its performance on unseen future data points. 
+        The most common time series cross-validation techniques is the <strong>Walk-Forward Validation approach.<br>
+        There are two basic types: <strong>Anchored (Expanding Window)</strong> and <strong>Unanchored (Rolling Window)</strong>.
+        </strong></small></p>
+    
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="bb">
+            <h3>Anchored walk-forward validation</h3>
+    <p><small>Anchored walk-forward validation, is called as `expanding windows validation`,
+        where the `training set always starts from the beginning of the dataset and grows with each step, while the test set moves forward by one step at a time. This means that with each iteration, the training data includes all prior information up to the current time step, 
+        which can be beneficial for time series that may need to retain all historical information for accurate forecasting</small></p>
+    <img src="images\052901.png" alt="052901" width="600">
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+            <h2>Sliding Window Validation</h2>
+    <p><small>Unanchored walk-forward validation, also is called `rolling window validation`, uses a fixed-size training window that "slides" forward with each step. This means that the training data for each iteration does not start from the beginning of the dataset but instead moves forward, dropping the oldest observations and adding the latest ones. This method is particularly useful 
+        when you want to keep the model focused on recent data without relying too much on older, potentially less relevant information.</small></p>
+    <img src="images\052902.png" alt="052902" width="600">
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="aa">
+    <p><small>
+      With the same dataset of 100 observations and an initial training window size of 30: Anchored Walk-Forward Validation: 
+      The <mark>training set grows over time</mark> since the training data includes all past observations up to that point.
+      <ul>
+        <li>Step 1: Train on observations 1–30, test on 31</li>
+        <li>Step 2: Train on observations 1–31, test on 32</li>
+        <li>Step 3: Train on observations 1–32, test on 33.</li>
+        <li>And so forth</li>
+      </ul>
+      Unanchored Walk-Forward Validation: The <mark>training set size is fixed</mark> and "slides" forward as the validation progresses. 
+      Only the most recent observations are kept, and older data points are dropped from the training set. 
+      <ul>
+        <li>Step 1: Train on observations 1–30, test on 31</li>
+        <li>Step 2: Train on observations 2–31, test on 32</li>
+        <li>Step 3: Train on observations 3–32, test on 33.</li>
+        <li>And so forth</li>
+      </ul>  
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>3. Feature Engineering Is Crucial<Title></Title></h1>
+    <p><small>Traditional ML models (like XGBoost) don’t understand time directly, 
+        so we must engineer time-based features: Incorporate Chronological Features: engineer features should capture temporal dependencies</small></p>
+    <ul>
+      <li>Lagged Variables. Choose lags based on domain knowledge or autocorrelation analysis (ACF plots)</li>
+      <li>Rolling Statistics: Rolling mean, std over past 3, 7, 30 days</li>
+      <li>Time-Based Features: `hour`, `day`, `month`, `year`, `day_of_week` </li>
+      <li>...</li>
+    </ul>
+    <pre><code class="python">
+# Lag Features
+import pandas as pd
+df['lag_1'] = df['close'].shift(1)
+df['lag_2'] = df['close'].shift(2)
+ #Rolling Statistics
+df['rolling_mean'] = df['close'].rolling(window=3).mean()
+df['rolling_std'] = df['close'].rolling(window=3).std()
+
+# Seasonal Decomposition
+from statsmodels.tsa.seasonal import seasonal_decompose
+decomposition = seasonal_decompose(df['close'], model='additive')
+decomposition.plot()
+
+import statsmodels.api as sm
+# Sample seasonal time series data
+seasonal_data = sm.tsa.seasonal_decompose(df['closee'], model='additive', period=4)
+
+# Extract and display the seasonal component
+df['seasonal'] = seasonal_data.seasonal
+    </code></pre> 
+        </div>
+    </div>
+
+    <!-- Slide 9 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>Technical indicators<Title></Title></h1>
+    <p><small>
+        <ul>
+            <li>Simple Moving Average (SMA): Averages the closing prices over a specified window, smoothing out price fluctuations and highlighting trends</li>
+            <li>Exponential Moving Average (EMA): Similar to SMA, EMA gives more weight to recent prices, making it sensitive to short-term price movements</li>
+            <li>Moving Average Convergence Divergence (MACD): Represents the difference between short-term EMA and long-term EMA, 
+                providing insights into the strength and direction of a trend.</li>
+            <li>Relative Strength Index (RSI): Measures the speed and change of price movements, indicating overbought or oversold conditions in the market.</li> 
+            <li>Bollinger Bands: Consist of a middle band (SMA) and upper/lower bands representing price volatility. They help identify price extremes and potential reversal points</li>   
+        </ul>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 10 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>Other Index</h2>
+            <pre><code class="python">
+# Creating new features
+df["H_L_diff"] = df["High"] - df["Low"]
+df.drop("Adj Close", axis=1, inplace=True)
+df.drop("High", axis=1, inplace=True)
+df.drop("Low", axis=1, inplace=True)
+
+df["Bands_diff"] = df["Upper_Band"] - df["Lower_Band"]
+df.drop("Upper_Band", axis=1, inplace=True)
+df.drop("Lower_Band", axis=1, inplace=True)
+
+df["target"] = df["Close"].shift(-1) # -- regression problem
+    </code></pre>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+            <h1>4. Handle Trends and Seasonality<Title></Title></h1>
+    <p><small>
+      <ul>
+        <li>Detrend: Fit a linear trend and model residuals.</li>
+        <li>Differencing: Use `y_t - y_t-1` instead of raw values</li>
+        <li>Decomposition: Extract trend/seasonal components and model them separately</li>
+        <li>Scale Features: Standardize or normalize numerical features (e.g., MinMaxScaler, StandardScaler)</li>
+      </ul>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 11 -->
+    <div class="slide">
+        <div class="bb">
+    <h2>5. Evaluate Properly</h2>
+    <p><small>
+       <ul>
+        <li>Metrics:RMSE, MAE, MAPE, SMAPE (for scale-dependent errors) and MASE (scaled, good for comparing across series)</li>
+        <li>Evaluation: Refit or update model as new data comes in, avoid single train/test split</li>
+       </ul><br>
+    <h2>Residuals analysis</h2>
+       <ul>
+         <li>Autocorrelation Check: Plot ACF of residuals to ensure no significant temporal patterns remain (use Ljung-Box test for confirmation)</li>
+         <li>Visual Inspection: Plot residuals over time to detect trends, seasonality, or heteroscedasticity</li>
+         <li>Feature Adjustment: If patterns are found, add more lagged features, adjust window sizes, or include external variables</li>
+       </ul>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 12 -->
+    <div class="slide">
+        <div class="aa">
+            <h1>5. Additional Information<Title></Title></h1>
+    <h2>5.1 XGBoost Algorithm</h2>
+    <p><small> <strong>XGBoost Regressor</strong> (Extreme Gradient Boosting Regressor) is a machine learning model 
+        that implements gradient-boosted decision trees with a focus on computational efficiency and model performance. 
+        It builds an `ensemble of weak learners` (typically decision trees).<br>
+        An <strong>ensemble of weak learners</strong> is a machine learning technique 
+        where many simple models (called *weak learners*) are combined to make a much stronger, more accurate model.<br>
+        Common Methods Using Weak Learner:
+        <ul>
+            <li><strong>Boosting</strong> (e.g., XGBoost, AdaBoost): Each new learner tries to **correct the mistakes** of the previous ones</li>
+            <li><strong>Bagging</strong> (e.g., Random Forest):Many weak learners (trees) are trained **independently** on random subsets of data</li>
+        </ul>    
+    </small> </p>
+        </div>
+    </div>
+
+    <div class="slide">
+        <div class="aa">
+    <p><small>
+        We need the these specific hyperparameters are commonly used in `XGBRegressor`
+        <ul>
+          <li>`n_estimators=100`: Number of decision trees (weak learners) to build</li>
+          <li>`learning_rate=0.1`:  controls how much each new tree contributese</li>
+          <li>`max_depth=3`:  how many splits it can make</li>
+         <li>`objective='reg:squarederror'`: the model tries to minimize</li>        
+        </ul>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 13 -->
+    <div class="slide">
+        <div class="bb">
+            <h2>5.2 Ljung-Box test</h2>
+    <p><small>
+      The <strong>Ljung-Box test</strong> is a statistical hypothesis test used to determine 
+      whether a time series contains **significant autocorrelation** (correlation with its own past values) at any of a number of lags. 
+      Autocorrelation in residuals suggests that the model has not fully captured the time series' structure, indicating potential improvements needed
+    <ul>
+        <li><mark>Null Hypothesis (H₀):</mark>The data (or residuals) are <strong>independent</strong> — there is no autocorrelation up to a specified lag</li>
+        <li><mark>Alternative Hypothesis (H₁):</mark> There <strong>is autocorrelation</strong> in the data (or residuals) at one or more lags.</li>
+    </ul>
+    </small></p>
+
+    If the test is <strong>significant</strong> (p-value < 0.05), we reject H₀ — meaning the data are not random, and there's some pattern we might need to model.
+    
+        </div>
+    </div>
+
+    
+
+    
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
