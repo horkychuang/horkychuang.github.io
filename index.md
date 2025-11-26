@@ -39,6 +39,7 @@ Individual file directories in B:
 - [B9](./1141big/Class9/Class9_slide.html) - File B9 in directory B/B9
 - [B10](./1141big/Class10/Class10_slide.html) - File B10 in directory B/B10
 - [B11](./1141big/Class11/Class11_slide.html) - File B11 in directory B/B11
+- [B12](./1141big/Class12/Class12_slide.html) - File B12 in directory B/B12
 
 ## 📁 Directory C - for Social network 
 
