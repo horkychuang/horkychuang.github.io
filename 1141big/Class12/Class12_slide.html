@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 12 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000000; /* Changed to black as per body style */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            min-height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC; /* Light Yellow Background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+        }
+        .slide.active {
+            display: flex; /* Use flex for proper centering */
+            flex-direction: column;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+            width: 100%;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Cover Slide: Class 3 Introduction -->
+    <div class="slide active">
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Image at the top -->
+            <div style="text-align: center; padding-top: 20px;">
+                <img src="images/04103.jpg" alt="04103" style="max-width: 100%; height: auto; max-height: 350px; border-radius: 8px;">
+            </div>
+            <div>
+                <h1 style="text-align: center;">
+                    Class 12 Recommendation Systems
+                </h1>
+                <h3 style="text-align: center; margin-top: 10px;">
+                    Wen-Bin Chuang<br>
+                    September 02, 2025<br>
+                    NCNU, IBS
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="aa">
+        <h1>Introduction</h1>
+    <p><small>
+        <mark>Recommendation systems</mark> are a subclass of information filtering systems designed to suggest items or content that are most relevant to a particular user. 
+        These systems help users navigate overwhelming amounts of information by predicting their preferences and providing personalized suggestions, 
+        such as products on e-commerce sites, movies on streaming platforms, or news articles on social media. </br>
+        Recommendation systems plays an important role in e-commerce and online streaming services, 
+        such as Netflix, YouTube and Amazon. Making the right recommendation for the next product, 
+        music or movie increases user retention and satisfaction, leading to sales and profit growth
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="bb">
+        <h2>Types of Recommendation Systems</h2>
+        <p><small>
+        <ol>
+            <li><mark>Popular Recommendation Strategies</mark>: Popularity-based algorithms are very straightforward—similar to news trending lists or Facebook’s “trending” section—recommending items to users by ranking them according to some measure of "popularity," such as share rates or other engagement metrics</li>
+            <li><mark>Collaborative Filtering (CF)</mark>: This approach builds a model from a user's past behavior (e.g., purchases or ratings) and similar behaviors from other users to predict interests. 
+                It assumes that users with similar past preferences will share future ones.</li>
+            <li><mark>Content-Based Filtering</mark>: Focuses on item attributes and user profiles built from past preferences. It recommends items similar to those the user has liked by analyzing features like keywords, genres, or descriptions. 
+                Techniques include term frequency-inverse document frequency (tf-idf) for representation and machine learning classifiers (e.g., Bayesian or neural networks).</li>    
+        </ol>
+        </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <div class="aa">
+        <h2>Popular Recommendation Strategies</h2>
+    <p><small>
+      The main advantage is simplicity, making it especially suitable for newly registered users who lack interaction history. 
+      However, the drawback is obvious: it cannot deliver personalized recommendations tailored to individual users.  
+​      This approach can be enhanced through certain optimizations—for example, by incorporating user segmentation into the popularity ranking. Specifically, sports-related trending content could be prioritized for sports fans, 
+      while politically focused trending articles could be recommended to users who frequently engage with political topics.
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <div class="bb">
+        <h2>Collaborative Filtering</h2>
+    <p><small>
+      <ol>
+        <li><mark>User-based CF</mark>: Finds similar users and recommends items they liked. 
+                For example, if User A and User B both rated several movies highly, 
+                items liked by A but not yet seen by B are suggested.</li>
+        <li><mark>Item-based CF</mark>: Recommends items similar to those the user has liked, based on overall user ratings. 
+                CF can use explicit data (direct ratings) or implicit data (views or clicks). Popular implementations include Amazon's item-to-item recommendations. 
+                Subtypes include memory-based (using similarity metrics like cosine similarity) and model-based (e.g., matrix factorization to handle large datasets)</li>
+        </ol>
+    </small></p>
+        </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <div class="aa">
+        <h2>User-Based Collaborative Filtering</h2>
+    <p><small>
+    <ol>
+        <li><mark>Concept</mark>: Recommends items to a target user by identifying other users with similar preferences (based on their interaction history) and suggesting items those similar users liked</li>
+        <li>If User A and User B both gave high ratings to “Star Wars” and “The Matrix,” and User B also liked “Blade Runner,” the system might recommend “Blade Runner” to User A</li>
+    </ol>
+    </small></p>
+    <img src="images/recom_01.png" alt="recom_01" width="600">
+    <img src="images/recom_03.png" alt="recom_03" width="600">
+        </div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <div class="bb">
+        <h2>Item-Based Collaborative Filtering</h2>
+    <p><small>
+    <ol>
+        <li><mark>Concept</mark>: Recommends items similar to those the user has liked, based on how items are rated or interacted with by the broader user base</li>
+        <li>If a user liked “The Matrix” and many users who liked “The Matrix” also liked “Inception”, the system recommends "Inception".</li>
+    </ol>
+    </small></p>
+    <img src="images/recom_02.png" alt="recom_02" width="600">
+        </div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <div class="aa">
+        <h2>Content-Based Recommender System</h2>
+    <p><small>
+    <ol>
+        <li><mark>Concept</mark>: Items to users based on the <mark>features or attributes of the items</mark> and the <mark>user's past preferences</mark>. 
+            The core idea is that if a user liked certain items in the past, 
+            they are likely to enjoy other items that are <mark>similar in content</mark></li>        
+    </ol>
+    </small></p>
+    <img src="images/recom_05.png" alt="recom_05" width="400">
+        </div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <div class="bb">
+        <h2>Advance Recommender System</h2>
+    <p><small>
+    <ol>
+        <li><mark>Clustering-Based Recommender Systems</mark>: use clustering techniques to group users or items with <mark>similar characteristics or behaviors</mark>, enabling personalized recommendations</li>
+        <li><mark>Classification Algorithm–Based Recommender Systems</mark>Classification Algorithm–Based Recommender Systems</li>
+        <li><mark>Graph-Based Recommender Systems</mark>Graph-Based Recommender Systems</li>        
+    </ol>
+    </small></p>
+        </div>
+    </div>
+
+
+    <!-- Navigation Controls -->
+    <div class="controls">
+        <button onclick="prevSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
