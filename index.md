@@ -48,21 +48,21 @@ Individual file directories in B:
 
 Individual file directories in C:
 
-- [a0](./114fin/Class0/Class0_slide.html) - File Class0_slide in directory A/a1
-- [a1](./114fin/Class1/Class1_slide.html) - File Class1_slide in directory A/a1
-- [a1A](./114fin/Class1/Class11_slide.html) - File Class1A_slide in directory A/a1
-- [a2](./114fin/Class2/Class2_slide.html) - File Class2_slide in directory A/a2
-- [a3](./114fin/Class3/Class3_slide.html) - File Class3_slide in directory A/a3
-- [a4](./114fin/Class4/Class4_slide.html) - File Class4_slide in directory A/a4
-- [a5](./114fin/Class5/Class5_slide.html) - File Class5_slide in directory A/a5
-- [a6](./114fin/Class6/Class6_slide.html) - File Class6_slide in directory A/a6
-- [a7](./114fin/Class7/Class7_slide.html) - File Class7_slide in directory A/a7
-- [a8](./114fin/Class8/Class8_slide.html) - File Class8_slide in directory A/a8
-- [a9](./114fin/Class9/Class9_slide.html) - File Class9_slide in directory A/a9
-- [a10](./114fin/Class10/Class10_slide.html) - File Class10_slide in directory A/a10
-- [a11](./114fin/Class11/Class11_slide.html) - File Class11_slide in directory A/a11
-- [a11A](./114fin/Class11/Class11A_slide.html) - File Class11A_slide in directory A/a11A
-- [a12](./114fin/Class12/Class12_slide.html) - File Class12_slide in directory A/a12
+- [c0](./114fin/Class0/Class0_slide.html) - File Class0_slide in directory C/c1
+- [c1](./114fin/Class1/Class1_slide.html) - File Class1_slide in directory C/c1
+- [c1A](./114fin/Class1/Class11_slide.html) - File Class1A_slide in directory C/c1
+- [c2](./114fin/Class2/Class2_slide.html) - File Class2_slide in directory C/c2
+- [c3](./114fin/Class3/Class3_slide.html) - File Class3_slide in directory C/c3
+- [c4](./114fin/Class4/Class4_slide.html) - File Class4_slide in directory C/c4
+- [c5](./114fin/Class5/Class5_slide.html) - File Class5_slide in directory C/c5
+- [c6](./114fin/Class6/Class6_slide.html) - File Class6_slide in directory C/c6
+- [c7](./114fin/Class7/Class7_slide.html) - File Class7_slide in directory C/c7
+- [c8](./114fin/Class8/Class8_slide.html) - File Class8_slide in directory C/c8
+- [c9](./114fin/Class9/Class9_slide.html) - File Class9_slide in directory C/c9
+- [c10](./114fin/Class10/Class10_slide.html) - File Class10_slide in directory C/c10
+- [c11](./114fin/Class11/Class11_slide.html) - File Class11_slide in directory C/c11
+- [c11A](./114fin/Class11/Class11A_slide.html) - File Class11A_slide in directory C/c11A
+- [c12](./114fin/Class12/Class12_slide.html) - File Class12_slide in directory C/c12
 
 ---
 
