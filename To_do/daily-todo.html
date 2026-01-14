@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily To-Do</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #121212;
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 15px;
+      color: #bb86fc;
+    }
+    #saveStatus {
+      text-align: center;
+      color: #81c784;
+      min-height: 1.2em;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    /* Weather Panel */
+    #weatherPanel {
+      background: #1e1e2e;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    #weatherHeader {
+      text-align: center;
+      font-size: 1.2em;
+      margin-bottom: 14px;
+      color: #a0a0ff;
+    }
+    #hourlyForecast {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 8px 0;
+    }
+    .hour-item {
+      background: #2d2d3f;
+      padding: 12px 8px;
+      border-radius: 10px;
+      text-align: center;
+      min-width: 60px;
+      font-size: 0.65em;
+    }
+    .hour-time { font-weight: bold; color: #c5c5ff; }
+    .hour-icon { font-size: 1.4em; margin: 4px 0; }
+    .hour-temp { font-size: 1.1em; }
+
+    /* Image Box */
+    #imageBox {
+      background: #1e1e2e;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    #dailyImage {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+    #imageLabel {
+      padding: 10px;
+      text-align: center;
+      color: #a0a0ff;
+      font-style: italic;
+    }
+
+    /* Main Content: Calendar + Todo */
+    .main-content {
+      display: flex;
+      gap: 20px;
+    }
+    .calendar-section {
+      width: 15%;
+      min-width: 180px;
+      background: #1e1e2e;
+      padding: 16px;
+      border-radius: 12px;
+    }
+    .todo-section {
+      width: 85%;
+      min-width: 400px;
+      background: #1e1e2e;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .calendar-header button {
+      background: #2d2d3f;
+      border: 1px solid #444466;
+      border-radius: 6px;
+      padding: 5px 10px;
+      cursor: pointer;
+      color: #e0e0ff;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+    }
+    .calendar-day-header {
+      text-align: center;
+      font-weight: bold;
+      font-size: 0.85em;
+      padding: 5px 0;
+      color: #a0a0ff;
+    }
+    .calendar-date {
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #2d2d3f;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 0.9em;
+    }
+    .calendar-date:hover {
+      background: #3a3a52;
+    }
+    .calendar-date.today {
+      background: #ff9e44;
+      color: #121212;
+      font-weight: bold;
+    }
+    .calendar-date.other-month {
+      opacity: 0.6;
+    }
+    .calendar-date.selected {
+      background: #64b5f6;
+    }
+
+    /* Todo List */
+    .todo-section h2 {
+      margin-top: 0;
+      margin-bottom: 16px;
+      color: #bb86fc;
+    }
+    .task-input-area {
+      display: flex;
+      margin-bottom: 20px;
+      gap: 10px;
+    }
+    #taskInput {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #444466;
+      border-radius: 6px;
+      background: #121212;
+      color: #f0f0f0;
+    }
+    #addTaskBtn {
+      padding: 10px 18px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    #addTaskBtn:hover {
+      background: #45a049;
+    }
+    #taskList {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #taskList li {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #2d2d3f;
+    }
+    .toggle-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid #a0a0ff;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 14px;
+      cursor: pointer;
+      font-size: 13px;
+      color: #a0a0ff;
+      flex-shrink: 0;
+    }
+    .toggle-btn.completed {
+      background: #4caf50;
+      border-color: #4caf50;
+    }
+    .task-text {
+      flex: 1;
+      cursor: pointer;
+      font-size: 1.05em;
+    }
+    .task-text.completed {
+      text-decoration: line-through;
+      color: #888;
+    }
+    .no-tasks {
+      color: #888;
+      font-style: italic;
+      padding: 12px 0;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+      }
+      .calendar-section, .todo-section {
+        width: 100%;
+        min-width: auto;
+      }
+      #dailyImage { height: 160px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📅 Happy Daily To-Do</h1>
+    <div id="saveStatus"></div>
+
+    <!-- 24-Hour Weather -->
+    <div id="weatherPanel">
+      <div id="weatherHeader">Loading 24-hour forecast...</div>
+      <div id="hourlyForecast"></div>
+    </div>
+
+    <!-- Beautiful Image Box -->
+    <div id="imageBox">
+      <img id="dailyImage" src="" alt="Daily nature scene" />
+      <div id="imageLabel">🌄 Today's peaceful view</div>
+    </div>  
+
+    <!-- Calendar + Todo -->
+    <div class="main-content">
+      <div class="calendar-section">
+        <div class="calendar-header">
+          <button id="prevMonth">&lt;</button>
+          <div id="monthYear">January 2025</div>
+          <button id="nextMonth">&gt;</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+      </div>
+
+      <div class="todo-section">
+        <h2 id="selectedDateHeading">Tasks for —</h2>
+        <div class="task-input-area">
+          <input type="text" id="taskInput" placeholder="Enter a new task..." />
+          <button id="addTaskBtn">Add</button>
+        </div>
+        <ul id="taskList"></ul>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    // === 24-HOUR WEATHER FORECAST ===
+    async function load24HourWeather() {
+      const weatherHeader = document.getElementById('weatherHeader');
+      const hourlyContainer = document.getElementById('hourlyForecast');
+
+      try {
+        const pos = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 8000 });
+        });
+        const { latitude, longitude } = pos.coords;
+
+        // Fetch 24h forecast (hourly for next day)
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,weathercode&timezone=auto&forecast_days=2`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        const now = new Date();
+        const localNow = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+        const currentDay = localNow.getDate();
+        const currentMonth = localNow.getMonth();
+
+        const times = data.hourly.time.map(t => new Date(t));
+        const temps = data.hourly.temperature_2m;
+        const codes = data.hourly.weathercode;
+
+        // Find start index (current hour)
+        const startIndex = times.findIndex(t => 
+          t.getDate() === currentDay && t.getMonth() === currentMonth
+        );
+        const endIndex = Math.min(startIndex + 24, times.length);
+
+        if (startIndex === -1) throw new Error('Current time not found');
+
+        const weatherIcons = {
+          0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+          45: '🌫️', 48: '🌫️',
+          51: '🌦️', 53: '🌦️', 55: '🌧️',
+          61: '🌧️', 63: '🌧️', 65: '🌧️',
+          71: '❄️', 73: '❄️', 75: '❄️', 77: '🌨️',
+          80: '🌧️', 81: '🌧️', 82: '🌧️',
+          85: '❄️', 86: '❄️',
+          95: '⛈️', 96: '⛈️', 99: '⛈️'
+        };
+
+        const cityGuess = data.timezone.replace(/_/g, ' ');
+        weatherHeader.textContent = `📍 ${cityGuess} • 24-Hour Forecast`;
+
+        hourlyContainer.innerHTML = '';
+        for (let i = startIndex; i < endIndex; i++) {
+          const time = times[i];
+          const hour = time.getHours();
+          const icon = weatherIcons[codes[i]] || '❓';
+          const temp = Math.round(temps[i]);
+          const el = document.createElement('div');
+          el.className = 'hour-item';
+          el.innerHTML = `
+            <div class="hour-time">${hour}:00</div>
+            <div class="hour-icon">${icon}</div>
+            <div class="hour-temp">${temp}°</div>
+          `;
+          hourlyContainer.appendChild(el);
+        }
+      } catch (err) {
+        console.warn('Weather failed:', err);
+        weatherHeader.textContent = '🌤️ Allow location for 24h forecast';
+        hourlyContainer.innerHTML = '';
+      }
+    }
+
+    // === DAILY IMAGE IN BOX (Robust Version) ===
+function loadDailyImage() {
+  const img = document.getElementById('dailyImage');
+  const imageLabel = document.getElementById('imageLabel');
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+
+  // Show loading state
+  imageLabel.textContent = '🌄 Loading today’s view...';
+  img.alt = 'Daily nature scene';
+
+  // Try primary: location-based
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const seed = `${pos.coords.latitude.toFixed(3)}_${pos.coords.longitude.toFixed(3)}_${today}`;
+      const url = `https://source.unsplash.com/1200x400/?mountain,ocean,forest,lake&sig=${encodeURIComponent(seed)}`;
+      img.src = url;
+    },
+    () => {
+      // Fallback: date-based (no location)
+      const url = `https://source.unsplash.com/1200x400/?nature,peace,landscape&date=${today}`;
+      img.src = url;
+    },
+    { timeout: 5000 }
+  );
+
+  // Handle success
+  img.onload = () => {
+    imageLabel.textContent = '🌄 Today’s peaceful view';
+  };
+
+  // Handle failure → use a guaranteed fallback
+  img.onerror = () => {
+    console.warn('Image failed — using backup');
+    // Use a direct Unsplash link that rarely fails
+    img.src = 'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=1200&h=400&fit=crop';
+    img.onload = () => {
+      imageLabel.textContent = '🌄 Nature never fails';
+    };
+  };
+}
+
+    // === TO-DO APP LOGIC (unchanged) ===
+    let currentDate = new Date();
+    let selectedDate = new Date();
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || {};
+
+    const monthYearEl = document.getElementById('monthYear');
+    const calendarGrid = document.getElementById('calendarGrid');
+    const selectedDateHeading = document.getElementById('selectedDateHeading');
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+    const saveStatus = document.getElementById('saveStatus');
+
+    function showSaved() {
+      saveStatus.textContent = '✓ Saved';
+      setTimeout(() => saveStatus.textContent = '', 1000);
+    }
+
+    function renderCalendar() {
+      calendarGrid.innerHTML = '';
+      const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+      weekdays.forEach(day => {
+        const el = document.createElement('div');
+        el.className = 'calendar-day-header';
+        el.textContent = day;
+        calendarGrid.appendChild(el);
+      });
+
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const startDayOfWeek = firstDay.getDay();
+      const daysInMonth = lastDay.getDate();
+      const prevMonthLastDay = new Date(year, month, 0).getDate();
+
+      for (let i = startDayOfWeek - 1; i >= 0; i--) {
+        renderCalendarDate(new Date(year, month - 1, prevMonthLastDay - i), true);
+      }
+      for (let day = 1; day <= daysInMonth; day++) {
+        renderCalendarDate(new Date(year, month, day), false);
+      }
+      const totalCells = 42;
+      const remaining = totalCells - (startDayOfWeek + daysInMonth);
+      for (let day = 1; day <= remaining; day++) {
+        renderCalendarDate(new Date(year, month + 1, day), true);
+      }
+
+      monthYearEl.textContent = currentDate.toLocaleString('en-US', { month: 'short', year: 'numeric' });
+      updateDateHighlights();
+    }
+
+    function renderCalendarDate(date, isOtherMonth) {
+      const el = document.createElement('div');
+      el.className = 'calendar-date';
+      if (isOtherMonth) el.classList.add('other-month');
+      el.textContent = date.getDate();
+      el.dataset.date = formatDateKey(date);
+      el.addEventListener('click', () => {
+        selectedDate = new Date(date);
+        renderTaskList();
+        updateDateHighlights();
+      });
+      calendarGrid.appendChild(el);
+    }
+
+    function updateDateHighlights() {
+      const todayKey = formatDateKey(new Date());
+      const selectedKey = formatDateKey(selectedDate);
+      document.querySelectorAll('.calendar-date').forEach(el => {
+        el.classList.remove('today', 'selected');
+        if (el.dataset.date === todayKey) el.classList.add('today');
+        if (el.dataset.date === selectedKey) el.classList.add('selected');
+      });
+      selectedDateHeading.textContent = `Tasks for ${selectedDate.toLocaleDateString()}`;
+    }
+
+    function formatDateKey(date) {
+      return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    }
+
+    function renderTaskList() {
+      const key = formatDateKey(selectedDate);
+      const dayTasks = tasks[key] || [];
+      taskList.innerHTML = '';
+
+      if (dayTasks.length === 0) {
+        const li = document.createElement('li');
+        li.className = 'no-tasks';
+        li.textContent = 'No tasks yet. Add one!';
+        taskList.appendChild(li);
+        return;
+      }
+
+      dayTasks.forEach((task, index) => {
+        const li = document.createElement('li');
+        const toggleBtn = document.createElement('div');
+        toggleBtn.className = `toggle-btn ${task.done ? 'completed' : ''}`;
+        toggleBtn.innerHTML = task.done ? '✓' : '';
+        toggleBtn.addEventListener('click', () => toggleTaskDone(key, index));
+
+        const taskText = document.createElement('span');
+        taskText.className = `task-text ${task.done ? 'completed' : ''}`;
+        taskText.textContent = task.text;
+        taskText.addEventListener('click', () => toggleTaskDone(key, index));
+
+        li.appendChild(toggleBtn);
+        li.appendChild(taskText);
+        taskList.appendChild(li);
+      });
+    }
+
+    function addTask() {
+      const text = taskInput.value.trim();
+      if (!text) return;
+      const key = formatDateKey(selectedDate);
+      if (!tasks[key]) tasks[key] = [];
+      tasks[key].push({ text, done: false });
+      saveTasks();
+      taskInput.value = '';
+      renderTaskList();
+    }
+
+    function toggleTaskDone(dateKey, index) {
+      tasks[dateKey][index].done = !tasks[dateKey][index].done;
+      saveTasks();
+      renderTaskList();
+    }
+
+    function saveTasks() {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      showSaved();
+    }
+
+    function setupEventListeners() {
+      document.getElementById('prevMonth').addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+      });
+      document.getElementById('nextMonth').addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+      });
+      document.getElementById('addTaskBtn').addEventListener('click', addTask);
+      taskInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') addTask();
+      });
+    }
+
+    // === INIT ===
+    function init() {
+      load24HourWeather();
+      loadDailyImage();
+      renderCalendar();
+      renderTaskList();
+      setupEventListeners();
+    }
+
+    init();
+  </script>
+</body>
+</html>
