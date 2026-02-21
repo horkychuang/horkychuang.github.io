@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class1 Slides</title>
+    <!-- MathJax Configuration -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <!-- Load MathJax -->
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
+
+    <!-- Load Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* General Slide Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black; /* Light Yellow Background */
+        }
+        .slide {
+            display: none;
+            width: 80%;
+            max-width: 900px;
+            height: 80vh;
+            margin: 50px auto;
+            padding: 20px;
+            background: #FFF8DC;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            overflow-y: auto; /* Enable vertical scrolling if content overflows */
+            justify-content: center; /* Center text vertically */
+            align-items: center; /* Center text horizontally */
+        }
+        .slide.active {
+            display: block;
+        }
+        h1, h2, h3 {
+            color: #34495e;
+        }
+        p, li {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+        }
+        pre {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #e74c3c;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+        .aa {
+            background-color: #ecf0f1;
+            padding: 15px;
+            border-left: 5px solid #3498db;
+            text-align: left;
+        }
+        .bb {
+            background-color: #fef9e7;
+            padding: 15px;
+            border-left: 5px solid #f1c40f;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<!-- Slides --> <!-- Slides --><!-- Slides -->
+<!-- Slides Cover -->
+<body>
+    <!-- Cover Slide: Class 0 Introduction -->
+    <div class="slide active">
+    <div style="height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+        <h1 style="text-align: center; margin-top: 10px;">
+            Big Data and Society
+        </h1>
+        <!-- Image at the top -->
+        <div style="text-align: center; padding-top: 20px;">
+            <img src="images\02201.jpg" alt="02201" style="max-width: 500%; height: auto; max-height: 350px; border-radius: 8px;">
+        </div>
+        
+        <div>
+            <h2 style="text-align: center;">
+                Class 1 Basic Network and NetworkX
+            </h2><br>
+            <h4 style="text-align: center; margin-top: 10px;">
+                Wen-Bin Chuang<br>
+                February 14, 2026<br>
+                NCNU, IBS
+            </h4>
+        </div>
+    </div>
+</div>
+
+
+<!-- Slides I -->
+<div class="slide"> <!-- 這裡使用slide activity-->
+    <div class="aa">
+    <h2>What is Social Network</h2>
+    <p><small>
+A social network is a structure composed of a set of actors, some of which are connected by a set of one or more relations. 
+SNA work at describing underlying patterns of social structure, explaining the impact of such patterns in behavior and attitudes. <br>
+
+社會網路是由⼀組 ⾏動者組成的結構，其中⼀些 ⾏動者通過⼀組或多組關係連接在⼀起。SNA 致⼒於描述社會結構的基本模式，解釋這種模式對⾏為和態度的影響。
+
+    </small></p>
+    </div>
+</div>
+
+
+<!-- Slides Go -->
+<div class="slide"> <!-- 這裡使用slide -->
+    <div class="bb">
+        <p><small>
+        <strong>Networks</strong> are complex systems of inter-connected components. <br><br>
+        <strong>Graphs</strong> are mathematical representations of these systems ⇒ Formal language we use to talk about networks. 
+        A graph metaphor for studying the relationships/interactions among a group of people.<br><br>
+
+SNA看關係--  雙元關係, 三元關係, 小集團關係, 特定節點關係, 整個網絡
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>Network Theory</h2>
+    <p><small>
+        A network is a collection of objects where some pairs of these objects are connected by links.<br>  
+        A graph can be deﬁned as `$G(V,E)$` where V denotes the set of all <strong>vertices</strong> of G 
+        and E denotes the set of <strong>edges</strong> of G. <br><br>
+        If an edge exists between u and v then they are considered as `neighbours`. 
+        The number of vertices in G is denoted as $|V|$and the number of edges is denoted by $|E|$. 
+    </small></p>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <p> <small> 
+    A social network contains individuals as <strong>nodes</strong> and <strong>links</strong> 
+    representing the <strong>relationship</strong> between these individuals. <br><br>
+    The study of social networks is of particular interest 
+    because it focuses on this abstract view of human relationships 
+    which gives insight into various kinds of social relationships 
+    ranging all the way from bargaining power to psychological health.<br><br>
+
+People/Components: vertices/nodes------ V <br>
+Relationship/Inter-connections: edges  --------- E<br>
+System: network, graph ----G(V,E)
+    </small></p>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>What are networks?</h2>
+    <figure style="text-align: center;">
+<img src="images\AA01.png" alt="AA01" width="600">
+    </figure>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>Network = Graph?</h2>
+    <figure style="text-align: center;">
+<img src="images\AA02.png" alt="AA02" width="600">
+    </figure>    
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <figure style="text-align: center;">
+    <img src="images\AA12.png" alt="AA12" width="600">
+    </figure>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>Types of Graph</h2>
+    <h3>Undirected vs Directed</h3>
+    <figure style="text-align: center;">
+    <img src="images\AA131.png" alt="AA131" width="600">
+    </figure><br><br>
+    - Directed graphs often called <strong>digraphs</strong>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>Unweighted vs Weighted</h2>
+    <figure style="text-align: center;">
+    <img src="images\A03.png" alt="A03"  width="600">
+    </figure>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>Bipartite Graph</h2>
+    <p><small>
+    A graph $G (V , E )$ is called <strong>bipartite</strong> when ⇒ V can be partitioned in two disjoint sets, 
+    say V1 and V2; and ⇒ Each edge in E has one endpoint in V1, the other in V2 <br><br>
+
+    Useful to represent e.g., membership or affiliation networks <br>
+    ⇒ Nodes in V1 could be people, nodes in V2 clubs <br>
+    ⇒ Induced graph G (V1, E1) joins members of same club 
+    </small></p>
+    <figure style="text-align: center;">
+    <img src="images\AAA054.png" alt="AAA054"  width="600">
+    </figure>
+    </figure>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>Representation of Graph</h2>
+    <p><small>
+    Networks, because of their need to depict more complicated relational structures, 
+    require a different type of data storage. 
+    That is, in rectangular data structures the fundamental piece of information is an attribute (column) of a case (row). <br>
+    
+    When analyzing a set of relationships, 
+    we will generally use one of two different <strong>data structure</strong>s: edge lists or adjacency matrices.<br>
+
+    There are <strong>three</strong> basic data formats that can be used to describe networks: 
+    strong>adjacency matrix</strong>, <strong>edge list</strong>, and adjacency list. <br>
+    Each format has its pros and cons. 
+    There are other variations on these (e.g., The <strong>biadjacency matrix</strong> for bipartite networks).<br>
+
+- Adjacency matrix <br>
+- Edge list <br>
+- Adjacency list (not common)
+    </small></p>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>Adjacency matrix</h2>
+    <p><small>
+    An <strong>adjacency matrix</strong> is a matrix in which the rows and columns represent different nodes 
+    that deﬁned as a matrix where 1 indicates the respective column actor 
+    and row actor should be tied and 0 indicates that they are not tied. <br>
+    鄰接矩陣 一個很重要的作用是得到每個節點指定標籤的鄰居數量，比如，客戶流失的標籤為1，如果我們想得到每個節點的客戶的流失客戶鄰居的數量，就可以用鄰接矩陣乘這個標籤的向量.  
+
+    If the network is <strong>non-directed</strong>, then the adjacency matrix would be symmetric around the diagonal. <br><br>  
+    Adjacency matrix: Aij = 1 iﬀ there is a link between i and j.
+    </small></p>
+    <figure style="text-align: center;">
+<img src="images\A041.png" alt="A041" width="400">
+    </figure>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h4>Adjacency matrix: directed graph</h4>
+    <figure style="text-align: center;">
+<img src="images\A051.png" alt="A051" width="400">
+    </figure><br><br>
+    <p><small>
+        In an <strong>unweighted</strong> adjacency matrix, the edges (i.e., lines) are represented by 0 or 1, 
+        with 1 indicating that these two nodes are connected. 
+        If two nodes are connected, they are said to be adjacent (hence the name, adjacency matrix). <br>
+        In a <strong>weighted</strong> adjacency matrix, however, you can have different values, indicating different edge qualities (or tie strengths). Let’s start by loading the igraph package and setting up a network.
+    </small></p>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="bb">
+    <h2>Edge Lists</h2>
+    <p><small>
+     An <strong>edge list</strong> is a two-column list of the two nodes that are connected in a network.  
+     For each edge, we just list who that edge is incident on. 
+     Edge lists are therefore <strong>two column matrices</strong> 
+     that directly tell the computer which actors are tied for each edge.<br><br>
+     In the case of a <strong>directed network</strong>, the actors in column A are the <strong>sources</strong> of edges, 
+     and the actors in column B <strong>receive the tie</strong>. In an undirected network, the order of the vertices don’t matter. 
+     If the tie goes in both directions in a directed network, then make sure 
+     that you reverse the order of the names on the next row down. <br><br> 
+     For <strong>weighted</strong> networks, you may have a `third column` that indicates the edge weight. 
+     You can get the edgelist of any igraph object as well:
+    </small></p>
+    <figure style="text-align: center;">
+    <img src="images\A06.png" alt="A06" width="100">
+    </figure>
+    </div>
+</div>
+
+<div class="slide"> 
+    <div class="aa">
+    <h2>Our First Network!</h2>
+    <p><small>
+    <strong>Nextworkx</strong> is a powerful Python library for creating, manipulating, and visualizing graphs and networks. 
+    It supports undirected and directed graphs, along with attributes for nodes and edges (e.g., weights, colors).<br>
+<ul>
+<li>Generating networks<ul>
+<li>Undirected graph and Directed graph, weight graph </li>
+</ul>
+</li>
+<li>Adding Attributes with nx.set_node_attributes() or nx.set_edge_attributes()<ul>
+<li>Node attributes and Edge attributes</li>
+</ul>
+</li>
+<li>Visualizing networks<ul>
+<li>basic, Common Parameters for Customization, Layouts</li>
+</ul>
+</li>
+</ul>
+<p>NetworkX allows you to create different types of graphs:</p>
+<ul>
+<li><strong>Undirected Graph</strong>: Edges have no direction.</li>
+<li><strong>Directed Graph (DiGraph)</strong>: Edges have direction.</li>
+<li><strong>Weighted Graph</strong>: Edges (or nodes) carry a numeric weight or label.</li>
+</ul>
+   </small></p>
+    </div>
+</div>
+
+
+
+<!-- Controls 不動--><!-- Controls 不動--><!-- Controls 不動-->
+<div class="controls">
+    <button onclick="prevSlide()">Previous</button>
+    <button onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+    // Slide Navigation Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    }
+
+    // Initialize
+    showSlide(currentSlide);
+</script>
+
+</body>
+</html>
