@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聯絡｜AI 智慧，教育升級</title>
+  <style>
+    :root {
+      --bg-page: #f9f9f9;
+      --bg-card: #ffffff;
+      --text-primary: #333333;
+      --text-secondary: #666666;
+      --link-color: #007bff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+    [data-theme="dark"] {
+      --bg-page: #121212;
+      --bg-card: #1e1e1e;
+      --text-primary: #e0e0e0;
+      --text-secondary: #b0b0b0;
+      --link-color: #64b5ff;
+      --shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    #theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--shadow);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: var(--text-primary);
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .main-nav {
+      text-align: center;
+      margin: 0 0 30px;
+    }
+    .main-nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--link-color);
+      font-weight: 500;
+    }
+    .main-nav a:hover,
+    .main-nav a.active {
+      text-decoration: underline;
+    }
+
+    main {
+      background: var(--bg-card);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px var(--shadow);
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    main h1 {
+      margin-top: 0;
+    }
+    .contact-email {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: var(--link-color);
+      margin: 20px 0;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <button id="theme-toggle">🌓 切換主題</button>
+
+  <nav class="main-nav">
+    <a href="index.html">首頁</a>
+    <a href="page1.html">關於</a>
+    <a href="page2.html" class="active">聯絡</a>
+  </nav>
+
+  <main>
+    <h1>經濟學啦</h1>
+    <p>歡迎學校、教育單位或教育科技團隊合作！</p>
+    <p>我們提供：</p>
+    <ul style="text-align: left; max-width: 500px; margin: 15px auto; color: var(--text-primary);">
+      <li>校內教師 AI 工作坊</li>
+      <li>客製化教學工具開發諮詢</li>
+      <li>教育創新講座（實體/線上）</li>
+    </ul>
+    <div class="contact-email">horkychuang@gmail.com</div>
+    <p>請來信說明合作需求，我們將盡快回覆！</p>
+  </main>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (saved) {
+      body.setAttribute('data-theme', saved);
+    } else if (prefersDark) {
+      body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+
+    toggle.addEventListener('click', () => {
+      const current = body.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+</html>
