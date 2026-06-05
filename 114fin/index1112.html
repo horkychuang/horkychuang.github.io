@@ -168,26 +168,17 @@
         let currentItemIndex = 0;
         let items = [];
 
-        // Simple mock translation dictionary (works offline)
-        const mockTranslations = {
-            "superficial": "表面的、膚淺的",
-            "ravage": "摧毀、蹂躪",
-            "official": "官方的",
-            "nominee": "被提名人",
-            "enthusiastic": "熱情的",
-            "sincere": "真誠的",
-            "professional": "專業的",
-            "exaggeration": "誇張",
-            "seduce": "誘惑",
-            "synthetic": "合成的",
-            "provincial": "省的、地方的",
-            "threshold": "門檻",
-            "presume": "假設",
-            // Add more words if you want
-        };
-
-        function getTranslation(text) {
-            return mockTranslations[text.toLowerCase()] || text + "（翻譯）";
+        // Google Translate (works online)
+        async function translateWithGoogle(text) {
+            try {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-TW&dt=t&q=${encodeURIComponent(text)}`;
+                const res = await fetch(url);
+                const data = await res.json();
+                return data[0].map(item => item[0]).join('');
+            } catch (e) {
+                console.error(e);
+                return text + "（翻譯失敗）";
+            }
         }
 
         function getRandomImageSeed(word) {
@@ -214,17 +205,18 @@
             document.getElementById('randomLetter').style.display = showEng ? 'block' : 'none';
             document.getElementById('randomLetter').textContent = word;
 
-            // 顯示中文
+            // 顯示中文 (Google Translate)
             const showCn = document.getElementById('showTransCheckbox').checked;
             const transEl = document.getElementById('transLetter');
             if (showCn) {
-                transEl.textContent = getTranslation(word);
+                const trans = await translateWithGoogle(word);
+                transEl.textContent = trans;
                 transEl.style.display = 'block';
             } else {
                 transEl.style.display = 'none';
             }
 
-            // 顯示圖片 (使用 Picsum - works offline)
+            // 顯示圖片
             if (document.getElementById('showImageCheckbox').checked) {
                 const seed = getRandomImageSeed(word);
                 document.getElementById('imageContainer').src = `https://picsum.photos/id/${seed}/600/400`;
@@ -234,11 +226,12 @@
         function loadItems() {
             const listText = document.getElementById('itemList').value;
             items = listText.split(',').map(w => w.trim()).filter(Boolean);
-            if (items.length === 0) items = ["superficial", "ravage", "official"]; // fallback
+            if (items.length === 0) items = ["superficial", "ravage", "official"];
         }
 
         // Event Listeners
         document.getElementById('next-page-btn').onclick = displayRandomLetter;
+        
         document.getElementById('textToSpeech').onclick = () => {
             const text = document.getElementById('randomLetter').textContent;
             if ('speechSynthesis' in window) {
@@ -247,6 +240,7 @@
                 speechSynthesis.speak(u);
             }
         };
+        
         document.getElementById('textToSpeech2').onclick = () => {
             const text = document.getElementById('transLetter').textContent;
             if ('speechSynthesis' in window) {
@@ -263,7 +257,7 @@
 
         document.getElementById('saveButton').onclick = () => {
             loadItems();
-            alert('✅ 列表已更新！（已儲存至本地）');
+            alert('✅ 列表已更新！');
         };
 
         ['showImageCheckbox', 'showOrigCheckbox', 'showTransCheckbox', 'showRandomly'].forEach(id => {
