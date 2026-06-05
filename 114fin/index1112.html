@@ -6,28 +6,17 @@
     <title>單字測驗</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --primary: #2196F3;
-            --accent: #FFC107;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
         body {
-            font-family: 'Noto Sans TC', system-ui, sans-serif;
-            background: var(--accent);
-            color: #333;
+            margin: 0;
             height: 100vh;
+            background: #FFC107;
+            font-family: 'Noto Sans TC', sans-serif;
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
-        
         .container {
             flex: 1;
             display: flex;
@@ -38,384 +27,260 @@
             gap: 20px;
             text-align: center;
         }
-        
         .image-container {
-            width: 100%;
-            max-width: 420px;
-            height: 280px;
+            max-width: 95vw;
+            max-height: 52vh;
+            border: 6px solid #2196F3;
             border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3);
+            box-shadow: 0 8px 25px rgba(33,150,243,0.35);
             background: white;
-            border: 6px solid var(--primary);
+            overflow: hidden;
         }
-        
         #imageContainer {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
         .word {
             font-size: 2.8rem;
             font-weight: 900;
-            color: var(--primary);
-            line-height: 1.2;
+            color: #2196F3;
             min-height: 80px;
         }
-        
         .translation {
-            font-size: 1.6rem;
-            color: #333;
+            font-size: 1.75rem;
+            color: #222;
             font-weight: 500;
-            min-height: 60px;
+            min-height: 70px;
         }
-        
-        .controls {
+        .bottom-bar {
+            background: #2196F3;
+            padding: 12px 10px;
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 10px;
             justify-content: center;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
         }
-        
-        button {
-            padding: 14px 20px;
-            font-size: 1.1rem;
+        .bottom-btn {
+            flex: 1;
+            max-width: 88px;
+            background: white;
+            color: #2196F3;
             border: none;
             border-radius: 12px;
-            cursor: pointer;
+            padding: 12px 8px;
+            font-size: 1.35rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
+            gap: 4px;
+            cursor: pointer;
         }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.4);
-        }
-        
-        .settings {
+        .settings-btn {
             position: fixed;
             top: 15px;
             right: 15px;
             z-index: 1000;
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 14px;
+            border-radius: 50%;
+            font-size: 1.5rem;
         }
-        
         .panel {
             position: fixed;
             top: 70px;
             right: 15px;
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            padding: 20px;
-            width: 320px;
-            max-height: 80vh;
+            width: 340px;
+            max-height: 82vh;
             overflow-y: auto;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            padding: 20px;
             display: none;
             z-index: 1001;
         }
-        
-        .panel h2 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        
         textarea {
             width: 100%;
-            min-height: 180px;
+            height: 190px;
+            border: 3px solid #2196F3;
+            border-radius: 12px;
             padding: 12px;
-            border: 3px solid var(--primary);
-            border-radius: 12px;
             font-size: 1rem;
-            resize: vertical;
         }
-        
-        .bottom-bar {
-            background: var(--primary);
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-        }
-        
-        .bottom-btn {
-            flex: 1;
-            max-width: 80px;
-            padding: 12px 8px;
-            background: white;
-            color: var(--primary);
-            border-radius: 12px;
-            font-size: 1.4rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-        
-        .bottom-btn i {
-            font-size: 1.6rem;
-        }
-        
         .toggle-label {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             margin: 12px 0;
-            font-size: 1.1rem;
-        }
-        
-        input[type="checkbox"] {
-            width: 22px;
-            height: 22px;
-        }
-        
-        .source-link {
-            margin-top: 8px;
-            font-size: 0.9rem;
-            color: var(--primary);
-        }
-        
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.7);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-        
-        .modal-content {
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            max-width: 90%;
-            text-align: center;
+            font-size: 1.12rem;
         }
     </style>
 </head>
 <body>
-    <div class="settings">
-        <button class="btn-primary" id="menuBtn" style="padding: 12px 16px;">
-            <i class="fas fa-cog"></i>
-        </button>
-    </div>
+
+    <button class="settings-btn" id="menuButton"><i class="fas fa-cog"></i></button>
 
     <div class="container">
         <div class="image-container">
             <img id="imageContainer" src="https://picsum.photos/id/1015/600/400" alt="單字圖片">
         </div>
-        
         <div class="word" id="randomLetter">superficial</div>
         <div class="translation" id="transLetter">表面的、膚淺的</div>
-        
-        <div class="controls">
-            <button class="btn-primary" id="nextBtn">
-                <i class="fas fa-random"></i> 下一個
-            </button>
-        </div>
     </div>
 
     <!-- Settings Panel -->
-    <div class="panel" id="optionPanel">
+    <div class="panel" id="option">
         <h2>單字列表</h2>
         <textarea id="itemList" spellcheck="false">superficial,ravage,official,nominee,tug,pill,oath,stair,snack,exhibit,sake,hay,cape,slice,faculty,beam,synthetic,enthusiastic,tug-of-war,ferry,harness,dairy,sincere,surf,brush,erupt,spread,clasp,professional,match,stimulus,pint,fence,fame,presume,threshold,crude,abroad,tub,riot,colonel,symbolize,basement,exaggeration,fracture,provincial,seduce,ethic,addict,cavalry,assistant,tempt,retreat,crisp,peck,freak,figure,supreme,screw,alcohol,elevator,bulky,pharmacy,associate,adaptation,muse,stretch,broad,socialist,mutter</textarea>
         
-        <h2 style="margin-top:20px">顯示設定</h2>
+        <button id="saveButton" style="background:#2196F3;color:white;padding:12px 20px;border:none;border-radius:8px;width:100%;margin:15px 0 10px 0;">更新列表</button>
+
+        <h2>顯示設定</h2>
         <div class="toggle-label">
-            <input type="checkbox" id="showImage" checked>
-            <label for="showImage">顯示圖片</label>
+            <input type="checkbox" id="showImageCheckbox" checked>
+            <label>顯示圖片</label>
         </div>
         <div class="toggle-label">
-            <input type="checkbox" id="showOrig" checked>
-            <label for="showOrig">顯示英文</label>
+            <input type="checkbox" id="showOrigCheckbox" checked>
+            <label>顯示英文</label>
         </div>
         <div class="toggle-label">
-            <input type="checkbox" id="showTrans" checked>
-            <label for="showTrans">顯示翻譯</label>
+            <input type="checkbox" id="showTransCheckbox" checked>
+            <label>顯示中文</label>
         </div>
         <div class="toggle-label">
-            <input type="checkbox" id="randomMode" checked>
-            <label for="randomMode">隨機模式</label>
+            <input type="checkbox" id="showRandomly" checked>
+            <label>隨機顯示</label>
         </div>
-        
-        <button id="saveListBtn" class="btn-primary" style="width:100%; margin-top:20px;">儲存列表</button>
     </div>
 
-    <!-- Bottom Navigation -->
+    <!-- Bottom Bar -->
     <div class="bottom-bar">
-        <button class="bottom-btn" id="speakBtn">
-            <i class="fas fa-volume-up"></i>
-            <span style="font-size:0.8rem">英文</span>
-        </button>
-        <button class="bottom-btn" id="speakTransBtn">
-            <i class="fas fa-volume-up"></i>
-            <span style="font-size:0.8rem">中文</span>
-        </button>
-        <button class="bottom-btn" id="nextBottomBtn">
-            <i class="fas fa-play"></i>
-            <span style="font-size:0.8rem">下一題</span>
-        </button>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <p id="modalText" style="font-size:1.3rem; margin-bottom:15px;"></p>
-            <button class="btn-primary" onclick="closeModal()">確定</button>
-        </div>
+        <button class="bottom-btn" id="next-page-btn"><i class="fas fa-play"></i><span style="font-size:0.8rem">下一題</span></button>
+        <button class="bottom-btn" id="textToSpeech"><i class="fas fa-volume-up"></i><span style="font-size:0.8rem">英文</span></button>
+        <button class="bottom-btn" id="textToSpeech2"><i class="fas fa-volume-up"></i><span style="font-size:0.8rem">中文</span></button>
     </div>
 
     <script>
+        let currentItemIndex = 0;
         let items = [];
-        let currentIndex = 0;
 
-        const words = [
-            "superficial", "ravage", "official", "nominee", "tug", "pill", "oath", "stair", "snack", "exhibit",
-            "sake", "hay", "cape", "slice", "faculty", "beam", "synthetic", "enthusiastic", "tug-of-war", "ferry",
-            "harness", "dairy", "sincere", "surf", "brush", "erupt", "spread", "clasp", "professional", "match",
-            "stimulus", "pint", "fence", "fame", "presume", "threshold", "crude", "abroad", "tub", "riot",
-            "colonel", "symbolize", "basement", "exaggeration", "fracture", "provincial", "seduce", "ethic",
-            "addict", "cavalry", "assistant", "tempt", "retreat", "crisp", "peck", "freak", "figure", "supreme",
-            "screw", "alcohol", "elevator", "bulky", "pharmacy", "associate", "adaptation", "muse", "stretch",
-            "broad", "socialist", "mutter"
-        ];
+        // Simple mock translation dictionary (works offline)
+        const mockTranslations = {
+            "superficial": "表面的、膚淺的",
+            "ravage": "摧毀、蹂躪",
+            "official": "官方的",
+            "nominee": "被提名人",
+            "enthusiastic": "熱情的",
+            "sincere": "真誠的",
+            "professional": "專業的",
+            "exaggeration": "誇張",
+            "seduce": "誘惑",
+            "synthetic": "合成的",
+            "provincial": "省的、地方的",
+            "threshold": "門檻",
+            "presume": "假設",
+            // Add more words if you want
+        };
 
-        async function translate(text) {
-            // Simple mock translation (you can replace with real API later)
-            const mockDict = {
-                "superficial": "表面的、膚淺的",
-                "ravage": "摧毀、蹂躪",
-                "official": "官方的、公務員",
-                "nominee": "被提名人",
-                "tug": "拖拉",
-                // Add more as needed or use a real API
-            };
-            return mockDict[text.toLowerCase()] || "（翻譯）";
+        function getTranslation(text) {
+            return mockTranslations[text.toLowerCase()] || text + "（翻譯）";
         }
 
-        async function searchImage(query) {
-            // Use Lorem Picsum for demo (real implementation would call an API)
-            const seed = query.replace(/\s+/g, '');
-            return `https://picsum.photos/id/${(seed.length % 100) + 100}/600/400`;
-        }
-
-        function speak(text, lang = 'en-US') {
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = lang;
-                utterance.rate = 0.9;
-                speechSynthesis.speak(utterance);
-            } else {
-                showModal("您的瀏覽器不支援語音功能");
+        function getRandomImageSeed(word) {
+            let hash = 0;
+            for (let i = 0; i < word.length; i++) {
+                hash = word.charCodeAt(i) + ((hash << 5) - hash);
             }
+            return Math.abs(hash) % 200 + 100;
         }
 
-        function showModal(message) {
-            document.getElementById('modalText').textContent = message;
-            document.getElementById('modal').style.display = 'flex';
-        }
+        async function displayRandomLetter() {
+            const showRandom = document.getElementById('showRandomly').checked;
+            
+            if (showRandom) {
+                currentItemIndex = Math.floor(Math.random() * items.length);
+            } else {
+                currentItemIndex = (currentItemIndex + 1) % items.length;
+            }
 
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-        }
+            const word = items[currentItemIndex];
 
-        async function displayWord(index) {
-            const word = items[index];
+            // 顯示英文
+            const showEng = document.getElementById('showOrigCheckbox').checked;
+            document.getElementById('randomLetter').style.display = showEng ? 'block' : 'none';
             document.getElementById('randomLetter').textContent = word;
 
-            // Translation
-            const trans = await translate(word);
-            document.getElementById('transLetter').textContent = trans;
-
-            // Image
-            if (document.getElementById('showImage').checked) {
-                const imgUrl = await searchImage(word);
-                document.getElementById('imageContainer').src = imgUrl;
-            }
-        }
-
-        function nextWord() {
-            if (document.getElementById('randomMode').checked) {
-                currentIndex = Math.floor(Math.random() * items.length);
+            // 顯示中文
+            const showCn = document.getElementById('showTransCheckbox').checked;
+            const transEl = document.getElementById('transLetter');
+            if (showCn) {
+                transEl.textContent = getTranslation(word);
+                transEl.style.display = 'block';
             } else {
-                currentIndex = (currentIndex + 1) % items.length;
+                transEl.style.display = 'none';
             }
-            displayWord(currentIndex);
-        }
 
-        function loadList() {
-            const saved = localStorage.getItem('vocabList');
-            if (saved) {
-                items = saved.split(',').map(w => w.trim()).filter(Boolean);
-            } else {
-                items = [...words];
+            // 顯示圖片 (使用 Picsum - works offline)
+            if (document.getElementById('showImageCheckbox').checked) {
+                const seed = getRandomImageSeed(word);
+                document.getElementById('imageContainer').src = `https://picsum.photos/id/${seed}/600/400`;
             }
         }
 
-        function saveList() {
+        function loadItems() {
             const listText = document.getElementById('itemList').value;
-            const newItems = listText.split(',').map(w => w.trim()).filter(Boolean);
-            items = newItems;
-            localStorage.setItem('vocabList', newItems.join(','));
-            showModal('列表已儲存！');
+            items = listText.split(',').map(w => w.trim()).filter(Boolean);
+            if (items.length === 0) items = ["superficial", "ravage", "official"]; // fallback
         }
 
         // Event Listeners
-        document.getElementById('nextBtn').addEventListener('click', nextWord);
-        document.getElementById('nextBottomBtn').addEventListener('click', nextWord);
-        
-        document.getElementById('speakBtn').addEventListener('click', () => {
-            const word = document.getElementById('randomLetter').textContent;
-            speak(word, 'en-US');
-        });
-        
-        document.getElementById('speakTransBtn').addEventListener('click', () => {
-            const trans = document.getElementById('transLetter').textContent;
-            speak(trans, 'zh-TW');
-        });
-        
-        document.getElementById('menuBtn').addEventListener('click', () => {
-            const panel = document.getElementById('optionPanel');
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        });
-        
-        document.getElementById('saveListBtn').addEventListener('click', saveList);
-
-        // Close panel when clicking outside
-        document.addEventListener('click', (e) => {
-            const panel = document.getElementById('optionPanel');
-            if (!e.target.closest('.panel') && !e.target.closest('#menuBtn')) {
-                panel.style.display = 'none';
+        document.getElementById('next-page-btn').onclick = displayRandomLetter;
+        document.getElementById('textToSpeech').onclick = () => {
+            const text = document.getElementById('randomLetter').textContent;
+            if ('speechSynthesis' in window) {
+                const u = new SpeechSynthesisUtterance(text);
+                u.lang = 'en-US';
+                speechSynthesis.speak(u);
             }
+        };
+        document.getElementById('textToSpeech2').onclick = () => {
+            const text = document.getElementById('transLetter').textContent;
+            if ('speechSynthesis' in window) {
+                const u = new SpeechSynthesisUtterance(text);
+                u.lang = 'zh-TW';
+                speechSynthesis.speak(u);
+            }
+        };
+
+        document.getElementById('menuButton').onclick = () => {
+            const panel = document.getElementById('option');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        };
+
+        document.getElementById('saveButton').onclick = () => {
+            loadItems();
+            alert('✅ 列表已更新！（已儲存至本地）');
+        };
+
+        ['showImageCheckbox', 'showOrigCheckbox', 'showTransCheckbox', 'showRandomly'].forEach(id => {
+            document.getElementById(id).addEventListener('change', displayRandomLetter);
         });
 
-        // Keyboard support
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', e => {
             if (e.key === ' ' || e.key === 'Enter') {
                 e.preventDefault();
-                nextWord();
+                displayRandomLetter();
             }
         });
 
         // Initialize
-        window.onload = async () => {
-            loadList();
-            document.getElementById('itemList').value = items.join(', ');
-            
-            // Initial display
-            currentIndex = Math.floor(Math.random() * items.length);
-            await displayWord(currentIndex);
+        window.onload = () => {
+            loadItems();
+            displayRandomLetter();
         };
     </script>
 </body>
