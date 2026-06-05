@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blinquiz 單字測驗 - 1111</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2196F3;
+            --accent: #FFC107;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', system-ui, sans-serif;
+            background: var(--accent);
+            color: #333;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+            text-align: center;
+        }
+        
+        .image-container {
+            width: 100%;
+            max-width: 420px;
+            height: 280px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.3);
+            background: white;
+            border: 6px solid var(--primary);
+        }
+        
+        #imageContainer {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .word {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1.2;
+            min-height: 80px;
+        }
+        
+        .translation {
+            font-size: 1.6rem;
+            color: #333;
+            font-weight: 500;
+            min-height: 60px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 14px 20px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.4);
+        }
+        
+        .settings {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+        }
+        
+        .panel {
+            position: fixed;
+            top: 70px;
+            right: 15px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 20px;
+            width: 320px;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+            z-index: 1001;
+        }
+        
+        .panel h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 180px;
+            padding: 12px;
+            border: 3px solid var(--primary);
+            border-radius: 12px;
+            font-size: 1rem;
+            resize: vertical;
+        }
+        
+        .bottom-bar {
+            background: var(--primary);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .bottom-btn {
+            flex: 1;
+            max-width: 80px;
+            padding: 12px 8px;
+            background: white;
+            color: var(--primary);
+            border-radius: 12px;
+            font-size: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        .bottom-btn i {
+            font-size: 1.6rem;
+        }
+        
+        .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 12px 0;
+            font-size: 1.1rem;
+        }
+        
+        input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+        }
+        
+        .source-link {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--primary);
+        }
+        
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            max-width: 90%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="settings">
+        <button class="btn-primary" id="menuBtn" style="padding: 12px 16px;">
+            <i class="fas fa-cog"></i>
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="image-container">
+            <img id="imageContainer" src="https://picsum.photos/id/1015/600/400" alt="單字圖片">
+        </div>
+        
+        <div class="word" id="randomLetter">superficial</div>
+        <div class="translation" id="transLetter">表面的、膚淺的</div>
+        
+        <div class="controls">
+            <button class="btn-primary" id="nextBtn">
+                <i class="fas fa-random"></i> 下一個
+            </button>
+        </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div class="panel" id="optionPanel">
+        <h2>單字列表</h2>
+        <textarea id="itemList" spellcheck="false">superficial,ravage,official,nominee,tug,pill,oath,stair,snack,exhibit,sake,hay,cape,slice,faculty,beam,synthetic,enthusiastic,tug-of-war,ferry,harness,dairy,sincere,surf,brush,erupt,spread,clasp,professional,match,stimulus,pint,fence,fame,presume,threshold,crude,abroad,tub,riot,colonel,symbolize,basement,exaggeration,fracture,provincial,seduce,ethic,addict,cavalry,assistant,tempt,retreat,crisp,peck,freak,figure,supreme,screw,alcohol,elevator,bulky,pharmacy,associate,adaptation,muse,stretch,broad,socialist,mutter</textarea>
+        
+        <h2 style="margin-top:20px">顯示設定</h2>
+        <div class="toggle-label">
+            <input type="checkbox" id="showImage" checked>
+            <label for="showImage">顯示圖片</label>
+        </div>
+        <div class="toggle-label">
+            <input type="checkbox" id="showOrig" checked>
+            <label for="showOrig">顯示英文</label>
+        </div>
+        <div class="toggle-label">
+            <input type="checkbox" id="showTrans" checked>
+            <label for="showTrans">顯示翻譯</label>
+        </div>
+        <div class="toggle-label">
+            <input type="checkbox" id="randomMode" checked>
+            <label for="randomMode">隨機模式</label>
+        </div>
+        
+        <button id="saveListBtn" class="btn-primary" style="width:100%; margin-top:20px;">儲存列表</button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-bar">
+        <button class="bottom-btn" id="speakBtn">
+            <i class="fas fa-volume-up"></i>
+            <span style="font-size:0.8rem">英文</span>
+        </button>
+        <button class="bottom-btn" id="speakTransBtn">
+            <i class="fas fa-volume-up"></i>
+            <span style="font-size:0.8rem">中文</span>
+        </button>
+        <button class="bottom-btn" id="nextBottomBtn">
+            <i class="fas fa-play"></i>
+            <span style="font-size:0.8rem">下一題</span>
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <p id="modalText" style="font-size:1.3rem; margin-bottom:15px;"></p>
+            <button class="btn-primary" onclick="closeModal()">確定</button>
+        </div>
+    </div>
+
+    <script>
+        let items = [];
+        let currentIndex = 0;
+
+        const words = [
+            "superficial", "ravage", "official", "nominee", "tug", "pill", "oath", "stair", "snack", "exhibit",
+            "sake", "hay", "cape", "slice", "faculty", "beam", "synthetic", "enthusiastic", "tug-of-war", "ferry",
+            "harness", "dairy", "sincere", "surf", "brush", "erupt", "spread", "clasp", "professional", "match",
+            "stimulus", "pint", "fence", "fame", "presume", "threshold", "crude", "abroad", "tub", "riot",
+            "colonel", "symbolize", "basement", "exaggeration", "fracture", "provincial", "seduce", "ethic",
+            "addict", "cavalry", "assistant", "tempt", "retreat", "crisp", "peck", "freak", "figure", "supreme",
+            "screw", "alcohol", "elevator", "bulky", "pharmacy", "associate", "adaptation", "muse", "stretch",
+            "broad", "socialist", "mutter"
+        ];
+
+        async function translate(text) {
+            // Simple mock translation (you can replace with real API later)
+            const mockDict = {
+                "superficial": "表面的、膚淺的",
+                "ravage": "摧毀、蹂躪",
+                "official": "官方的、公務員",
+                "nominee": "被提名人",
+                "tug": "拖拉",
+                // Add more as needed or use a real API
+            };
+            return mockDict[text.toLowerCase()] || "（翻譯）";
+        }
+
+        async function searchImage(query) {
+            // Use Lorem Picsum for demo (real implementation would call an API)
+            const seed = query.replace(/\s+/g, '');
+            return `https://picsum.photos/id/${(seed.length % 100) + 100}/600/400`;
+        }
+
+        function speak(text, lang = 'en-US') {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                utterance.rate = 0.9;
+                speechSynthesis.speak(utterance);
+            } else {
+                showModal("您的瀏覽器不支援語音功能");
+            }
+        }
+
+        function showModal(message) {
+            document.getElementById('modalText').textContent = message;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        async function displayWord(index) {
+            const word = items[index];
+            document.getElementById('randomLetter').textContent = word;
+
+            // Translation
+            const trans = await translate(word);
+            document.getElementById('transLetter').textContent = trans;
+
+            // Image
+            if (document.getElementById('showImage').checked) {
+                const imgUrl = await searchImage(word);
+                document.getElementById('imageContainer').src = imgUrl;
+            }
+        }
+
+        function nextWord() {
+            if (document.getElementById('randomMode').checked) {
+                currentIndex = Math.floor(Math.random() * items.length);
+            } else {
+                currentIndex = (currentIndex + 1) % items.length;
+            }
+            displayWord(currentIndex);
+        }
+
+        function loadList() {
+            const saved = localStorage.getItem('vocabList');
+            if (saved) {
+                items = saved.split(',').map(w => w.trim()).filter(Boolean);
+            } else {
+                items = [...words];
+            }
+        }
+
+        function saveList() {
+            const listText = document.getElementById('itemList').value;
+            const newItems = listText.split(',').map(w => w.trim()).filter(Boolean);
+            items = newItems;
+            localStorage.setItem('vocabList', newItems.join(','));
+            showModal('列表已儲存！');
+        }
+
+        // Event Listeners
+        document.getElementById('nextBtn').addEventListener('click', nextWord);
+        document.getElementById('nextBottomBtn').addEventListener('click', nextWord);
+        
+        document.getElementById('speakBtn').addEventListener('click', () => {
+            const word = document.getElementById('randomLetter').textContent;
+            speak(word, 'en-US');
+        });
+        
+        document.getElementById('speakTransBtn').addEventListener('click', () => {
+            const trans = document.getElementById('transLetter').textContent;
+            speak(trans, 'zh-TW');
+        });
+        
+        document.getElementById('menuBtn').addEventListener('click', () => {
+            const panel = document.getElementById('optionPanel');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        document.getElementById('saveListBtn').addEventListener('click', saveList);
+
+        // Close panel when clicking outside
+        document.addEventListener('click', (e) => {
+            const panel = document.getElementById('optionPanel');
+            if (!e.target.closest('.panel') && !e.target.closest('#menuBtn')) {
+                panel.style.display = 'none';
+            }
+        });
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                nextWord();
+            }
+        });
+
+        // Initialize
+        window.onload = async () => {
+            loadList();
+            document.getElementById('itemList').value = items.join(', ');
+            
+            // Initial display
+            currentIndex = Math.floor(Math.random() * items.length);
+            await displayWord(currentIndex);
+        };
+    </script>
+</body>
+</html>
