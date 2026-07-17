@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>單字測驗</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #FFC107;
+            font-family: 'Noto Sans TC', sans-serif;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+            text-align: center;
+        }
+        .image-container {
+            max-width: 95vw;
+            max-height: 52vh;
+            border: 6px solid #2196F3;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(33,150,243,0.35);
+            background: white;
+            overflow: hidden;
+        }
+        #imageContainer {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .word {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #2196F3;
+            min-height: 80px;
+        }
+        .translation {
+            font-size: 1.75rem;
+            color: #222;
+            font-weight: 500;
+            min-height: 70px;
+        }
+        .bottom-bar {
+            background: #2196F3;
+            padding: 12px 10px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+        }
+        .bottom-btn {
+            flex: 1;
+            max-width: 88px;
+            background: white;
+            color: #2196F3;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 8px;
+            font-size: 1.35rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .settings-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 14px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+        .panel {
+            position: fixed;
+            top: 70px;
+            right: 15px;
+            background: white;
+            width: 340px;
+            max-height: 82vh;
+            overflow-y: auto;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            padding: 20px;
+            display: none;
+            z-index: 1001;
+        }
+        textarea {
+            width: 100%;
+            height: 190px;
+            border: 3px solid #2196F3;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 1rem;
+        }
+        .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 12px 0;
+            font-size: 1.12rem;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="settings-btn" id="menuButton"><i class="fas fa-cog"></i></button>
+
+    <div class="container">
+        <div class="image-container">
+            <img id="imageContainer" src="https://picsum.photos/id/1015/600/400" alt="單字圖片">
+        </div>
+        <div class="word" id="randomLetter">superficial</div>
+        <div class="translation" id="transLetter">表面的、膚淺的</div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div class="panel" id="option">
+        <h2>單字列表</h2>
+        <textarea id="itemList" spellcheck="false">superficial,ravage,official,nominee,tug,pill,oath,stair,snack,exhibit,sake,hay,cape,slice,faculty,beam,synthetic,enthusiastic,tug-of-war,ferry,harness,dairy,sincere,surf,brush,erupt,spread,clasp,professional,match,stimulus,pint,fence,fame,presume,threshold,crude,abroad,tub,riot,colonel,symbolize,basement,exaggeration,fracture,provincial,seduce,ethic,addict,cavalry,assistant,tempt,retreat,crisp,peck,freak,figure,supreme,screw,alcohol,elevator,bulky,pharmacy,associate,adaptation,muse,stretch,broad,socialist,mutter</textarea>
+        
+        <button id="saveButton" style="background:#2196F3;color:white;padding:12px 20px;border:none;border-radius:8px;width:100%;margin:15px 0 10px 0;">更新列表</button>
+
+        <h2>顯示設定</h2>
+        <div class="toggle-label">
+            <input type="checkbox" id="showImageCheckbox" checked>
+            <label>顯示圖片</label>
+        </div>
+        <div class="toggle-label">
+            <input type="checkbox" id="showOrigCheckbox" checked>
+            <label>顯示英文</label>
+        </div>
+        <div class="toggle-label">
+            <input type="checkbox" id="showTransCheckbox" checked>
+            <label>顯示中文</label>
+        </div>
+        <div class="toggle-label">
+            <input type="checkbox" id="showRandomly" checked>
+            <label>隨機顯示</label>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="bottom-bar">
+        <button class="bottom-btn" id="next-page-btn"><i class="fas fa-play"></i><span style="font-size:0.8rem">下一題</span></button>
+        <button class="bottom-btn" id="textToSpeech"><i class="fas fa-volume-up"></i><span style="font-size:0.8rem">英文</span></button>
+        <button class="bottom-btn" id="textToSpeech2"><i class="fas fa-volume-up"></i><span style="font-size:0.8rem">中文</span></button>
+    </div>
+
+    <script>
+        let currentItemIndex = 0;
+        let items = [];
+
+        // Google Translate (works online)
+        async function translateWithGoogle(text) {
+            try {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=zh-TW&dt=t&q=${encodeURIComponent(text)}`;
+                const res = await fetch(url);
+                const data = await res.json();
+                return data[0].map(item => item[0]).join('');
+            } catch (e) {
+                console.error(e);
+                return text + "（翻譯失敗）";
+            }
+        }
+
+        function getRandomImageSeed(word) {
+            let hash = 0;
+            for (let i = 0; i < word.length; i++) {
+                hash = word.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            return Math.abs(hash) % 200 + 100;
+        }
+
+        async function displayRandomLetter() {
+            const showRandom = document.getElementById('showRandomly').checked;
+            
+            if (showRandom) {
+                currentItemIndex = Math.floor(Math.random() * items.length);
+            } else {
+                currentItemIndex = (currentItemIndex + 1) % items.length;
+            }
+
+            const word = items[currentItemIndex];
+
+            // 顯示英文
+            const showEng = document.getElementById('showOrigCheckbox').checked;
+            document.getElementById('randomLetter').style.display = showEng ? 'block' : 'none';
+            document.getElementById('randomLetter').textContent = word;
+
+            // 顯示中文 (Google Translate)
+            const showCn = document.getElementById('showTransCheckbox').checked;
+            const transEl = document.getElementById('transLetter');
+            if (showCn) {
+                const trans = await translateWithGoogle(word);
+                transEl.textContent = trans;
+                transEl.style.display = 'block';
+            } else {
+                transEl.style.display = 'none';
+            }
+
+            // 顯示圖片
+            if (document.getElementById('showImageCheckbox').checked) {
+                const seed = getRandomImageSeed(word);
+                document.getElementById('imageContainer').src = `https://picsum.photos/id/${seed}/600/400`;
+            }
+        }
+
+        function loadItems() {
+            const listText = document.getElementById('itemList').value;
+            items = listText.split(',').map(w => w.trim()).filter(Boolean);
+            if (items.length === 0) items = ["superficial", "ravage", "official"];
+        }
+
+        // Event Listeners
+        document.getElementById('next-page-btn').onclick = displayRandomLetter;
+        
+        document.getElementById('textToSpeech').onclick = () => {
+            const text = document.getElementById('randomLetter').textContent;
+            if ('speechSynthesis' in window) {
+                const u = new SpeechSynthesisUtterance(text);
+                u.lang = 'en-US';
+                speechSynthesis.speak(u);
+            }
+        };
+        
+        document.getElementById('textToSpeech2').onclick = () => {
+            const text = document.getElementById('transLetter').textContent;
+            if ('speechSynthesis' in window) {
+                const u = new SpeechSynthesisUtterance(text);
+                u.lang = 'zh-TW';
+                speechSynthesis.speak(u);
+            }
+        };
+
+        document.getElementById('menuButton').onclick = () => {
+            const panel = document.getElementById('option');
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        };
+
+        document.getElementById('saveButton').onclick = () => {
+            loadItems();
+            alert('✅ 列表已更新！');
+        };
+
+        ['showImageCheckbox', 'showOrigCheckbox', 'showTransCheckbox', 'showRandomly'].forEach(id => {
+            document.getElementById(id).addEventListener('change', displayRandomLetter);
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                displayRandomLetter();
+            }
+        });
+
+        // Initialize
+        window.onload = () => {
+            loadItems();
+            displayRandomLetter();
+        };
+    </script>
+</body>
+</html>
