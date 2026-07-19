@@ -160,7 +160,7 @@
     <!-- Bottom Bar -->
     <div class="bottom-bar">
         <button class="bottom-btn" id="next-page-btn"><i class="fas fa-play"></i><span style="font-size:0.8rem">下一題</span></button>
-        <button class="bottom-btn" id="textToSpeech"><i class="fas fa-volume-up"></i><span style="font-size:0.8rem">英文</span></button>
+        <button class="bottom-btn" id="textToSpeech"><i class="fas fa-volume-up"></i><span style="font-size:0.8rem">日文</span></button>
         <button class="bottom-btn" id="textToSpeech2"><i class="fas fa-volume-up"></i><span style="font-size:0.8rem">中文</span></button>
     </div>
 
@@ -236,7 +236,7 @@
             const text = document.getElementById('randomLetter').textContent;
             if ('speechSynthesis' in window) {
                 const u = new SpeechSynthesisUtterance(text);
-                u.lang = 'en-US';
+                u.lang = 'ja-JP';
                 speechSynthesis.speak(u);
             }
         };
