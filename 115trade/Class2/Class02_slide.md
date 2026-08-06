@@ -128,7 +128,7 @@ section {
 **Autarky (No Trade):** Imagine a world where borders are closed. Under autarky, each country must `produce exactly what it consumes`. The autarky equilibrium will occur where the country's PPF is tangent to its community indifference curve (its preferences). Let’s call the home autarky equilibrium point $E_0$  and the foreign autarky equilibrium point $E_0^∗$ .
 
 ---
-![bg fit 75%](.\images\1B.jpg)
+![bg fit 75%](./images/1B.jpg)
 
 
 ---
@@ -146,7 +146,7 @@ Now, let’s introduce **Comparative Advantage**. A country has a comparative ad
 **Graphically:** If we put good Y on the vertical axis and good X on the horizontal axis, this inequality implies that the **slope of the PPF at home is flatter (lower)** than the slope of the PPF abroad. Home is relatively more efficient at producing X.
 
 ---
-![bg fit 75%](.\images\1C.jpg)
+![bg fit 75%](./images/1C.jpg)
 
 
 ---
@@ -180,7 +180,7 @@ section {
 - **Production Point:** The foreign country is now **fully specialized** in good Y. On the graph, this is the Y-intercept of the foreign PPF, which we will call **Point N***.
 
 ---
-![bg fit 75%](.\images\1D.jpg)
+![bg fit 75%](./images/1D.jpg)
 
 
 ----
@@ -236,7 +236,7 @@ In a two-good model, gains from trade are shown by:
 - The country can reach a higher **indifference curve** (higher utility).
 
 ---
-![bg fit 65%](.\images\1E.jpg)
+![bg fit 65%](./images/1E.jpg)
 
 
 ---
@@ -322,7 +322,7 @@ He found a **remarkably strong, clear positive correlation**.
 The data points clustered tightly around a 45-degree line, indicating an almost proportional relationship between relative productivity and relative export shares.
 
 ---
-![bg fit 60%](.\images\1F.jpg.png)
+![bg fit 60%](./images/1F.jpg.png)
 
 ---
 
