@@ -296,8 +296,8 @@ section {
 
 Since CRS ⇒$\theta_{LX}+\theta_{KX}=1$ , we get the **standard Jones hat-algebra equation**:
 $$
-  \hat{P_X}=\theta_{LX}\hat{w}+(1−\theta_{LX})\hat{r}\\
-  \rightarrow \hat{r_X}=\frac{1}{1−\theta_{LX}}(\hat{P_X}−\theta_{LX}\hat{w})
+\hat{P_X}=\theta_{LX}\hat{w}+(1−\theta_{LX})\hat{r}\\
+  \rightarrow \hat{r}_X=\frac{1}{1−\theta_{LX}}(\hat{P_X}−\theta_{LX}\hat{w})
 $$
 
 since $1−\theta_{LX}<0$ , we can get the $\hat{r}_X>\hat{P}_X$ and  $\hat{P}_X>\hat{w}>\hat{P}_Y$
@@ -312,11 +312,11 @@ since $1−\theta_{LX}<0$ , we can get the $\hat{r}_X>\hat{P}_X$ and  $\hat{P}_X
 
   This inequality is the core of the **Stolper-Samuelson / Specific-Factors magnification effect**:
 
-  | Condition              | Economic Meaning                                             |
-  | ---------------------- | ------------------------------------------------------------ |
-  | $\hat{P_X}>0$          | Output price rises (e.g., trade liberalization, tariff removal, demand shock) |
-  | $\hat{w}<\hat{P_X}$    | Nominal wage rises, but **less than the output price** (real wage in terms of good X falls) |
-  | $\hat{r_X}>\hat{P_X} $ | Return to capital rises **more than the output price** (real return in terms of all goods rises) |
+| Condition             | Economic Meaning                                             |
+| --------------------- | ------------------------------------------------------------ |
+| $\hat{P}_X>0$         | Output price rises (e.g., trade liberalization, tariff removal, demand shock) |
+| $\hat{w}<\hat{P_X}$   | Nominal wage rises, but **less than the output price** (real wage in terms of good X falls) |
+| $\hat{r}_X>\hat{P}_X$ | Return to capital rises **more than the output price** (real return in terms of all goods rises) |
 
 The price increase generates a "revenue windfall" $ΔP_X⋅Q_X$ . Because labor's share is only $\theta_{LX}$ , most of this windfall must flow to capital. The factor $1/(1−\theta_{LX})>1$ **magnifies** the gap between $\hat{P_X}$  and $\hat{w}$ , pushing $\hat{r}_X$  above $\hat{P}_X$ .
 
