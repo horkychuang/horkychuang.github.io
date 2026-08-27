@@ -8,16 +8,13 @@ backgroundColor: #fef9e7;
 backgroundImage: url('images/background_1.JPG')
 footer: 'Designed by Wen-Bin 2026-09-05'
 paginate: true
-
-
-
 ---
 
 <!-- _class: lead -->
 
 ## New Trade Theory
 
-**國企 Wen-Bin Chuang**
+**Wen-Bin Chuang**
 **2026-09-14**
 
 ![bg right fit](./images/02201.jpg)
@@ -29,9 +26,9 @@ section {
     font-size: 27px;
 }
 </style>
-**New Trade Theory** (primarily developed by Paul Krugman in 1979–1980) explains why countries trade even when they have similar factor endowments and technologies. It shifts focus from **comparative advantage** to **economies of scale** (increasing returns to scale) and **imperfect competition**. 
+**New Trade Theory** (primarily developed by Paul Krugman in 1979–1980) explains why countries trade even when they have `similar factor endowments and technologies`. It shifts focus from comparative advantage to **economies of scale** (increasing returns to scale) and **imperfect competition**. 
 
-This theory successfully explains **intra-industry trade** — countries both exporting and importing similar products (e.g., cars, smartphones, wine).
+This theory successfully explains **intra-industry trade** — countries both exporting and importing `similar products` (e.g., cars, smartphones, wine).
 
 ----
 
@@ -43,9 +40,9 @@ section {
 }
 </style>
 
-- Inter-industry trade is the exchange of **completely different types of goods** between countries. It involves trading products from one industry for products from a completely different industry.
-  - **The Core Driver:** **Comparative Advantage**. Countries export goods that they can produce efficiently (or have an abundance of resources for) and import goods that are costly for them to produce.
-  - Its impact on income distribution is dramatic, polarizing, and creates clear "winners" and "losers."
+- `Inter-industry trade` is the exchange of **completely different types of goods** between countries. It involves trading products from `one industry` for products from a completely `different industry`.
+  - **The Core Driver:** **Comparative Advantage**. Countries export goods that they can produce `efficiently` (or have an abundance of resources for) and import goods that are costly for them to produce.
+  - Its impact on `income distribution` is dramatic, polarizing, and creates clear "winners" and "losers."
 
 ![bg right fit](./images/6-1.jpg)
 
@@ -58,12 +55,11 @@ section {
     font-size: 27px;
 }
 </style>
+`Intra-industry` trade is the exchange of **similar products within the same industry** between countries. Instead of trading different categories of goods, countries trade varieties of the `same category`.
 
-`Intra-industry` trade is the exchange of **similar products within the same industry** between countries. Instead of trading different categories of goods, countries trade varieties of the same category.
+- **The Core Driver:** **Economies of Scale** and **Product Differentiation**. Consumers `love variety`, and companies need massive markets to produce goods at a low cost. Instead of every country trying to build its own car industry from scratch, countries specialize in **specific types** of cars and trade them.
 
-- **The Core Driver:** **Economies of Scale** and **Product Differentiation**. Consumers love variety, and companies need massive markets to produce goods at a low cost. Instead of every country trying to build its own car industry from scratch, countries specialize in *specific types* of cars and trade them.
-
-- Historically, economists thought intra-industry trade was mostly "win-win" with few distributional consequences. 
+- Historically, economists thought intra-industry trade was mostly `win-win` with few distributional consequences. 
 
 ---
 <style scoped>
@@ -71,12 +67,15 @@ section {
     font-size: 27px;
 }
 </style>
-- Economists use the **Grubel-Lloyd (GL) Index** (1975) to measure the extent of intra-industry trade.
+- Economists use the **Grubel-Lloyd (GL) Index** (1975) to measure the extent of `intra-industry trade`. The index ranges from **0 to 1**:
 
-  The index ranges from **0 to 1**:
+  - $$
+    GL=1-\frac{\sum|X_i-M_i|}{\sum(X_i+M_i)}, \text{where}\quad X_i=\text{Value of Export},M_i \text{ for import}, i \text{ for industry}
+    $$
 
-  - **GL = 0:** Pure inter-industry trade (a country only exports wheat and only imports cars).
-  - **GL = 1:** Pure intra-industry trade (a country exports \$10 billion in cars and imports exactly \$10 billion in cars).
+    - **GL = 0:** Pure inter-industry trade (a country only `exports wheat` and only `imports cars`).
+    - **GL = 1:** Pure intra-industry trade (a country exports \$10 billion in cars and imports exactly \$10 billion in cars).
+
 
 ----
 
@@ -108,18 +107,18 @@ section {
 }
 </style>
 
-Firms face **fixed costs** + **variable costs**, leading to declining average costs:
+Firms face **fixed costs** + **variable costs**, leading to `declining` average costs:
 $$
 AC = \frac{F}{q}
 $$
 Where F = fixed cost; q = output per firm 
 
-- Larger scale → lower average cost → firms want to produce more.
+- `Larger scale` → lower average cost → firms want to `produce more`.
 
 
 When `trade opens`:
 
-- `Market size increase`s → firms can sell more → they can lower prices.
+- `Market size increases` → firms can sell more → they can lower prices.
 - `More varieties` become available to consumers.
 - Some firms exit, survivors produce at larger scale (more efficient).
 
@@ -134,8 +133,7 @@ section {
     font-size: 27px;
 }
 </style>
-
-Utility function with `love of variety`:
+**Utility function** with `love of variety`:
 $$
 U = \left( \sum_{i=1}^{n} c_i^{\frac{\sigma-1}{\sigma}} \right)^{\frac{\sigma}{\sigma-1}}
 $$
@@ -150,8 +148,7 @@ section {
     font-size: 27px;
 }
 </style>
-
-Cost structure: Fixed cost =  F, Marginal cost = m  --> Total cost =$wF + w m q$, where w = wage
+**Cost structure**: Fixed cost =  $F$, Marginal cost = $m$  --> Total cost =$wF + w m q$, where $w$ = wage
 
 Each firm sets `price as a markup` over marginal cost:
 $$
@@ -177,7 +174,7 @@ Solving gives equilibrium `output` per firm:
 $$
 q = \frac{F(\sigma-1)}{m}
 $$
-→ Output per firm is `constant` (depends only on fixed cost and $\sigma$), independent of market size.
+→ Output per firm is `constant` (depends only on fixed cost and $\sigma$), `independent of market size`.
 
 ----
 
@@ -193,7 +190,7 @@ section {
 $$
 n = \frac{L}{F \sigma}
 $$
-Larger countries have more varieties.
+`Larger countries` have `more varieties`.
 
 ----
 
@@ -208,8 +205,8 @@ section {
 When `two identical countries` open to trade. Total number of varieties (firms) in the world increases with trade because the integrated market supports more firms, each producing at larger scale.
 
 1. **Market Size Effect**: Each firm now faces a larger market (`2L` instead of L).
-2. **Selection & Scale**: Some firms exit, surviving firms produce the same q but sell to a bigger market.
-3. **Variety Expansion**: Consumers in each country now access **twice** as many varieties ($2n$ instead of  n).
+2. **Selection & Scale**: Some firms exit, surviving firms produce the same $q$ but sell to a bigger market.
+3. **Variety Expansion**: Consumers in each country now access **twice** as many varieties ($2n$ instead of  $n$).
 
 ---
 
@@ -238,13 +235,13 @@ section {
 }
 </style>
 
-| Prediction              | Explanation                                |
-| ----------------------- | ------------------------------------------ |
-| Intra-industry Trade    | Countries trade similar goods              |
-| Home Market Effect      | Larger country exports more varieties      |
-| Trade increases variety | Consumers gain from more product varieties |
-| Gains from Trade        | Even `without comparative advantage`       |
-| Possible agglomeration  | Firms cluster in larger markets            |
+| Prediction                | Explanation                                |
+| ------------------------- | ------------------------------------------ |
+| `Intra-industry` Trade    | Countries trade similar goods              |
+| `Home Market` Effect      | Larger country exports more varieties      |
+| Trade increases `variety` | Consumers gain from more product varieties |
+| Gains from Trade          | Even `without comparative advantage`       |
+| Possible agglomeration    | Firms cluster in larger markets            |
 
 -----
 
@@ -292,13 +289,13 @@ section {
 }
 </style>
 
-- Trade liberalization is generally welfare-enhancing even between similar countries.
-- Large countries have an advantage (Home Market Effect).
-- Protectionism can be strategically used in some cases (strategic trade policy), but risky.
+- `Trade liberalization` is generally welfare-enhancing even between `similar` countries.
+- `Large countries` have an advantage (Home Market Effect).
+- `Protectionism` can be strategically used in some cases (strategic trade policy), but risky.
 
 -----
 
-Krugman’s theory remains highly relevant because:
+**Krugman’s theory** remains highly relevant because:
 
 <style scoped>
 section {
@@ -322,7 +319,7 @@ section {
 }
 </style>
 
-Consumers have CES (Constant Elasticity of Substitution) preferences over a continuum of differentiated varieties:
+Consumers have `CES` (Constant Elasticity of Substitution) preferences over a `continuum` of differentiated varieties:
 $$
 U = \left( \int_{0}^{n} c(i)^{\frac{\sigma-1}{\sigma}} di \right)^{\frac{\sigma}{\sigma-1}}
 $$
@@ -332,7 +329,7 @@ Where:
 
 - n = number of available varieties (firms)
 - $\sigma > 1$ = elasticity of substitution between varieties (higher $\sigma$ = less differentiated products)
-- $c(i)$ = consumption of variety  i
+- $c(i)$ = consumption of variety $i$
 
 ----
 
@@ -348,7 +345,7 @@ $$
 \int_{0}^{n} p(i) c(i) \, di = I
 $$
 
-(I  = total income/expenditure)
+($I$  = total income/expenditure)
 
 -----
 
@@ -360,13 +357,13 @@ section {
 }
 </style>
 
-Maximizing utility subject to the budget constraint gives the demand function for each variety:
+Maximizing utility subject to the budget constraint gives the `demand function` for each variety:
 $$
 c(i) = \frac{p(i)^{-\sigma}}{P^{1-\sigma}} \cdot I
 $$
 
 
-Where P is the **price index** (aggregate price level):
+Where P is the **price index** (`aggregate` price level):
 $$
 P = \left( \int_{0}^{n} p(j)^{1-\sigma} dj \right)^{\frac{1}{1-\sigma}}
 $$
@@ -390,7 +387,7 @@ $$
 
 Where:
 
-- F = fixed cost (e.g., R&D, headquarters); m = marginal cost (constant), w = wage; q = output of the firm
+- $F$ = fixed cost (e.g., R&D, headquarters); $m$ = marginal cost (`constant`), $w$ = wage; $q$ = output of the firm
 
 ----
 
@@ -405,8 +402,7 @@ $$
 AC(q) = \frac{wF}{q} + w m
 $$
 
-
-**Profit Maximization**: Firms face a downward-sloping demand curve with elasticity $\sigma$. They set price as a **markup** over marginal cost:
+**Profit Maximization**: Firms face a downward-sloping `demand curve` with elasticity $\sigma$. They set price as a **markup** over marginal cost:
 $$
 p = \left( \frac{\sigma}{\sigma - 1} \right) \cdot (w m)
 $$
@@ -455,7 +451,7 @@ $$
 q = \frac{F (\sigma - 1)}{m}
 $$
 
-**Important Result**: Equilibrium output per firm (q) is **constant**, independent of market size. It depends only on technology (F, c) and preference parameter ($\sigma$).
+**Important Result**: `Equilibrium output per firm` ($q$) is **constant**, `independent of market size`. It depends only on `technology` (F, c) and `preference parameter` ($\sigma$).
 
 -----
 
@@ -496,7 +492,7 @@ section {
 }
 </style>
 
-Assume two identical countries (Home and Foreign), each with labor L. Total world labor = $2L$. With free trade:
+Assume two identical countries (Home and Foreign), each with labor $L$. Total world labor = $2L$. With free trade:
 
 - All firms can sell in `both` markets.
 - Because countries are `identical, wages remain equal` ($w = w^*$).
@@ -517,10 +513,9 @@ section {
     font-size: 27px;
 }
 </style>
+`Gains` come from two sources:
 
-Gains come from two sources:
-
-**A. Variety Gains** Real income (welfare) is proportional to $I/P$ . With trade, the price index P falls because more varieties are available:
+**A. Variety Gains** Real income (welfare) is proportional to $I/P$ . With trade, the price index P falls because **more varieties** are available:
 $$
 P_{\text{trade}} < P_{\text{autarky}}
 $$
@@ -541,7 +536,7 @@ $$
 $$
 
 
-Even with identical countries, trade increases welfare through increased product variety and better exploitation of economies of scale.
+Even with `identical countries`, trade increases welfare through `increased product variety` and better exploitation of economies of scale.
 
 ---
 
@@ -553,11 +548,11 @@ section {
 }
 </style>
 
-The **Home Market Effect** is one of the most important predictions of Krugman’s model. It states that:
+The **Home Market Effect** is one of the most important predictions of **Krugman’s model.** It states that:
 
 > In the presence of economies of scale and `trade costs`, the **larger country** will export a **more than proportionate** share of differentiated goods relative to its size.
 
-The country with the larger domestic market tends to become a **net exporter** of manufactured (differentiated) goods.
+The country with the `larger domestic market` tends to become a **net exporter** of manufactured (differentiated) goods.
 
 ----
 
@@ -569,8 +564,8 @@ section {
 }
 </style>
 
-- Firms prefer to locate production in the larger market to minimize transport/trade costs.
-- This gives firms in the large country a cost advantage (they sell more domestically without trade costs).
+- Firms prefer to locate production in the larger market to `minimize transport/trade costs`.
+- This gives firms in the large country a `cost advantag`e (they sell more domestically without trade costs).
 - As a result, the large country attracts more firms and becomes a net exporter.
 
 ------
@@ -583,15 +578,15 @@ section {
 }
 </style>
 
-Assume two countries: Home (large) and Foreign (small).
+Assume two countries: `Home (large)` and `Foreign (small)`.
 
 - Total world labor: $L^W = L + L^*$; 
-- Share of world expenditure in Home: $s = \frac{L}{L^W} > 0.5$, Share in Foreign: $1-s < 0.5$
+- Share of world expenditure in `Home`: $s = \frac{L}{L^W} > 0.5$, Share in `Foreign`: $1-s < 0.5$
 
 **Key parameters**:
 
 - $\sigma$ = elasticity of substitution
-- $\tau > 1$ = iceberg trade cost (to deliver 1 unit abroad, $\tau$ units must be produced)
+- $\tau > 1$ = `iceberg trade cost` (to deliver 1 unit abroad, $\tau$ units must be produced)
 
 ------
 
@@ -621,12 +616,12 @@ section {
 }
 </style>
 
-A firm located in Home sells to both markets:
+A firm located in `Home` and sells to `both markets`:
 $$
 r_H = \left( \frac{p}{P} \right)^{1-\sigma} s E + \left( \frac{p_x}{P^*} \right)^{1-\sigma} (1-s) E
 $$
 
-Where E = world expenditure.
+since $c(i) = \frac{p(i)^{-\sigma}}{P^{1-\sigma}} \cdot I$,  Where $E$ = world expenditure.
 
 ----
 
@@ -638,13 +633,13 @@ section {
 }
 </style>
 
-In equilibrium, revenue must cover fixed and variable costs. This leads to the **wage equation** (real wage or market potential equation). The condition for firm location equilibrium is that profits (or real wages) are equalized across countries (or firms are indifferent). The standard simplified wage equation in the Krugman model is:
+In equilibrium, `revenue must cover fixed and variable costs`. This leads to the **wage equation** (real wage or market potential equation). The condition for firm location equilibrium is that profits (or real wages) are equalized across countries (or firms are indifferent). The standard simplified wage equation in the Krugman model is:
 
 $$
 w^{1-\sigma} = \frac{s}{ \phi } + \frac{(1-s) \tau^{1-\sigma}}{ \phi^* }\\
 ϕ^∗(w^*)^{1-\sigma} = \frac{s \tau^{1-\sigma}}{ \phi } + \frac{(1-s)}{ \phi^* }
 $$
-Where $\phi$ and $\phi^*$ represent market access (price indices).
+Where $\phi$ and $\phi^*$ represent `market access (price indices)`.
 
 ------
 
@@ -670,11 +665,11 @@ section {
 }
 </style>
 
-If $s > 0.5$ (Home is larger), then:
+If $s > 0.5$ (`Home is larger`), then:
 $$
 \frac{n}{n^W} > s
 $$
-That is, the share of firms (and varieties) in the larger country exceeds its share of world demand. This means the large country is a **net exporter** of differentiated goods.
+That is, the `share` of firms (and varieties) in the `larger country` exceeds its share of world demand. This means the large country is a **net exporter** of differentiated goods.
 
 ------
 
@@ -688,9 +683,7 @@ section {
 
 Suppose: Home has 60% of world income ($s = 0.6$); Foreign has 40%; Trade costs $\tau = 1.2$
 
-Then 
-
-the model typically predicts that Home hosts **more than 60%** of all firms (e.g., 65–70%), making it a clear net exporter. This is called the **magnification effect** — small differences in country size lead to larger differences in industrial location and trade patterns.
+Then the model typically predicts that Home hosts **more than 60%** of all firms (e.g., 65–70%), making it a clear net exporter. This is called the **magnification effect** — small differences in country size lead to larger differences in industrial location and trade patterns.
 
 ------
 

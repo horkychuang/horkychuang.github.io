@@ -8,17 +8,13 @@ backgroundColor: #fef9e7;
 backgroundImage: url('images/background_1.JPG')
 footer: 'Designed by Wen-Bin 2026-09-05'
 paginate: true
-
-
-
-
 ---
 
 <!-- _class: lead -->
 
 ## New Trade Theory II
 
-**國企 Wen-Bin Chuang**
+**Wen-Bin Chuang**
 **2026-09-14**
 
 ![bg right fit](./images/02201.jpg)
@@ -30,7 +26,7 @@ section {
     font-size: 27px;}
 </style>
 
-The Melitz model (2003) is the `most influential extension` of New Trade Theory. It introduces **firm heterogeneity** in productivity and explains why only some firms export, why exporters are larger and more productive, and how trade causes important reallocation effects within industries.
+The **Melitz model (2003)** is the `most influential extension` of New Trade Theory. It introduces **firm heterogeneity** in `productivity` and explains why only some firms export, why exporters are larger and more productive, and how trade causes important reallocation effects within industries.
 
 
 
@@ -46,13 +42,13 @@ section {
 }
 </style>
 
-- Monopolistic competition + differentiated varieties (like Krugman)
+- `Monopolistic competition` + `differentiated` varieties (like Krugman)
 - Firms differ in **productivity** ($\phi$) — drawn from a Pareto distribution
 - Increasing returns to scale (fixed cost + constant marginal cost)
 - Two types of fixed costs:
   - Domestic fixed cost: $f_d$ and Export fixed cost: $f_x$ (higher than $f_d$)
 - `Iceberg trade cost`:$\tau >1$ (to deliver 1 unit abroad, $\tau$ units must be shipped)
-- CES preferences with elasticity of substitution $\sigma > 1$
+- `CES preferences` with elasticity of substitution $\sigma > 1$
 
 -----
 
@@ -62,14 +58,13 @@ section {
 
 <style scoped>
 section {
-    font-size: 27px;
+    font-size: 25px;
 }
 </style>
 
 A firm with productivity $\phi$ has:
 
-- **Marginal cost**: $\frac{w}{\phi}$
-- **Domestic price**: $p_d(\phi) = \left( \frac{\sigma}{\sigma-1} \right) \frac{w}{\phi}$
+- **Marginal cost**: $\frac{w}{\phi}$,  **Domestic price**: $p_d(\phi) = \left( \frac{\sigma}{\sigma-1} \right) \frac{w}{\phi}$
 - **Export price** (in foreign market): $p_x(\phi) = \left( \frac{\sigma}{\sigma-1} \right) \frac{\tau w}{\phi}$
 
 **Revenue**:
@@ -79,17 +74,9 @@ r_x(\phi) = R^* \left( \frac{p_x(\phi)}{P^*} \right)^{1-\sigma}
 $$
 
 
-Where R = total domestic expenditure,P = price index.
+Where $R$ = total domestic expenditure,$P$ = price index.
 
----
-
-##### Profit:
-
-<style scoped>
-section {
-    font-size: 25px;
-}
-</style>
+then `profit`
 
 $$
 \pi_d(\phi) = \frac{r_d(\phi)}{\sigma} - w f_d, \quad
@@ -105,7 +92,7 @@ section {
 }
 </style>
 
-Firms decide whether to produce and export based on productivity:
+Firms decide whether to produce and export based on `productivity`:
 
 - **Domestic production cutoff** ($\phi_d^*$): `Minimum productivity` to serve the domestic market $\pi_d(\phi_d^*) = 0 \quad \Rightarrow \quad r_d(\phi_d^*) = \sigma w f_d$
 - **Export cutoff** ($\phi_x^*$): `Minimum productivity` to export $\pi_x(\phi_x^*) = 0 \quad \Rightarrow \quad r_x(\phi_x^*) = \sigma w f_x$
@@ -116,7 +103,7 @@ Moreover, their profit is
 
 
 
-Because of trade costs ($\tau$) and higher fixed export cost ($f_x$), we get:
+Because of `trade costs` ($\tau$) and `higher fixed export cost` ($f_x$), we get:
 $$
 \phi_x^* > \phi_d^*
 $$
@@ -129,14 +116,14 @@ $$
 
 <style scoped>
 section {
-    font-size: 27px;
+    font-size: 25px;
 }
 </style>
 
-1. **Revenue increases with productivity:** $r(\phi)\propto \phi^{\sigma−1}$. More productive firms sell more because they charge lower prices.
-2. **Profit is convex in productivity:** $\pi(\phi)\propto \phi^{\sigma−1}$ constant. Small differences in productivity lead to large differences in profit.
-3. **Selection effect:** Only firms with $\phi≥\phi_d^∗$  survive domestically. Only firms with $\phi≥\phi_x^∗$  export. Since $\phi_x^∗>\phi_d^∗$ , the most productive firms export, while less productive firms serve only the domestic market, and the least productive firms exit.
-4. **Reallocation effect:** Trade liberalization (lower $\tau$) raises $\phi_d^∗$ , forcing the least productive firms to exit. Resources are reallocated toward more productive firms, raising aggregate productivity. This is the core mechanism through which trade generates gains in the Melitz model.
+1. **Revenue increases with productivity:** $r(\phi)\propto \phi^{\sigma−1}$. `More productive` firms sell more because they charge `lower prices`.
+2. **Profit is convex in productivity:** $\pi(\phi)\propto \phi^{\sigma−1}$ **constant**. Small differences in productivity lead to large differences in profit.
+3. **Selection effect:** Only firms with $\phi≥\phi_d^∗$  survive domestically. Only firms with $\phi≥\phi_x^∗$  export. Since $\phi_x^∗>\phi_d^∗$ , the most productive firms export, while less productive firms serve only the domestic market, and the least productive firms `exit`.
+4. **Reallocation effect:** `Trade liberalization` (lower $\tau$) raises $\phi_d^∗$ , forcing the least productive firms to `exit`. Resources are reallocated toward `more productive firms`, raising aggregate productivity. This is the core mechanism through which trade generates gains in the Melitz model.
 
 ----
 
@@ -162,7 +149,7 @@ Where $k > \sigma - 1$ (shape parameter). This assumption delivers very nice clo
 
 <style scoped>
 section {
-    font-size: 27px;
+    font-size: 25px;
 }
 </style>
 
@@ -180,7 +167,7 @@ section {
 
 <style scoped>
 section {
-    font-size: 27px;
+    font-size: 25px;
 }
 </style>
 
@@ -196,7 +183,7 @@ When trade opens:
 - Export cutoff $\phi_x^*$ falls → more firms start exporting
 - Resources reallocate toward higher-productivity firms → average industry productivity increases
 
-This reallocation effect can be very large.
+This `reallocation effect` can be `very large`.
 
 ---
 
@@ -204,7 +191,7 @@ This reallocation effect can be very large.
 
 <style scoped>
 section {
-    font-size: 27px;
+    font-size: 25px;
 }
 </style>
 
@@ -213,8 +200,6 @@ $$
 \tilde{\phi} = \left[ \frac{1}{1-G(\phi_d^*)} \int_{\phi_d^*}^{\infty} \phi^{\sigma-1} dG(\phi) \right]^{\frac{1}{\sigma-1}}
 $$
 With Pareto distribution, this simplifies nicely and shows clear productivity gains from lower trade costs.
-
-
 
 ----
 
@@ -226,11 +211,11 @@ With Pareto distribution, this simplifies nicely and shows clear productivity ga
 
 <style scoped>
 section {
-    font-size: 27px;
+    font-size: 25px;
 }
 </style>
 
-A firm with productivity $\phi$ faces CES demand. Its `revenue` in the domestic market is:
+A firm with productivity $\phi$ faces `CES demand`. Its `revenue` in the domestic market is:
 $$
 r_d(\phi) = R \left( \frac{p_d(\phi)}{P} \right)^{1-\sigma}
 $$
@@ -238,13 +223,14 @@ $$
 
 where:
 
-- R = total domestic expenditure (income); P = domestic price index;  $\sigma$= elasticity of substitution
+- $R$ = total domestic expenditure (income)
+- $P$ = domestic price index;  $\sigma$= elasticity of substitution
 
 ----
 
 <style scoped>
 section {
-    font-size: 27px;
+    font-size: 25px;
 }
 </style>
 
@@ -265,15 +251,8 @@ $$
 r_d(\phi) = B \cdot \phi^{\sigma-1}
 $$
 
-
-
 **Export revenue** (with iceberg trade cost $\tau$):
 
-<style scoped>
-section {
-    font-size: 27px;
-}
-</style>
 
 $$
 r_x(\phi) = B^* \cdot (\phi / \tau)^{\sigma-1}
@@ -289,7 +268,7 @@ section {
 }
 </style>
 
-Because of CES demand, operating profit (revenue minus variable cost) is revenue divided by $\sigma$:
+Because of `CES demand`, operating profit (`revenue minus variable cost`) is revenue divided by $\sigma$:
 $$
 \pi_d^{op}(\phi) = \frac{r_d(\phi)}{\sigma} = \frac{B}{\sigma} \phi^{\sigma-1}, \quad
 \pi_x^{op}(\phi) = \frac{r_x(\phi)}{\sigma} = \frac{B^*}{\sigma} \left( \frac{\phi}{\tau} \right)^{\sigma-1}
@@ -338,7 +317,8 @@ $$
 $$
 
 
-Only firms with productivity $\phi \geq \phi_d^*$ produce for the domestic market. Only firms with $\phi \geq \phi_x^*$ also export.
+- Only firms with productivity $\phi \geq \phi_d^*$ produce for the domestic market. 
+- Firms with $\phi \geq \phi_x^*$ also export.
 
 ------
 
@@ -350,7 +330,7 @@ section {
 }
 </style>
 
-Firms pay a sunk entry cost $f_e$ before drawing their productivity $\phi$ from the Pareto distribution.
+Firms pay a `sunk entry cost` $f_e$ before drawing their productivity $\phi$ from the Pareto distribution.
 
 The **expected profit** must equal the entry cost in equilibrium:
 $$
@@ -370,11 +350,11 @@ section {
 }
 </style>
 
-The **Home Market Effect (HME)** is stronger in the Melitz model than in the original Krugman model.
+The **Home Market Effect (HME)** is stronger in the Melitz model than in the **original Krugman model**.
 
 ###### Setup
 
-- Two countries: Home (larger) and Foreign (smaller)
+- Two countries: `Home (larger)` and `Foreign (smaller)`
 - $L_H > L_F → R_H > R_F$ (larger domestic expenditure in Home)
 - Identical technology, fixed costs, and trade costs
 
@@ -388,9 +368,8 @@ section {
 }
 </style>
 
-Because $R_H > R_F$, the domestic demand index $B_H > B_F$.
+Because $R_H > R_F$, the domestic demand index $B_H > B_F$. From the cutoff equations:
 
-From the cutoff equations:
 $$
 \phi_d^{H*} < \phi_d^{F*}
 $$
@@ -401,8 +380,7 @@ $$
 2. **Lower export cutoff for firms in large country**: Firms from the large country find it easier to export ($\phi_x^{H*}$ is relatively lower).
 3. **Disproportionate export share**: The larger country exports a **more than proportional** share of varieties relative to its size.
 
-
-**Intuition**: The large domestic market allows firms to cover fixed costs more easily. This gives firms based in the large country a cost advantage (they operate at lower average cost due to scale), making them more competitive in the export market as well.
+**Intuition**: The `large domestic market` allows firms to cover fixed costs more easily. This gives firms based in the large country a cost advantage (they operate at lower average cost due to scale), making them more competitive in the export market as well.
 
 ---
 
@@ -430,9 +408,9 @@ section {
 }
 </style>
 
-- **Productivity cutoffs** ($\phi_d^*$ and $\phi_x^*$) are endogenous and respond to market size, trade costs, and fixed costs.
-- Trade liberalization lowers $\phi_x^*$ (more exporters) and raises $\phi_d^*$ (exit of least productive firms) → **reallocation toward more productive firms**.
-- The **Home Market Effect** is amplified: larger countries host more firms and have a disproportionately large export share.
+- **Productivity cutoffs** ($\phi_d^*$ and $\phi_x^*$) are `endogenous` and respond to market size, trade costs, and fixed costs.
+- `Trade liberalization` lowers $\phi_x^*$ (more exporters) and raises $\phi_d^*$ (exit of least productive firms) → **reallocation toward more productive firms**.
+- The **Home Market Effect** is `amplified`: larger countries host more firms and have a disproportionately large export share.
 
 ---
 
@@ -440,7 +418,7 @@ section {
 
 <style scoped>
 section {
-    font-size: 27px;
+    font-size: 25px;
 }
 </style>
 
@@ -474,9 +452,7 @@ g(\phi) = k \phi_{min}^k \phi^{-(k+1)}
 $$
 
 
-where $k > \sigma - 1$ (shape parameter — higher  k means less dispersion).
-
-The conditional distribution of productivity among **active firms** (those with $\phi \geq \phi_d^*$) has a nice truncated Pareto form.
+where $k > \sigma - 1$ (shape parameter — higher  k means less dispersion). The conditional distribution of productivity among **active firms** (those with $\phi \geq \phi_d^*$) has a nice truncated Pareto form.
 
 ------
 
@@ -488,9 +464,8 @@ section {
 }
 </style>
 
-Let $M_d$ = number of firms producing domestically ($M_d = M$ in closed economy).
+Let $M_d$ = number of firms producing domestically ($M_d = M$ in closed economy). The integral in the numerator is:
 
-The integral in the numerator is:
 $$
 \int_{\phi_d^*}^{\infty} \phi^{\sigma-1} \, dG(\phi) = \int_{\phi_d^*}^{\infty} \phi^{\sigma-1} \cdot k \phi_{min}^k \phi^{-(k+1)} d\phi\\
 = k \phi_{min}^k \int_{\phi_d^*}^{\infty} \phi^{\sigma - 1 - k - 1} \, d\phi = k \phi_{min}^k \int_{\phi_d^*}^{\infty} \phi^{-(k - \sigma +1)} \, d\phi
