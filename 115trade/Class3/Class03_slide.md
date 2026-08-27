@@ -14,9 +14,11 @@ paginate: true
 
 <!-- _class: lead -->
 
-## Specific Factor Model
+#### Specific Factor Model
 
-**國企 Wen-Bin Chuang**
+##### 特定要素模型
+
+**Wen-Bin Chuang**
 **2026-09-14**
 
 ![bg right fit](./images/02201.jpg)
@@ -29,11 +31,9 @@ section {
 }
 </style>
 
-The **Specific Factors Model** (also known as the **Ricardo-Viner model**, developed by Jacob Viner's (1930s) extensions of Ricardo; formally developed by Ronald Jones (1971) and Peter Neary (1978)) bridges the gap between short-run reality and long-run trade theory.  While the Heckscher-Ohlin model assumes all factors are perfectly mobile across sectors, the Specific Factors model recognizes that in the short-to-medium run, capital, land, and specialized equipment are often `stuck` in particular industries. Only labor (or broadly defined "mobile factors") can reallocate freely.
+The **Specific Factors Model** (also known as the **Ricardo-Viner model**, developed by Jacob Viner's (1930s) extensions of Ricardo; formally developed by Ronald Jones (1971) and Peter Neary (1978) bridges the gap between **short-run reality** and **long-run trade theory**.  While the Heckscher-Ohlin model assumes all factors are perfectly mobile `across sectors`, the Specific Factors model recognizes that in the short-to-medium run, capital, land, and specialized equipment are often `stuck` in particular industries. Only labor (or broadly defined "mobile factors") can reallocate freely.
 
    The Specific-Factor Model explains why owners of sector-specific capital (e.g., factory owners, farmers, miners) often have strong opinions about trade policy — they gain or lose heavily depending on whether their sector `expands` or `contracts`. This shift fundamentally changes trade's `distributional politics`: winners and losers are determined by sector, not by factor type.
-
-
 
 ---
 
@@ -48,9 +48,9 @@ section {
 | Assumption                          | Description                                                  |
 | ----------------------------------- | ------------------------------------------------------------ |
 | Two goods (X and Y)                 | e.g., Manufacturing and Agriculture                          |
-| **Three factors**                   | Labor (L) + Specific Capital in X (Kx) + Specific Capital in Y (Ky) |
+| **Three factors**                   | Labor ($L$) + Specific Capital in $X$ ($K_x$) + Specific Capital in $Y$ ($K_y$) |
 | Labor is **mobile** between sectors | Workers can move from one industry to another                |
-| Capital is **specific** (immobile)  | Capital is stuck in its sector in the short run              |
+| Capital is **specific** (immobile)  | Capital is stuck in its sector `in the short run`            |
 | Constant Returns to Scale           | In each sector                                               |
 | Perfect Competition                 | In goods and labor markets                                   |
 | Diminishing Marginal Returns        | To labor in each sector (due to fixed specific capital)      |
@@ -92,8 +92,8 @@ section {
 }
 </style>
 
-- When $P_x$ rises → `Demand` for labor in sector X increases → wages rise. Sector X expands, pulling labor from sector Y.
-- Owners of $K_x$ (specific to X) gain a lot (higher revenue + lower real wage cost relative to output price), while Owners of $K_y$ lose because their sector contracts.
+- When $P_x$ rises → `Demand` for labor in sector $X$ increases → wages rise. Sector $X$ expands, pulling labor from sector $Y$.
+- **Owners** of $K_x$ (specific to $X$) gain a lot (higher revenue + lower real wage cost relative to output price), while **Owners** of $K_y$ lose because their sector contracts.
 
 **Real Income Effect**:
 
@@ -115,9 +115,9 @@ section {
 - Output of **both goods** increases. Wage (**w**) **falls** (due to diminishing returns).
 - Return to both specific capitals ($r_x$ and $r_y$) **increase**.
 
-B. Increase in Specific Capital (e.g., ↑ $Kx$)
+**B. Increase in Specific Capital (e.g., ↑ $Kx$)**
 
-- Output of X **increases significantly**, while Output of Y **decreases** (labor moves to X).
+- Output of $X$ **increases significantly**, while output of $Y$ **decreases** (labor moves to X).
 - Wage (**w**) **increases**.
 - Return to $K_x$ ($r_x$) **falls** (diminishing returns), while Return to $K_y$ ($r_y$) **increases**.
 
@@ -231,7 +231,7 @@ section {
 }
 </style>
 
-The model explains why trade politics often align with **sectoral coalitions** (e.g., steelworkers + steel owners vs. auto workers + auto owners) rather than class-based factor alliances (labor vs. capital). This matches empirical lobbying patterns in the US, EU.
+The model explains why trade politics often align with **sectoral coalitions** (e.g., `steelworkers + steel owners` vs. `auto workers + auto owners`) rather than class-based factor alliances (labor vs. capital). This matches empirical lobbying patterns in the US, EU.
 
 ---
 
@@ -294,7 +294,7 @@ section {
 
 
 
-Since CRS ⇒$\theta_{LX}+\theta_{KX}=1$ , we get the **standard Jones hat-algebra equation**:
+Since **CRS** ⇒$\theta_{LX}+\theta_{KX}=1$ , we get the **standard Jones hat-algebra equation**:
 $$
 \hat{P_X}=\theta_{LX}\hat{w}+(1−\theta_{LX})\hat{r}\\
   \rightarrow \hat{r}_X=\frac{1}{1−\theta_{LX}}(\hat{P_X}−\theta_{LX}\hat{w})
@@ -339,6 +339,7 @@ $$
 
 Labor market clearing: $L_X+L_Y=\bar{L}$.
 
+------
 
 #### 2. Comparative Statics (Hat Notation)
 
@@ -389,13 +390,13 @@ section {
 }
 </style>
 
-| Factor                    | Nominal Change                | Real Return in X*X* | Real Return in Y*Y* | Ambiguity?          |
-| ------------------------- | ----------------------------- | ------------------- | ------------------- | ------------------- |
-| **Specific to X** ($K_X$) | $\hat{r}_X>\hat{P}_X$         | ↑                   | ↑↑                  | ❌ Unambiguous gain  |
-| **Specific to Y** ($K_Y$) | $\hat{r}_Y<0$                 | ↓↓                  | ↓                   | ❌ Unambiguous loss  |
-| **Mobile Labor** (L)      | $\hat{P}_X>\hat{w}>\hat{P}_Y$ | ↓                   | ↑                   | ✅ Ambiguous overall |
+| Factor                    | Nominal Change                | Real Return in X | Real Return in Y | Ambiguity?          |
+| ------------------------- | ----------------------------- | ---------------- | ---------------- | ------------------- |
+| **Specific to X** ($K_X$) | $\hat{r}_X>\hat{P}_X$         | ↑                | ↑↑               | ❌ Unambiguous gain  |
+| **Specific to Y** ($K_Y$) | $\hat{r}_Y<0$                 | ↓↓               | ↓                | ❌ Unambiguous loss  |
+| **Mobile Labor** (L)      | $\hat{P}_X>\hat{w}>\hat{P}_Y$ | ↓                | ↑                | ✅ Ambiguous overall |
 
-**Core Result**: The specific factor in the expanding sector gains more than the price rise; the specific factor in the contracting sector loses absolutely; labor's welfare depends on consumption shares.
+**Core Result**: The **specific factor** in the `expanding sector` gains more than the **price rise**; the **specific factor** in the `contracting sector` **loses absolutely**; labor's welfare depends on consumption shares.
 
 
 
