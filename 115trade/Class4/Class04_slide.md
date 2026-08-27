@@ -12,9 +12,9 @@ paginate: true
 
 <!-- _class: lead -->
 
-## Heckscher-Ohlin Model I
+#### Heckscher-Ohlin Model I
 
-**國企 Wen-Bin Chuang**
+**Wen-Bin Chuang**
 **2026-09-14**
 
 ![bg right fit](./images/02201.jpg)
@@ -86,10 +86,9 @@ section {
     font-size: 27px;
 }
 </style>
+**Factor Endowment** refers to the **total amount** of factors (Labor $L$ and Capital $K$) available in each country. Countries differ in their **relative endowments**.
 
-**Factor Endowment** refers to the **total amount** of factors (Labor L and Capital K) available in each country. Countries differ in their **relative endowments**.
-
-- **Notation**: Home: Capital-Labor ratio = $\frac{K}{L}$; Foreign: Capital-Labor ratio = $\frac{K^*}{L^*}$
+- **Notation**: `Home`: Capital-Labor ratio = $\frac{K}{L}$; `Foreign`: Capital-Labor ratio = $\frac{K^*}{L^*}$
 - **Definition**: A country is **capital-abundant** if $\frac{K}{L} > \frac{K^*}{L^*}$;  A country is **labor-abundant** if $\frac{K}{L} < \frac{K^*}{L^*}$
 
 ----
@@ -104,7 +103,7 @@ section {
 
 **Factor Intensity** tells us which good uses more of a particular factor **relative to the other good**.
 
-- **Definition**: Good Y is **capital-intensive** relative to good X if, at any given factor price ratio $w/r$, it uses a higher capital-labor ratio in production:
+- **Definition**: Good $Y$ is **capital-intensive** relative to good $X$ if, at any given factor price ratio $w/r$, it uses a higher capital-labor ratio in production:
 
 $$
 \frac{K_Y}{L_Y} > \frac{K_X}{L_X}, \quad ∀ w/r
@@ -123,8 +122,8 @@ section {
 }
 </style>
 
-- Refers to the **optimal input mix** (K/L ratio) used in production.
-- Determined by relative factor prices (w/r) and technology.
+- Refers to the **optimal input mix** ($K/L$ ratio) used in production.
+- Determined by relative factor prices ($w/r$) and technology.
 - At equilibrium, both sectors use different factor proportions:
   - Capital-intensive good uses **higher K/L ratio**; Labor-intensive good uses **lower K/L ratio**
 
@@ -143,7 +142,7 @@ section {
     font-size: 27px;
 }
 </style>
-> A country will **export** the good that **intensively uses** its **relatively abundant factor**, and **import** the good that intensively uses its **relatively scarce factor**.
+> A country will **export** the goods that **intensively uses** its **relatively abundant factor**, and **import** the goods that intensively uses its **relatively scarce factor**.
 
 **Example**:
 
@@ -170,7 +169,7 @@ section {
 
 2. `Excess Demand Functions`:
 
-   - At any given `world relative price` $p^W=(P_X / P_Y)^W$, calculate `Excess Demand` of for X and Y for Home and Foreign ($Z^{Home}, Z^{Foreign}$)
+   - At any given `world relative price` $p^W=(P_X / P_Y)^W$, calculate `Excess Demand` of for $X$ and $Y$ for Home and Foreign ($Z^{Home}, Z^{Foreign}$)
 
 3. `World Market Clearing`: World excess demand must be zero:
    $$
@@ -187,8 +186,10 @@ section {
 
 4. `Equilibrium World Price`:
 
-- The world relative price will settle **between** the `two autarky price ratios`.
-- Labor-abundant country will export the labor-intensive good (negative excess demand = excess supply), while Capital-abundant country will export the capital-intensive good.
+   - The world relative price will settle **between** the `two autarky price ratios`.
+
+   - Labor-abundant country will export the labor-intensive good (negative excess demand = excess supply), while Capital-abundant country will export the capital-intensive good.
+
 
 **Intuition**:
 
@@ -272,7 +273,7 @@ $$
 $$
 
 
-From Step 1, at any fixed P, $\lambda^S$  is `increasing` in K/L. Demand D(P) is `strictly decreasing` in P. T**otally differentiate** **(3)**:
+From Step 1, at any fixed P, $\lambda^S$  is `increasing` in K/L. Demand D(P) is `strictly decreasing` in $P$. **Totally differentiate** **(3)**:
 $$
 \frac{∂\lambda^S}{∂(K/L)}d(K/L)+\frac{∂\lambda^S}{∂P}dP=D^′(P)dP
 $$
@@ -284,7 +285,7 @@ section {
 }
 </style>
 
-Under `CRS` + `perfect competition`, `zero-profit conditions` tie P to (w,r), and $\lambda^S$  depends on P only through factor substitution. But for the **Rybczynski channel**, the dominant effect is the endowment shift, so we isolate the comparative static:
+Under `CRS` + `perfect competition`, `zero-profit conditions` tie $P$ to $(w,r)$, and $\lambda^S$  depends on $P$ only through factor substitution. But for the **Rybczynski channel**, the dominant effect is the endowment shift, so we isolate the comparative static:
 $$
 \frac{dP}{d(K/L)}=\frac{∂\lambda^S/∂(K/L)}{D^′(P)−∂\lambda^S/∂P}
 $$
@@ -325,7 +326,7 @@ section {
 }
 </style>
 
-Under `perfect competition` and `constant returns to scale`, commodity prices equal the weighted sum of factor costs: $p=wA$ . When factor markets clear, the total factors used in production equal the endowment: $Ay=v$ .
+Under `perfect competition` and `constant returns to scale`, good prices equal the weighted sum of factor costs: $p=wA$. When `factor markets clear`, the total factors used in production equal the endowment: $Ay=v$ .
 
 #### Trade Balance + Zero Profit → $w⋅F=0$
 
@@ -360,10 +361,10 @@ section {
 }
 </style>
 
-This is the core of RPT. Let's break it down into three layers:
+This is the **core of RPT**. Let's break it down into three layers:
 
 - **Autarky state**: There is `no trade`, so consumption = production ($c^a=y^a$), and the factors used in production exactly equal the endowment ($Ay^a=v$, `full employment`). Therefore, the net factor imports under autarky are $F^a=Ac^a−v=0$ , which naturally gives $w^a⋅F^a=0$ .
-- **Free trade state**: The country chooses consumption c and trade pattern F at prices p. According to the principle of revealed preference, if c was chosen at prices p, it must be **at least as expensive or more expensive** at `autarky prices` $p^a$  (otherwise, the country would have chosen it under autarky): $p^a⋅c≥p^a⋅c^a$ .
+- **Free trade state**: The country chooses consumption $c$ and trade pattern $F$ at prices $p$. According to the principle of revealed preference, if $c$ was chosen at prices $p$, it must be **at least as expensive or more expensive** at `autarky prices` $p^a$  (otherwise, the country would have chosen it under autarky): $p^a⋅c≥p^a⋅c^a$ .
   - **Translating into factor terms**: Using $p^a=w^aA$, 
     - the left side of the above inequality becomes $w^aAc$ , 
     - the right side becomes $w^aAc^a=w^av$  (since $Ac^a=v$ `under autarky`). 
@@ -376,7 +377,7 @@ section {
     font-size: 27px;
 }
 </style>
-**Intuition**: Valued at the autarky factor prices $w^a$ , the "value" of the net factor imports F brought about by free trade is `non-negative`. Because the country voluntarily chooses trade, it reveals that the trade bundle is at least as good as autarky when evaluated at autarky prices. This is a direct manifestation of rational choice.
+**Intuition**: Valued at the autarky factor prices $w^a$ , the "value" of the net factor imports $F$ brought about by free trade is `non-negative`. Because the country voluntarily chooses trade, it reveals that the trade bundle is at least as good as autarky when evaluated at autarky prices. This is a direct manifestation of rational choice.
 
 ---
 
@@ -390,7 +391,7 @@ section {
 
 Now we have two key equations/inequalities:
 
-- Free trade valuation: $w⋅F=0$  and Autarky price valuation: $w^a⋅F≥0$ . Subtracting the two: $w^a⋅F−w⋅F≥0⇒(w^a−w)⋅F≥0$ .
+- **Free trade valuation**: $w⋅F=0$  and **Autarky price valuation**: $w^a⋅F≥0$ . Subtracting the two: $w^a⋅F−w⋅F≥0⇒(w^a−w)⋅F≥0$ .
 
 
 
@@ -404,14 +405,14 @@ section {
 }
 </style>
 
-The inequality $(w^a−w)⋅F≥0$  is a **non-negative vector inner product** condition. Expanding it:
+The **inequality** $(w^a−w)⋅F≥0$  is a **non-negative vector inner product** condition. Expanding it:
 $$
 \sum_k(w_k^a−w_k)\cdot F_k≥0
 $$
 
 - **Interpretation**:
-  - If factor `k` is relatively expensive at home ($w^a_k > w_k$), then $F_k ≥ 0$ → country **imports** factor `k` services.
-  - If factor `k` is relatively cheap ($w^a_k < w_k$), then $F_k ≤ 0$ → country **exports** factor `k` services.
+  - If factor `k` is relatively **expensive at home** ($w^a_k > w_k$), then $F_k ≥ 0$ → country **imports** factor `k` services.
+  - If factor `k` is **relatively cheap** ($w^a_k < w_k$), then $F_k ≤ 0$ → country **exports** factor `k` services.
   - This is the **non-parametric Law of Comparative Advantage**. It holds without identical technologies or specific demand systems.
 
 ---
