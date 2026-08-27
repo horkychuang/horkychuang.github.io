@@ -13,9 +13,11 @@ paginate: true
 
 <!-- _class: lead -->
 
-## Gain from Trade
+#### Gain from Trade
 
-**國企 Wen-Bin Chuang**
+##### 貿易利得
+
+**Wen-Bin Chuang**
 **2026-09-14**
 
 ![bg right fit](./images/04102.jpg)
@@ -29,8 +31,7 @@ section {
     font-size: 27px;
 }
 </style>
-
-**Gains from Trade** refer to the increase in economic welfare (utility or real income) that a country achieves by engaging in international trade compared to **Autarky** (no trade situation).
+**Gains from Trade** refer to the increase in `economic welfare` (utility or real income) that a country achieves by engaging in international trade compared to **Autarky** (no trade situation).
 
 **Core Idea**: Even if a country is not more efficient in producing anything, it can still benefit from trade by `specializing` according to its **comparative advantage** and exchanging goods with other countries.
 
@@ -74,7 +75,7 @@ section {
 }
 </style>
 
-Comparative advantage, introduced by `David Ricardo in 1817`, explains why countries (or individuals/entities) benefit from specializing in and trading goods they can produce at a lower opportunity cost, even if one party has an absolute advantage in everything.
+Comparative advantage, introduced by `David Ricardo in 1817`, explains why countries (or individuals/entities) benefit from `specializing` in and trading goods they can produce at a **lower opportunity cost**, even if one party has an absolute advantage in everything.
 
 **Key Insight**: Even if one country is absolutely more productive in everything, both countries can gain from trade by specializing according to **comparative advantage**.
 
@@ -92,11 +93,11 @@ section {
 
 First, let’s establish our notation and the rules of our economic world.
 
-- **Goods:** We have two goods, indexed by i, where $i\in{X,Y}$ .
-- **Technology (Unit Labor Requirements):** We index goods by i. Let $a_{Li}$  denote the labor needed to produce one unit of good i at home. Similarly, $a_{Li}^∗$  is the labor needed per unit of production in the foreign country. We assume these are **constant**, meaning we have constant returns to scale in labor.
+- **Goods:** We have **two** goods, indexed by i, where $i\in{X,Y}$ .
+- **Technology (Unit Labor Requirements):** We index goods by $i$. Let $a_{Li}$  denote the labor needed to produce one unit of good $i$ **at home**. Similarly, $a_{Li}^∗$  is the labor needed per unit of production in the **foreign country**. We assume these are **constant**, meaning we have constant returns to scale in labor.
 - **Labor Endowments:** The total labor force available at home is $L$, and abroad it is $L^∗$ .
-- **Labor Mobility:** Labor is **perfectly mobile** between industries `within` each country (a worker can easily switch from making X to making Y). However, labor is **completely immobile** *across* countries (workers cannot migrate from home to foreign).
-- **Marginal Product of Labor (MPL):** Because technology is constant, the MPL in each industry is simply the inverse of the unit labor requirement: $MPL_i=1/a_{Li}$.
+- **Labor Mobility:** Labor is **perfectly mobile** between industries `within` each country (a worker can easily switch from making X to making Y). However, labor is **completely immobile** `across` countries (workers cannot migrate from home to foreign).
+- **Marginal Product of Labor (MPL):** Because technology is constant, the $MP_L$ in each industry is simply the inverse of the unit labor requirement: $MPL_i=1/a_{Li}$.
 
 ---
 
@@ -108,7 +109,7 @@ section {
 }
 </style>
 
-Because labor is the only factor of production and the MPL is `constant`, the Production Possibility Frontier (PPF) for each country is a **straight line**. The slope of the PPF represents the **opportunity cost** of producing good X in terms of good Y.
+Because labor is the **only** factor of production and the $MP_L$ is `constant`, the Production Possibility Frontier (PPF) for each country is a **straight line**. The slope of the PPF represents the **opportunity cost** of producing good X in terms of good Y.
 
 - For the **Home** country, the slope of the PPF is $a_{LX}/a_{LY}$.
 - For the **Foreign** country, the slope of the PPF is $a_{LX}^*/a_{LY}^*$.
@@ -124,8 +125,7 @@ section {
     font-size: 27px;
 }
 </style>
-
-**Autarky (No Trade):** Imagine a world where borders are closed. Under autarky, each country must `produce exactly what it consumes`. The autarky equilibrium will occur where the country's PPF is tangent to its community indifference curve (its preferences). Let’s call the home autarky equilibrium point $E_0$  and the foreign autarky equilibrium point $E_0^∗$ .
+**Autarky (No Trade):** Imagine a world where borders are closed. Under autarky, each country must `produce exactly what it consumes`. The autarky equilibrium will occur where the country's PPF is **tangent** to its community indifference curve (its preferences). Let’s call the home autarky equilibrium point $E_0$  and the foreign autarky equilibrium point $E_0^∗$ .
 
 ---
 ![bg fit 75%](./images/1B.jpg)
@@ -158,12 +158,13 @@ section {
     font-size: 27px;
 }
 </style>
+Now, let’s open the borders to international trade. The world market will determine a relative world price, $p$ (the price of good X in terms of good Y). For trade to be `mutually beneficial` and for both countries to `specialize`, the world price $p$ must lie strictly *between* the two autarky opportunity costs: 
 
-Now, let’s open the borders to international trade. The world market will determine a relative world price, $p$ (the price of good X in terms of good Y). For trade to be `mutually beneficial` and for both countries to `specialize`, the world price p must lie strictly *between* the two autarky opportunity costs: $a_{LX}/a_{LY} <p<a_{LX}^*/a_{LY}^*$. 
+​                                            $a_{LX}/a_{LY} <p<a_{LX}^*/a_{LY}^*$. 
 
 Let’s look at how producers in each country react to this world price p:
 
-**The Home Country:** Because the world price p is greater than the home opportunity cost ($p > a_{LX}/a_{LY}$), it is `highly profitable` to produce good X. Home producers will shift all their labor (L) into industry X.
+**The Home Country:** Because the world price $p$ is greater than the home opportunity cost ($p > a_{LX}/a_{LY}$), it is `highly profitable` to produce good X. Home producers will shift all their labor ($L$) into industry X.
 
 - **Production Point:** The home country is now **fully specialized** in good X. On the graph, this is the X-intercept of the home PPF, which we will call **Point N**.
 
@@ -174,8 +175,7 @@ section {
     font-size: 27px;
 }
 </style>
-
-**The Foreign Country:** Conversely, because the world price p is less than the foreign opportunity cost $p < a_{LX}^*/a_{LY}^*$, it is cheaper to import good X and produce good Y instead. Foreign producers will shift all their labor ($L^∗$) into industry Y.
+**The Foreign Country:** Conversely, because the world price $p$ is less than the foreign opportunity cost $p < a_{LX}^*/a_{LY}^*$, it is cheaper to import good X and produce good Y instead. Foreign producers will shift all their labor ($L^∗$) into industry Y.
 
 - **Production Point:** The foreign country is now **fully specialized** in good Y. On the graph, this is the Y-intercept of the foreign PPF, which we will call **Point N***.
 
@@ -193,11 +193,11 @@ section {
 }
 </style>
 
-Production is only half the story; what matters to the citizens is `consumption`. Because they can now trade at the world relative price p, both countries face a new **Budget Line** (or terms of trade line) passing through their production points, with a slope of $−p$ .
+Production is only half the story; what matters to the citizens is `consumption`. Because they can now trade at the world relative price $p$, both countries face a new **Budget Line** (or terms of trade line) passing through their production points, with a slope of $−p$ .
 
 
 
-**Home Consumption:** Starting from production point **N** (all X), the home country exports some of good X and imports good Y at the relative price p. They will choose to consume at the point where this budget line is tangent to their highest possible indifference curve. Let’s call this consumption point **C**.
+**Home Consumption:** Starting from production point **N** (all X), the home country exports some of good X and imports good Y at the relative price $p$. They will choose to consume at the point where this budget line is **tangent** to their **highest** possible indifference curve. Let’s call this consumption point $C_1$.
 
 ---
 
@@ -206,10 +206,9 @@ section {
     font-size: 27px;
 }
 </style>
+**Foreign Consumption:** Starting from production point **N*** (all Y), the foreign country exports good Y and imports good X at price p. They will consume at the point where their budget line is tangent to their highest indifference curve. Let’s call this consumption point $C_1'$.
 
-**Foreign Consumption:** Starting from production point **N*** (all Y), the foreign country exports good Y and imports good X at price p. They will consume at the point where their budget line is tangent to their highest indifference curve. Let’s call this consumption point **C***.
-
-**The Magic of Trade:** Look closely at points **C** and **C\*** on your graph. Because the world price p lies between the two autarky slopes, the new budget lines are flatter than the foreign PPF and steeper than the home PPF.
+**The Magic of Trade:** Look closely at points $C_1$  and $C_1'$  on the graph. Because the world price $p$ lies between the two autarky slopes, the new budget lines are flatter than the foreign PPF and steeper than the home PPF.
 
 As a result, the consumption points **C** and **C\*** lie strictly **above and outside** their respective PPFs!
 
@@ -221,14 +220,14 @@ section {
 }
 </style>
 
-Under `autarky`, a country could never consume outside its PPF; it was constrained by its `own production capabilities`. But under free trade, trade acts like a new technology. By specializing according to comparative advantage and trading, both countries achieve a consumption point that is physically impossible to reach under autarky.
+Under `autarky`, a country could never consume **outside its PPF**; it was constrained by its `own production capabilities`. But under `free trade`, trade acts like a new technology. By `specializing `according to **comparative advantage** and trading, both countries achieve a consumption point that is physically impossible to reach under autarky.
 
 Trade Equilibrium:
 
 - Produce at Point **N** (more specialized in X).
-- Consume at Point **C1** (on a higher indifference curve).
+- Consume at Point $C_1$ (on a **higher** indifference curve).
 
-**Gains from Trade**: The country moves from a lower indifference curve (C0) to a higher one (C1).
+**Gains from Trade**: The country moves from a lower indifference curve ($C_0$) to a higher one ($C_1$).
 
 In a two-good model, gains from trade are shown by:
 
@@ -266,7 +265,7 @@ section {
     font-size: 27px;
 }
 </style>
-When a country’s Terms of Trade improve, it means its export goods become relatively **more valuable** in the world market. This allows the country to:
+When a country’s Terms of Trade `improve`, it means its export goods become relatively **more valuable** in the world market. This allows the country to:
 
 - Import more goods and services for every unit it exports.
   - Reach a **higher consumption possibility frontier**.
@@ -299,11 +298,9 @@ section {
 }
 </style>
 
-David Ricardo published his theory of comparative advantage in 1817. For over a century, it remained largely a theoretical construct. Testing it empirically was notoriously difficult because you have to measure "labor productivity" across different countries and link it directly to actual trade flows, while controlling for a myriad of other factors like capital, technology, and tariffs.
+David Ricardo published his theory of comparative advantage in 1817. For over a century, it remained largely a theoretical construct. Testing it empirically was notoriously difficult because you have to measure `labor productivity` across different countries and link it directly to actual trade flows, while controlling for a myriad of other factors like capital, technology, and tariffs.
 
-  MacDougall decided to test the model by looking at two of the world's leading industrial powers at the time: **the United States and the United Kingdom**. He focused on 25 specific manufacturing industries.
-
-When MacDougall plotted these 25 industries on a scatter graph—putting Relative Labor Productivity on the horizontal axis and Relative Export Performance on the vertical axis—the results were striking.
+  **MacDougall** decided to test the model by looking at two of the world's leading industrial powers at the time: **the United States and the United Kingdom**. He focused on 25 specific manufacturing industries. When MacDougall plotted these 25 industries on a scatter graph—putting Relative Labor Productivity on the horizontal axis and Relative Export Performance on the vertical axis—the results were striking.
 
 ---
 
@@ -312,8 +309,6 @@ section {
     font-size: 27px;
 }
 </style>
-
-
 He found a **remarkably strong, clear positive correlation**.
 
 - In industries where US workers were, say, twice as productive as UK workers (a productivity ratio of 2.0), US exports in that industry were also roughly twice as large as UK exports (an export ratio of 2.0).
@@ -333,8 +328,7 @@ section {
     font-size: 27px;
 }
 </style>
-
-`Revealed Preference Theory` can be used to prove gains from trade in a very elegant way — without needing to assume specific utility functions or indifference curves. 
+`Revealed Preference Theory` can be used to prove **gains from trade** in a very elegant way — without needing to assume specific utility functions or indifference curves. 
 
 ##### **1. Direct Revealed Preference**
 
@@ -360,7 +354,7 @@ section {
 
 #### **2. Weak Axiom of Revealed Preference (WARP)**
 
-- **Statement**: If bundle A is revealed preferred to bundle B, then bundle B should **not** be revealed preferred to bundle A. In other words:
+- **Statement**: If bundle A is **revealed preferred** to bundle B, then bundle B should **not** be revealed preferred to bundle A. In other words:
   - If A is chosen when B is affordable → B should not be chosen when A is affordable.
 
 **Violation of WARP** = Inconsistent behavior (irrational choice).
@@ -442,8 +436,6 @@ $$
 This is the central equation used in the literature to show welfare gains from trade without utility functions
 
 ---
-
-
 
 ###### Weak Axiom of Revealed Preference (WARP) in Trade Context
 <style scoped>
