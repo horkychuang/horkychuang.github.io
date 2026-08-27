@@ -16,7 +16,7 @@ paginate: true
 
 # Microeconomic Review 
 
-**國企 Wen-Bin Chuang**
+**Wen-Bin Chuang**
 **2026-09-14**
 
 ![bg right fit](./images/02201.jpg)
@@ -35,9 +35,9 @@ section {
 }
 </style>
 
-The **production function** shows the maximum output (Q) that can be produced from given quantities of inputs, usually labor (L) and capital (K). **General form**: $Q = f(L, K)$
+The **production function** shows the maximum output ($Q$) that can be produced from given quantities of inputs, usually labor ($L$) and capital ($K$). **General form**: $Q = f(L, K)$
 
-- It assumes technical efficiency (best available technology).
+- It assumes `technical efficiency` (best available technology).
 - `Short Run`: At least one input is fixed (e.g., K fixed → Q = f(L)). `Long Run`: All inputs are variable.
 
 **Example**: Cobb-Douglas production function $Q = A L^\alpha K^\beta$ (where A > 0, α and β are `output elasticities`).
@@ -97,7 +97,7 @@ section {
 }
 </style>
 
-How output changes when **all inputs** are increased proportionally by a factor **t > 1**. $Q = f(t\cdot L, t\cdot K)$
+How output changes when **all inputs** are increased proportionally by a factor **t > 1**. $f(t\cdot L, t\cdot K)$
 
 | Scaling Factor | Output Change     | Returns to Scale |
 | -------------- | ----------------- | ---------------- |
@@ -108,7 +108,7 @@ How output changes when **all inputs** are increased proportionally by a factor 
 
 
 **Example** (Cobb-Douglas): If all inputs × t 
-→ new $Q = A (tL)^α (tK)^β = t^{(α+β)} × \text{original}\cdot Q$
+              → new $Q = A (tL)^α (tK)^β = t^{(α+β)} × \text{original}\cdot Q$
 
 - α + β = 1 → Constant returns;  α + β > 1 → Increasing returns;  α + β < 1 → Decreasing returns
 
@@ -126,7 +126,8 @@ A production function is **homogeneous of degree r** if: $f(tL, tK) = t^r \cdot 
 
 - r = degree of homogeneity = sum of exponents in Cobb-Douglas (α + β).
 - `Directly linked to returns to scale`: 
- - `r = 1` → Constant returns to scale/ `r > 1` → Increasing returns to scale/ r < 1 → Decreasing returns to scale
+  - `r = 1` → Constant returns to scale/ `r > 1` → Increasing returns to scale/ r < 1 → Decreasing returns to scale
+
 
 **Euler's Theorem** (for homogeneous functions): If `f` is homogeneous of degree $r$ , then:
 $$
@@ -208,15 +209,15 @@ L\frac{\partial Q}{\partial L}+K\frac{\partial Q}{\partial K}=r\cdot Q
 $$
 
 
-Using marginal products:
+Using `marginal products`:
 $$
 L\cdot MP_L+K\cdot MP_K=r\cdot Q
 $$
-This means that the `sum of each input multiplied` by its marginal product equals r times total output. If the production function is `homogeneous of degree one`. then Euler’s theorem becomes:
+This means that the `sum of each input multiplied` by its marginal product equals $r$ times total output. If the production function is `homogeneous of degree one`. then Euler’s theorem becomes:
 $$
 L\cdot MP_L+K\cdot MP_K= Q
 $$
-This is also called the **product exhaustion theorem**
+This is also called the **product exhaustion theorem**.
 
 -----
 
@@ -225,30 +226,32 @@ section {
     font-size: 27px;
 }
 </style>
-
-Euler’s theorem shows how output can be distributed among factors of production. If factors are paid according to their marginal productivity:
+**Euler’s theorem** shows how output can be distributed among factors of production. If factors are paid according to their marginal productivity:
 $$
 \frac{w}{P}=MPL_L, \quad \frac{r}{P}=MP_K
 $$
-Then under constant returns to scale:
+Then under **constant returns to scale**:
 $$
 L\cdot w+K\cdot r= PQ
 $$
 This implies that there is no surplus left after paying labor and capital their marginal products. 
 
-- **"Radial blow-ups"** (radial expansion / scaling along a ray from the origin) means that：the isoquants corresponding to different output levels have **exactly the same shape**; they are merely **scaled proportionally outward from the origin** (or shrunk inward toward it).
+
 
 ---
 
-###### 6. Ray from the Origin
+#### 6. Ray from the Origin
 
 <style scoped>
 section {
-    font-size: 27px;
+    font-size: 23px;
 }
 </style>
 
-Suppose the input bundle $(L,K)$  lies on the isoquant for output $Q_0$. Then the scaled bundle $(\lambda L,\lambda K)$ produces:
+- **"Radial blow-ups"** (radial expansion / scaling along a ray from the origin) means that：the isoquants corresponding to different output levels have **exactly the same shape**; they are merely **scaled proportionally outward from the origin** (or shrunk inward toward it).
+
+- Suppose the input bundle $(L,K)$  lies on the isoquant for output $Q_0$. Then the scaled bundle $(\lambda L,\lambda K)$ produces:
+
 $$
 f(\lambda L, \lambda K)=\lambda^r Q_0
 $$
@@ -266,15 +269,14 @@ section {
     font-size: 27px;
 }
 </style>
+- Along any **ray from the origin**, the slope of the isoquants ($MRTS$) stays **constant**: each isoquant you cross is just a scaled-up copy of the previous one, and a ray cuts all of them at points with the same $K/L$ ratio and the same tangent slope. 
 
-This is exactly why, along any **ray from the origin**, the slope of the isoquants (the MRTS) stays constant: each isoquant you cross is just a scaled-up copy of the previous one, and a ray cuts all of them at points with the same $K/L$ ratio and the same tangent slope. 
+- **In short**: homogeneity ⇒⇒ MRTS depends only on the input ratio ⇒⇒ the isoquant map is a family of radial blow-ups (a homothetic map). 
+  - Distance along the ray shows how output changes:
+    - Isoquants `equally` spaced → Constant returns
+    - Isoquants `getting` closer → Increasing returns
+    - Isoquants `getting farther apart` → Decreasing returns
 
-**In short**: homogeneity ⇒⇒ MRTS depends only on the input ratio ⇒⇒ the isoquant map is a family of radial blow-ups (a homothetic map). 
-
-- Distance along the ray shows how output changes:
-  - Isoquants `equally` spaced → Constant returns
-  - Isoquants `getting` closer → Increasing returns
-  - Isoquants `getting farther apart` → Decreasing returns
 
 
 ----
@@ -285,12 +287,17 @@ section {
 }
 </style>
 
-- One of the most important properties of **homogeneous** and **homothetic** production function.
-  - For homogeneous and homothetic production functions, 
-   - the MRTS is constant along any given ray from the origin. Because the $K/L$  ratio is constant along the ray, the relative productivity of the two inputs remains the same.
+- One of the most important properties of **homogeneous** production function.
+  
   - **Marginal Rate of Technical Substitution (MRTS)**: For homogeneous functions, the MRTS depends only on the ratio of inputs (not the scale), which makes isoquants "radial blow-ups" of each other.
-    - The `MRTS` (Marginal Rate of Technical Substitution) depends only on the **ratio of the inputs** ($K/L$  or $L/K$ ), and **not** on the scale of production (the absolute quantities of the inputs)）。
-      - $MP_L(\lambda L, \lambda K)=\lambda^{r-1}MP_L(K,L)$, the same $MP_K$, MRTS is homogeneous of **degree zero**.
+  
+    - Then the marginal products are homogeneous of degree  k−1. Therefore, their ratio is homogeneous of degree 0:
+  
+      - $$
+        \frac{\text{MPL}(tL, tK)}{\text{MPK}(tL, tK)} = \frac{t^{k-1}\text{MPL}(L,K)}{t^{k-1}\text{MPK}(L,K)}=\frac{\text{MPL}(L,K)}{\text{MPK}(L,K)}
+        $$
+  
+    - $MP_L(\lambda L, \lambda K)=\lambda^{r-1}MP_L(K,L)$, the same $MP_K$, MRTS is homogeneous of **degree zero**.
 
 ----
 
@@ -303,18 +310,16 @@ section {
     font-size: 27px;
 }
 </style>
-
-A firm minimizes cost for a given output level (or maximizes profit). **Cost Minimization Condition** (for given $Q$): The firm chooses $L$ and $K$ such that the **isoquant is tangent to the isocost line** $c=w\times l+r\times k$. **Key Equilibrium Condition**:
-
+**Cost Minimization Condition** (for given $Q$): The firm chooses $L$ and $K$ such that the **isoquant is tangent to the isocost line** $c=w\times l+r\times k$. **Key Equilibrium Condition**:
 $$
-\frac{MPL}{MPK} = \frac{w}{r} \quad \Rightarrow \quad MRTS_{L,K} = \frac{w}{r}
+\frac{MP_L}{MP_K} = \frac{w}{r} \quad \Rightarrow \quad MRTS_{L,K} = \frac{w}{r}
 $$
 
 
 Where: $w$ = wage rate (price of labor);  $r$ = rental rate of capital (price of capital). This means: **Marginal Product per dollar** should be equal across inputs
 
 $$
-\frac{MPL}{w} = \frac{MPK}{r}
+\frac{MP_L}{w} = \frac{MP_K}{r}
 $$
 
 ----
@@ -331,7 +336,7 @@ section {
 }
 </style>
 
-For `homogeneous production functions` (especially Cobb-Douglas), the optimal capital-labor ratio depends only on relative factor prices and is **independent of the output level** $Q$.   
+For `homogeneous production functions`, the optimal capital-labor ratio depends only on relative factor prices and is **independent of the output level** $Q$.   
 
 **Cobb-Douglas Case**: $Q = A L^\alpha K^\beta$,  
 - Optimal condition gives: $\frac{K}{L} = \left( \frac{\beta}{\alpha} \right) \left( \frac{w}{r} \right)$
@@ -351,14 +356,9 @@ section {
 </style>
 
 Given Cost Minimization Problem: $\text{MRTS}_{L,K} = \frac{\text{MPL}}{\text{MPK}} = \frac{w}{r}$. 
-- Assume f(L,K) is `homogeneous of degree k` . Then the marginal products are homogeneous of degree  k−1. Therefore, their ratio is homogeneous of degree 0:
+- Assume f(L,K) is `homogeneous of degree k` . Then the marginal products are homogeneous of degree  k−1. Therefore, their ratio is homogeneous of degree 0. This means the MRTS depends only on the **input ratio** $\frac{K}{L}$, not on the scale  t. 
 
-$$
-\frac{\text{MPL}(tL, tK)}{\text{MPK}(tL, tK)} = \frac{t^{k-1}\text{MPL}(L,K)}{t^{k-1}\text{MPK}(L,K)}=\frac{\text{MPL}(L,K)}{\text{MPK}(L,K)}
-$$
-This means the MRTS depends only on the **input ratio** $\frac{K}{L}$, not on the scale  t. 
-- So we can write: $\frac{\text{MPL}(L,K)}{\text{MPK}(L,K)} = h\left( \frac{K}{L} \right)$ and 
-- At the optimum: $h\left( \frac{K^*}{L^*} \right) = \frac{w}{r}$ $\rightarrow \left( \frac{K^*}{L^*} \right) = h^{-1}\left(\frac{w}{r}\right)$. This is a function **only of $\frac{w}{r}$** — independent of Q .
+- So we can write: $\frac{\text{MPL}(L,K)}{\text{MPK}(L,K)} = h\left( \frac{K}{L} \right)$ and at the optimum: $h\left( \frac{K^*}{L^*} \right) = \frac{w}{r}$ $\rightarrow \left( \frac{K^*}{L^*} \right) = h^{-1}\left(\frac{w}{r}\right)$. This is a function **only of $\frac{w}{r}$** — independent of Q .
 
 ----
 
@@ -370,12 +370,12 @@ section {
 }
 </style>
 
-An economy produces two goods (X and Y) using two factors (Labor L and Capital K). Assumptions:
+An economy produces **two goods (X and Y)** using **two factors (Labor L and Capital K)**. Assumptions:
 
-- Fixed total endowments of L and K.
+- Fixed total endowments of $\bar{L}$ and $\bar{K}$.
 - `Perfect competition` in factor and product markets.
 - `Constant returns to scale` (often assumed).
-- Different factor intensities: e.g., X is labor-intensive, Y is capital-intensive.
+- Different `factor intensities`: e.g., X is labor-intensive, Y is capital-intensive.
 
 ----
 
@@ -474,13 +474,13 @@ section {
 }
 </style>
 
-| Concept                 | What it Shows                     | Key Condition                |
-| ----------------------- | --------------------------------- | ---------------------------- |
-| Single firm equilibrium | Cost min / Profit max             | MRTS = w/r                   |
-| Optimal K/L             | Factor demand ratio               | K/L = f(w/r)                 |
-| Edgeworth Box           | Allocation of L & K between X & Y | -                            |
-| Efficiency Locus        | Technically efficient allocations | $MRTS^X = MRTS^Y$            |
-| PPF                     | Max output combinations           | MRT = Px/Py (in equilibrium) |
+| Concept                 | What it Shows                     | Key Condition                  |
+| ----------------------- | --------------------------------- | ------------------------------ |
+| Single firm equilibrium | Cost min / Profit max             | $MRTS = w/r$                   |
+| Optimal K/L             | Factor demand ratio               | $K/L = f(w/r)$                 |
+| Edgeworth Box           | Allocation of L & K between X & Y | -                              |
+| Efficiency Locus        | Technically efficient allocations | $MRTS^X = MRTS^Y$              |
+| PPF                     | Max output combinations           | $MRT = Px/Py$ (in equilibrium) |
 
 ----
 
@@ -546,7 +546,7 @@ When Y is capital-intensive and X is labor-intensive, the PPF has these features
 
 -----
 
-**Intuition**:
+#### **Intuition**:
 
 <style scoped>
 section {
@@ -635,7 +635,7 @@ section {
 - Total capital demand = Total capital supply: $K_X + K_Y = \overline{K}$
 
 
-##### 1.4. Zero Profit Condition (Long Run, Constant Returns to Scale)
+###### 1.4. Zero Profit Condition (Long Run, Constant Returns to Scale)
 
 $P_X = MC_X \quad \text{and} \quad P_Y = MC_Y$
 
@@ -706,7 +706,7 @@ section {
 
 **Utility** is a numerical representation of a consumer’s `satisfaction or preference` for different bundles of goods. 
 
-- **Utility Function**: $U = U(X, Y)$ where X and Y are quantities of two goods.
+- **Utility Function**: $U = U(X, Y)$ where $X$ and $Y$ are quantities of two goods.
 
 ---
 
@@ -864,7 +864,7 @@ section {
 | Concept                 | Graph Tool         | Key Condition            | Economic Meaning             |
 | ----------------------- | ------------------ | ------------------------ | ---------------------------- |
 | Utility                 | Indifference Curve | Convex, downward sloping | Consumer preferences         |
-| Single consumer optimum | Budget line + IC   | MRS = Px/Py              | Utility maximization         |
+| Single consumer optimum | Budget line + IC   | $MRS = Px/Py$            | Utility maximization         |
 | Two-person exchange     | Edgeworth Box      | $MRS^A = MRS^B$          | Pareto efficient exchange    |
 | Contract Curve          | Edgeworth Box      | All tangency points      | Set of efficient allocations |
 
@@ -879,8 +879,7 @@ section {
     font-size: 25px;
 }
 </style>
-
-Homothetic preferences mean that the income elasticity of demand for every good is exactly equal to 1. Practically, this means if a consumer's income rises by 10%, they buy exactly 10% more of *every* good. They scale up their consumption proportionally, keeping the exact same percentage of their budget on every item, regardless of how rich they get. In this case, economists can combine millions of individuals into one "national demand."
+`Homothetic preferences` mean that the **income elasticity of demand** for every good is exactly equal to 1. Practically, this means if a consumer's income rises by 10%, they buy exactly 10% more of *every* good. They scale up their consumption proportionally, keeping the exact same percentage of their budget on every item, regardless of how rich they get. In this case, economists can combine millions of individuals into one "**national demand**."
 
 - **The Problem:** If preferences aren't homothetic, *who* holds the money matters. If the rich get richer, national demand shifts toward luxury goods, making aggregate demand unpredictable.
 - **The Solution:** Because the elasticity is exactly 1 across the board, **income distribution doesn't matter**. National demand depends `only` on total income and prices. This allows economists to model an entire nation as a single **"Representative Consumer,"** vastly simplifying the math..
@@ -914,7 +913,7 @@ section {
 
    - **The Math:** $U(X,Y) =X^{\alpha}Y^{\beta}$, ($\alpha +\beta =1$) 
    - It is the simplest form of homothetic preferences. By mathematical definition, a consumer will always spend a fixed *percentage* of their income on Good X and a fixed percentage on Good Y, no matter how rich they get.
-   - It is a **homogeneous function** of degree 1. If you scale both goods by  t: $U(tX, tY) = (tX)^\alpha (tY)^\beta = t^{\alpha+\beta} X^\alpha Y^\beta = t^1 \cdot U(X,Y) \quad \alpha+\beta=1$
+   - It is a **homogeneous function** of degree 1. If you scale both goods by  t: $U(tX, tY) = (tX)^\alpha (tY)^\beta = t^{\alpha+\beta} X^\alpha Y^\beta = t^1 \cdot U(X,Y) \quad \text{if} \quad \alpha+\beta=1$
 
 ----
 <style scoped>
@@ -923,13 +922,12 @@ section {
 }
 </style>
    - **Key Proof (Demand Side)**: We already derived:
-     - $X^* = \alpha \cdot \frac{I}{P_X}$; 
-     - $Y^* = \beta \cdot \frac{I}{P_Y}$
+     - $X^* = \alpha \cdot \frac{I}{P_X}$; $Y^* = \beta \cdot \frac{I}{P_Y}$
 
    → The **ratio** $\frac{Y^*}{X^*} = \frac{\beta}{\alpha} \cdot \frac{P_X}{P_Y}$ 
    → This ratio **depends only on prices**, **not on income level**.
 
-   This is the definition of homothetic preferences: optimal consumption ratio is independent of income.
+   This is the definition of **homothetic preferences**: optimal consumption ratio is independent of income.
 
 --------
 
@@ -939,7 +937,7 @@ section {
 }
 </style>
 
-2. **CES Preferences (The Modern Workhorse)**
+2. **Constant Elasticity of Substitution (CES) Preferences (The Modern Workhorse)**
    - **The Math:** $U=(a X^{\rho}+bY^{\rho})^{1/\rho}$ 
    - It is slightly more flexible than Cobb-Douglas. It allows consumers to substitute between goods at a constant rate, while still maintaining an **income elasticity of exactly 1**.
    - If you scale inputs by t: $U(tX, tY) = \left[ a (tX)^\rho + b (tY)^\rho \right]^{1/\rho} = t \cdot \left[ a X^\rho + b Y^\rho \right]^{1/\rho} = t \cdot U(X,Y)$.
@@ -1034,7 +1032,7 @@ U(X, Y) = \left[ a X^\rho + b Y^\rho \right]^{1/\rho} \\
 $$
 Where:
 
-- $\rho = \frac{\sigma - 1}{\sigma}$ and $\sigma$ = Elasticity of Substitution (how easily X and Y can substitute for each other)
+- $\rho = \frac{\sigma - 1}{\sigma}$ and $\sigma$ = **Elasticity of Substitution** (how easily X and Y can substitute for each other)
 
 ----
 
@@ -1060,7 +1058,7 @@ section {
 }
 </style>
 
-Using the same tangency condition ($MRS = P_X / P_Y$):
+Using the same **tangency condition** ($MRS = P_X / P_Y$):
 
 After solving the optimization problem, the Marshallian demand functions for CES are:
 $$
@@ -1077,8 +1075,7 @@ section {
     font-size: 27px;
 }
 </style>
-
-**More Compact Form** (using price index):
+**More Compact Form** (using **price index**):
 
 Let the **price index** be:
 $$
@@ -1091,7 +1088,6 @@ X^* = \frac{a^{\sigma} }{P_X^{\sigma}} \cdot \frac{I}{P^{1-\sigma}}, \quad
 Y^* = \frac{b^{\sigma} }{P_Y^{\sigma}} \cdot \frac{I}{P^{1-\sigma}}
 $$
 $$
-
 \left(X_i^* = a_i^\sigma \left( \frac{P_i}{P} \right)^{-\sigma} \cdot \frac{I}{P}\right)
 $$
 
@@ -1105,7 +1101,7 @@ section {
 }
 </style>
 
-- Demand is **linear in income** (homothetic).
+- Demand is **linear in income** (`homothetic`).
 - Expenditure share on good i: $s_i = \frac{P_i X_i^*}{I} = \frac{a_i^\sigma P_i^{1-\sigma}}{\sum a_j^\sigma P_j^{1-\sigma}}$
 - Total demand: $X_i^D = \sum_{k=1}^M X_i^k = a_i^\sigma P_i^{-\sigma} \cdot \frac{I_{total}}{P^{1-\sigma}}$
 
