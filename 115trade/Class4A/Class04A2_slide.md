@@ -8,17 +8,13 @@ backgroundColor: #fef9e7;
 backgroundImage: url('images/background_1.JPG')
 footer: 'Designed by Wen-Bin 2026-09-05'
 paginate: true
-
-
-
-
 ---
 
 <!-- _class: lead -->
 
 ## Heckscher-Ohlin Model III
 
-**國企 Wen-Bin Chuang**
+**Wen-Bin Chuang**
 **2026-09-14**
 
 ![bg right fit](./images/02201.jpg)
@@ -32,10 +28,9 @@ section {
     font-size: 27px;
 }
 </style>
+**Factor Price Equalization** (FPE) Theorem (developed by Paul Samuelson, 1948) argued that **free trade in goods alone** (without international factor mobility) will lead to complete equalization of **real factor prices** (wages and capital rents) `across countries`, even though factors themselves cannot move.
 
-Factor Price Equalization (FPE) Theorem (developed by Paul Samuelson, 1948) argued that **free trade in goods alone** (without international factor mobility) will lead to complete equalization of **real factor prices** (wages and capital rents) across countries, even though factors themselves cannot move.
-
-**Core Idea**: free trade in goods can substitute for international factor mobility. In simple terms: `Trade in goods acts as a substitute for trade in factors`. However, because many strong assumptions are required, FPE rarely holds fully in practice. 
+**Core Idea**: free trade in goods can substitute for international factor mobility. In simple terms: `Trade in goods acts as a substitute for trade in factors`. However, because many strong assumptions are required, FPE `rarely holds` fully in practice. 
 
 ---
 
@@ -69,19 +64,19 @@ section {
 }
 </style>
 
-1. Before trade (Autarky):
+1. Before trade **(Autarky)**:
 
    - Labor-abundant country has **low wage (w)** and **high rental rate (r)**.
    - Capital-abundant country has **high wage (w)** and **low rental rate (r)**.
 
-2. When trade opens:
+2. When **trade opens**:
 
    - Labor-abundant country exports labor-intensive good → increases demand for labor → **w rises**, **r falls**.
    - Capital-abundant country exports capital-intensive good → increases demand for capital → **r rises**, **w falls**.
 
-3. Goods prices equalize across countries due to free trade.
+3. `Goods prices` equalize across countries due to `free trade`.
 
-4. Because technology is identical and goods prices are equal, cost minimization conditions
+4. Because `technology is identical` and `goods prices` are equal, cost minimization conditions
 
    force:
    $$
@@ -97,13 +92,13 @@ section {
 }
 </style>
 
-1. Before trade: Different relative endowments → different relative factor prices ($w/r$ differs).
+1. `Before trade`: Different relative endowments → different relative factor prices ($w/r$ differs).
 
-2. Trade opens → countries export goods using their abundant factor → relative goods prices converge.
-3. Goods price equalization → identical zero-profit lines in both countries.
+2. `Trade` opens → countries export goods using their `abundant factor` → relative goods prices `converge`.
+3. Goods price equalization → identical `zero-profit` lines in both countries.
 4. Since the unit input requirements ($a_{ij}$) depend on factor prices, the only solution consistent with both equations is **equal factor prices**
 
-**Key Insight**: FPE is a **price transmission result**. Trade equalizes output prices; technology links output prices to input prices; thus, input prices equalize.
+**Key Insight**: **FPE** is a **price transmission result**. Trade equalizes output prices; technology links output prices to input prices; thus, input prices equalize.
 
 ----
 
@@ -115,9 +110,9 @@ section {
 }
 </style>
 
-1. **Benchmark, Not Prediction**: FPE serves as a theoretical baseline to diagnose why convergence fails (e.g., tech gaps, trade frictions, institutional barriers).
-2. **Regional Integration**: FPE holds more strongly within integrated markets (EU single market, US interstate trade, NAFTA/USMCA supply chains).
-3. **Development Strategy**: Highlights that trade alone cannot equalize living standards without technology transfer, human capital investment, and institutional reform.
+1. **Benchmark, Not Prediction**: FPE serves as a **theoretical baseline** to diagnose why convergence fails (e.g., tech gaps, trade frictions, institutional barriers).
+2. **Regional Integration**: FPE holds more strongly within `integrated markets` (EU single market, US interstate trade, NAFTA/USMCA supply chains).
+3. **Development Strategy**: Highlights that trade alone **cannot** equalize `living standards` without technology transfer, human capital investment, and institutional reform.
 4. **Global Value Chains**: Task-based trade allows partial factor price convergence for specific skills/tasks, even if absolute wages diverge.
 5. **Migration vs. Trade Policy**: If FPE held perfectly, migration restrictions would be unnecessary. Its failure explains why labor mobility remains politically and economically relevant.
 
@@ -196,7 +191,7 @@ $$
 P_X=a_{L_X}w+a_{K_X}r,\qquad P_Y=a_{L_Y}w+a_{K_Y}r
 $$
 
-With `CRS` and `cost minimization`, $a_{i_j}=a_{i_j}(w/r)$ . At constant goods prices, $w/r$ is pinned down.
+With `CRS` and `cost minimization`, $a_{i_j}=a_{i_j}(w/r)$ . **At constant goods prices**, $w/r$ is pinned down.
 
 ----
 
@@ -223,13 +218,15 @@ r
 $$
 
 
-The mapping from ($P_X,P_Y$) to (w,r) is `invertible` iff the determinant is non-zero:
+The mapping from ($P_X,P_Y$) to (w,r) is `invertible` iff the `determinant` is non-zero:
 $$
 Δ=a_{L_X}a_{K_Y}−a_{L_Y}a_{K_X}≠0
 $$
 
 
-This holds exactly when **no factor intensity reversal** occurs (i.e., X is consistently more/less labor-intensive than Yacross all $w/r$).
+This holds exactly when **no factor intensity reversal** occurs (i.e., $X$ is consistently more/less labor-intensive than $Y$ across all $w/r$).
+
+-------
 
 ###### 3. Equalization Result
 
@@ -262,7 +259,7 @@ section {
 }
 </style>
 
-Under `free trade`, identical production technologies, and incomplete specialization, relative and absolute factor prices will equalize across countries, even if factors are internationally immobile.
+Under `free trade`, **identical** `production technologies`, and `incomplete specialization`, relative and absolute factor prices will equalize across countries, even if factors are internationally immobile.
 
 
 
@@ -354,7 +351,7 @@ section {
 
 **FPE holds only if**:
 
-- Identical technology; No factor intensity reversal
+- `Identical technology`; No factor intensity reversal
 - Both countries continue producing **both goods** (diversification)
 - Free trade with no transport costs; Same homothetic preferences
 
@@ -368,7 +365,7 @@ section {
 }
 </style>
 
-Stolper-Samuelson and Rybczynski theorems examine `within-country` adjustments, FPE addresses `cross-country` convergence: it shows that, under strict conditions, free trade in goods can perfectly substitute for international factor mobility, equalizing wages and returns to capital across nations.
+Stolper-Samuelson and Rybczynski theorems examine `within-country` adjustments, FPE addresses `cross-country` convergence: it shows that, under strict conditions, free trade in **goods** can perfectly substitute for **international factor mobility**, equalizing wages and returns to capital across nations.
 
 #### Historical Context & Core Statement
 
@@ -385,12 +382,14 @@ section {
 }
 </style>
 
-The **Leontief Paradox（1953)** is one of the most famous empirical challenges to the **Heckscher-Ohlin (H-O) model**. Wassily Leontief tested the H-O theorem using 1947 U.S. trade data. According to H-O, the United States — the most **capital-abundant** country in the world — should export **capital-intensive** goods and import **labor-intensive** goods. **Empirical Result**:
+The **Leontief Paradox（1953)** is one of the most famous `empirical` challenges to the **Heckscher-Ohlin (H-O) model**. Wassily Leontief tested the H-O theorem using 1947 U.S. trade data. According to H-O, the United States — the most **capital-abundant** country in the world — should export **capital-intensive** goods and import **labor-intensive** goods. **Empirical Result**:
 
 - U.S. **exports** were more **labor-intensive** than U.S. **imports**.
 - Specifically, U.S. imports were about **30% more capital-intensive** than U.S. exports.
 
-**Core Idea**: It showed that reality is more complex than “countries export goods that intensively use their abundant factors.” It opened the door to richer theories that include `human capital`, `technology gaps`, and `increasing returns to scale`.  The empirical result was a **direct contradiction** of the H-O prediction → hence called a “paradox.”
+**Core Idea**: It showed that reality is more complex than “countries export goods that intensively use their abundant factors.” 
+
+- It opened the door to richer theories that include `human capital`, `technology gaps`, and `increasing returns to scale`.  The empirical result was a **direct contradiction** of the H-O prediction → hence called a “paradox.”
 
 ----
 

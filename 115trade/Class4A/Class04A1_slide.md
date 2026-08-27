@@ -8,16 +8,13 @@ backgroundColor: #fef9e7;
 backgroundImage: url('images/background_1.JPG')
 footer: 'Designed by Wen-Bin 2026-09-05'
 paginate: true
-
-
-
 ---
 
 <!-- _class: lead -->
 
 ## Heckscher-Ohlin Model II
 
-**國企 Wen-Bin Chuang**
+**Wen-Bin Chuang**
 **2026-09-14**
 
 ![bg right fit](./images/02201.jpg)
@@ -32,14 +29,14 @@ section {
 }
 </style>
 
-The Stolper-Samuelson Theorem (1941) is one of the most important results in the Heckscher-Ohlin model. It describes how `changes in goods prices` affect `real factor incomes`. 
+The `Stolper-Samuelson Theorem` (1941) is one of the most important results in the Heckscher-Ohlin model. It describes how `changes in goods prices` affect `real factor incomes`. 
 
 **Core Idea**: An increase in the `relative price` of a good will raise the `real return` to the factor used intensively in that good and lower the real return to the other factor. In simpler terms:
 
 - If the price of the **labor-intensive** good rises → **Real wages rise**, real return to capital falls.
 - If the price of the **capital-intensive** good rises → **Real return to capital rises**, real wages fall.
 
-“In the Heckscher-Ohlin world, trade benefits the abundant factor and hurts the scarce factor. This is the Stolper-Samuelson Theorem — one of the strongest and most politically relevant results in international trade theory.” In autarky, there is a `lower` relative price of the abundant factor; while the trade can raise the relative price. + S-S theorem, their real wages rise.
+“In the Heckscher-Ohlin world, trade `benefits the abundant factor` and hurts the scarce factor. This is the Stolper-Samuelson Theorem — one of the strongest and most politically relevant results in international trade theory.” In autarky, there is a `lower` relative price of the abundant factor; while the trade can raise the relative price. + S-S theorem, their real wages rise.
 
 ----
 
@@ -73,7 +70,7 @@ section {
 }
 </style>
 
-When a country opens to trade:
+When a country **opens to trade**:
 
 - **Labor-abundant country** exports the **labor-intensive** good → price of labor-intensive good **increases** (relative to autarky).
 - According to Stolper-Samuelson:
@@ -83,7 +80,7 @@ When a country opens to trade:
 This happens because:
 
 - Increased `demand` for the labor-intensive good → increased `demand` for labor → wages rise.
-- As resources move into the labor-intensive sector, capital becomes relatively less demanded → return to capital falls.
+- As resources move into the labor-intensive sector, capital becomes relatively `less demanded` → return to capital falls.
 
 ----
 
@@ -135,17 +132,7 @@ section {
 | **Historical Evidence**  | 19th-century US: Capital-abundant → manufacturers favored tariffs; Land-abundant South favored free trade. Post-WWII Europe: Labor-abundant → unions supported trade liberalization. |
 | **Policy Design**        | Justifies trade adjustment assistance, compensation schemes, progressive taxation |
 
----
 
-<style scoped>
-section {
-    font-size: 27px;
-}
-</style>
-
-**Key Insight**: The **Stolper-Samuelson (SS) Theorem** is one of the most influential results in international trade theory. It links `changes in goods prices` to `changes in factor incomes`, demonstrating how trade reshapes domestic income distribution. Unlike the Ricardian model (where all agents gain), the SS theorem shows that **trade creates domestic winners and losers**.
-
-- The SS theorem explains why trade policy is inherently political. Even when trade raises national income, concentrated losses can drive protectionist lobbying.
 
 -----
 
@@ -157,7 +144,7 @@ section {
 }
 </style>
 
-- **Developing countries**: Trade liberalization often raises demand for unskilled labor (abundant factor) → reduces wage inequality in some cases (e.g., Mexico post-NAFTA, though results are mixed).
+- **Developing countries**: `Trade liberalization` often raises demand for `unskilled labor (abundant factor)` → reduces wage inequality in some cases (e.g., Mexico post-NAFTA, though results are mixed).
 - **Advanced economies**: Opening to low-wage country imports correlates with relative wage declines for low-skilled workers in manufacturing (consistent with SS if low-skilled labor is scarce relative to developing nations).
 
 ---
@@ -171,7 +158,7 @@ section {
 </style>
 
 1. **Simultaneity**: Goods prices, technology, and endowments change simultaneously.
-2. **Factor heterogeneity**: "Labor" isn't homogeneous; skill, education, and region matter.
+2. **Factor heterogeneity**: "Labor" `isn't homogeneous`; skill, education, and region matter.
 3. **Incomplete specialization**: Many countries don't fully specialize, blurring price transmission.
 4. **Trade vs. Technology**: Skill-biased technological change often confounds SS predictions in advanced economies.
 
@@ -217,7 +204,7 @@ section {
 
 ###### 1. Starting Point: Zero-Profit Conditions (Competitive Markets)
 
-In the 2×2 Heckscher-Ohlin model:
+In the `2×2 Heckscher-Ohlin model`:
 $$
 \begin{aligned} w \cdot a_{LX} + r \cdot a_{KX} &= P_X \quad \text{(Good X — labor-intensive)} \\ w \cdot a_{LY} + r \cdot a_{KY} &= P_Y \quad \text{(Good Y — capital-intensive)} \end{aligned}
 $$
@@ -281,7 +268,7 @@ The determinant of $\boldsymbol{\Theta}$ is:
 $$
 |\boldsymbol{\Theta}| = \theta_{LX}\theta_{KY} - \theta_{LY}\theta_{KX} = \theta_{LX}(1-\theta_{KY}) - (1-\theta_{LX})\theta_{KX}
 $$
-Because X is labor-intensive ($\theta_{KX} < \theta_{KY}$), we have $|\boldsymbol{\Theta}| > 0$. Solving for changes:
+Because $X$ is labor-intensive ($\theta_{KX} < \theta_{KY}$), we have $|\boldsymbol{\Theta}| > 0$. Solving for changes:
 
 $$
 \hat{w} = \frac{\theta_{KY} \hat{P}_X - \theta_{KX} \hat{P}_Y}{|\boldsymbol{\Theta}|}\quad
@@ -325,8 +312,6 @@ section {
 - Capital demand relatively falls → $r$ falls (or rises less).
 - Because of the magnification effect, real returns to capital fall in terms of *both* goods, and real wages rise in terms of both goods.
 
-
-
 ----
 
 ## Rybczynski Theorem (1955)
@@ -337,9 +322,7 @@ section {
 }
 </style>
 
-The Rybczynski Theorem (1955) examines the effect of an increase in `factor endowment` on `output levels` at constant goods prices.  It explains how economic growth through factor accumulation leads to changes in the production structure — favoring the sector that uses the growing factor intensively.
-
-At constant relative goods prices, an increase in the endowment of one factor will:
+The `Rybczynski Theorem` (1955) examines the effect of an increase in `factor endowment` on `output levels` at constant goods prices.  It explains how `economic growth` through factor accumulation leads to changes in the production structure — favoring the sector that uses the growing factor intensively. At **constant relative goods prices**, an increase in the endowment of one factor will:
 
 - Increase the output of the good that **intensively uses** that factor (**more than proportionally**),
 - Decrease the output of the other good (**absolute decline** possible).
@@ -396,8 +379,8 @@ section {
 Suppose **Labor endowment increases** while `goods prices remain constant`:
 
 1. At the initial wage-rental ratio ($w/r$), firms want to use `more labor`.
-2. The `labor-intensive` sector (say Good X) can absorb more labor profitably.
-3. Resources (especially capital) are pulled away from the capital-intensive sector (Good Y).
+2. The `labor-intensive` sector (say Good $X$) can absorb more labor profitably.
+3. Resources (especially capital) are pulled away from the capital-intensive sector (Good $Y$).
 4. Result:
    - Output of **labor-intensive good (X)** ↑ significantly
    - Output of **capital-intensive good (Y)** ↓
@@ -437,7 +420,7 @@ section {
 </style>
 
 - Increase in labor endowment **shifts the PPF outward**, but **biased** toward the labor-intensive good.
-- At constant relative prices, production moves **along the new PPF** in a way that increases X a lot and decreases Y.
+- **At constant relative prices**, production moves **along the new PPF** in a way that increases $X$ a lot and decreases $Y$.
 
 ---
 
@@ -487,7 +470,7 @@ section {
 }
 </style>
 
-When labor increases at fixed prices:
+When labor increases **at fixed prices**:
 
 - The economy wants to use the extra labor.
 - Since good X uses labor more intensively, expanding X absorbs the new labor efficiently.
@@ -557,7 +540,7 @@ section {
 }
 </style>
 
-Differentiate the full employment conditions while holding **goods prices constant** (which implies input coefficients $a_{ij}$ are fixed because factor prices are fixed by goods prices via zero-profit conditions):
+Differentiate the full employment conditions while holding **goods prices constant** (which implies input coefficients $a_{ij}$ are `fixed` because factor prices are fixed by goods prices via zero-profit conditions):
 $$
 \begin{aligned} \lambda_{LX} \hat{Q}_X + \lambda_{LY} \hat{Q}_Y &= \hat{L} \\ \lambda_{KX} \hat{Q}_X + \lambda_{KY} \hat{Q}_Y &= \hat{K} \end{aligned}
 $$
